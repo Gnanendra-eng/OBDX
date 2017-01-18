@@ -3,88 +3,34 @@ package com.jmr.obdx.viewcontroller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jmr.obdx.dto.LoginInfo;
-import com.jmr.obdx.util.DemoUtil;
+import com.jmr.obdx.util.Utility;
 
-/***
- * @author RISHAD K
- */
 @Controller
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
-
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	private String getLogin(Model model) throws Exception{
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		model.addAttribute("loginInfo", new LoginInfo());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+	private String getLogin() throws Exception{
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login";
-	}
-	
-	
-
-	
-
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	private String getSignup()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "signup";
 	}
 	
 	@RequestMapping(value = "/authfail", method = RequestMethod.GET)
 	private String getAuthFail() throws Exception{
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login-authfail";
 	}
 
 	@RequestMapping(value = "/logout/succesfull", method = RequestMethod.GET)
 	private String getLogout()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "logout";
 	}
-	
-	@RequestMapping(value = "/oops", method = RequestMethod.GET)
-	private String getException()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "exception";
-	}
-	
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	private String getHome()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "home";
-	}
-	
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	private String getIndex()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "index";
-	}
-	
-	
-
-	@RequestMapping(value = "/template", method = RequestMethod.GET)
-	private String getTemplate()throws Exception {
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "template";
-	}
-	
-	
-
 }

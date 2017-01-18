@@ -3,7 +3,7 @@ package com.jmr.obdx.util;
 /***
  * @author RISHAD K
  */
-public class DemoUtil {
+public class Utility {
 		
 	public static final String ENTERED = "Entered ";
 	public static final String EXITING = "Exiting ";
