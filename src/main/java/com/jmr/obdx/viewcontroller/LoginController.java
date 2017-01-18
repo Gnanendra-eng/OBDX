@@ -1,18 +1,13 @@
 package com.jmr.obdx.viewcontroller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jmr.obdx.dto.LoginInfo;
-import com.jmr.obdx.service.UserService;
 import com.jmr.obdx.util.DemoUtil;
 
 /***
@@ -23,8 +18,7 @@ public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@Autowired 
-	private UserService userService;
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String getLogin(Model model) throws Exception{
@@ -35,14 +29,7 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	private String getProfile( @ModelAttribute LoginInfo loginInfo,Model model) throws Exception{
-		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		List<String> responceObj=userService.getUserRole(loginInfo.getUserName());
-		model.addAttribute("responceObj", responceObj);
-		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "profile";
-	}
+
 	
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

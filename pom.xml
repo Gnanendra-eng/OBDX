@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jmr.obdx</groupId>
-	<artifactId>obdx</artifactId>
+	<artifactId>jmr_obdx</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<description>obdx project for Spring Boot</description>
+	<description>jmr_obdx project for Spring Boot</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -20,19 +20,25 @@
 	</properties>
 	<dependencies>
 
-		<!-- Spring -->
+		<!-- Spring Web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Spring test-->
+		<!-- Spring Test-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
  
+        <!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
  		<!--Jpa-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,5 +67,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<name>obdx</name>
+	<name>jmr_obdx</name>
 </project>
