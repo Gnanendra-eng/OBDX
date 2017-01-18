@@ -28,64 +28,64 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String getLogin(Model model) throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		model.addAttribute("loginInfo", new LoginInfo());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login";
 	}
 	
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	private String getProfile( @ModelAttribute LoginInfo loginInfo,Model model) throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		List<String> responceObj=userService.getUserRole(loginInfo.getUserName());
 		model.addAttribute("responceObj", responceObj);
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "profile";
 	}
 	
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	private String getSignup()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "signup";
 	}
 	
 	@RequestMapping(value = "/authfail", method = RequestMethod.GET)
 	private String getAuthFail() throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login-authfail";
 	}
 
 	@RequestMapping(value = "/logout/succesfull", method = RequestMethod.GET)
 	private String getLogout()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "logout";
 	}
 	
 	@RequestMapping(value = "/oops", method = RequestMethod.GET)
 	private String getException()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "exception";
 	}
 	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	private String getHome()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "home";
 	}
 	
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	private String getIndex()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "index";
 	}
 	
@@ -93,8 +93,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/template", method = RequestMethod.GET)
 	private String getTemplate()throws Exception {
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "template";
 	}
 	

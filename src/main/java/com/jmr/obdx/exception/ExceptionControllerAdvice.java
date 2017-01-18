@@ -17,8 +17,8 @@ public class ExceptionControllerAdvice {
 
 	@ExceptionHandler(Exception.class)
 	public String exception() {		
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "redirect:/oops";
 	}
 }

@@ -1,6 +1,9 @@
 var app = angular.module('demoApp', []);
-app.controller('loginController', function($scope,$http){
-		
+app.controller('loginController', function($scope,$http,$window){
+
+ //$scope.enterValue='hai'	
+// $window.location.href = '/admin#/'+$scope.enterValue;
+	
 });
 		
 

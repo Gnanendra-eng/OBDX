@@ -44,7 +44,7 @@ public class UserService {
 	
 	
 	public List<String> getUserRole(String userName ) throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		List<String> listOfRoles=new ArrayList<>();
 		Mstchanneluser mstchanneluser =mstchanneluserRepo.findByUserId(userName);
 		Userrole userrole=userroleRepo.findByUserRoleInfo(Integer.parseInt(mstchanneluser.getId().getIduser()));
@@ -54,7 +54,7 @@ public class UserService {
 	    applData=appldataRepo.findByUserRoleValues(roletxnsInfo.getId().getIdtxn());  
 		 listOfRoles.addAll(applData);
 	    });
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return listOfRoles;
 	}
 	
@@ -77,22 +77,22 @@ public class UserService {
 	private List<UserInfo> userInfo;
 	
 	public StatusInfo userRegister(UserRegDto userRegDto ) throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 	
 		
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return statusInfo;
 	}
 	
 	
 	public  List<UserInfo> getAllUsers( ) throws Exception{
-		logger.info(DemoUtil.Entered + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		 userInfo=new ArrayList<>();
 		 List<Login> users=loginRepo.findAllUsers();
 		 users.forEach(user->{
 			 userInfo.add(new UserInfo(user.getEmail(), user.getPassword()));
 		 });
-		logger.info(DemoUtil.Exiting + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(DemoUtil.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return userInfo;
 	}
 	
