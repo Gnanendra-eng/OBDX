@@ -54,13 +54,12 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" name="userForm" th:action="@{/profile}"
-									th:object="${loginInfo}" novalidate="novalidate" action="#"
+								<form id="login-form" th:action="@{/login}"  novalidate="novalidate" 
 									method="post" style="display: block;">
 									<div class="form-group"
 										data-ng-class="{ 'has-error' : userForm.userName.$invalid &amp;&amp; !userForm.userName.$pristine}">
 										<input type="text" name="userName"
-											data-ng-model="user.userName" th:field="*{userName}"
+											data-ng-model="user.userName" 
 											required="required" tabindex="1" class="form-control"
 											placeholder="Username" /> <span class="error-msg"
 											data-ng-show="userForm.userName.$error.required &amp;&amp; !userForm.userName.$pristine">Username
@@ -70,7 +69,7 @@
 										data-ng-class="{ 'has-error' : userForm.password.$invalid &amp;&amp; !userForm.password.$pristine }">
 										<input type="password" id="password" class="form-control"
 											name="password" data-ng-model="user.password"
-											th:field="*{password}" required="required" tabindex="2"
+											 required="required" tabindex="2"
 											placeholder="Password" /> <span class="error-msg"
 											data-ng-show="userForm.password.$error.required &amp;&amp; !userForm.password.$pristine">Password
 											is required.</span>

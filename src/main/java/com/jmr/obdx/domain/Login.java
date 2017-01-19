@@ -1,5 +1,114 @@
 package com.jmr.obdx.domain;
 
-public class Login {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "LOGIN", schema = "JMR_OBDX", uniqueConstraints = @UniqueConstraint(columnNames = "USERNAME"))
+public class Login implements java.io.Serializable {
+
+	private long id;
+	private AuthorityM authorityM;
+	private String username;
+	private String password;
+	private byte isactive;
+	private byte accountnonexpired;
+	private byte credentialsnonexpired;
+	private byte accountnonlocked;
+
+	public Login() {
+	}
+
+	public Login(long id, AuthorityM authorityM, String username, String password, byte isactive,
+			byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked) {
+		this.id = id;
+		this.authorityM = authorityM;
+		this.username = username;
+		this.password = password;
+		this.isactive = isactive;
+		this.accountnonexpired = accountnonexpired;
+		this.credentialsnonexpired = credentialsnonexpired;
+		this.accountnonlocked = accountnonlocked;
+	}
+
+	@Id
+	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
+	public long getId() {
+		return this.id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AUTHORITY_REF_ID", nullable = false)
+	public AuthorityM getAuthorityM() {
+		return this.authorityM;
+	}
+
+	public void setAuthorityM(AuthorityM authorityM) {
+		this.authorityM = authorityM;
+	}
+
+	@Column(name = "USERNAME", unique = true, nullable = false, length = 100)
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Column(name = "PASSWORD", nullable = false, length = 500)
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Column(name = "ISACTIVE", nullable = false, precision = 2, scale = 0)
+	public byte getIsactive() {
+		return this.isactive;
+	}
+
+	public void setIsactive(byte isactive) {
+		this.isactive = isactive;
+	}
+
+	@Column(name = "ACCOUNTNONEXPIRED", nullable = false, precision = 2, scale = 0)
+	public byte getAccountnonexpired() {
+		return this.accountnonexpired;
+	}
+
+	public void setAccountnonexpired(byte accountnonexpired) {
+		this.accountnonexpired = accountnonexpired;
+	}
+
+	@Column(name = "CREDENTIALSNONEXPIRED", nullable = false, precision = 2, scale = 0)
+	public byte getCredentialsnonexpired() {
+		return this.credentialsnonexpired;
+	}
+
+	public void setCredentialsnonexpired(byte credentialsnonexpired) {
+		this.credentialsnonexpired = credentialsnonexpired;
+	}
+
+	@Column(name = "ACCOUNTNONLOCKED", nullable = false, precision = 2, scale = 0)
+	public byte getAccountnonlocked() {
+		return this.accountnonlocked;
+	}
+
+	public void setAccountnonlocked(byte accountnonlocked) {
+		this.accountnonlocked = accountnonlocked;
+	}
 
 }
