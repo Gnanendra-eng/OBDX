@@ -27,6 +27,10 @@ public class AuthorityM implements java.io.Serializable {
 		this.typeuser = typeuser;
 	}
 
+	public AuthorityM(long id) {
+		this.id = id;
+	}
+
 	public AuthorityM(long id, String typeuser, String description, Set<Login> logins) {
 		this.id = id;
 		this.typeuser = typeuser;

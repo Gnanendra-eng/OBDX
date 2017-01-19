@@ -25,8 +25,7 @@ public class Login implements java.io.Serializable {
 	public Login() {
 	}
 
-	public Login(long id, AuthorityM authorityM, String username, String password, byte isactive,
-			byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked) {
+	public Login(long id, AuthorityM authorityM, String username, String password, byte isactive,byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked) {
 		this.id = id;
 		this.authorityM = authorityM;
 		this.username = username;
@@ -37,6 +36,17 @@ public class Login implements java.io.Serializable {
 		this.accountnonlocked = accountnonlocked;
 	}
 
+	
+	public Login( String username, String password, byte isactive,byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked,AuthorityM authorityM) {
+		this.authorityM = authorityM;
+		this.username = username;
+		this.password = password;
+		this.isactive = isactive;
+		this.accountnonexpired = accountnonexpired;
+		this.credentialsnonexpired = credentialsnonexpired;
+		this.accountnonlocked = accountnonlocked;
+	}
+	
 	@Id
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getId() {

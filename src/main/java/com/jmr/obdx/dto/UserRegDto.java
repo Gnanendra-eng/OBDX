@@ -2,6 +2,9 @@ package com.jmr.obdx.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/***
+ * @author JMR
+ */
 public class UserRegDto {
 
 	@NotEmpty(message = "fullname is Required")
