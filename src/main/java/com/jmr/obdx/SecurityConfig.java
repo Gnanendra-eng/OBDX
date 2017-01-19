@@ -21,26 +21,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/login","/user/register")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.failureUrl("/login/authfail").usernameParameter("username").passwordParameter("password")
+				.failureUrl("/login/authfail").usernameParameter("userName").passwordParameter("password")
 				.defaultSuccessUrl("/auth", true).permitAll().and().exceptionHandling()
-				.accessDeniedPage("/accessdeniedpage").and().logout().logoutSuccessUrl("/logout/succesfull")
+				.accessDeniedPage("/accessdenied").and().logout().logoutSuccessUrl("/logout/succesfull")
 				.permitAll();
 
 	}
+
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	}
+
 
 	@Override
 	public void configure(WebSecurity webSecurity) throws Exception {
 		webSecurity.ignoring().antMatchers("/fonts/**", "/js/**", "/images/**", "/css/**", "/plugins/**", "/dist/**");
 	}
-
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(userDetailsService)
-				.passwordEncoder(new BCryptPasswordEncoder());
-	}
-
-
-	protected UserDetailsService userDetailsService() {
-		return userDetailsService;
-	}
+	
 }

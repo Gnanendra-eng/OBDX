@@ -7,10 +7,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class UserRegDto {
 
-	@NotEmpty(message = "fullname is Required")
+	@NotEmpty(message = "Is required")
 	private String userName;
 
-	@NotEmpty(message = "password is Required")
+	@NotEmpty(message = "Is required")
 	private String password;
 
 	public String getUserName() {

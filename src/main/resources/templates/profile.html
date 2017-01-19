@@ -23,21 +23,18 @@
 				<li class="active"><a href="#">Home</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Operation <span class="caret"></span></a>
-					<ul class="dropdown-menu" style="width: 400px; height: 500px; overflow: auto">
-						<li th:each="value : ${responceObj}"><a href="#"
-							th:text="${value}"></a></li>
+					<ul class="dropdown-menu"
+						style="width: 400px; height: 500px; overflow: auto">
 					</ul></li>
 				<li><a href="#">Profile</a></li>
-				<li><a href="#">Sign out</a></li>
+				<li><a href="#"><form th:action="@{/logout}" method="post">
+							<input type="submit" class="btn btn-info btn-sm btn pull-right"
+								value="Sign Out" />
+						</form></a></li>
 			</ul>
 		</div>
 	</nav>
-	<div class="container" data-ng-controller="profileController">
-		<br />
-		<p th:text="'Hi, ' + ${loginInfo.userName}" />
-		<input type="hidden" th:value="${loginInfo.userName}"
-			data-ng-model="usernaeme" />
-	</div>
+	<div class="container" data-ng-controller="profileController"></div>
 </body>
 <script src="js/profile.js" type="text/javascript"></script>
 </html>

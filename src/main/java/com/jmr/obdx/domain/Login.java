@@ -8,7 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
+/***
+ * @author JMR
+ */
 @Entity
 @Table(name = "LOGIN", schema = "JMR_OBDX", uniqueConstraints = @UniqueConstraint(columnNames = "USERNAME"))
 public class Login implements java.io.Serializable {
@@ -17,15 +19,15 @@ public class Login implements java.io.Serializable {
 	private AuthorityM authorityM;
 	private String username;
 	private String password;
-	private byte isactive;
-	private byte accountnonexpired;
-	private byte credentialsnonexpired;
-	private byte accountnonlocked;
+    private String isactive;
+    private String accountnonexpired;
+    private String credentialsnonexpired;
+    private String accountnonlocked;
 
 	public Login() {
 	}
 
-	public Login(long id, AuthorityM authorityM, String username, String password, byte isactive,byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked) {
+	public Login(long id, AuthorityM authorityM, String username, String password, String isactive,String accountnonexpired, String credentialsnonexpired, String accountnonlocked) {
 		this.id = id;
 		this.authorityM = authorityM;
 		this.username = username;
@@ -37,7 +39,7 @@ public class Login implements java.io.Serializable {
 	}
 
 	
-	public Login( String username, String password, byte isactive,byte accountnonexpired, byte credentialsnonexpired, byte accountnonlocked,AuthorityM authorityM) {
+	public Login( String username, String password, String isactive,String accountnonexpired, String credentialsnonexpired, String accountnonlocked,AuthorityM authorityM) {
 		this.authorityM = authorityM;
 		this.username = username;
 		this.password = password;
@@ -57,7 +59,7 @@ public class Login implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "AUTHORITY_REF_ID", nullable = false)
 	public AuthorityM getAuthorityM() {
 		return this.authorityM;
@@ -85,40 +87,45 @@ public class Login implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "ISACTIVE", nullable = false, precision = 2, scale = 0)
-	public byte getIsactive() {
-		return this.isactive;
-	}
+	
+	@Column(name="ISACTIVE", nullable=false, length=10)
+    public String getIsactive() {
+        return this.isactive;
+    }
+    
+    public void setIsactive(String isactive) {
+        this.isactive = isactive;
+    }
 
-	public void setIsactive(byte isactive) {
-		this.isactive = isactive;
-	}
+    
+    @Column(name="ACCOUNTNONEXPIRED", nullable=false, length=10)
+    public String getAccountnonexpired() {
+        return this.accountnonexpired;
+    }
+    
+    public void setAccountnonexpired(String accountnonexpired) {
+        this.accountnonexpired = accountnonexpired;
+    }
 
-	@Column(name = "ACCOUNTNONEXPIRED", nullable = false, precision = 2, scale = 0)
-	public byte getAccountnonexpired() {
-		return this.accountnonexpired;
-	}
+    
+    @Column(name="CREDENTIALSNONEXPIRED", nullable=false, length=10)
+    public String getCredentialsnonexpired() {
+        return this.credentialsnonexpired;
+    }
+    
+    public void setCredentialsnonexpired(String credentialsnonexpired) {
+        this.credentialsnonexpired = credentialsnonexpired;
+    }
 
-	public void setAccountnonexpired(byte accountnonexpired) {
-		this.accountnonexpired = accountnonexpired;
-	}
+    
+    @Column(name="ACCOUNTNONLOCKED", nullable=false, length=10)
+    public String getAccountnonlocked() {
+        return this.accountnonlocked;
+    }
+    
+    public void setAccountnonlocked(String accountnonlocked) {
+        this.accountnonlocked = accountnonlocked;
+    }
 
-	@Column(name = "CREDENTIALSNONEXPIRED", nullable = false, precision = 2, scale = 0)
-	public byte getCredentialsnonexpired() {
-		return this.credentialsnonexpired;
-	}
-
-	public void setCredentialsnonexpired(byte credentialsnonexpired) {
-		this.credentialsnonexpired = credentialsnonexpired;
-	}
-
-	@Column(name = "ACCOUNTNONLOCKED", nullable = false, precision = 2, scale = 0)
-	public byte getAccountnonlocked() {
-		return this.accountnonlocked;
-	}
-
-	public void setAccountnonlocked(byte accountnonlocked) {
-		this.accountnonlocked = accountnonlocked;
-	}
 
 }

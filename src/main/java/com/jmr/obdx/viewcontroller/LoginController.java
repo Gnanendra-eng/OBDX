@@ -1,5 +1,8 @@
  package com.jmr.obdx.viewcontroller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -26,11 +29,8 @@ public class LoginController {
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login";
 	}
-	
-	
-	
-	
-	@RequestMapping(value = "/authfail", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/login/authfail", method = RequestMethod.GET)
 	private String getAuthFail() throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -45,10 +45,13 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/auth", method = RequestMethod.GET)
-	private String get()throws Exception {
+	private String get( Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse)throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		
+		
+		
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "hi";
+		return "profile";
 	}
 	
 }

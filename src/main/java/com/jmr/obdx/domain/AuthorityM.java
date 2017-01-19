@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
+/***
+ * @author JMR
+ */
 @Entity
 @Table(name = "AUTHORITY_M", schema = "JMR_OBDX", uniqueConstraints = @UniqueConstraint(columnNames = "TYPEUSER"))
 public class AuthorityM implements java.io.Serializable {
@@ -48,7 +50,7 @@ public class AuthorityM implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "TYPEUSER", unique = true, nullable = false, length = 5)
+	@Column(name = "TYPEUSER", unique = true, nullable = false, length =25)
 	public String getTypeuser() {
 		return this.typeuser;
 	}
@@ -66,7 +68,7 @@ public class AuthorityM implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "authorityM")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "authorityM")
 	public Set<Login> getLogins() {
 		return this.logins;
 	}

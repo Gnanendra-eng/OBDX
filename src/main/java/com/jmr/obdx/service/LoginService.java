@@ -42,13 +42,8 @@ public class LoginService implements UserDetailsService {
 		if ((userLogin == null) || (userLogin.getPassword() == null)) {
 			throw new UsernameNotFoundException("user" + userName + "not found...");
 		}
-		AuthorityM obj = new AuthorityM();
-		obj.setId(userLogin.getAuthorityM().getId());
-		userDetials = new org.springframework.security.core.userdetails.User(userName, userLogin.getPassword(),
-				Boolean.parseBoolean(String.valueOf(userLogin.getIsactive())),
-				Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonexpired())),
-				Boolean.parseBoolean(String.valueOf(userLogin.getCredentialsnonexpired())),
-				Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonlocked())), getAuthority(obj));
+		userDetials = new org.springframework.security.core.userdetails.User(userLogin.getUsername(), userLogin.getPassword(),Boolean.parseBoolean(userLogin.getIsactive()),
+				Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonexpired())),Boolean.parseBoolean(String.valueOf(userLogin.getCredentialsnonexpired())),Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonlocked())), getAuthority(new AuthorityM(userLogin.getAuthorityM().getId(), userLogin.getAuthorityM().getTypeuser())));
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return userDetials;
 	}

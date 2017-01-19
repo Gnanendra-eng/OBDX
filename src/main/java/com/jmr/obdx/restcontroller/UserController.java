@@ -18,7 +18,9 @@ import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.dto.UserRegDto;
 import com.jmr.obdx.service.UserService;
 import com.jmr.obdx.util.Utility;
-
+/***
+ * @author JMR
+ */
 @RequestMapping(value = "/user")
 @RestController
 public class UserController {
@@ -28,6 +30,13 @@ public class UserController {
 	@Autowired
 	private UserService registrationService;
 
+	/***
+	 * This method is used for user registration.
+	 * 
+	 * @param userRegDto  This object receives the information of the user.
+	 * @param bindingResult This object receives the information of the binding result.
+	 * @return This method returns statusInfo.
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<StatusInfo> userRegister(@RequestBody @Valid UserRegDto userRegDto,BindingResult bindingResult) {
 		try {
