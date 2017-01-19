@@ -49,7 +49,7 @@ public class UserController {
 			return new ResponseEntity<StatusInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@RequestMapping(value="/forgetpassword",method = RequestMethod.GET)
+	@RequestMapping(value="/validusername",method = RequestMethod.GET)
 	private ResponseEntity<StatusInfo> getValidUser(@RequestParam String userName){
 		try
 		{

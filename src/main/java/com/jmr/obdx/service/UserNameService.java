@@ -31,7 +31,8 @@ public class UserNameService {
 	        statusInfo.getErrorMsgs().add(new ErrorMsg("userName", "Not a Valid User"));
 	        return statusInfo;
 	       }
-		 return statusInfo;
+		 
+		return statusInfo;
 			
 	}
 
