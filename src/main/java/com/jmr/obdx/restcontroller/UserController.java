@@ -35,6 +35,7 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<StatusInfo> userRegister(@RequestBody @Valid UserRegDto userRegDto,BindingResult bindingResult) {
 		try {
+			
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 			StatusInfo responceObj = registrationService.userRegister(userRegDto, bindingResult);
 			if (responceObj.getErrorStatus()){
