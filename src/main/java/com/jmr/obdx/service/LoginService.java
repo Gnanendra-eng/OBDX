@@ -5,20 +5,21 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
 
 import com.jmr.obdx.domain.AuthorityM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.util.Utility;
-
-
-@Repository
+/***
+ * @author JMR
+ */
+@Service
 public class LoginService implements UserDetailsService {
 
 	private static Logger logger = Logger.getLogger(LoginService.class);
@@ -28,13 +29,14 @@ public class LoginService implements UserDetailsService {
 	@Autowired
 	private LoginRepo loginRepo;
 
+	
 	private Login getUserDetails(String userName) {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login login = loginRepo.findByUsername(userName);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return login;
 	}
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());

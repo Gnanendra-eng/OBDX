@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.jmr.obdx.util.Utility;
 
 /***
- * @author RISHAD K
+ * @author JMR
  */
 @ControllerAdvice
 public class ExceptionControllerAdvice {

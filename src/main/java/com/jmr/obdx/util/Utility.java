@@ -1,10 +1,9 @@
 package com.jmr.obdx.util;
 
 /***
- * @author RISHAD K
+ * @author JMR
  */
 public class Utility {
-		
 	
 	public static final String ALREADY_EXISITING="Already exisiting";
 	public static final String USER_NAME="userName";
