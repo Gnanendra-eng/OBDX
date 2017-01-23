@@ -11,6 +11,7 @@ import com.jmr.obdx.domain.AuthorityM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
+import com.jmr.obdx.dto.UserInfo;
 import com.jmr.obdx.dto.UserRegDto;
 import com.jmr.obdx.repositories.AuthorityMRepo;
 import com.jmr.obdx.repositories.LoginRepo;
@@ -30,6 +31,8 @@ public class UserService {
 	private LoginRepo loginRepo;
 	
 	private StatusInfo statusInfo;
+	
+	private UserInfo userInfo;
 	
 	/***
 	 * This method is used for user registration.
@@ -62,12 +65,28 @@ public class UserService {
 	    	 return statusInfo;
 	     }
 	}
+	
+	/***
+	 * 
+	 * @param userName
+	 * @return
+	 * @throws Exception
+	 */
+	 public UserInfo getRegisterdUserInfo( String userName) throws Exception{
+	    logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		     userInfo=new UserInfo();
+	    	 if(userName.isEmpty()||userName.equals("")){
+	    		 userInfo.setErrorStatus(true);
+	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.ALREADY_EXISITING));
+				 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			     return userInfo;	
+		     }
+	    	 Login loginInfo= loginRepo.findByUsername(userName);
+	    	 userInfo=new UserInfo(loginInfo.getUsername(), loginInfo.getPassword(), loginInfo.getIsactive(), loginInfo.getAccountnonexpired(),
+	    			 loginInfo.getCredentialsnonexpired(), loginInfo.getAccountnonlocked());
+			 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+	    	 return userInfo;
+	     }
+	
 
-	
-	
-	
-	
-	
-	
-	
 }

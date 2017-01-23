@@ -6,6 +6,7 @@ package com.jmr.obdx.util;
 public class Utility {
 	
 	public static final String ALREADY_EXISITING="Already exisiting";
+	public static final String NOT_AVAILABLE="Not Available";
 	public static final String USER_NAME="userName";
 	public static final String ADMIN="ROLE_ADMIN";
 	public static final String ENTERED = "Entered ";

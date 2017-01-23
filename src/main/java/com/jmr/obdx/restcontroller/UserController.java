@@ -12,9 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
+import com.jmr.obdx.dto.UserInfo;
 import com.jmr.obdx.dto.UserRegDto;
 import com.jmr.obdx.service.UserService;
 import com.jmr.obdx.util.Utility;
@@ -55,6 +57,23 @@ public class UserController {
 	}
 	
 	
+
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<UserInfo> getRegisterdUserInfo(@RequestParam("userName") String userName) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			UserInfo responceObj = registrationService.getRegisterdUserInfo(userName);
+			if (responceObj.getErrorStatus()){
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<UserInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<UserInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<UserInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	
 	
