@@ -77,14 +77,17 @@ public class UserService {
 		     userInfo=new UserInfo();
 	    	 if(userName.isEmpty()||userName.equals("")){
 	    		 userInfo.setErrorStatus(true);
-	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.ALREADY_EXISITING));
+	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.IS_REQUIRED));
 				 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 			     return userInfo;	
 		     }
 	    	 Login loginInfo= loginRepo.findByUsername(userName);
-	    	 userInfo=new UserInfo(loginInfo.getUsername(), loginInfo.getPassword(), loginInfo.getIsactive(), loginInfo.getAccountnonexpired(),
-	    			 loginInfo.getCredentialsnonexpired(), loginInfo.getAccountnonlocked());
-			 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+	    	 if(loginInfo!=null)
+	    	 userInfo=new UserInfo(loginInfo.getUsername(), loginInfo.getPassword(), loginInfo.getIsactive(), loginInfo.getAccountnonexpired(),loginInfo.getCredentialsnonexpired(), loginInfo.getAccountnonlocked());
+	    	 else
+	    	 userInfo.setErrorStatus(true);
+    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.NOT_AVAILABLE)); 
+	    	 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 	    	 return userInfo;
 	     }
 	
