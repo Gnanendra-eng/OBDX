@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
 import com.jmr.obdx.domain.AuthorityM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
@@ -35,8 +34,8 @@ public class UserService {
 	     else{
 	    	 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	 		 AuthorityM authorityM = authorityMRepo.findByTypeuser(Utility.ADMIN);
-	 		 loginRepo.save(new Login(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),Byte.parseByte("1"),
-	 				 Byte.parseByte("1"),Byte.parseByte("1"),Byte.parseByte("1") ,authorityM));
+	 		/* loginRepo.save(new Login(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),Byte.parseByte("1"),
+	 				 Byte.parseByte("1"),Byte.parseByte("1"),Byte.parseByte("1") ,authorityM));*/
 		     return statusInfo;	
 	     }
 	}

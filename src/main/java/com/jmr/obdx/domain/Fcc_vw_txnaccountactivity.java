@@ -15,7 +15,7 @@ import com.jmr.obdx.dto.StatusInfo;
 @SessionScope
 @Entity
 @Immutable
-public class Fcc_vw_txnaccountactivity extends StatusInfo implements java.io.Serializable {
+public class Fcc_vw_txnaccountactivity implements java.io.Serializable {
 	
 	@Id
 	@Column(name="NBRACCOUNT")
@@ -153,6 +153,12 @@ public class Fcc_vw_txnaccountactivity extends StatusInfo implements java.io.Ser
 	public String getUSERREFERENCENO() {
 		return USERREFERENCENO;
 	}
+	public Integer getCUSTOMERNO() {
+		return CUSTOMERNO;
+	}
+	public void setCUSTOMERNO(Integer cUSTOMERNO) {
+		CUSTOMERNO = cUSTOMERNO;
+	}
 	public void setUSERREFERENCENO(String uSERREFERENCENO) {
 		USERREFERENCENO = uSERREFERENCENO;
 	}
@@ -164,7 +170,6 @@ public class Fcc_vw_txnaccountactivity extends StatusInfo implements java.io.Ser
 			Date tXNDATE, Date pOSTINGDATE, String cODTXNCURR, String nAMBRANCH, float tXNAMOUNT, String cODDRCR,
 			String tXTREFERENCENO, String cODTXNTYPE, String dESCRIPTION, long sRNO, String tXNCODE, String sWIFTCODE,
 			String tXNMODULE, String uSERREFERENCENO) {
-		super();
 		NBRACCOUNT = nBRACCOUNT;
 		BRANCHCODE = bRANCHCODE;
 		CUSTOMERNO = cUSTOMERNO;
