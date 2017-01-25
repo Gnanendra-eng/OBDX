@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 /***
  * @author JMR
  */
@@ -50,7 +51,7 @@ public class AuthorityM implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "TYPEUSER", unique = true, nullable = false, length =25)
+	@Column(name = "TYPEUSER", unique = true, nullable = false, length = 25)
 	public String getTypeuser() {
 		return this.typeuser;
 	}

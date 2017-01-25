@@ -1,8 +1,5 @@
  package com.jmr.obdx.viewcontroller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.jmr.obdx.util.Utility;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class LoginController {
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -55,27 +52,14 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
-	private String getAccessdenied()throws Exception {
+	private String getAccessdenied()throws Exception { 
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "accessdenied";
 	}
 	
-	
-	@RequestMapping(value = "/auth", method = RequestMethod.GET)
-	private String get( Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse)throws Exception {
-		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		
-			
-		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "profile";
-	}
-	
-	
 
+	
+	
 	
 }
-
-/*@PreAuthorize("hasRole('ROLE_USER')")
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-*/

@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 /***
  * @author JMR
  */
@@ -19,15 +20,19 @@ public class Login implements java.io.Serializable {
 	private AuthorityM authorityM;
 	private String username;
 	private String password;
-    private String isactive;
-    private String accountnonexpired;
-    private String credentialsnonexpired;
-    private String accountnonlocked;
+	private String isactive;
+	private String accountnonexpired;
+	private String credentialsnonexpired;
+	private String accountnonlocked;
+
+	public Login(long id) {
+		this.id=id;
+	}
 
 	public Login() {
 	}
-
-	public Login(long id, AuthorityM authorityM, String username, String password, String isactive,String accountnonexpired, String credentialsnonexpired, String accountnonlocked) {
+	public Login(long id, AuthorityM authorityM, String username, String password, String isactive,
+			String accountnonexpired, String credentialsnonexpired, String accountnonlocked) {
 		this.id = id;
 		this.authorityM = authorityM;
 		this.username = username;
@@ -38,8 +43,8 @@ public class Login implements java.io.Serializable {
 		this.accountnonlocked = accountnonlocked;
 	}
 
-	
-	public Login( String username, String password, String isactive,String accountnonexpired, String credentialsnonexpired, String accountnonlocked,AuthorityM authorityM) {
+	public Login(String username, String password, String isactive, String accountnonexpired,
+			String credentialsnonexpired, String accountnonlocked, AuthorityM authorityM) {
 		this.authorityM = authorityM;
 		this.username = username;
 		this.password = password;
@@ -48,7 +53,7 @@ public class Login implements java.io.Serializable {
 		this.credentialsnonexpired = credentialsnonexpired;
 		this.accountnonlocked = accountnonlocked;
 	}
-	
+
 	@Id
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getId() {
@@ -87,45 +92,40 @@ public class Login implements java.io.Serializable {
 		this.password = password;
 	}
 
-	
-	@Column(name="ISACTIVE", nullable=false, length=10)
-    public String getIsactive() {
-        return this.isactive;
-    }
-    
-    public void setIsactive(String isactive) {
-        this.isactive = isactive;
-    }
+	@Column(name = "ISACTIVE", nullable = false, length = 10)
+	public String getIsactive() {
+		return this.isactive;
+	}
 
-    
-    @Column(name="ACCOUNTNONEXPIRED", nullable=false, length=10)
-    public String getAccountnonexpired() {
-        return this.accountnonexpired;
-    }
-    
-    public void setAccountnonexpired(String accountnonexpired) {
-        this.accountnonexpired = accountnonexpired;
-    }
+	public void setIsactive(String isactive) {
+		this.isactive = isactive;
+	}
 
-    
-    @Column(name="CREDENTIALSNONEXPIRED", nullable=false, length=10)
-    public String getCredentialsnonexpired() {
-        return this.credentialsnonexpired;
-    }
-    
-    public void setCredentialsnonexpired(String credentialsnonexpired) {
-        this.credentialsnonexpired = credentialsnonexpired;
-    }
+	@Column(name = "ACCOUNTNONEXPIRED", nullable = false, length = 10)
+	public String getAccountnonexpired() {
+		return this.accountnonexpired;
+	}
 
-    
-    @Column(name="ACCOUNTNONLOCKED", nullable=false, length=10)
-    public String getAccountnonlocked() {
-        return this.accountnonlocked;
-    }
-    
-    public void setAccountnonlocked(String accountnonlocked) {
-        this.accountnonlocked = accountnonlocked;
-    }
+	public void setAccountnonexpired(String accountnonexpired) {
+		this.accountnonexpired = accountnonexpired;
+	}
 
+	@Column(name = "CREDENTIALSNONEXPIRED", nullable = false, length = 10)
+	public String getCredentialsnonexpired() {
+		return this.credentialsnonexpired;
+	}
+
+	public void setCredentialsnonexpired(String credentialsnonexpired) {
+		this.credentialsnonexpired = credentialsnonexpired;
+	}
+
+	@Column(name = "ACCOUNTNONLOCKED", nullable = false, length = 10)
+	public String getAccountnonlocked() {
+		return this.accountnonlocked;
+	}
+
+	public void setAccountnonlocked(String accountnonlocked) {
+		this.accountnonlocked = accountnonlocked;
+	}
 
 }

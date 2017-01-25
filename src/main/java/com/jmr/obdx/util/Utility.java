@@ -14,4 +14,8 @@ public class Utility {
 	public static final String EXITING = "Exiting ";
 	public static final String EXCEPTION_IN = "Exception in ";
 	
+	public static final String VIEW_BAD_REQUEST="badrequest";
+	public static final String VIEW_OPPS="oops";
+
+	
 }

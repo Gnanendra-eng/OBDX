@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/login","/user/register")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 				.failureUrl("/login/authfail").usernameParameter("userName").passwordParameter("password")
-				.defaultSuccessUrl("/auth", true).permitAll().and().exceptionHandling()
+				.defaultSuccessUrl("/auth").permitAll().and().exceptionHandling()
 				.accessDeniedPage("/accessdenied").and().logout().logoutSuccessUrl("/logout/succesfull")
 				.permitAll();
 
