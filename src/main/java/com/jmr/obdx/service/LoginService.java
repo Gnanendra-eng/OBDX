@@ -42,6 +42,7 @@ public class LoginService implements UserDetailsService {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login userLogin = getUserDetails(userName);
 		if ((userLogin == null) || (userLogin.getPassword() == null)) {
+			logger.info("user not found");
 			throw new UsernameNotFoundException("user" + userName + "not found...");
 		}
 		userDetials = new org.springframework.security.core.userdetails.User(userLogin.getUsername(), userLogin.getPassword(),Boolean.parseBoolean(userLogin.getIsactive()),
