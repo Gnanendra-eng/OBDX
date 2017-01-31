@@ -19,6 +19,7 @@ import com.jmr.obdx.handler.CustomLogoutSuccessHandler;
 /***
  * @author JMR
  */
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				 .permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 				 .failureUrl("/login/authfail").usernameParameter("userName").passwordParameter("password")
 				 .defaultSuccessUrl("/auth",true).permitAll().and().exceptionHandling()
-				 .accessDeniedPage("/accessdenied").and().logout().logoutUrl("/logout").logoutSuccessHandler(customLogoutSuccessHandler).deleteCookies("JSESSIONID")
+				 .accessDeniedPage("/accessdenied").and().logout().logoutUrl("/logout")
+				 .logoutSuccessHandler(customLogoutSuccessHandler).deleteCookies("JSESSIONID")
 				 .and()
 	             .sessionManagement()
                  .maximumSessions(1)
@@ -85,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 @Bean
 	 public SessionRegistry sessionRegistry() {
 	        SessionRegistry sessionRegistry = new SessionRegistryImpl();
-	      return sessionRegistry;
+	        return sessionRegistry;
 	 }
 	
 }

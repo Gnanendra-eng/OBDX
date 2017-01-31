@@ -2,6 +2,7 @@ package com.jmr.obdx.viewcontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +30,10 @@ public class AuthController {
 	private AuthManager authManager;
 
 	@RequestMapping(value = "/auth", method = RequestMethod.GET)
-	private ModelAndView getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse, ModelAndView modelAndView) {
+	private ModelAndView getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse, HttpSession httpSession,ModelAndView modelAndView) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			String responceView = authManager.getUserRole(authentication, httpServletRequest,httpServletResponse);
+			String responceView = authManager.getUserRole(authentication, httpServletRequest,httpServletResponse,httpSession);
 			if(responceView!=null){
 				modelAndView.setStatus(HttpStatus.OK);
 				modelAndView.setView(new RedirectView(responceView));

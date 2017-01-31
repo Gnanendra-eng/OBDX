@@ -11,6 +11,7 @@ $scope.passwordPaste= function() {
 	 }, 0);
 	}
 });
+
 loginApp.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);

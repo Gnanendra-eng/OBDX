@@ -17,5 +17,7 @@ public class Utility {
 	public static final String VIEW_BAD_REQUEST="badrequest";
 	public static final String VIEW_OPPS="oops";
 
+	public static final String  DEVICE="device";
+	public static final String DEVICE_ID="01";
 	
 }

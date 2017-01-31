@@ -145,7 +145,8 @@ public class UserSession  implements java.io.Serializable {
    
     
 	public UserSession(String idsession, Date creationdate, Date lastaccessdate,Long iduser,
-			String remoteaddress,String jsessionid,String hostprifix,String username,String timezone,String idlang,String usertype,Integer timeout,Integer activetimeout,Boolean validflag) {
+			String remoteaddress,String jsessionid,String hostprifix,String username,String timezone,String idlang,String usertype,Integer timeout,
+			Integer activetimeout,Boolean validflag,String iddevice) {
 		this.idsession = idsession;
 		this.creationdate = creationdate;
 		this.lastaccessdate = lastaccessdate;
@@ -160,6 +161,7 @@ public class UserSession  implements java.io.Serializable {
 		this.timeout=timeout;
 		this.activetimeout=activetimeout;
 		this.validflag=validflag;
+		this.iddevice=iddevice;
 	}
 
     @Id 

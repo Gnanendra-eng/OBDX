@@ -1,5 +1,7 @@
  package com.jmr.obdx.viewcontroller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -27,12 +29,13 @@ public class LoginController {
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	private String getLogin() throws Exception{
+	private String getLogin(HttpSession httpSession) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 			return "redirect:/auth";
 		}
+		httpSession.setAttribute(Utility.DEVICE, Utility.DEVICE_ID);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "login";
 	}
@@ -58,6 +61,13 @@ public class LoginController {
 		return "accessdenied";
 	}
 	
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	private String test()throws Exception { 
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		return "test";
+	}
 
 	
 }

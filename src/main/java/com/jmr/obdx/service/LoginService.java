@@ -37,8 +37,7 @@ public class LoginService implements UserDetailsService {
 		return login;
 	}
 	
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName ) throws UsernameNotFoundException {	
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login userLogin = getUserDetails(userName);
 		if ((userLogin == null) || (userLogin.getPassword() == null)) {

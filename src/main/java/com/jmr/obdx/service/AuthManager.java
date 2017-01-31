@@ -47,19 +47,17 @@ public class AuthManager {
 	@Value("${com.jmr.obdx.user.timeout}")
 	protected Integer timeOut;
 	
-	public String getUserRole(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
-		    logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+	public String getUserRole(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,HttpSession httpSession) throws Exception{
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		    configureHttpSession(httpServletRequest, httpServletResponse);
-			createUserSessionData(authentication,httpServletRequest);
-			
-			
+			createUserSessionData(authentication,httpServletRequest,httpSession);
 			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 			return "userprofile";
 	}
 	
 	
 
-	protected void createUserSessionData(Authentication authentication,HttpServletRequest httpServletRequest) throws Exception{
+	protected void createUserSessionData(Authentication authentication,HttpServletRequest httpServletRequest,HttpSession httpSession) throws Exception{
 		 logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 	     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		 Login login=loginRepo.findByUsername(authentication.getName());
@@ -69,7 +67,7 @@ public class AuthManager {
 			 userSessionRepo.save(new UserSession(idSession,new Date(httpServletRequest.getSession().getCreationTime()),
 					 new Date(httpServletRequest.getSession().getLastAccessedTime()),login.getId(),httpServletRequest.getRemoteAddr(),
 					 httpServletRequest.getSession().getId(),httpServletRequest.getProtocol(),authentication.getName(),Calendar.getInstance().getTimeZone().toZoneId().toString(),
-					 httpServletRequest.getLocale().getLanguage(),userDetails.getAuthorities().toString().replaceAll("\\[", "").replaceAll("\\]",""),timeOut,activeTimeOut,false)); 
+					 httpServletRequest.getLocale().getLanguage(),userDetails.getAuthorities().toString().replaceAll("\\[", "").replaceAll("\\]",""),timeOut,activeTimeOut,false,(String) httpSession.getAttribute(Utility.DEVICE))); 
 		 }
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 	}
@@ -83,12 +81,12 @@ public class AuthManager {
 	protected void configureHttpSession( HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
 	   logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		HttpSession httpSession = httpServletRequest.getSession();
-		httpSession.setMaxInactiveInterval(300);
+		httpSession.setMaxInactiveInterval(timeOut);
 		Cookie[] cookies = httpServletRequest.getCookies();
 		if ((cookies != null) && (cookies.length > 0)) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("JSESSIONID")) {
-					cookie.setMaxAge(86400);
+					cookie.setMaxAge(activeTimeOut);
 					cookie.setHttpOnly(true);
 					//cookie.setSecure(true);
 					httpServletResponse.addCookie(cookie);
