@@ -6,12 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.jmr.obdx.service.LogoutService;
+import com.jmr.obdx.util.Utility;
 
 /***
  * @author JMR
@@ -19,16 +20,14 @@ import com.jmr.obdx.service.LogoutService;
 @Component
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 	
-	@Autowired
-	private LogoutService logoutService;
-    
+	private static final Logger logger = LoggerFactory.getLogger(CustomLogoutSuccessHandler.class);
+
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse httpServletResponse, Authentication authentication)throws IOException, ServletException {
-		if(authentication!=null){
-			 logoutService.deleteSessionInfo(authentication.getName());		
-			 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-			 httpServletResponse.sendRedirect("/logout/succesfull");
-		}		 
+		 logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+	     httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+	     httpServletResponse.sendRedirect("/logout/succesfull");	
+		 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 	}
 	
 }

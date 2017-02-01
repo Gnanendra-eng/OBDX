@@ -47,7 +47,7 @@ public class AuthManager {
 	@Value("${com.jmr.obdx.user.timeout}")
 	protected Integer timeOut;
 	
-	public String getUserRole(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,HttpSession httpSession) throws Exception{
+	public String getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,HttpSession httpSession) throws Exception{
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		    configureHttpSession(httpServletRequest, httpServletResponse);
 			createUserSessionData(authentication,httpServletRequest,httpSession);

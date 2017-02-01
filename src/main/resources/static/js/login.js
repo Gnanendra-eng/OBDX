@@ -1,5 +1,9 @@
 var loginApp = angular.module('loginApp', []);
 loginApp.controller('loginController', function($scope,$http,$window,$timeout){
+	
+
+	
+	
 $scope.userNamePaste = function() {
 $timeout(function() {
   $scope.user.userName ="";
@@ -11,7 +15,6 @@ $scope.passwordPaste= function() {
 	 }, 0);
 	}
 });
-
 loginApp.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
@@ -66,3 +69,28 @@ loginApp.directive('noSpaces', function() {
 });
 
 
+
+/*loginApp.config(['$httpProvider', function($httpProvider) {
+	 function b(a){
+	    	return a?(a^Math.random()*16>>a/4).toString(16):([1e16]+1e16).replace(/[01]/g,b)
+	    			
+	    };
+    $httpProvider.interceptors.push(function() {
+        return {
+            'request': function(response) {
+                document.cookie = 'CSRF-TOKEN=' + b();
+                return response;
+            }
+        };
+    });    
+}]);*/
+
+/*$http.post('/user/register',JSON.stringify({"userName":"22","password":"123"})).success(function (result) {
+	$scope.result = result;
+});*/
+
+
+/*$scope.init = function () {
+	$http.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
+	$http.defaults.xsrfCookieName = 'CSRF-TOKEN';
+};*/

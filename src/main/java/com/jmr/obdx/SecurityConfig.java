@@ -13,8 +13,11 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
+import com.jmr.obdx.filter.CsrfTokenResponseCookieBindingFilter;
+import com.jmr.obdx.handler.CustomLogoutHandler;
 import com.jmr.obdx.handler.CustomLogoutSuccessHandler;
 /***
  * @author JMR
@@ -30,8 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomLogoutSuccessHandler customLogoutSuccessHandler;
 	
-
-	protected String[] patterns = new String[] {"/user/register","/login","/logout/succesfull"};
+	@Autowired
+	private CustomLogoutHandler customLogoutHandler;
+	
+	protected String[] patterns = new String[] {"/user/register","/logout/succesfull"};
 
 	
 	/***
@@ -42,12 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers(patterns)
+		httpSecurity.csrf().and().addFilterAfter(new CsrfTokenResponseCookieBindingFilter(), CsrfFilter.class).authorizeRequests().antMatchers(patterns)
 				 .permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 				 .failureUrl("/login/authfail").usernameParameter("userName").passwordParameter("password")
 				 .defaultSuccessUrl("/auth",true).permitAll().and().exceptionHandling()
 				 .accessDeniedPage("/accessdenied").and().logout().logoutUrl("/logout")
-				 .logoutSuccessHandler(customLogoutSuccessHandler).deleteCookies("JSESSIONID")
+				 .addLogoutHandler(customLogoutHandler).logoutSuccessHandler(customLogoutSuccessHandler).deleteCookies("JSESSIONID")
 				 .and()
 	             .sessionManagement()
                  .maximumSessions(1)

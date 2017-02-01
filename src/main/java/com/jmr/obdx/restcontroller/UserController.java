@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
@@ -58,11 +57,11 @@ public class UserController {
 	
 	
 
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<UserInfo> getRegisterdUserInfo(@RequestParam("userName") String userName) {
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<UserInfo> getRegisterdUserInfo() {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			UserInfo responceObj = registrationService.getRegisterdUserInfo(userName);
+			UserInfo responceObj = registrationService.getRegisterdUserInfo("rishad");
 			if (responceObj.getErrorStatus()){
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<UserInfo>(responceObj, HttpStatus.BAD_REQUEST);

@@ -33,7 +33,7 @@ public class AuthController {
 	private ModelAndView getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse, HttpSession httpSession,ModelAndView modelAndView) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			String responceView = authManager.getUserRole(authentication, httpServletRequest,httpServletResponse,httpSession);
+			String responceView = authManager.getUserAuthInfo(authentication, httpServletRequest,httpServletResponse,httpSession);
 			if(responceView!=null){
 				modelAndView.setStatus(HttpStatus.OK);
 				modelAndView.setView(new RedirectView(responceView));

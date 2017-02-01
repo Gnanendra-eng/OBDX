@@ -84,9 +84,10 @@ public class UserService {
 	    	 Login loginInfo= loginRepo.findByUsername(userName);
 	    	 if(loginInfo!=null)
 	    	 userInfo=new UserInfo(loginInfo.getUsername(), loginInfo.getPassword(), loginInfo.getIsactive(), loginInfo.getAccountnonexpired(),loginInfo.getCredentialsnonexpired(), loginInfo.getAccountnonlocked());
-	    	 else
-	    	 userInfo.setErrorStatus(true);
-    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.NOT_AVAILABLE)); 
+	    	 else{
+	    		 userInfo.setErrorStatus(true);
+	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.NOT_AVAILABLE));  
+	    	 }
 	    	 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 	    	 return userInfo;
 	     }
