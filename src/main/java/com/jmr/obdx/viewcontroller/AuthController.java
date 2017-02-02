@@ -51,7 +51,5 @@ public class AuthController {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return modelAndView;
 		}
-		
 	}
-		
 }
