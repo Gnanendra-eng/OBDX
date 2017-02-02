@@ -20,6 +20,8 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 
+
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String getHome() throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -69,5 +71,16 @@ public class LoginController {
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "test";
 	}
+	
+	@RequestMapping(value = "/AccountDetails", method = RequestMethod.GET)
+	private String getAccountDetails() throws Exception{
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		return "AccountDetails";
+	}
+	
+	
+
 	
 }

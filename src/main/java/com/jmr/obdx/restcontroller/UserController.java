@@ -12,11 +12,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.dto.UserInfo;
 import com.jmr.obdx.dto.UserRegDto;
+import com.jmr.obdx.service.UserNameService;
 import com.jmr.obdx.service.UserService;
 import com.jmr.obdx.util.Utility;
 /***
@@ -30,6 +32,8 @@ public class UserController {
 
 	@Autowired
 	private UserService registrationService;
+	@Autowired
+	private UserNameService userNameService;
 
 	/***
 	 * This method is used for user registration.
@@ -41,6 +45,7 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<StatusInfo> userRegister(@RequestBody @Valid UserRegDto userRegDto,BindingResult bindingResult) {
 		try {
+			
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 			StatusInfo responceObj = registrationService.userRegister(userRegDto, bindingResult);
 			if (responceObj.getErrorStatus()){
@@ -54,6 +59,7 @@ public class UserController {
 			return new ResponseEntity<StatusInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 	
 	
 
@@ -75,5 +81,24 @@ public class UserController {
 	}
 	
 	
+
+	@RequestMapping(value="/validusername",method = RequestMethod.GET)
+	private ResponseEntity<StatusInfo> getValidUser(@RequestParam String userName){
+		try
+		{
+ 	logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			StatusInfo responceObj = userNameService.getUserName(userName);
+			if (responceObj.getErrorStatus()){
+				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<StatusInfo>(responceObj,HttpStatus.OK);	
+	}
+		catch(Exception exception){
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<StatusInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
+}
+
 	
 }
