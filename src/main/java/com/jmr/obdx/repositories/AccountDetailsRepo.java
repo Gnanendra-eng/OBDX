@@ -50,7 +50,8 @@ public class AccountDetailsRepo {
 			cr.add(Restrictions.eq("IDCUSTOMER",customerid));
 			cr.add(Restrictions.eq("NBRACCOUNT", nbrAccount ));
 			List list=cr.list();
-			System.out.println(list);
+		//	session.close();
+            System.out.println(list);
 			
 			if (!(list.size() < 0)) {
 				fcat_vw_accountdetails = (Fcat_vw_accountdetails) list.get(0);
@@ -58,6 +59,8 @@ public class AccountDetailsRepo {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
+		session.flush();
+		session.close();
          return fcat_vw_accountdetails;
 	}
 

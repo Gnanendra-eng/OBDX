@@ -1,0 +1,10 @@
+body {
+	background-image: url('/images/Internet-Banking.jpg');
+	padding-top: 190px;
+}
+.panel-AccountDetails>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align: center;
+}
