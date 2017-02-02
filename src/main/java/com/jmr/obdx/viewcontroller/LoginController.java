@@ -27,7 +27,13 @@ public class LoginController {
 		return "login";
 	}
 	
-	
+	@RequestMapping(value = "/AccountDetails", method = RequestMethod.GET)
+	private String getAccountDetails() throws Exception{
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		return "AccountDetails";
+	}
 	
 	
 	@RequestMapping(value = "/authfail", method = RequestMethod.GET)
@@ -49,6 +55,7 @@ public class LoginController {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "hi";
+		
 	}
 	
 }

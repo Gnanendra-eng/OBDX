@@ -21,6 +21,7 @@ public class HibernateConnectionUtil {
 			configuration.setProperty("hibernate.connection.password", "fcdb");
 			configuration.addAnnotatedClass(Fcat_vw_accountdetails.class);
 			configuration.addAnnotatedClass(Fcc_vw_txnaccountactivity.class);
+			
 
 			return configuration.buildSessionFactory();
 			}

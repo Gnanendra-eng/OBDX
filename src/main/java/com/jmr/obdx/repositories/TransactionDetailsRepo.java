@@ -8,12 +8,17 @@ import javax.persistence.EntityManagerFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.Fcc_vw_txnaccountactivity;
+import com.jmr.obdx.service.AccountDetailsService;
 import com.jmr.obdx.util.HibernateConnectionUtil;
+import com.jmr.obdx.util.Utility;
 
 /***************************
  * @author PRITIRANJAN SWAIN
@@ -21,6 +26,8 @@ import com.jmr.obdx.util.HibernateConnectionUtil;
  ****************************/
 @Repository
 public class TransactionDetailsRepo {
+	private static final Logger logger = LoggerFactory.getLogger(TransactionDetailsRepo.class);
+
 	
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
@@ -33,18 +40,49 @@ public class TransactionDetailsRepo {
 	
 	
 	public List<Fcc_vw_txnaccountactivity> getTransactionDetails(Integer idcustomer, String nbrAccount) throws Exception{
-                SessionFactory sessionFactory = hibernateConnectionUtil.getSessionFactory();
+		 //Transaction transaction = null;
+	 	logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());		 	
+
+		SessionFactory sessionFactory = hibernateConnectionUtil.getSessionFactory();
+	 	logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());		 	
+
+		//Session session=sessionFactory.getCurrentSession();
 				Session session = sessionFactory.openSession();
-				Criteria cr = session.createCriteria(Fcc_vw_txnaccountactivity.class);
+		           //transaction = session.beginTransaction();
+                Criteria cr = session.createCriteria(Fcc_vw_txnaccountactivity.class);
+    		 	logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());		 	
+
 				cr.add(Restrictions.eq("CUSTOMERNO",idcustomer));
 				cr.add(Restrictions.eq("NBRACCOUNT", nbrAccount ));
 				List<Fcc_vw_txnaccountactivity> list=cr.list();
+				
+				session.flush();
+				session.close();
 				return list;
+				
+		
+				
+	}	
 		}
-	}
+/*	}
+try {
+    transaction = session.beginTransaction();
+    // do Some work
+    
+    session.flush(); // extra work
+    transaction.commit();            
+} catch(Exception ex) {            
+    if(transaction != null) {
+        transaction.rollback();
+    }
+    ex.printStackTrace();
+} finally {
+    if(session != null) {
+        session.close(); // extra work    
+    }            
+}      
 
-
-
+*/
 
 
 /*
