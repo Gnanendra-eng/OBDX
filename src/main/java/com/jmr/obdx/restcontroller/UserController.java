@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
-import com.jmr.obdx.dto.UserInfo;
-import com.jmr.obdx.dto.UserRegDto;
 import com.jmr.obdx.service.UserService;
+import com.jmr.obdx.service.dto.UserInfo;
+import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
 /***
  * @author JMR

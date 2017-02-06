@@ -11,10 +11,10 @@ import com.jmr.obdx.domain.AuthorityM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
-import com.jmr.obdx.dto.UserInfo;
-import com.jmr.obdx.dto.UserRegDto;
 import com.jmr.obdx.repositories.AuthorityMRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.service.dto.UserInfo;
+import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
 /***
  * @author JMR

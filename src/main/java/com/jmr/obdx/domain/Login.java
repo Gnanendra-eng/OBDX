@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,13 +25,15 @@ public class Login implements java.io.Serializable {
 	private String accountnonexpired;
 	private String credentialsnonexpired;
 	private String accountnonlocked;
+	private RetailCustomer retailCustomer;
 
 	public Login(long id) {
-		this.id=id;
+		this.id = id;
 	}
 
 	public Login() {
 	}
+
 	public Login(long id, AuthorityM authorityM, String username, String password, String isactive,
 			String accountnonexpired, String credentialsnonexpired, String accountnonlocked) {
 		this.id = id;
@@ -126,6 +129,15 @@ public class Login implements java.io.Serializable {
 
 	public void setAccountnonlocked(String accountnonlocked) {
 		this.accountnonlocked = accountnonlocked;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "login")
+	public RetailCustomer getRetailCustomer() {
+		return this.retailCustomer;
+	}
+
+	public void setRetailCustomer(RetailCustomer retailCustomer) {
+		this.retailCustomer = retailCustomer;
 	}
 
 }
