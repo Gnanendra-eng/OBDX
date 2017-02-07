@@ -1,7 +1,7 @@
 var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider.when('/', {
-           templateUrl : '/fragment/home.html',
+           templateUrl : '/fragment/dashboard.html',
            controller:"profileController"
     }).when("/account", {
         templateUrl : '/fragment/account.html',
