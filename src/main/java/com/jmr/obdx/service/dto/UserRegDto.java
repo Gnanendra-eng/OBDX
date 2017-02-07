@@ -1,4 +1,4 @@
-package com.jmr.obdx.dto;
+package com.jmr.obdx.service.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

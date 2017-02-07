@@ -1,4 +1,6 @@
-package com.jmr.obdx.dto;
+package com.jmr.obdx.service.dto;
+
+import com.jmr.obdx.dto.StatusInfo;
 
 public class UserInfo extends StatusInfo {
 

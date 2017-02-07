@@ -14,6 +14,7 @@ import org.hibernate.annotations.Parameter;
 /***
  * @author JMR
  */
+
 @Entity
 @Table(name = "RETAIL_CUSTOMER", schema = "JMR_OBDX")
 public class RetailCustomer implements java.io.Serializable {
@@ -25,8 +26,7 @@ public class RetailCustomer implements java.io.Serializable {
 	private String typecustomer;
 	private String refIdEntity;
 	private String customername;
-    private String idcusomer;
-
+	private String idcusomer;
 
 	public RetailCustomer() {
 	}
@@ -37,19 +37,19 @@ public class RetailCustomer implements java.io.Serializable {
 	}
 
 	public RetailCustomer(Login login, long id, String isprimery, String typecustomer, String refIdEntity,
-			String customername) {
+			String customername, String idcusomer) {
 		this.login = login;
 		this.id = id;
 		this.isprimery = isprimery;
 		this.typecustomer = typecustomer;
 		this.refIdEntity = refIdEntity;
 		this.customername = customername;
+		this.idcusomer = idcusomer;
 	}
 
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "login"))
 	@Id
 	@GeneratedValue(generator = "generator")
-
 	@Column(name = "IDUSER", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getIduser() {
 		return this.iduser;
@@ -113,15 +113,14 @@ public class RetailCustomer implements java.io.Serializable {
 	public void setCustomername(String customername) {
 		this.customername = customername;
 	}
-	
-	
-	@Column(name="IDCUSOMER", length=50)
-    public String getIdcusomer() {
-        return this.idcusomer;
-    }
-    
-    public void setIdcusomer(String idcusomer) {
-        this.idcusomer = idcusomer;
-    }
+
+	@Column(name = "IDCUSOMER", length = 50)
+	public String getIdcusomer() {
+		return this.idcusomer;
+	}
+
+	public void setIdcusomer(String idcusomer) {
+		this.idcusomer = idcusomer;
+	}
 
 }

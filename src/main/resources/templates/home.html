@@ -1,54 +1,80 @@
-<!DOCTYPE html >
-<html lang="en" xmlns="https://www.w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org" data-ng-app="demoApp">
-<head>
-<meta charset="ISO-8859-1" />
-<title>Demo</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="js/home.js" type="text/javascript"></script>
-</head>
-<body data-ng-controller="homeController">
-	<div class="container">
+
+<div class="row">
+	<div class="col-sm-3 well">
+		<div id="example">
+			<div class="demo-section k-content wide">
+				<div id="chart"
+					style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-sm-7">
+
+		<div class="row"></div>
+
 		<div class="row">
-			<div class="col-sm-8">
-				<form name="userForm" novalidate="novalidate"
-					data-ng-submit="getUserRoles()">
-					<div class="form-group">
-						<div class="form-group has-feedback"
-							data-ng-class="{ 'has-error' : userForm.name.$invalid &amp;&amp; !userForm.name.$pristine }">
-							<label for="pwd">Name:</label> <input type="text"
-								class="form-control" name="name" data-ng-model="fullname"
-								required="required" data-ng-change='change()' placeholder="Enter name" />
-						</div>
-						<span class="error-msg"
-							data-ng-show="userForm.name.$error.required &amp;&amp; !userForm.name.$pristine">Name
-							is required.</span>
+			<div class="col-sm-9" style="width: 500px; height: 200px;">
+				<div class="well">
+					<div class="panel-body">
+						<p contenteditable="true">SAVINGS ACCOUNT STAFF</p>
+						<button type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-thumbs-up"></span> Like
+						</button>
 					</div>
-					<button type="submit" class="btn btn-primary"
-						data-ng-disabled="userForm.$invalid">Get User roles</button>
-				</form>
+				</div>
 			</div>
 		</div>
-		<div class="row"  data-ng-show="status">
-			<div class="col-sm-4">
-				<h3>User Roles</h3>
-				<ul class="nav nav-tabs" data-ng-repeat="role in rolesInfo track by $index">
-					<li><a href="#">{{rolesInfo}}</a></li>
-				</ul>
+		<div class="row">
+
+			<div class="col-sm-9" style="width: 500px; height: 200px;">
+				<div class="well">
+					<div class="panel-body">
+						<p contenteditable="true">SAVINGS ACCOUNT STAFF</p>
+						<button type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-thumbs-up"></span> Like
+						</button>
+					</div>
+				</div>
 			</div>
-			
-			<div class="col-sm-4">
-			<img alt="loader" src="images/ajax-loader.gif">
+		</div>
+		<div class="row">
+
+			<div class="col-sm-9" style="width: 500px; height: 200px;">
+				<div class="well">
+					<div class="panel-body">
+						<p contenteditable="true">SAVINGS ACCOUNT STAFF</p>
+						<button type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-thumbs-up"></span> Like
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col-sm-9" style="width: 500px; height: 200px;">
+				<div class="well">
+					<div class="panel-body">
+						<p contenteditable="true">INACTIVE ACCOUNTS</p>
+						<button type="button" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-thumbs-up"></span> Like
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
+	<div class="col-sm-2 well">
+		<div class="thumbnail">
+			<p>SERVICE REQUESTS:</p>
+			<p>
+				<strong>223344133341214</strong>
+			</p>
+			<p>Fri. 27 November 2015</p>
+			<button class="btn btn-primary">Info</button>
+		</div>
+	</div>
+
+</div>
