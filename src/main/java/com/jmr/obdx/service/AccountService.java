@@ -1,7 +1,6 @@
 package com.jmr.obdx.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -45,11 +44,8 @@ public class AccountService {
 	private AccountSummaryInfo accountSummaryInfo; 
 	
 	private AccountDetailsDto accountDetailsDto;
-	private AccountSummaryDto accountSummaryDto;
 	
-	
-	
-	
+
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto=new BasicAccountDetailsDto(); 

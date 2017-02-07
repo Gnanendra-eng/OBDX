@@ -1,9 +1,6 @@
 var loginApp = angular.module('loginApp', []);
 loginApp.controller('loginController', function($scope,$http,$window,$timeout){
-	
 
-	
-	
 $scope.userNamePaste = function() {
 $timeout(function() {
   $scope.user.userName ="";

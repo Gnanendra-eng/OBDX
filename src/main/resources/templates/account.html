@@ -1,49 +1,130 @@
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<p>Accounts Info</p>
+			<p>
+				<b>ACCOUNTS INFO</b>
+			</p>
 			<hr />
 			<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<select class="form-control" data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
-							name="nbrAccount" 
-							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-							<option value="">Select</option>
-						</select>
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<form name="userForm" novalidate="novalidate">
+						<div class="form-group"
+							data-ng-class="{ 'has-error' : userForm.nbrAccount.$invalid &amp;&amp; !userForm.nbrAccount.$pristine }">
+							<select class="form-control" data-ng-change="onAccountChange()"
+								data-ng-model="nbrAccount" name="nbrAccount" required="required"
+								data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+								<option value="">Select</option>
+							</select> <span
+								data-ng-show="userForm.nbrAccount.$dirty &amp;&amp; userForm.nbrAccount.$invalid"
+								class="help-block">Account number is required.</span>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-3"></div>
+
+			</div>
+			<div data-ng-show="accountsResultsStatus">
+				<p align="left">
+					<b>Basic Informations</b>
+				</p>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Name :</label> <label>{{accountdetails.customerName}}</label>
+						</div>
+						<div class="form-group">
+							<label>Account Number :</label> <label>{{accountdetails.nbrAccount}}</label>
+						</div>
+						<div class="form-group">
+							<label>Account Relationship :</label>{{accountdetails.relation}}
+							<label></label>
+						</div>
+						<div class="form-group">
+							<label>Branch :</label> <label>{{accountdetails.nbrBranch}}</label>
+						</div>
+						<div class="form-group">
+							<label>Account Currency :</label> <label>{{accountdetails.ccyDesc}}</label>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Opening Date :</label> <label>{{accountdetails.openingDate}}</label>
+						</div>
+						<div class="form-group">
+							<label>Account Type :</label> <label>{{accountdetails.accType}}</label>
+						</div>
+						<div class="form-group">
+							<label>Account Status :</label> <label>{{accountdetails.accStatus}}</label>
+						</div>
+						<div class="form-group">
+							<label>Product Name :</label> <label>{{accountdetails.descAcctType}}</label>
+						</div>
+
 					</div>
 				</div>
-				<div class="col-md-6">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th> Name</th>
-								<th> Status</th>
-								<th> Description</th>
-								<th> Name</th>
-							</tr>
-						</thead>
-						<tbody data-ng-if="company_scheduled_events != 0">
-							<tr data-ng-repeat="scheduledEvent in company_scheduled_events">
-								<td>{{scheduledEvent.eventName}}</td>
-								<td>{{scheduledEvent.status}}</td>
-								<td>{{scheduledEvent.eventDesc}}</td>
-								<td>{{scheduledEvent.collegeName}}</td>
-							</tr>
-						</tbody>
-						<tbody data-ng-if="company_scheduled_events == 0">
-							<tr>
-								<td><p class="text-center">No data available</p></td>
-							</tr>
-						</tbody>
-					</table>
+				<p align="left">
+					<b>Facilities</b>
+				</p>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Cheque Book :</label> <label>{{accountdetails.isChqBook}}</label>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>OverDraft Allowed :</label> <label>{{accountdetails.isOverDraft}}</label>
+						</div>
+					</div>
 				</div>
-				<!--col-md-* end-->
+				<p align="left">
+					<b>Balances</b>
+				</p>
+				<hr />
 
-				<!--col-md-* end-->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Current Balance :</label> <label>{{accountdetails.balance}}</label>
+						</div>
+						<div class="form-group">
+							<label>Amount on Hold :</label> <label>{{accountdetails.amountOnHold}}</label>
+						</div>
+						<div class="form-group">
+							<label>Uncleared Funds :</label> <label></label>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Allowed OverDraft Limit :</label> <label>{{accountdetails.odLimit}}</label>
+						</div>
+						<div class="form-group">
+							<label>Minimum Balance Required :</label> <label>{{accountdetails.minBalance}}</label>
+						</div>
+						<div class="form-group">
+							<label>Total Available Balance :</label> <label>{{accountdetails.availableBalance}}</label>
+						</div>
+					</div>
+				</div>
+				<p align="left">
+					<b>Others</b>
+				</p>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>ATM Daily Withdrawal Limit :</label> <label>{{accountdetails.dailyWithDraWalLimit}}</label>
+						</div>
+						<div class="form-group">
+							<label>Eligible Advance Against Uncleared Funds Limit :</label> <label>{{accountdetails.eligibleAdv}}</label>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!--row end-->
 		</div>
-
 	</div>
 </div>
+
