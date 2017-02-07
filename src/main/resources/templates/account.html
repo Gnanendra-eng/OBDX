@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<p>Accounts Info</p>
+			<hr />
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<select class="form-control" data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
+							name="nbrAccount" 
+							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+							<option value="">Select</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th> Name</th>
+								<th> Status</th>
+								<th> Description</th>
+								<th> Name</th>
+							</tr>
+						</thead>
+						<tbody data-ng-if="company_scheduled_events != 0">
+							<tr data-ng-repeat="scheduledEvent in company_scheduled_events">
+								<td>{{scheduledEvent.eventName}}</td>
+								<td>{{scheduledEvent.status}}</td>
+								<td>{{scheduledEvent.eventDesc}}</td>
+								<td>{{scheduledEvent.collegeName}}</td>
+							</tr>
+						</tbody>
+						<tbody data-ng-if="company_scheduled_events == 0">
+							<tr>
+								<td><p class="text-center">No data available</p></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--col-md-* end-->
+
+				<!--col-md-* end-->
+			</div>
+			<!--row end-->
+		</div>
+
+	</div>
+</div>
