@@ -1,5 +1,7 @@
 package com.jmr.obdx.restcontroller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.service.AccountService;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
+import com.jmr.obdx.service.dto.AccountSummaryDto;
+import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
 import com.jmr.obdx.util.Utility;
 
@@ -25,6 +29,8 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<BasicAccountDetailsDto> getBasicAccountDetails(Authentication authentication) {
@@ -60,6 +66,27 @@ public class AccountController {
 			return new ResponseEntity<AccountDetailsDto>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+	
+	@RequestMapping(value="/summary",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<AccountSummaryInfo> getAccountsummary(Authentication authentication){
+		try 
+		{
+			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
+			AccountSummaryInfo responceObj = accountService.getAccountSummary( authentication);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<AccountSummaryInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<AccountSummaryInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<AccountSummaryInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+			
+		
+		
 	}
 
 }
