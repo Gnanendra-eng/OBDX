@@ -99,7 +99,7 @@ public class AccountService {
 		 sumOfContractAndTermdepostit=0.0;
 		 accountsummarys.stream().forEach(accountsummary -> {
 			if(accountsummary.getCODACCTTYPE().equals(Utility.SAVINGSANDCURRENT)){
-				sumOfSavingsAndCurrent+=Double.parseDouble(accountsummary.getNUMAVAILBAL());
+				sumOfSavingsAndCurrent+=Double.parseDouble(accountsummary.getAVAILAMT());
 				savingsAndCurrent.add(getAccountSummaryType(accountsummary));
 			}
             if(accountsummary.getCODACCTTYPE().equals(Utility.CONTRACTANDTERMDEPOSIT)){

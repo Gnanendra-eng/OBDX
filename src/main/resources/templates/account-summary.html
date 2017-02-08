@@ -8,7 +8,7 @@
 
 		</div>
 	</div>
-	
+
 	<div class="col-sm-6">
 		<div class="row">
 			<div class="col-sm-9">
@@ -19,29 +19,30 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#saving-current">Savings And Current</a>
+									href="#saving-current"><span class="glyphicon glyphicon-usd"></span>Savings And Current</a>
 							</h4>
 						</div>
 						<div id="saving-current" class="panel-collapse collapse">
-							<div class="panel-body">
+							<div class="panel-body" style="background-color: #7070a2;">
 								<div class="col-md-8"
 									data-ng-repeat="sgscut in savingsandcurrent">
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{sgscut.idaccount}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Description :</label> <label>{{sgscut.prdname}}</label>
 									</div>
-									<div class="form-group">
-										<label>Balance :</label>{{sgscut.numbalance}} <label></label>
+									<div class="form-group custextcolor">
+										<label>Balance :</label> <label>{{sgscut.numbalance}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Branch :</label> <label>{{sgscut.codbranch}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Currency :</label> <label>{{sgscut.codacctcurr}}</label>
 									</div>
-									<hr style="border: 1px solid #14192f;" />
+									<hr style="border: 1px solid #14192f;"
+										data-ng-if="savingsandcurrent.length>1" />
 								</div>
 							</div>
 						</div>
@@ -54,28 +55,29 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)" href="#loan">Loans</a>
+									data-ng-click="stopDefaultAction($event)" href="#loan"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans</a>
 							</h4>
 						</div>
 						<div id="loan" class="panel-collapse collapse">
-							<div class="panel-body">
+							<div class="panel-body" style="background-color: #7070a2;">
 								<div class="col-md-8" data-ng-repeat="loan in loan">
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{loan.idaccount}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Description :</label> <label>{{loan.prdname}}</label>
 									</div>
-									<div class="form-group">
-										<label>Balance :</label>{{loan.numbalance}} <label></label>
+									<div class="form-group custextcolor">
+										<label>Balance :</label> <label>{{loan.numbalance}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Branch :</label> <label>{{loan.codbranch}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Currency :</label> <label>{{loan.codacctcurr}}</label>
 									</div>
-									<hr style="border: 1px solid #14192f;" />
+									<hr style="border: 1px solid #14192f;"
+										data-ng-if="loan.length>1" />
 
 								</div>
 							</div>
@@ -90,29 +92,30 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#contract-and-termdeposit">CONTRACT AND TERMDEPOSIT</a>
+									href="#contract-and-termdeposit"><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT AND TERMDEPOSIT</a>
 							</h4>
 						</div>
 						<div id="contract-and-termdeposit" class="panel-collapse collapse">
-							<div class="panel-body">
+							<div class="panel-body" style="background-color: #7070a2;">
 								<div class="col-md-8"
 									data-ng-repeat="conttempdep in contractandtermdepostit">
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{conttempdep.idaccount}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Description :</label> <label>{{conttempdep.prdname}}</label>
 									</div>
-									<div class="form-group">
-										<label>Balance :</label>{{conttempdep.numbalance}} <label></label>
+									<div class="form-group custextcolor">
+										<label>Balance :</label> <label>{{conttempdep.numbalance}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Branch :</label> <label>{{conttempdep.codbranch}}</label>
 									</div>
-									<div class="form-group">
+									<div class="form-group custextcolor">
 										<label>Account Currency :</label> <label>{{conttempdep.codacctcurr}}</label>
 									</div>
-									<hr style="border: 1px solid #14192f;" />
+									<hr style="border: 1px solid #14192f;"
+										data-ng-if="contractandtermdepostit.length>1" />
 
 								</div>
 							</div>

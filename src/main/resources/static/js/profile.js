@@ -39,7 +39,7 @@ app.controller("accountsSummaryController", function($scope,$http) {
 			         visible:false
 			      },
 			      chartArea:{  
-			         background:""
+			         background:"#F0F8FF"
 			      },
 			      seriesDefaults:{  
 			         type:"donut",
@@ -50,32 +50,32 @@ app.controller("accountsSummaryController", function($scope,$http) {
 			            name:"JMR",
 			            data:[  
 			               {  
-			                  category:"SAVING ACCOUNT AND CURRENT",
+			                  category:"SAVING ACCOUNT & CURRENT",
 			                  value:$scope.sumofsavingsandcurrent,
 			                  color:"#9de219"
 			               },
 			               {  
-			                  category:"CONTRACT AND TERM DEPOSIT",
+			                  category:"TERM DEPOSIT",
 			                  value:$scope.sumofcontractandtermdepostit,
-			                  color:"#90cc38"
+			                  color:"#00FFFF"
 			               },
 			               {  
 			                  category:"LOANS",
 			                  value:$scope.sumofloans,
-			                  color:"#B22222"
+			                  color:"#FF4500"
 			               }
 			            ],
 			            labels:{  
 			               visible:true,
 			               background:"transparent",
 			               position:"outsideEnd",
-			               template:"#= category #: \n #= value#%"
+			               template:"#= category #: \n #= value#"
 			            }
 			         }
 			      ],
 			      tooltip:{  
 			         visible:true,
-			         template:"#= category # (#= series.name #): #= value #%"
+			         template:"#= category # (#= series.name #): #= value #"
 			      }
 			   }   );
 			}$(document).ready(createChart); $(document).bind("kendo:skinChange",
