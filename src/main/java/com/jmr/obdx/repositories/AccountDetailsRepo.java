@@ -22,7 +22,9 @@ public class AccountDetailsRepo {
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Accountdetails.class);
 		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
-		return (List<Accountdetails>) criteria.list();
+		List<Accountdetails> list= criteria.list();
+		
+		return list;
 	}
 	
 	public Accountdetails getAccountDetails(String customerId,String nbrAccount) throws Exception {

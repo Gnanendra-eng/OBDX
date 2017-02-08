@@ -19,5 +19,9 @@ public class Utility {
 
 	public static final String  DEVICE="device";
 	public static final String DEVICE_ID="01";
+	public static final String SAVINGSANDCURRENT ="C";
+	public static final String CONTRACTANDTERMDEPOSIT ="Z";
+	public static final String LOANSANDCURRENT ="L";
+	
 	
 }

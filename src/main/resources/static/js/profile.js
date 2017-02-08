@@ -1,23 +1,93 @@
 var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider.when('/', {
-           templateUrl : '/fragment/dashboard.html',
-           controller:"profileController"
+           templateUrl : '/fragment/account-summary.html',
+           controller:"accountsSummaryController"
     }).when("/account", {
         templateUrl : '/fragment/account.html',
 	    controller:"accountsController"	
+    }).when("/account-summary", {
+        templateUrl : '/fragment/account-summary.html',
+	    controller:"accountsSummaryController"	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
     });
 });
 
-app.controller("profileController", function($scope,$http) {
-	
+app.controller("accountsSummaryController", function($scope,$http) {
+
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
-	function createChart() { $("#chart") .kendoChart( { title : { position : "bottom", text : "TOTAL NET BALANCE" }, legend : { visible : false }, chartArea : { background : "" }, seriesDefaults : { type : "donut", startAngle : 150 }, series : [ { name : "JMR", data : [ { category : "SAVING ACCOUNT", value : 53.8, color : "#9de219" }, { category : "FIXED ACCOUNT", value : 16.1, color : "#90cc38" }, { category : "JOINT ACCOUNT", value : 11.3, color : "#068c35" }, { category : "LOANS", value : 9.6, color : "#006634" }, { category : "LIMIT", value : 5.2, color : "#004d38" }, { category : "DUES", value : 3.6, color : "#033939" } ], labels : { visible : true, background : "transparent", position : "outsideEnd", template : "#= category #: \n #= value#%" } } ], tooltip : { visible : true, template : "#= category # (#= series.name #): #= value #%" } }); } $(document).ready(createChart); $(document).bind("kendo:skinChange", createChart);
+	$http.get("/user/accountdetails/summary").then(function(data,status) {
+		   $scope.response = data.data;
+		   $scope.loan=$scope.response.loans;
+		   $scope.savingsandcurrent=$scope.response.savingsAndCurrent;
+		   $scope.contractandtermdepostit=$scope.response.contractAndTermdeposit;
+		   $scope.sumofsavingsandcurrent =data.data.sumOfSavingsAndCurrent;
+		   $scope.sumofloans =data.data.sumOfLoans;
+		   $scope.sumofcontractandtermdepostit =data.data.sumOfContractAndTermdepostit;
+	
+		   function createChart(){  
+			   $("#chart") .kendoChart(   {  
+			      title:{  
+			         position:"bottom",
+			         text:"TOTAL NET BALANCE"
+			      },
+			      legend:{  
+			         visible:false
+			      },
+			      chartArea:{  
+			         background:""
+			      },
+			      seriesDefaults:{  
+			         type:"donut",
+			         startAngle:150
+			      },
+			      series:[  
+			         {  
+			            name:"JMR",
+			            data:[  
+			               {  
+			                  category:"SAVING ACCOUNT AND CURRENT",
+			                  value:$scope.sumofsavingsandcurrent,
+			                  color:"#9de219"
+			               },
+			               {  
+			                  category:"CONTRACT AND TERM DEPOSIT",
+			                  value:$scope.sumofcontractandtermdepostit,
+			                  color:"#90cc38"
+			               },
+			               {  
+			                  category:"LOANS",
+			                  value:$scope.sumofloans,
+			                  color:"#B22222"
+			               }
+			            ],
+			            labels:{  
+			               visible:true,
+			               background:"transparent",
+			               position:"outsideEnd",
+			               template:"#= category #: \n #= value#%"
+			            }
+			         }
+			      ],
+			      tooltip:{  
+			         visible:true,
+			         template:"#= category # (#= series.name #): #= value #%"
+			      }
+			   }   );
+			}$(document).ready(createChart); $(document).bind("kendo:skinChange",
+			createChart);
+	});
+
+});
+
+app.controller("profileController", function($scope,$http) {
+	$scope.stopDefaultAction = function(event) {
+		event.preventDefault();
+	};
 });
 
 
