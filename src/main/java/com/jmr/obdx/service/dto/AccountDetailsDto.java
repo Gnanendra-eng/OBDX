@@ -23,7 +23,7 @@ public class AccountDetailsDto extends StatusInfo {
 	private long dailyWithDraWalLimit;
 	private String customerShortName;
 	private String customerName;
-	private Date openingDate;
+	private String openingDate;
 	private String ibanAcNo;
 	private String relation;
 	private String descAcctType;
@@ -175,11 +175,11 @@ public class AccountDetailsDto extends StatusInfo {
 		this.customerName = customerName;
 	}
 
-	public Date getOpeningDate() {
+	public String getOpeningDate() {
 		return openingDate;
 	}
 
-	public void setOpeningDate(Date openingDate) {
+	public void setOpeningDate(String openingDate) {
 		this.openingDate = openingDate;
 	}
 
@@ -266,7 +266,7 @@ public class AccountDetailsDto extends StatusInfo {
 	public AccountDetailsDto(String idCustomer, String nbrBranch, String nbrAccount, String accType, String accStatus,
 			String ccyDesc, long balance, long openingBalance, long availableBalance, String isChqBook,
 			String isOverDraft, char issi, long numunCollected, long minBalance, long dailyWithDraWalLimit,
-			String customerShortName, String customerName, Date openingDate, String ibanAcNo, String relation,
+			String customerShortName, String customerName, String openingDate, String ibanAcNo, String relation,
 			String descAcctType, long amountOnHold, String odLimit, String dailyLimit, long eligibleAdv,
 			Date odlMtstrtDate, Date odlmtendDate, long origAvailableBal) {
 		this.idCustomer = idCustomer;
