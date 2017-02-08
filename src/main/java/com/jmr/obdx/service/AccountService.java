@@ -1,5 +1,6 @@
 package com.jmr.obdx.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,12 +66,13 @@ public class AccountService {
 	public AccountDetailsDto getAccountDetails(String customerId,String nbrAccount) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		accountDetailsDto=new AccountDetailsDto();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.getAccountDetails(customerId,nbrAccount);
 		accountDetailsDto=new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(), 
 					accountdetail.getNBRACCOUNT(), accountdetail.getACCTTYPE(), accountdetail.getACCTSTATUS(),
 					accountdetail.getCCYDESC(),accountdetail.getBALANCE(), accountdetail.getOPENINGBALANCE(), accountdetail.getAVAILABLEBALANCE(),
 					accountdetail.getISCHQBOOK(), accountdetail.getISOVERDRAFT(),accountdetail.getISSI(), accountdetail.getNUMUNCOLLECTED(), accountdetail.getMINBALANCE(),
-					accountdetail.getDAILYWITHDRAWALLIMIT(), accountdetail.getCUSTOMERSHORTNAME(), accountdetail.getCUSTOMERNAME(), accountdetail.getOPENINGDATE(), 
+					accountdetail.getDAILYWITHDRAWALLIMIT(), accountdetail.getCUSTOMERSHORTNAME(), accountdetail.getCUSTOMERNAME(), dateFormat.format(accountdetail.getOPENINGDATE()), 
 					accountdetail.getIBAN_AC_NO(), accountdetail.getRELATION(), accountdetail.getDESCACCTTYPE(), 
 					accountdetail.getAMOUNTONHOLD(), accountdetail.getODLIMIT(), accountdetail.getDAILYLIMIT(), accountdetail.getELIGIBLEADV(), accountdetail.getODLMTSTRTDATE(), 
 					accountdetail.getODLMTENDDATE(), accountdetail.getORIGAVAILABLEBAL());

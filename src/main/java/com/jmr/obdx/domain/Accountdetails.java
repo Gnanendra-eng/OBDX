@@ -25,7 +25,7 @@ public class Accountdetails implements java.io.Serializable {
 	@Column(name = "NBRBRANCH")
 	private String NBRBRANCH;
 	
-	@Column(name = "NBRBRANCH")
+	@Column(name = "NBRACCOUNT")
 	private String NBRACCOUNT;
 	
 	@Column(name = "ACCTTYPE")

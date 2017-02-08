@@ -51,6 +51,7 @@ public class AuthManager {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		    configureHttpSession(httpServletRequest, httpServletResponse);
 			createUserSessionData(authentication,httpServletRequest,httpSession);
+			
 			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 			return "userprofile";
 	}
