@@ -16,6 +16,8 @@ import com.jmr.obdx.service.AccountService;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
+import com.jmr.obdx.service.dto.LoanSummayInfo;
+import com.jmr.obdx.service.dto.TermDepositInfo;
 import com.jmr.obdx.util.Utility;
 
 @RequestMapping(value = "/user/accountdetails")
@@ -78,6 +80,46 @@ public class AccountController {
 		} catch (Exception exception) {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<AccountSummaryInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+			
+		
+		
+	}
+	@RequestMapping(value="/termdeposit",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<TermDepositInfo> getTermSummary(Authentication authentication){
+		try 
+		{
+			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
+			TermDepositInfo responceObj = accountService.getTermSummary( authentication);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<TermDepositInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<TermDepositInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<TermDepositInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+			
+		
+		
+	}
+	@RequestMapping(value="/loansummary",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<LoanSummayInfo> getLoansummary(Authentication authentication){
+		try 
+		{
+			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
+			LoanSummayInfo responceObj = accountService.getLoansummary( authentication);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<LoanSummayInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<LoanSummayInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<LoanSummayInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 			
 		

@@ -19,12 +19,12 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#saving-current"><span class="glyphicon glyphicon-usd"></span>Savings And Current</a>
+									href="#saving-current"><span class="glyphicon glyphicon-usd"></span>Savings And Current:<div style="color:green"><b>{{sumofsavingsandcurrent}}</b></div></a>
 							</h4>
 						</div>
 						<div id="saving-current" class="panel-collapse collapse">
 							<div class="panel-body" style="background-color: #7070a2;">
-								<div class="col-md-8"
+								<div class="col-md-10"
 									data-ng-repeat="sgscut in savingsandcurrent">
 									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{sgscut.idaccount}}</label>
@@ -55,12 +55,12 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)" href="#loan"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans</a>
+									data-ng-click="stopDefaultAction($event)" href="#loan"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans: <div style="color: red"><b>{{sumofloans}}</b></div></a>
 							</h4>
 						</div>
 						<div id="loan" class="panel-collapse collapse">
 							<div class="panel-body" style="background-color: #7070a2;">
-								<div class="col-md-8" data-ng-repeat="loan in loan">
+								<div class="col-md-10" data-ng-repeat="loan in loan">
 									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{loan.idaccount}}</label>
 									</div>
@@ -92,12 +92,12 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#contract-and-termdeposit"><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT AND TERMDEPOSIT</a>
+									href="#contract-and-termdeposit"><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT AND TERMDEPOSIT:<div  style="color:green"><b>{{sumofcontractandtermdepostit}}</b></div></a>
 							</h4>
 						</div>
 						<div id="contract-and-termdeposit" class="panel-collapse collapse">
 							<div class="panel-body" style="background-color: #7070a2;">
-								<div class="col-md-8"
+								<div class="col-md-10"
 									data-ng-repeat="conttempdep in contractandtermdepostit">
 									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{conttempdep.idaccount}}</label>
@@ -122,6 +122,16 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-12 well">
+      <div class="thumbnail">
+        <p><b>Advertise</b></p>
+        <p><strong></strong></p>
+        <marquee behavior="scroll" direction="left">
+<img src="http://www.html.am/images/html-codes/marquees/fish-swimming.gif" alt="Swimming fish"/>
+</marquee>
+<button class="btn btn-primary">Info</button>
+      </div>      
+     </div>
 
 			</div>
 		</div>

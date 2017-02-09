@@ -18,6 +18,7 @@ public class AccountSummaryRepo {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@SuppressWarnings("unchecked")
 	public List<Accountsummary> getAccountSummary(String customerId) throws Exception {
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Accountsummary.class);
