@@ -28,58 +28,25 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		   $scope.sumofsavingsandcurrent =data.data.sumOfSavingsAndCurrent;
 		   $scope.sumofloans =data.data.sumOfLoans;
 		   $scope.sumofcontractandtermdepostit =data.data.sumOfContractAndTermdepostit;
-	
-		   function createChart(){  
-			   $("#chart") .kendoChart(   {  
-			      title:{  
-			         position:"bottom",
-			         text:"TOTAL NET BALANCE"
-			      },
-			      legend:{  
-			         visible:false
-			      },
-			      chartArea:{  
-			         background:"#F0F8FF"
-			      },
-			      seriesDefaults:{  
-			         type:"donut",
-			         startAngle:150
-			      },
-			      series:[  
-			         {  
-			            name:"JMR",
-			            data:[  
-			               {  
-			                  category:"SAVING ACCOUNT & CURRENT",
-			                  value:$scope.sumofsavingsandcurrent,
-			                  color:"#9de219"
-			               },
-			               {  
-			                  category:"TERM DEPOSIT",
-			                  value:$scope.sumofcontractandtermdepostit,
-			                  color:"#00FFFF"
-			               },
-			               {  
-			                  category:"LOANS",
-			                  value:$scope.sumofloans,
-			                  color:"#FF4500"
-			               }
-			            ],
-			            labels:{  
-			               visible:true,
-			               background:"transparent",
-			               position:"outsideEnd",
-			               template:"#= category #: \n #= value#"
-			            }
-			         }
-			      ],
-			      tooltip:{  
-			         visible:true,
-			         template:"#= category # (#= series.name #): #= value #"
-			      }
-			   }   );
-			}$(document).ready(createChart); $(document).bind("kendo:skinChange",
-			createChart);
+		    google.charts.load("current", {packages:["corechart"]});
+		      google.charts.setOnLoadCallback(drawChart);
+		      function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		          ['Task', 'Hours per Day'],
+		          ['SAVING ACCOUNT & CURRENT',     $scope.sumofsavingsandcurrent],
+		          ['TERM DEPOSIT',     $scope.sumofcontractandtermdepostit],
+		          ['LOANS',  $scope.sumofloans]
+		        ]);
+		        var options = {
+		          title: 'Account Summary',
+		          is3D: true,
+		          colors: ['#9de219', '#00FFFF', '#FF4500'],
+		        backgroundColor: 'transparent'
+		        };
+
+		        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+		        chart.draw(data, options);
+		      }
 	});
 
 });
