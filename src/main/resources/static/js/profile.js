@@ -33,13 +33,14 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		      function drawChart() {
 		        var data = google.visualization.arrayToDataTable([
 		          ['Task', 'Hours per Day'],
-		          ['SAVING ACCOUNT & CURRENT',     $scope.sumofsavingsandcurrent],
-		          ['TERM DEPOSIT',     $scope.sumofcontractandtermdepostit],
+		          ['SAVING ACCOUNT & CURRENT',$scope.sumofsavingsandcurrent],
+		          ['TERM DEPOSIT', $scope.sumofcontractandtermdepostit],
 		          ['LOANS',  $scope.sumofloans]
 		        ]);
 		        var options = {
 		          title: 'Account Summary',
 		          is3D: true,
+		          legend: 'none',
 		          colors: ['#9de219', '#00FFFF', '#FF4500'],
 		        backgroundColor: 'transparent'
 		        };

@@ -1,23 +1,54 @@
 <div class="row">
-	<div class="col-sm-6 ">
-		    <div id="piechart_3d" style="width: 500px; height: 500px;"></div>
+	<div class="col-sm-4 ">
+		<div id="piechart_3d" style="width: 350px; height: 350px;"></div>
+		<h4>Last 5 Transactions</h4>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Firstname</th>
+					<th>Lastname</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>John</td>
+					<td>Doe</td>
+					<td>john@example.com</td>
+				</tr>
+				<tr>
+					<td>Mary</td>
+					<td>Moe</td>
+					<td>mary@example.com</td>
+				</tr>
+				<tr>
+					<td>July</td>
+					<td>Dooley</td>
+					<td>july@example.com</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		<div class="row">
 			<div class="col-sm-9">
-
 				<div class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#saving-current"><span class="glyphicon glyphicon-usd"></span>Savings And Current:<div style="color:green"><b>{{sumofsavingsandcurrent}}</b></div></a>
+									href="#saving-current"><span
+									class="glyphicon glyphicon-usd"></span>Savings And Current:
+									<div style="color: green">
+										<b>{{sumofsavingsandcurrent}}</b>
+									</div></a>
 							</h4>
 						</div>
 						<div id="saving-current" class="panel-collapse collapse">
-							<div class="panel-body" style="background-color: #7070a2;">
+							<div class="panel-body"
+								style="background-color: #7070a2; height: 200px; overflow: scroll;">
 								<div class="col-md-10"
 									data-ng-repeat="sgscut in savingsandcurrent">
 									<div class="form-group custextcolor">
@@ -49,11 +80,15 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)" href="#loan"><span class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans: <div style="color: red"><b>{{sumofloans}}</b></div></a>
+									data-ng-click="stopDefaultAction($event)" href="#loan"><span
+									class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans:
+									<div style="color: red">
+										<b>{{sumofloans}}</b>
+									</div></a>
 							</h4>
 						</div>
 						<div id="loan" class="panel-collapse collapse">
-							<div class="panel-body" style="background-color: #7070a2;">
+							<div class="panel-body" style="background-color: #7070a2; height: 200px; overflow: scroll;">
 								<div class="col-md-10" data-ng-repeat="loan in loan">
 									<div class="form-group custextcolor">
 										<label>Account Number :</label> <label>{{loan.idaccount}}</label>
@@ -86,11 +121,16 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse"
 									data-ng-click="stopDefaultAction($event)"
-									href="#contract-and-termdeposit"><span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT AND TERMDEPOSIT:<div  style="color:green"><b>{{sumofcontractandtermdepostit}}</b></div></a>
+									href="#contract-and-termdeposit"><span
+									class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT
+									AND TERMDEPOSIT:
+									<div style="color: green">
+										<b>{{sumofcontractandtermdepostit}}</b>
+									</div></a>
 							</h4>
 						</div>
 						<div id="contract-and-termdeposit" class="panel-collapse collapse">
-							<div class="panel-body" style="background-color: #7070a2;">
+							<div class="panel-body" style="background-color: #7070a2;height: 200px; overflow: scroll;">
 								<div class="col-md-10"
 									data-ng-repeat="conttempdep in contractandtermdepostit">
 									<div class="form-group custextcolor">
@@ -116,19 +156,49 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 well">
-      <div class="thumbnail">
-        <p><b>Advertise</b></p>
-        <p><strong></strong></p>
-        <marquee behavior="scroll" direction="left">
-<img src="http://www.html.am/images/html-codes/marquees/fish-swimming.gif" alt="Swimming fish"/>
-</marquee>
-<button class="btn btn-primary">Info</button>
-      </div>      
-     </div>
 
+
+			</div>
+
+			<div class="col-sm-9" style="background-color: #F0F8FF;">
+				<div class="thumbnail">
+					<p>
+						<b>Loan Calculator</b>
+					</p>
+
+					<img
+						src="https://www.bankbazaar.com/images/india/infographic/how-to-calculate-hdfc-loan-emi.png"
+						alt="Swimming fish" />
+				</div>
 			</div>
 		</div>
 
+
+	</div>
+	<div class="col-sm-4">
+
+		<div class="col-sm-12 " style="background-color: #F0F8FF;">
+			<div class="thumbnail">
+				<p>
+					<b>Advertise</b>
+				</p>
+
+				<img src="images/adimage.jpg" alt="Swimming fish" />
+			</div>
+		</div>
+
+		<div class="col-sm-12 " style="background-color: #F0F8FF;">
+			<div class="thumbnail">
+				<p>
+					<b>Offer</b>
+				</p>
+
+				<marquee behavior="scroll" direction="right">
+					<img width="100%" height="100%"
+						src="https://3.imimg.com/data3/BQ/RS/MY-13452139/car-loan-250x250.jpg"
+						alt="Swimming fish" />
+				</marquee>
+			</div>
+		</div>
 	</div>
 </div>
