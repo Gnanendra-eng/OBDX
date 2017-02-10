@@ -2,8 +2,6 @@ package com.jmr.obdx.repositories;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +18,7 @@ public class AccountSummaryRepo {
 	
 	@SuppressWarnings("unchecked")
 	public List<Accountsummary> getAccountSummary(String customerId) throws Exception {
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Accountsummary.class);
-		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
-		return (List<Accountsummary>) criteria.list();
+		return (List<Accountsummary>)sessionFactory.openSession().createCriteria(Accountsummary.class).add(Restrictions.eq("IDCUSTOMER", customerId)).list();
 	}
 
 }

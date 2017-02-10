@@ -14,7 +14,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 @Entity
 @Immutable
-@Table(name = "MST_ACCOUNT", schema = "JMR_OBDX")
+@Table(name = "VW_ACCOUNT_M", schema = "JMR_OBDX")
 public class Accountsummary  implements java.io.Serializable  {
 	
 	public Accountsummary() {

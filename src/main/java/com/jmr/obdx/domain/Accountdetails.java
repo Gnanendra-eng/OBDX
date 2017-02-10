@@ -15,19 +15,16 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 @Entity
 @Immutable
-@Table(name = "ACCOUNT_DETAILS", schema = "JMR_OBDX")
+@Table(name = "VW_ACCOUNT_DETAILS", schema = "JMR_OBDX")
 public class Accountdetails implements java.io.Serializable {
 
-	
+	@Id
 	@Column(name = "IDCUSTOMER")
 	private String IDCUSTOMER;
 	
 	@Column(name = "NBRBRANCH")
 	private String NBRBRANCH;
 	
-
-	@Id
-
 	@Column(name = "NBRACCOUNT")
 	private String NBRACCOUNT;
 	
