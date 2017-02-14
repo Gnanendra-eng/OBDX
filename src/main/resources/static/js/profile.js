@@ -9,10 +9,32 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/account-summary", {
         templateUrl : '/fragment/account-summary.html',
 	    controller:"accountsSummaryController"	
+    }).when("/loan", {
+    	templateUrl : '/fragment/loan.html',
+    	controller:"loanController"	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
     });
+});
+
+
+app.controller("loanController", function($scope,$http) {
+	
+          
+	$scope.stopDefaultAction = function(event) {
+		event.preventDefault();
+	};
+	$http.get("/user/loan/").then(function(data,status) {
+		 $scope.loanInfo=data.data;		
+		 var options = {container: "#test",label: "label",width: 250, height: 250,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
+		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+		 var viz = new BubbleChart(options);
+		 viz.data(data);
+		
+	});
+	
+	
 });
 
 app.controller("accountsSummaryController", function($scope,$http) {
