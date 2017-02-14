@@ -1,44 +1,97 @@
-package com.jmr.obdx.service.dto;
+package com.jmr.obdx.domain;
 
-public class TermDepositeDto {
+import javax.annotation.ManagedBean;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.Immutable;
+import org.springframework.web.context.annotation.SessionScope;
+
+@ManagedBean
+@SessionScope
+@Entity
+@Immutable
+@Table(name = "VW_MSTTDDETAILS", schema = "JMR_OBDX")
+public class TermDepositeM implements java.io.Serializable{
+	
+	@Id
+	@Column(name = "idaccount")
 	private String idaccount;
+	@Column(name = "codaccttype")
 	private String codaccttype;
+	@Column(name = "codbranch")
 	private String codbranch;
+	@Column(name = "acctdesc")
 	private String acctdesc;
+	@Column(name = "depositamt")
 	private String depositamt;
+	@Column(name = "accountclass")
 	private String accountclass;
+	@Column(name = "jointacctindicator")
 	private String jointacctindicator;
+	@Column(name = "nominee1")
 	private String nominee1;
+	@Column(name = "nominee2")
 	private String nominee2;
+	@Column(name = "rate")
 	private String rate;
+	@Column(name = "apy")
 	private String apy;
+	@Column(name = "bookaccount")
 	private String bookaccount;
+	@Column(name = "bookbranch")
 	private String bookbranch;
+	@Column(name = "ccy")
 	private String ccy;
+	@Column(name = "customerid")
 	private String customerid;
+	@Column(name = "primarycustomerid")
 	private String primarycustomerid;
+	@Column(name = "maturitydate")
 	private String maturitydate;
+	@Column(name = "depositdate")
 	private String depositdate;
+	@Column(name = "rollovertype")
 	private String rollovertype;
+	@Column(name = "rolloveramt")
 	private String rolloveramt;
+	@Column(name = "acyaccruedcric")
 	private String acyaccruedcric;
+	@Column(name = "intcap")
 	private String intcap;
+	@Column(name = "altacctno")
 	private String altacctno;
+	@Column(name = "proddesc")
 	private String proddesc;
+	@Column(name = "autorollover")
 	private String autorollover;
+	@Column(name = "closeonmaturity")
 	private String closeonmaturity;
-	private String numavlbalance;
+	@Column(name = "numavlbalance")
+    private String numavlbalance;
+	@Column(name = "modeofoperation")
 	private String modeofoperation;
+	@Column(name = "tdstatus")
 	private String tdstatus;
+	@Column(name = "holdamount")
 	private String holdamount;
+	@Column(name = "customername")
 	private String customername;
+	@Column(name = "allow_topup")
 	private String allow_topup;
+	@Column(name = "blk_open_days")
 	private String blk_open_days;
+	@Column(name = "blk_open_months")
 	private String blk_open_months;
+	@Column(name = "blk_mat_days")
 	private String blk_mat_days;
+	@Column(name = "blk_mat_months")
 	private String blk_mat_months;
+	@Column(name = "partial_liquidation")
 	private String partial_liquidation;
+	@Column(name = "valuedate")
 	private String valuedate;
 	public String getIdaccount() {
 		return idaccount;
@@ -268,7 +321,7 @@ public class TermDepositeDto {
 	public void setValuedate(String valuedate) {
 		this.valuedate = valuedate;
 	}
-	public TermDepositeDto(String idaccount, String codaccttype, String codbranch, String acctdesc, String depositamt,
+	public TermDepositeM(String idaccount, String codaccttype, String codbranch, String acctdesc, String depositamt,
 			String accountclass, String jointacctindicator, String nominee1, String nominee2, String rate, String apy,
 			String bookaccount, String bookbranch, String ccy, String customerid, String primarycustomerid,
 			String maturitydate, String depositdate, String rollovertype, String rolloveramt, String acyaccruedcric,
@@ -276,6 +329,7 @@ public class TermDepositeDto {
 			String numavlbalance, String modeofoperation, String tdstatus, String holdamount, String customername,
 			String allow_topup, String blk_open_days, String blk_open_months, String blk_mat_days,
 			String blk_mat_months, String partial_liquidation, String valuedate) {
+		super();
 		this.idaccount = idaccount;
 		this.codaccttype = codaccttype;
 		this.codbranch = codbranch;
@@ -315,14 +369,12 @@ public class TermDepositeDto {
 		this.partial_liquidation = partial_liquidation;
 		this.valuedate = valuedate;
 	}
-	public TermDepositeDto() {
-		
+	public TermDepositeM() {
+	
 	}
-
-
 	
 	
 
 	
-
+	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jmr.obdx.dto.StatusInfo;
+import com.jmr.obdx.restcontroller.TermDepositeController;
 
 public class TermDepositInfo extends StatusInfo{
 	
@@ -18,6 +19,8 @@ public class TermDepositInfo extends StatusInfo{
 		this.sumOfInactiveTermDeposite = sumOfInactiveTermDeposite;
 		this.inactivetermdeposite = inactivetermdeposite;
 		this.activeTermDepositeDtos = activeTermDepositeDtos;
+	}
+	public TermDepositInfo(List<TermDepositeController> termDeposite) {
 	}
 	public Double getSumOfActiveTermDeposite() {
 		return sumOfActiveTermDeposite;
