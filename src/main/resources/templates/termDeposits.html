@@ -1,25 +1,28 @@
 <div class="row">
  <div class="col-sm-4">
   <div class="well well-lg" style="background: white;"><b>Summary</b>
-  <hr><b><button>Term Deposits </button></b></hr>
+  <hr>
+  <b>Term Deposits </b>
+  </hr>
+ 
   
   <div><label>Total Current Balance:</label> <label>{{termDeposite.totalTermDeposits}}</label></div>
   </div>
-  <div class="form-group custextcolor">
-	
- </div>
- <div class ="row">
- <p>
-     <b>NEW DEPOSIT</b>
-     
+ <div class="well well-lg" style="background: white;">
+   <div class="thumbnail">
+     <p>
+     <b>New Deposite</b>
     </p>
- 
- </div>
+
+     <img src="images/New Deposit.PNG"/>
+</div>
+  </div>
+
   
  </div>
  
  
- <div class="col-sm-4" style="height:190px; overflow: scroll;">
+ <div class="col-sm-4" style="height:500px; overflow: scroll;">
   <div class="well well-lg" style="background: white;" data-ng-repeat="termdepositetemp in termDeposite.tempDepositeSummary">
     <div><label>Description :</label> <label>{{termdepositetemp.acctdesc}}</label></div>
     <div><label>Account Number:</label> <label>{{termdepositetemp.altacctno}}</label></div>
