@@ -36,4 +36,9 @@ public class StatusInfo {
 		this.errorStatus = errorStatus;
 	}
 
+	public StatusInfo(Boolean errorStatus, Set<ErrorMsg> errorMsgs) {
+		this.errorStatus = errorStatus;
+		this.errorMsgs = errorMsgs;
+	}
+
 }
