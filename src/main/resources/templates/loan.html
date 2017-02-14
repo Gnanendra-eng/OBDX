@@ -1,0 +1,91 @@
+<div class="row">
+	<div class="col-sm-4 ">
+		<div class="well well-lg" style="background: white;">Summary</div>
+
+		<div class="well well-lg" style="background: white;">
+			<div>
+				<label>Total Borrowing :</label> <label>{{loanInfo.totalBorrowing}}</label>
+			</div>
+			<br />
+
+			<div id="test" style="margin-left: 31px;"></div>
+			<br />
+			<div>
+				<label>Current Outstanding :</label> <label>{{loanInfo.currentOutStanding}}</label>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="well well-lg" style="background: white;"
+			data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
+			<p align="left">
+				<B>{{loan.productDescription}}</B>
+			</p>
+			<p align="left">{{loan.userReferenceNo}}</p>
+			<p align="left">{{loan.currency}}</p>
+			<div align="right">
+				<p>Outstanding Amount</p>
+				<p>{{loan.outStandingLoanAmount}}</p>
+			</div>
+		</div>
+		<div style="background: white;">
+			<a data-toggle="collapse" data-ng-click="stopDefaultAction($event)"
+				href="#loan">Closed Loans</a>
+		</div>
+		<br />
+		<div id="loan" class="panel-collapse collapse">
+			<div class="well well-lg" style="background: white;"
+				data-ng-repeat="loan in loanInfo.closedBasicLoanDetailsDto"
+				data-ng-if="loanInfo.closedBasicLoanDetailsDto!=0">
+				<p align="left">
+					<B>{{loan.productDescription}}</B>
+				</p>
+				<p align="left">{{loan.userReferenceNo}}</p>
+				<p align="left">{{loan.currency}}</p>
+				<div align="right">
+					<p>Outstanding Amount</p>
+					<p>{{loan.outStandingLoanAmount}}</p>
+				</div>
+			</div>
+			<div class="well well-lg" style="background: white;"
+				data-ng-if="loanInfo.closedBasicLoanDetailsDto==0">
+				<p>
+					<B>No data available</B>
+				</p>
+			</div>
+		</div>
+		<div style="background: white;">
+			<a data-toggle="collapse" data-ng-click="stopDefaultAction($event)"
+				href="">New Loan</a>
+		</div>
+	</div>
+
+
+
+
+	<div class="col-sm-4">
+		<div class="well well-lg" style="background: white;">
+			<b>Mini Statement</b>
+			<hr />
+			<select class="form-control"><option>Account
+					Number-1</option>
+				<option>Account Number-2</option></select> <br />
+			<div>
+				<button type="button" class="btn btn-link">More Details</button>
+			</div>
+
+		</div>
+		<div class="well well-lg" style="background: white;">
+			<div class="thumbnail">
+				<p>
+					<b>Loan Calculator</b>
+				</p>
+
+				<img
+					src="https://www.bankbazaar.com/images/india/infographic/how-to-calculate-hdfc-loan-emi.png"
+					alt="Swimming fish" />
+			</div>
+		</div>
+	</div>
+</div>

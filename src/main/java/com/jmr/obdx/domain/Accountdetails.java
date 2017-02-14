@@ -22,11 +22,12 @@ public Accountdetails() {
 		
 	}
 
-	
+
 	@Column(name = "IDCUSTOMER")
 	private String IDCUSTOMER;
 	@Column(name = "NBRBRANCH")
 	private String NBRBRANCH;
+
 	@Id
     @Column(name = "NBRACCOUNT")
 	private String NBRACCOUNT;

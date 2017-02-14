@@ -2,8 +2,6 @@ package com.jmr.obdx.repositories;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +17,12 @@ public class AccountDetailsRepo {
 
 	@SuppressWarnings("unchecked")
 	public List<Accountdetails> getBasicAccountDetails(String customerId) throws Exception {
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Accountdetails.class);
-		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
-		List<Accountdetails> list= criteria.list();
-		return list;
-		
+       return (List<Accountdetails>)sessionFactory.openSession().createCriteria(Accountdetails.class).add(Restrictions.eq("IDCUSTOMER", customerId)).list();
 	}
 	
 	public Accountdetails getAccountDetails(String customerId,String nbrAccount) throws Exception {
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Accountdetails.class);
-		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
-		criteria.add(Restrictions.eq("NBRACCOUNT", nbrAccount));
-		return (Accountdetails) criteria.uniqueResult();
-		
-		
+		return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class).add(Restrictions.eq("IDCUSTOMER", customerId)).add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
+
 	}
 	
 }

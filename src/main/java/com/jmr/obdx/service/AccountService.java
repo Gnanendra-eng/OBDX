@@ -47,7 +47,6 @@ public class AccountService {
 	private Double sumOfInactiveTermDeposite;
 	private Double sumOfTotalLoans;
 	
-
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
 
@@ -60,11 +59,9 @@ public class AccountService {
 	@Autowired
 	private AccountSummaryRepo accountsummaryrepo;
 
-	
 
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
-		logger.info(Utility.ENTERED + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
 		Login login = loginRepo.findByUsername(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
@@ -75,14 +72,12 @@ public class AccountService {
 		});
 		basicAccountDetailsDto.setNbrAccounts(tempAccountDetails);
 		basicAccountDetailsDto.setCustomerId(retailCustomer.getIdcusomer());
-		logger.info(Utility.EXITING + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return basicAccountDetailsDto;
 	}
 
 	public AccountDetailsDto getAccountDetails(String customerId, String nbrAccount) throws Exception {
-		logger.info(Utility.ENTERED + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.getAccountDetails(customerId, nbrAccount);
@@ -97,14 +92,12 @@ public class AccountService {
 				accountdetail.getAMOUNTONHOLD(), accountdetail.getODLIMIT(), accountdetail.getDAILYLIMIT(),
 				accountdetail.getELIGIBLEADV(), accountdetail.getODLMTSTRTDATE(), accountdetail.getODLMTENDDATE(),
 				accountdetail.getORIGAVAILABLEBAL());
-		logger.info(Utility.EXITING + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountDetailsDto;
 	}
 
 	public AccountSummaryInfo getAccountSummary(Authentication authentication) throws Exception {
-		logger.info(Utility.ENTERED + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login login = loginRepo.findByUsername(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
@@ -131,8 +124,7 @@ public class AccountService {
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
 				savingsAndCurrent, loans, contractAndTermdeposit);
-		logger.info(Utility.EXITING + new Object() {
-		}.getClass().getEnclosingMethod().getName());
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}
 
@@ -165,7 +157,8 @@ public class AccountService {
 
 	}
 
-	
+
+
 
 	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());

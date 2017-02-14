@@ -24,6 +24,10 @@ public class Utility {
 	public static final String LOANSANDCURRENT ="L";
 	public static final String ACTIVEACCOUNT ="A";
     public static final String INACTIVEACCOUNT ="I";
+    
+    public static final String ACTIVE="A";
+    public static final String CLOSED="C";
+
 
 	
 }
