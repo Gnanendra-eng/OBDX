@@ -165,35 +165,7 @@ public class AccountService {
 
 	}
 
-	public TermDepositInfo getTermSummary(Authentication authentication) throws Exception {
-		logger.info(Utility.ENTERED + new Object() {
-		}.getClass().getEnclosingMethod().getName());
-		activeAccount = new ArrayList<>();
-		inactiveAccount = new ArrayList<>();
-		sumOfInactiveTermDeposite = 0.0;
-		sumOfActiveTermDeposite = 0.0;
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
-
-		accountsummarys.stream().forEach(accountsummary -> {
-			if (accountsummary.getTXTACCTSTATUS().equals(Utility.ACTIVEACCOUNT)) {
-				activeAccount.add(getAccountSummaryType(accountsummary));
-				sumOfActiveTermDeposite += Double.parseDouble(accountsummary.getNUMAVAILBAL());
-
-			}
-			if (accountsummary.getTXTACCTSTATUS().equals(Utility.INACTIVEACCOUNT)) {
-				inactiveAccount.add(getAccountSummaryType(accountsummary));
-				sumOfInactiveTermDeposite += Double.parseDouble(accountsummary.getNUMAVAILBAL());
-
-			}
-		});
-		termdepoisteinfo = new TermDepositInfo(sumOfActiveTermDeposite, sumOfInactiveTermDeposite, inactiveAccount,
-				activeAccount);
-		logger.info(Utility.EXITING + new Object() {
-		}.getClass().getEnclosingMethod().getName());
-		return termdepoisteinfo;
-	}
+	
 
 	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());

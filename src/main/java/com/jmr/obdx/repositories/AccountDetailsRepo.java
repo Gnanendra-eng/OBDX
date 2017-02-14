@@ -23,8 +23,8 @@ public class AccountDetailsRepo {
 		Criteria criteria = session.createCriteria(Accountdetails.class);
 		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
 		List<Accountdetails> list= criteria.list();
-		
 		return list;
+		
 	}
 	
 	public Accountdetails getAccountDetails(String customerId,String nbrAccount) throws Exception {
@@ -33,5 +33,8 @@ public class AccountDetailsRepo {
 		criteria.add(Restrictions.eq("IDCUSTOMER", customerId));
 		criteria.add(Restrictions.eq("NBRACCOUNT", nbrAccount));
 		return (Accountdetails) criteria.uniqueResult();
+		
+		
 	}
+	
 }

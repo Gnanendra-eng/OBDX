@@ -85,26 +85,7 @@ public class AccountController {
 		
 		
 	}
-	@RequestMapping(value="/termdeposit",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<TermDepositInfo> getTermSummary(Authentication authentication){
-		try 
-		{
-			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
-			TermDepositInfo responceObj = accountService.getTermSummary( authentication);
-			if (responceObj.getErrorStatus()) {
-				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-				return new ResponseEntity<TermDepositInfo>(responceObj, HttpStatus.BAD_REQUEST);
-			}
-			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-			return new ResponseEntity<TermDepositInfo>(responceObj, HttpStatus.OK);
-		} catch (Exception exception) {
-			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
-			return new ResponseEntity<TermDepositInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-			
-		
-		
-	}
+	
 	@RequestMapping(value="/loansummary",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<LoanSummayInfo> getLoansummary(Authentication authentication){
 		try 
