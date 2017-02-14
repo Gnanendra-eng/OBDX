@@ -6,6 +6,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/account", {
         templateUrl : '/fragment/account.html',
 	    controller:"accountsController"	
+    }).when('/termdeposit', {
+        templateUrl : '/fragment/termDeposits.html',
+	    controller:"termDepositsController"
     }).when("/account-summary", {
         templateUrl : '/fragment/account-summary.html',
 	    controller:"accountsSummaryController"	
@@ -37,11 +40,19 @@ app.controller("loanController", function($scope,$http) {
 	
 });
 
+app.controller("termDepositsController", function($scope,$http) {
+$http.get("/user/termdeposit/").then(function(data,status) {
+$scope.termDeposite = data.data;
+});
+});
+
 app.controller("accountsSummaryController", function($scope,$http) {
 
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
+	
+	
 	$http.get("/user/accountdetails/summary").then(function(data,status) {
 		   $scope.response = data.data;
 		   $scope.loan=$scope.response.loans;
