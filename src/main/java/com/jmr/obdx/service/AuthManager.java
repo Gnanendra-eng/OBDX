@@ -87,7 +87,7 @@ public class AuthManager {
 		if ((cookies != null) && (cookies.length > 0)) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("JSESSIONID")) {
-					cookie.setMaxAge(activeTimeOut);
+					//cookie.setMaxAge(activeTimeOut);
 					cookie.setHttpOnly(true);
 					//cookie.setSecure(true);
 					httpServletResponse.addCookie(cookie);

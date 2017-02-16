@@ -17,7 +17,6 @@ import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
 import com.jmr.obdx.service.dto.LoanSummayInfo;
-import com.jmr.obdx.service.dto.TermDepositInfo;
 import com.jmr.obdx.util.Utility;
 
 @RequestMapping(value = "/user/accountdetails")
