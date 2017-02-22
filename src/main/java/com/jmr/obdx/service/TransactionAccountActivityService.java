@@ -22,17 +22,37 @@ public class TransactionAccountActivityService {
 	private Set<TransactionAccountActivityDto> transactionAccountActivityDtos; 
 	private TransactionAccountActivityInfo transactionAccountActivityInfo;
 	
+	
 	@Autowired
 	private VwTxnaccountactivityRepo txnaccountactivityRepo;
+	
+
+	private  SimpleDateFormat getSimpleDateFormat(){
+		return new SimpleDateFormat("dd/MM/yyyy"); 
+	}
 	
 	public TransactionAccountActivityInfo getTransactionAccountActivityInfo(String customerId, String nbrAccount) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		transactionAccountActivityDtos = new HashSet<TransactionAccountActivityDto>(0);
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		transactionAccountActivityInfo=new TransactionAccountActivityInfo();
 		List<VwTxnaccountactivity> vwTxnaccountactivities=txnaccountactivityRepo.findByUserTransactionAccountActivityInfo(customerId, nbrAccount);
 		vwTxnaccountactivities.stream().forEach(vwTxnaccountactivity->{
-			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),dateFormat.format(vwTxnaccountactivity.getTxndate()),
+			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxndate()),
+					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtreferenceno(), vwTxnaccountactivity.getTxnamount().doubleValue(),new Double(10000)));
+		});	
+		transactionAccountActivityInfo.setTransactionAccountActivityDtos(transactionAccountActivityDtos);
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		return transactionAccountActivityInfo;
+	}
+	
+	
+	public TransactionAccountActivityInfo getLastFiveTransactionAccountActivityInfo(String customerId, String nbrAccount) throws Exception{
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		transactionAccountActivityDtos = new HashSet<TransactionAccountActivityDto>(0);
+		transactionAccountActivityInfo=new TransactionAccountActivityInfo();
+		List<VwTxnaccountactivity> vwTxnaccountactivities=txnaccountactivityRepo.findByUserLastFiveTransactionAccountActivityInfo(customerId, nbrAccount);
+		vwTxnaccountactivities.stream().forEach(vwTxnaccountactivity->{
+			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxndate()),
 					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtreferenceno(), vwTxnaccountactivity.getTxnamount().doubleValue(),new Double(10000)));
 		});	
 		transactionAccountActivityInfo.setTransactionAccountActivityDtos(transactionAccountActivityDtos);

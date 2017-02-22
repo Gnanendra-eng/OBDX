@@ -1,33 +1,52 @@
+<style>
+.red {
+    color: red; 
+}
+
+.green {
+    color: green;
+}
+</style>
 <div class="row">
 	<div class="col-sm-4 ">
 		<div id="piechart_3d" style="width: 350px; height: 350px;"></div>
 		<h4>Last 5 Transactions</h4>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>mary@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-				</tr>
-			</tbody>
-		</table>
+		<form name="userForm">
+			<div class="form-group">
+				<select class="form-control" data-ng-change="onAccountChange()"
+					data-ng-model="nbrAccount" name="nbrAccount"
+					data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+				</select>
+			</div>
+		</form>
+		<a href="#/statement" class="btn btn-link">More</a>
+		<div class="table-responsive" style="max-height:250px;">
+			<table class="table ">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Reference No</th>
+						<th>Amount</th>
+						<th>Balance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+						<td>{{transactionInfos.transactionAccountActivityDtos.indexOf(transactionInfo)+1}}</td>
+						<td>{{transactionInfo.transactionDate}}</td>
+						<td>{{transactionInfo.transactionDescription}}</td>
+						<td>{{transactionInfo.transactionReferenceNo}}</td>
+						<td
+							data-ng-class="{red : transactionInfo.transactionType==='C',green: transactionInfo.transactionType==='D'}">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</td>
+						<td>{{transactionInfo.balance}}</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
 	</div>
 
 	<div class="col-sm-4">

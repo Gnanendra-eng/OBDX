@@ -121,7 +121,33 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		        chart.draw(data, options);
 		      }
 	});
-
+	
+   $http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		});
+        $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+    	onChangeNbrAccountId();
+	}).error(function(data,status) {
+	   throw { message: 'error message',status:status};
+	});	
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;
+			
+			
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
 });
 
 app.controller("profileController", function($scope,$http) {

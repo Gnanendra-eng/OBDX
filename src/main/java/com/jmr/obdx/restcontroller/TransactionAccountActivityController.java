@@ -40,5 +40,22 @@ public class TransactionAccountActivityController {
 			return new ResponseEntity<TransactionAccountActivityInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(value = "/lastfive/{customerId}/{nbrAccount}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<TransactionAccountActivityInfo> getLastFiveTransactionAccountActivityInfo(@PathVariable("customerId") String customerId,@PathVariable("nbrAccount") String nbrAccount) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			TransactionAccountActivityInfo responceObj = transactionAccountActivityService.getLastFiveTransactionAccountActivityInfo(customerId, nbrAccount);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<TransactionAccountActivityInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<TransactionAccountActivityInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<TransactionAccountActivityInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }

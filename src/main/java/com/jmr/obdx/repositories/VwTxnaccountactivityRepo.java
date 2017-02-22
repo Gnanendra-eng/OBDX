@@ -24,4 +24,13 @@ public class VwTxnaccountactivityRepo {
 
 	}
 	
+
+	@SuppressWarnings("unchecked")
+	public List<VwTxnaccountactivity> findByUserLastFiveTransactionAccountActivityInfo(String customerId,String nbrAccount) throws Exception{
+		return (List<VwTxnaccountactivity>)sessionFactory.openSession().createCriteria(VwTxnaccountactivity.class).add(Restrictions.eq("customerno", customerId)).
+				add(Restrictions.eq("nbraccount", nbrAccount)).addOrder(Order.desc("txndate")).setMaxResults(5).list();
+	}
+	
+	
+	
 }
