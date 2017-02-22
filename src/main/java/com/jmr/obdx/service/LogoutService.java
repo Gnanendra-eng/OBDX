@@ -18,13 +18,11 @@ public class LogoutService {
     @Autowired
     private  UserSessionDataRepo userSessionDataRepo;
     
-    
     @Autowired
     private UserSessionRepo userSessionRepo; 
     
     @Autowired
     private LoginRepo loginRepo;
-    
     
     public void deleteSessionInfo(String userName){
     	Login loginInfo=loginRepo.findByUsername(userName);

@@ -17,11 +17,13 @@ public class AccountDetailsRepo {
 
 	@SuppressWarnings("unchecked")
 	public List<Accountdetails> getBasicAccountDetails(String customerId) throws Exception {
-       return (List<Accountdetails>)sessionFactory.openSession().createCriteria(Accountdetails.class).add(Restrictions.eq("IDCUSTOMER", customerId)).list();
+       return (List<Accountdetails>)sessionFactory.openSession().createCriteria(Accountdetails.class).
+    		   add(Restrictions.eq("IDCUSTOMER", customerId)).list();
 	}
 	
 	public Accountdetails getAccountDetails(String customerId,String nbrAccount) throws Exception {
-		return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class).add(Restrictions.eq("IDCUSTOMER", customerId)).add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
+		return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
+				.add(Restrictions.eq("IDCUSTOMER", customerId)).add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
 
 	}
 	

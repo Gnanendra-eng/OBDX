@@ -64,11 +64,11 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/expired", method = RequestMethod.GET)
 	private String test()throws Exception { 
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "test";
+		return "logout";
 	}
 	
 	@RequestMapping(value = "/AccountDetails", method = RequestMethod.GET)

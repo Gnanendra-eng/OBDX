@@ -1,4 +1,4 @@
-var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner"]);
+var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider.when('/', {
            templateUrl : '/fragment/account-summary.html',
@@ -15,16 +15,60 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/loan", {
     	templateUrl : '/fragment/loan.html',
     	controller:"loanController"	
+    }).when("/statement", {
+    	templateUrl : '/fragment/statement.html',
+    	controller:"statementController"	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
     });
 });
 
+//Exception handler
+app.config(function($provide) {
+    $provide.decorator("$exceptionHandler", function($delegate) {
+		return function(exception, cause) {
+			$delegate(exception, cause);
+            alert(exception.message +" "+exception.status);
+		};
+	});
+});
+app.controller("statementController", function($scope,$http) {
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		});
+        $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+    	onChangeNbrAccountId();
+	}).error(function(data,status) {
+	   throw { message: 'error message',status:status};
+	});	
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;
+			$scope.sort = function(keyname){
+				$scope.sortKey = keyname;   
+				$scope.reverse = !$scope.reverse; 
+			}
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
+});
+
+
+
+
 
 app.controller("loanController", function($scope,$http) {
-	
-          
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
@@ -36,23 +80,18 @@ app.controller("loanController", function($scope,$http) {
 		 viz.data(data);
 		
 	});
-	
-	
 });
 
 app.controller("termDepositsController", function($scope,$http) {
-$http.get("/user/termdeposit/").then(function(data,status) {
-$scope.termDeposite = data.data;
-});
+     $http.get("/user/termdeposit/").then(function(data,status) {
+    $scope.termDeposite = data.data;
+   });
 });
 
 app.controller("accountsSummaryController", function($scope,$http) {
-
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
-	
-	
 	$http.get("/user/accountdetails/summary").then(function(data,status) {
 		   $scope.response = data.data;
 		   $scope.loan=$scope.response.loans;
@@ -98,6 +137,7 @@ app.controller("accountsController", function($scope,$http) {
 		$scope.select_prop_nbrAccounts = [];
 		$scope.nbrAccounts =data.data;
 		$scope.customerId=$scope.nbrAccounts.customerId;
+		
         angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
 			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
 		});
