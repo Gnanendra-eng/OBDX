@@ -34,7 +34,7 @@ app.config(function($provide) {
 	});
 });
 app.controller("statementController", function($scope,$http) {
-	$http.post("/user/accountdetails/").success(function(data,status) {
+	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
 		$scope.nbrAccounts =data;
 		$scope.customerId=$scope.nbrAccounts.customerId;
