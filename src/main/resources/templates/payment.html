@@ -1,0 +1,89 @@
+	
+	
+	<div class="container">
+	<div class="row">
+		<h2>TRANSFER MONEY</h2>
+		<hr></hr>
+
+		
+		<div class=" form-group btn-group">
+		<label>Transfer Type</label>
+				<div>
+				<button type="button" class="btn btn-primary col-md-4">Existing
+					Payee</button>
+				<button type="button" class="btn btn-primary">New Payee</button>
+				<button type="button" class="btn btn-primary">My Account</button>
+			</div>
+		</div>
+
+	<div class="col-md-12 form-group">
+		
+		<label class="col-md-5">Transfer To</label>
+		
+		<div class="col-md-7">
+		 <select
+			data-ng-change="myBalance()" data-ng-model="numBalance"
+			data-ng-options="nbrIdcus1.value as nbrIdcus1.text for nbrIdcus1 in select_prop_accountids">
+			<option value="t1" ng-disabled="nbrIdcus1.value==nbrIdcus2.value">Select your account number</option>
+		</select> <label> Balance: {{numBalance}}</label>
+		</div>
+	</div>
+
+	<div class="col-md-12 form-group">
+		<label class="col-md-5">Transfer From</label>
+		<div class="col-md-7">
+				 <select
+			data-ng-change="myAlaBalance()" data-ng-model="nBalance"
+			data-ng-options="nbrIdcus2.value as nbrIdcus2.text for nbrIdcus2 in select_prop_accountids">
+			<option value="t2" ng-disabled="nbrIdcus1.value==nbrIdcus2.value"
+			>Select your account number</option>
+		</select> <label> Balance: {{nBalance}}</label>
+		</div>
+	</div>
+ 
+	<div class="col-md-12 form-group">
+		<label class="col-md-5">Currency Type</label> 
+		<div class="col-md-7">
+		<select>
+			<option value="Curr">Currency Type</option>
+		</select>
+		</div>
+	</div>
+	<div class="col-md-12 form-group">
+		<label class="col-md-5">Amount:</label>
+		<div class="col-md-7">
+		 <input  type="text"
+			name="FirstName" value=""></input>
+			</div>
+	</div>
+	<div class="col-md-12 form-group" >
+	
+		<a href="#">View Limits <span class="badge"></span></a>
+
+	</div>
+	<div class="col-md-12 form-group">
+		<label class="col-md-5">Transfer When</label>
+		<div class="col-md-7 btn-group">
+			<div class="form-group">
+				<button type="button" class="btn btn-primary">Now</button>
+				<button type="button" class="btn btn-primary">Later</button>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-12 form-group">
+		<label class="col-md-5">Note(Optional):</label>
+		<div class="col-md-7">
+		 <input  type="text"
+			name="FirstName" value=""></input>
+</div>
+	</div>
+
+	<div>
+		<button type="button" class="btn btn-default">Cancel</button>
+		<button type="button" class="btn btn-success">Transfer</button>
+
+
+	</div>
+	</div>
+</div>

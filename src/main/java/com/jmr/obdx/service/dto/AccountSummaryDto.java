@@ -600,6 +600,6 @@ public class AccountSummaryDto{
 		UDF10 = uDF10;
 	}
 	
-	
+
 
 }
