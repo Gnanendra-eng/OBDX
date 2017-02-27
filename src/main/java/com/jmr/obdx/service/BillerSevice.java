@@ -35,10 +35,4 @@ public class BillerSevice {
 		  return billerInfo;
    }
 	
-	
-	
-	
-	
-	
-	
 }
