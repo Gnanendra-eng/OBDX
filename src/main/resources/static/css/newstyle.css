@@ -1,0 +1,292 @@
+body {
+	background-color: #FAF7F7;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.navbar-brand {
+	transform: translateX(-50%);
+	left: 50%;
+	position: absolute;
+}
+
+.navbar-default {
+	background-color: #ffffff;
+	border-color: rgba(94, 94, 94, 0.44);
+	border-left-color: white;
+	border-right-color: white;
+}
+
+.container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.navbar-default .navbar-brand {
+	color: #1b6d69;
+	font-size: 30px;
+	padding: 25px 15px;
+}
+
+.navbar {
+	min-height: 70px;
+	max-height: 70px;
+}
+
+.navbar-nav>li>a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: #1b6d69;
+}
+
+.navbar-toggle {
+	padding: 13px 10px;
+	margin-top: 18px;
+}
+
+.navbar {
+	z-index: 1000;
+}
+
+.glyphicon-plus-sign {
+	color: #9d9d9d;
+	font-size: 20px;
+	top: 50%;
+}
+
+a {
+	color: #ffffff;
+}
+
+p {
+	margin: 0 0 0px;
+	color: #9d9d9d;
+}
+
+.name {
+	margin: 0 0 0px;
+	color: #9d9d9d;
+}
+
+.id {
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: x-large;
+}
+
+.amount {
+	color: #0a0b0c;
+	font-size: xx-large;
+	position: absolute;
+	bottom: 0px;
+	right: 15px;
+}
+
+.outstanding {
+	color: #9d9d9d;
+	font-size: initial;
+	position: absolute;
+	right: 20px;
+	bottom: 40px;
+}
+
+.thumbnail {
+	padding-left: 20px;
+	padding-top: 20px;
+	height: 190px;
+	border-bottom-color: #d37da4;
+	border-bottom-width: thick;
+	position: relative;
+	border-radius: 0px;
+}
+
+.summary {
+	height: 520px;
+	position: relative;
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 0px;
+}
+
+.inner-triangle {
+	border-right: 60px solid #d37da4;
+	border-bottom: 60px solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.row {
+	margin-right: -15px;
+	margin-left: -15px;
+	margin-top: -10px;
+}
+
+.page-header {
+	padding-bottom: 9px;
+	margin: 40px 0 20px;
+	border-bottom: 0px solid #eee;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.summary-bar {
+	width: 100%;
+	height: 40px;
+	background-color: #d37da4;
+	position: absolute;
+	left: 0;
+	top: 75px;
+}
+
+.no {
+	color: white;
+	font-size: 57px;
+	position: absolute;
+	left: 10px;
+	top: -20px;
+}
+
+.sum-loans {
+	color: white;
+	font-size: x-large;
+	left: 80px;
+	top: 10px;
+}
+
+.sum-amount {
+	font-size: x-large;
+	text-align: center;
+}
+
+.spec {
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 0px;
+	padding-left: 20px;
+	padding-top: 20px;
+	min-height: 120px;
+	max-height: 2450px;
+	padding-bottom: 0px;
+	position: relative;
+}
+
+.closed-loan {
+	padding-left: 20px;
+	padding-top: 20px;
+	height: 180px;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 0px;
+}
+
+.closed-no {
+	color: #0a0b0c;
+	font-size: xx-large;
+	position: absolute;
+	bottom: 60px;
+	right: 68px;
+}
+
+/*for "loans" written in closed loan section*/
+.clo-loans {
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: large;
+	position: absolute;
+	bottom: 65px;
+	right: 15px;
+}
+
+.page-footer {
+	border-top: 1px solid #ddd;
+	margin-bottom: 10px;
+	margin-left: -10px;
+	margin-top: 10px;
+	padding-top: 9px;
+	padding-bottom: 5px;
+	font-size: large;
+	height: 30px;
+}
+
+a {
+	color: #0a0b0c;
+	padding-left: 10px;
+}
+
+.form-group {
+	margin-bottom: -5px;
+	margin-top: 30px;
+}
+
+.form-control {
+	width: 98%;
+	border-radius: 0px;
+}
+
+.mini-state {
+	padding-left: 10px;
+	padding-top: 20px;
+	height: 560px;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 0px;
+}
+
+.list-group {
+	margin-bottom: -11px;
+	margin-left: -11px;
+	margin-top: 11px;
+	margin-right: -1px;
+	border-radius: 0px;
+}
+
+.mini-amount {
+	position: absolute;
+	color: black;
+	font-size: large;
+	right: 10px;
+}
+
+.list-group-item {
+	height: 100px;
+}
+
+.bubble-container {
+	padding-left: 0px;
+	padding-top: 0px;
+	top: 68px;
+	height: 300px;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 0px solid #ddd;
+	border-radius: 0px;
+	width: 152px;
+	margin-right: auto;
+	margin-left: auto;
+}

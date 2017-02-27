@@ -1,11 +1,15 @@
 package com.jmr.obdx.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -26,6 +30,7 @@ public class Login implements java.io.Serializable {
 	private String credentialsnonexpired;
 	private String accountnonlocked;
 	private RetailCustomer retailCustomer;
+	private Set<Biller> billers = new HashSet<Biller>(0);
 
 	public Login(long id) {
 		this.id = id;
@@ -140,4 +145,12 @@ public class Login implements java.io.Serializable {
 		this.retailCustomer = retailCustomer;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "login")
+	public Set<Biller> getBillers() {
+		return this.billers;
+	}
+
+	public void setBillers(Set<Biller> billers) {
+		this.billers = billers;
+	}
 }

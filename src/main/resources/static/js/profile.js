@@ -1,8 +1,10 @@
+/** Angular app creations and route configurations **/
 var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination"]);
 app.config(function($routeProvider,$locationProvider) {
-    $routeProvider.when('/', {
-           templateUrl : '/fragment/account-summary.html',
-           controller:"accountsSummaryController"
+    $routeProvider
+    .when('/', {
+        templateUrl : '/fragment/account-summary.html',
+        controller:"accountsSummaryController"
     }).when("/account", {
         templateUrl : '/fragment/account.html',
 	    controller:"accountsController"	
@@ -18,13 +20,16 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/statement", {
     	templateUrl : '/fragment/statement.html',
     	controller:"statementController"	
+    }).when("/biller", {
+    	templateUrl : '/fragment/biller.html',
+    	controller:'billerController'	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
     });
 });
 
-//Exception handler
+/**Exception handler**/
 app.config(function($provide) {
     $provide.decorator("$exceptionHandler", function($delegate) {
 		return function(exception, cause) {
@@ -33,6 +38,43 @@ app.config(function($provide) {
 		};
 	});
 });
+
+/**Spinner loader**/
+(function(){
+    angular.module('ngLoadingSpinner', ['angularSpinner'])
+    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
+        return {
+            link: function (scope, elm, attrs){
+                $rootScope.spinnerActive = false;
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+                scope.$watch(scope.isLoading, function (loading){
+                    $rootScope.spinnerActive = loading;
+                    if(loading){
+                        elm.removeClass('ng-hide');
+                    }else{
+                        elm.addClass('ng-hide');
+                    }
+                });
+            }
+        };
+
+    }]);
+}).call(this);
+
+
+app.controller("billerController", function($scope,$http) {
+	
+	$http.get("/user/biller/").success(function(data,status) {
+		$scope.billerInfos =data;
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	
+});
+
+
 app.controller("statementController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
@@ -181,28 +223,3 @@ app.controller("accountsController", function($scope,$http) {
 	
 });
 
-(function(){
-    angular.module('ngLoadingSpinner', ['angularSpinner'])
-    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
-        return {
-            link: function (scope, elm, attrs)
-            {
-                $rootScope.spinnerActive = false;
-                scope.isLoading = function () {
-                    return $http.pendingRequests.length > 0;
-                };
-
-                scope.$watch(scope.isLoading, function (loading)
-                {
-                    $rootScope.spinnerActive = loading;
-                    if(loading){
-                        elm.removeClass('ng-hide');
-                    }else{
-                        elm.addClass('ng-hide');
-                    }
-                });
-            }
-        };
-
-    }]);
-}).call(this);

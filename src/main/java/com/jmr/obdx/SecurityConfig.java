@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomLogoutHandler customLogoutHandler;
 	
-	protected String[] patterns = new String[] {"/user/register","/logout/succesfull"};
+	protected String[] patterns = new String[] {"/user/register","/logout/succesfull","/test"};
 
 	
 	/***

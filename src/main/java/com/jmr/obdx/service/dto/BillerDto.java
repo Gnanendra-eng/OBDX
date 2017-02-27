@@ -2,42 +2,42 @@ package com.jmr.obdx.service.dto;
 
 public class BillerDto {
 
-	private String idbiller;
-	private String billername;
-	private String billerprofile;
+	private String idBiller;
+	private String billerName;
+	private String billerProfile;
+	
 
-	public String getIdbiller() {
-		return idbiller;
+	public String getIdBiller() {
+		return idBiller;
 	}
 
-	public void setIdbiller(String idbiller) {
-		this.idbiller = idbiller;
+	public void setIdBiller(String idBiller) {
+		this.idBiller = idBiller;
 	}
 
-	public String getBillername() {
-		return billername;
+	public String getBillerName() {
+		return billerName;
 	}
 
-	public void setBillername(String billername) {
-		this.billername = billername;
+	public void setBillerName(String billerName) {
+		this.billerName = billerName;
 	}
 
-	public String getBillerprofile() {
-		return billerprofile;
+	public String getBillerProfile() {
+		return billerProfile;
 	}
 
-	public void setBillerprofile(String billerprofile) {
-		this.billerprofile = billerprofile;
+	public void setBillerProfile(String billerProfile) {
+		this.billerProfile = billerProfile;
+	}
+
+	public BillerDto(String idBiller, String billerName, String billerProfile) {
+		this.idBiller = idBiller;
+		this.billerName = billerName;
+		this.billerProfile = billerProfile;
 	}
 
 	public BillerDto() {
-		
-	}
-
-	public BillerDto(String idbiller, String billername, String billerprofile) {
-		this.idbiller = idbiller;
-		this.billername = billername;
-		this.billerprofile = billerprofile;
 	}
 
 }

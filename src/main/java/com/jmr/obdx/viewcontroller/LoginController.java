@@ -14,12 +14,8 @@ import com.jmr.obdx.util.Utility;
 
 @org.springframework.stereotype.Controller
 public class LoginController {
-	
-	
+		
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
-
-
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String getHome() throws Exception{
@@ -78,8 +74,5 @@ public class LoginController {
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "AccountDetails";
 	}
-	
-	
-
 	
 }

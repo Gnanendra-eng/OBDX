@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.BillerM;
+import com.jmr.obdx.domain.Biller;
+import com.jmr.obdx.domain.Login;
 
 @Repository
-public interface BillerRepo extends CrudRepository<BillerM, Integer> {
+public interface BillerRepo extends CrudRepository<Biller, Integer> {
 	
-	@Query("from BillerM")
-	public List<BillerM> findAllBiller();
+	@Query("from Biller where login=:login")
+	public List<Biller> findByUserBillerInfo(@Param("login") Login login);
+
 }
-
-
-	
-	
