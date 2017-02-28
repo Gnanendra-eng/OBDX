@@ -9,7 +9,10 @@ public class BasicLoanDetailsInfo extends StatusInfo {
 
 	private Double totalBorrowing;
 	private Double currentOutStanding;
+	private List<String> nbrAccounts;
+	private String customerId;
 
+	
 	private List<BasicLoanDetailsDto> activedBasicLoanDetailsDto = new ArrayList<>();
 
 	private List<BasicLoanDetailsDto> closedBasicLoanDetailsDto = new ArrayList<>();
@@ -18,12 +21,33 @@ public class BasicLoanDetailsInfo extends StatusInfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BasicLoanDetailsInfo(Double totalBorrowing, Double currentOutStanding,List<BasicLoanDetailsDto> activedBasicLoanDetailsDto, List<BasicLoanDetailsDto> closedBasicLoanDetailsDto) {
+	public BasicLoanDetailsInfo(Double totalBorrowing, Double currentOutStanding,List<BasicLoanDetailsDto> activedBasicLoanDetailsDto,
+			List<BasicLoanDetailsDto> closedBasicLoanDetailsDto,String customerId, List<String> nbrAccounts) {
 		this.totalBorrowing = totalBorrowing;
 		this.currentOutStanding = currentOutStanding;
 		this.activedBasicLoanDetailsDto = activedBasicLoanDetailsDto;
 		this.closedBasicLoanDetailsDto = closedBasicLoanDetailsDto;
+		this.customerId=customerId;
+		this.nbrAccounts=nbrAccounts;
 	}
+	
+	
+	public List<String> getNbrAccounts() {
+		return nbrAccounts;
+	}
+
+	public void setNbrAccounts(List<String> nbrAccounts) {
+		this.nbrAccounts = nbrAccounts;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
 
 	public Double getTotalBorrowing() {
 		return totalBorrowing;

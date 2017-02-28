@@ -1,91 +1,123 @@
-<div class="row">
-	<div class="col-sm-4 ">
-		<div class="well well-lg" style="background: white;">Summary</div>
+<div class="wrapper">
 
-		<div class="well well-lg" style="background: white;">
-			<div>
-				<label>Total Borrowing :</label> <label>{{loanInfo.totalBorrowing}}</label>
-			</div>
-			<br />
+	<div class="container-fluid">
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="summary">
+					<div class="page-header">
+						<div class="id">SUMMARY</div>
+					</div>
+					<div class="summary-bar">
+						<div class="row">
+							<div class="col-sm-2 no">{{loanInfo.activedBasicLoanDetailsDto.length}}</div>
+							<div class="col-sm-10 sum-loans">Loans</div>
+						</div>
+					</div>
+					<div class="bubble-container">
+						<p style="text-align: center">Total Borrowing</p>
+						<div class="sum-amount" style="color: #d37da4">&#163;{{loanInfo.totalBorrowing}}</div>
 
-			<div id="test" style="margin-left: 31px;"></div>
-			<br />
-			<div>
-				<label>Current Outstanding :</label> <label>{{loanInfo.currentOutStanding}}</label>
-			</div>
+						<div id="loan" height="100px"></div>
 
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="well well-lg" style="background: white;"
-			data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
-			<p align="left">
-				<B>{{loan.productDescription}}</B>
-			</p>
-			<p align="left">{{loan.userReferenceNo}}</p>
-			<p align="left">{{loan.currency}}</p>
-			<div align="right">
-				<p>Outstanding Amount</p>
-				<p>{{loan.outStandingLoanAmount}}</p>
-			</div>
-		</div>
-		<div style="background: white;">
-			<a data-toggle="collapse" data-ng-click="stopDefaultAction($event)"
-				href="#loan">Closed Loans</a>
-		</div>
-		<br />
-		<div id="loan" class="panel-collapse collapse">
-			<div class="well well-lg" style="background: white;"
-				data-ng-repeat="loan in loanInfo.closedBasicLoanDetailsDto"
-				data-ng-if="loanInfo.closedBasicLoanDetailsDto!=0">
-				<p align="left">
-					<B>{{loan.productDescription}}</B>
-				</p>
-				<p align="left">{{loan.userReferenceNo}}</p>
-				<p align="left">{{loan.currency}}</p>
-				<div align="right">
-					<p>Outstanding Amount</p>
-					<p>{{loan.outStandingLoanAmount}}</p>
+						<p style="text-align: center">Current Outstanding</p>
+						<div class="sum-amount" style="color: #83325b">&#163;{{loanInfo.currentOutStanding}}</div>
+					</div>
 				</div>
 			</div>
-			<div class="well well-lg" style="background: white;"
-				data-ng-if="loanInfo.closedBasicLoanDetailsDto==0">
-				<p>
-					<B>No data available</B>
-				</p>
-			</div>
 		</div>
-		<div style="background: white;">
-			<a data-toggle="collapse" data-ng-click="stopDefaultAction($event)"
-				href="">New Loan</a>
-		</div>
-	</div>
+
+		<div class="col-sm-6 col-md-4">
+
+			<a href="" class="thumbnail"
+				data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
+				<div class="inner-triangle"></div>
+				<div class="id">{{loan.productDescription}}</div>
+				<p>{{loan.userReferenceNo}}</p>
+				<p>{{loan.currency}}</p>
+
+				<div class="outstanding">Outstanding Amount</div>
+				<div class="amount">&#163;{{loan.outStandingLoanAmount}}</div>
+			</a> <a href="" class="spec"> <br />
+				<div class="id">NEW LOAN</div>
+				<div class="row">
+					<div class="col-sm-5">
+						<br /> <br />
+						<p>Select products to fulfil your financial needs</p>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-5">
+						<img src="images/new-loan.JPG" class="img-responsive"
+							style="width: 135px; height: 80px;" />
+					</div>
+				</div>
+			</a>
 
 
-
-
-	<div class="col-sm-4">
-		<div class="well well-lg" style="background: white;">
-			<b>Mini Statement</b>
-			<hr />
-			<select class="form-control"><option>Account
-					Number-1</option>
-				<option>Account Number-2</option></select> <br />
-			<div>
-				<button type="button" class="btn btn-link">More Details</button>
+			<div class="container-fluid">
+				<div class="closed-loan">
+					<div class="id">CLOSED LOANS</div>
+					<div class="row">
+						<br /> <img src="images/closed-loan.JPG" class="img-responsive"
+							style="width: 60px; height: 60px;" />
+						<div class="closed-no">{{loanInfo.closedBasicLoanDetailsDto.length}}</div>
+						<div class="clo-loans">Loans</div>
+					</div>
+					<div class="page-footer">
+						<a href="">VIEW ALL<img src="images/forward.png"
+							class="img-responsive"
+							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					</div>
+				</div>
 			</div>
 
-		</div>
-		<div class="well well-lg" style="background: white;">
-			<div class="thumbnail">
-				<p>
-					<b>Loan Calculator</b>
-				</p>
 
-				<img
-					src="https://www.bankbazaar.com/images/india/infographic/how-to-calculate-hdfc-loan-emi.png"
-					alt="Swimming fish" />
+
+
+
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="mini-state">
+					<div class="id">MINI STATEMENT</div>
+					<div class="form-group">
+						<select class="form-control" data-ng-change="onAccountChange()"
+							data-ng-model="nbrAccount" name="nbrAccount"
+							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+
+						</select>
+					</div>
+					<div class="list-group">
+						<a href="" class="list-group-item"
+							data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+							<div class="list item">
+								<p style="color: black">{{transactionInfo.transactionDate}}</p>
+								<p>{{transactionInfo.transactionDescription}}</p>
+								<br />
+								<div class="mini-amount">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</div>
+							</div>
+						</a>
+					</div>
+					<div class="page-footer">
+						<a href="">MORE DETAILS<img src="images/forward.png"
+							class="img-responsive"
+							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					</div>
+				</div>
 			</div>
+			<a href="#" class="spec"> <br />
+				<div class="id">LOAN CALCULATOR</div>
+				<div class="row">
+					<div class="col-sm-5">
+						<br /> <br />
+						<p>Check your Eligibilty!</p>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-5">
+						<img src="images/loan-calculator.JPG" class="img-responsive"
+							style="width: 135px; height: 80px;" />
+					</div>
+				</div>
+			</a>
 		</div>
 	</div>
 </div>

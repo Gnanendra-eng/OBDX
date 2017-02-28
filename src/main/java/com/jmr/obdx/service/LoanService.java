@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.LoanAccount;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.RetailCustomer;
+import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.LoanRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
@@ -38,12 +40,21 @@ public class LoanService {
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
 	
+	@Autowired
+	private AccountDetailsRepo accountDetailsRepo;
+
+	
 	public BasicLoanDetailsInfo getBasicLoanDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicLoanDetailsDto=new BasicLoanDetailsInfo();
 		Login login = loginRepo.findByUsername(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<LoanAccount> loanAccounts=loanRepo.getLoanSummary(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		List<String> tempAccountDetails = new ArrayList<>();
+		accountdetails.stream().forEach(accountdetail -> {
+			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+		});
 		CURRENT_OUTSTANDING=0.0;
 		TOTAL_LOAN_BORROWING=0.0;
 		activedBasicLoanDetailsDtos=new ArrayList<>(0);
@@ -60,7 +71,7 @@ public class LoanService {
 			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal(), loanAccount.getCodbranch()));
 			}
 		});
-		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos);
+		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,retailCustomer.getIdcusomer(),tempAccountDetails);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return basicLoanDetailsDto;
 	}

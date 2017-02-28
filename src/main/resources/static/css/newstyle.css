@@ -3,6 +3,7 @@ body {
 	background-size: cover;
 	width: 100%;
 	height: 100%;
+	overflow-x: hidden;
 }
 
 .navbar-brand {
@@ -50,6 +51,12 @@ body {
 
 .navbar {
 	z-index: 1000;
+}
+
+.navbar-collapse.in {
+	overflow-y: auto;
+	background-color: white;
+	border: 1px solid #9d9d9d;
 }
 
 .glyphicon-plus-sign {
@@ -245,7 +252,6 @@ a {
 .mini-state {
 	padding-left: 10px;
 	padding-top: 20px;
-	height: 560px;
 	position: relative;
 	display: block;
 	margin-bottom: 20px;

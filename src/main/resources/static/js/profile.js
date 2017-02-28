@@ -63,6 +63,38 @@ app.config(function($provide) {
     }]);
 }).call(this);
 
+app.controller("loanController", function($scope,$http) {
+	$http.get("/user/loan/").success(function(data,status) {
+		 $scope.loanInfo=data;		
+		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
+		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+		 var viz = new BubbleChart(options);
+		 viz.data(data);
+		 $scope.select_prop_nbrAccounts = [];
+		 $scope.customerId=$scope.loanInfo.customerId;
+	        angular.forEach($scope.loanInfo.nbrAccounts, function(name, index) {
+				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		 });
+	     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+	     onChangeNbrAccountId();
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;		
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
+});
+
+
 
 app.controller("billerController", function($scope,$http) {
 	
@@ -110,19 +142,8 @@ app.controller("statementController", function($scope,$http) {
 
 
 
-app.controller("loanController", function($scope,$http) {
-	$scope.stopDefaultAction = function(event) {
-		event.preventDefault();
-	};
-	$http.get("/user/loan/").then(function(data,status) {
-		 $scope.loanInfo=data.data;		
-		 var options = {container: "#test",label: "label",width: 250, height: 250,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
-		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
-		 var viz = new BubbleChart(options);
-		 viz.data(data);
-		
-	});
-});
+
+
 
 app.controller("termDepositsController", function($scope,$http) {
      $http.get("/user/termdeposit/").then(function(data,status) {
