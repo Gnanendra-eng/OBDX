@@ -280,7 +280,23 @@ a {
 	height: 100px;
 }
 
-.bubble-container {
+.account-bubble-container {
+	padding-left: 32px;
+	padding-top: 0px;
+	top: 68px;
+	height: 300px;
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 0px solid #ddd;
+	border-radius: 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.loan-bubble-container {
 	padding-left: 0px;
 	padding-top: 0px;
 	top: 68px;
@@ -295,4 +311,141 @@ a {
 	width: 152px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+panel-default>.panel-heading {
+	color: #333;
+	background-color: #ededed;
+	border-color: #ddd;
+}
+
+.sel-dropdown {
+	background-color: transparent;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 20px;
+	width: 100%;
+}
+
+.sel-group {
+	margin-bottom: 3px;
+	margin-top: 0px;
+}
+
+.acc-nameno {
+	margin-left: auto;
+	margin-right: auto;
+	width: 253px;
+	margin-bottom: 21px;
+}
+
+.filter-select-box {
+	margin-left: auto;
+	margin-right: auto;
+	width: 180px;
+	top: 0px;
+	position: relative;
+}
+
+.label {
+	color: black;
+	border-radius: 0em;
+	border: 1px solid #6b6060;
+	font-size: 86%;
+}
+
+.label-default {
+	background-color: #ffffff;
+}
+
+.row-flex {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.col-flex-item {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.vertical-divider {
+	border-left: 1px solid gray;
+}
+
+.panel-footer {
+	background-color: white;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #9d9d9d;
+	border-color: #9d9d9d;
+}
+
+.pagination>li>a {
+	color: #9d9d9d;
+}
+
+.pagination {
+	display: inline-block;
+	padding-left: 3px;
+	margin: 3px 0px;
+	border-radius: 0px;
+}
+
+@media only screen and (max-width: 760px) , ( min-device-width : 768px)
+	and (max-device-width: 1024px) {
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+		border: 1px solid gray;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 35%;
+		text-align: right;
+		min-height: 30px;
+		max-height: 100px;
+		overflow-wrap: break-word;
+	}
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 5px;
+		white-space: nowrap;
+		text-align: left;
+	}
+	td:nth-of-type(1):before {
+		content: "Date:";
+	}
+	td:nth-of-type(2):before {
+		content: "Description:";
+	}
+	td:nth-of-type(3):before {
+		content: "Reference Number:";
+	}
+	td:nth-of-type(4):before {
+		content: "Amount:";
+	}
+	td:nth-of-type(5):before {
+		content: "Balance:";
+	}
 }

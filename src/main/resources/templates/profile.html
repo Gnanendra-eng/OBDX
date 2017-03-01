@@ -35,8 +35,8 @@
 	src="https://rawgit.com/mbaez/bubbles-chart/master/dist/js/bubbles-chart.full.js"></script>
 <script
 	src="https://rawgit.com/mbaez/bubbles-chart/master/test/js/data.js"></script>
-	<link rel="stylesheet" href="css/newstyle.css" />
-	
+<link rel="stylesheet" href="css/newstyle.css" />
+
 
 <style>
 footer {
@@ -58,7 +58,7 @@ html {
 .custaccount {
 	margin-bottom: 0px;
 } */
-</style> 
+</style>
 </head>
 <body style="background-color: #ffffff;">
 	<span data-us-spinner="{radius:30, width:8, length: 16}"></span>
@@ -84,6 +84,7 @@ html {
 						<ul class="dropdown-menu">
 							<li><a href="#/account">Account Info</a></li>
 							<li><a href="#/account-summary">Account Summary</a></li>
+							<li><a href="#/saving-current">Saving &amp; Current</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav ">
@@ -97,7 +98,22 @@ html {
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Statement <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						<li><a href="#/statement">Statement Info</a></li>
+							<li><a href="#/statement">Statement Info</a></li>
+						</ul></li>
+				</ul>
+
+				<ul class="nav navbar-nav ">
+					<li class="dropdown"><a href="" class="dropdown-toggle"
+						data-toggle="dropdown">Term Deposits <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/termdeposit">Term Deposits</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav ">
+					<li class="dropdown"><a href="" class="dropdown-toggle"
+						data-toggle="dropdown">Bill Payments <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+						<li><a href="#/biller">Register Biller</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav ">
@@ -106,27 +122,14 @@ html {
 						<ul class="dropdown-menu">
 						</ul></li>
 				</ul>
-					<ul class="nav navbar-nav ">
-					<li class="dropdown"><a href="" class="dropdown-toggle"
-						data-toggle="dropdown">Term Deposits <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-						<li><a href="#/termdeposit">Term Deposits</a></li>
-							</ul>
-						</li>
-				</ul>
-				<ul class="nav navbar-nav ">
-					<li class="dropdown"><a href="" class="dropdown-toggle"
-						data-toggle="dropdown">Bill Payments <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-						</ul></li>
-				</ul>
+				
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">New Account Opening <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 						</ul></li>
 				</ul>
-				
+
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href=""
@@ -148,7 +151,7 @@ html {
 		</div>
 	</nav>
 
-	<div >
+	<div>
 		<div data-ng-view="ng-view"></div>
 
 	</div>

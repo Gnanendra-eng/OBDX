@@ -96,11 +96,16 @@ public class AccountService {
 		return accountDetailsDto;
 	}
 
+	
+	
+	
+
 	public AccountSummaryInfo getAccountSummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login login = loginRepo.findByUsername(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
 		savingsAndCurrent = new ArrayList<>();
 		loans = new ArrayList<>();
 		contractAndTermdeposit = new ArrayList<>();
@@ -120,14 +125,22 @@ public class AccountService {
 				sumOfLoans += Double.parseDouble(accountsummary.getNUMAVAILBAL());
 				contractAndTermdeposit.add(getAccountSummaryType(accountsummary));
 				}
-
+		});
+		List<String> tempAccountDetails = new ArrayList<>();
+		accountdetails.stream().forEach(accountdetail -> {
+			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
-				savingsAndCurrent, loans, contractAndTermdeposit);
+				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}
 
+	
+	
+	
+	
+	
 	protected AccountSummaryDto getAccountSummaryType(Accountsummary accountsummary) {
 		return new AccountSummaryDto(accountsummary.getIDACCOUNT(), accountsummary.getIDCUSTOMER(),
 				accountsummary.getCODBRANCH(), accountsummary.getCODACCTTYPE(), accountsummary.getTXTACCTSTATUS(),

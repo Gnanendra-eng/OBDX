@@ -1,116 +1,95 @@
 <style>
-.sort-icon {
-	font-size: 9px;
-	margin-left: 5px;
-}
 
-th {
-	cursor: pointer;
-}
 .red {
-    color: red; 
+	color: red;
 }
 
 .green {
-    color: green;
+	color: green;
 }
 </style>
-<div class="container">
-	<div class="panel panel-default " style="background-color: #F0F8FF;">
-		<div class="panel-body">
-			<p>
-				<b>STATEMENT</b>
-			</p>
-			<hr />
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<form name="userForm" novalidate="novalidate">
-						<div class="form-group"
-							data-ng-class="{ 'has-error' : userForm.nbrAccount.$invalid &amp;&amp; !userForm.nbrAccount.$pristine }">
-							<select class="form-control" data-ng-change="onAccountChange()"
-								data-ng-model="nbrAccount" name="nbrAccount" required="required"
-								data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-							</select> <span
-								data-ng-show="userForm.nbrAccount.$dirty &amp;&amp; userForm.nbrAccount.$invalid"
-								class="help-block">Account number is required.</span>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-3"></div>
 
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="acc-nameno">
+				<div class="form-group">
+					<select class="form-control"
+						data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
+						name="nbrAccount" required="required"
+						data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+					</select>
 			</div>
-			<div class="row">
-				<div role="main" class="container theme-showcase">
-					<br /> <br />
-					<div class="col-lg-2"></div>
-					<div class="col-lg-8"><div class="bs-component">
-								<div class="alert alert-info">
-									<form class="form-inline">
-										<div class="form-group">
-											<label>Filter</label> <input type="text" ng-model="search"
-												class="form-control" placeholder="Filter" />
-										</div>
-									</form>
-								</div>
-
-								<table class="table table-striped table-hover">
-									<thead>
-										<tr>
-											<th>Id <span class="glyphicon sort-icon"></span>
-											</th>
-											<th data-ng-click="sort('transactionDate')">Date <span
-												class="glyphicon sort-icon"
-												data-ng-show="sortKey=='transactionDate'"
-												data-ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-											</th>
-											<th data-ng-click="sort('transactionDescription')">Description
-												<span class="glyphicon sort-icon"
-												data-ng-show="sortKey=='transactionDescription'"
-												data-ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-											</th>
-											<th data-ng-click="sort('transactionReferenceNo')">Reference
-												number <span class="glyphicon sort-icon"
-												data-ng-show="sortKey=='transactionReferenceNo'"
-												data-ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-											</th>
-											<th data-ng-click="sort('transactionAmount')">Amount <span
-												class="glyphicon sort-icon"
-												data-ng-show="sortKey=='transactionAmount'"
-												data-ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-											</th>
-											<th data-ng-click="sort('balance')">Balance <span
-												class="glyphicon sort-icon" data-ng-show="sortKey=='balance'"
-												data-ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr
-											data-dir-paginate="transactionInfo in transactionInfos.transactionAccountActivityDtos|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
-											<td>{{transactionInfos.transactionAccountActivityDtos.indexOf(transactionInfo)+1}}</td>
-											<td>{{transactionInfo.transactionDate}}</td>
-											<td>{{transactionInfo.transactionDescription}}</td>
-											<td>{{transactionInfo.transactionReferenceNo}}</td>
-											<td  data-ng-class="{red : transactionInfo.transactionType==='C',green: transactionInfo.transactionType==='D'}">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</td>
-											<td>{{transactionInfo.balance}}</td>
-										</tr>
-									</tbody>
-								</table>
-								<dir-pagination-controls max-size="5" direction-links="true"
-									boundary-links="true"> </dir-pagination-controls>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row row-flex">
+					<div class="col-sm-2 col-flex-item">
+						<div class="filter-select-box" style="margin-left: 0px">
+							<div class="sel-group form-group-sm">
+								<select class="sel-dropdown">
+									<option>Current Period</option>
+								</select>
 							</div>
-						</div></div></div>
-					<div class="col-lg-2"></div>
+						</div>
+					</div>
+					<div class="col-sm-7 col-flex-item"></div>
+					<div class="col-sm-3 col-flex-item">
+						<div class="filter-select-box" style="margin-left: 0px">
+							<div class="sel-group form-group-sm">
+								<select class="sel-dropdown">
+									<option>All</option>
+								</select>
+							</div>
+						</div>
+						<a href="#"><span class="glyphicon glyphicon-floppy-disk"
+							aria-hidden="true"></span> </a><a href="#"><img
+							src="images/glyphicon-@file.jpg" style="width: 23px; height: 24px" /> </a><a
+							href="#"><img src="images/glyphicon-file.jpg"
+							style="width: 20px; height: 25px" /></a>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-2">
+						<p style="text-align: left; color: black">Opening Balance:
+							$0.00</p>
+					</div>
+					<div class="col-sm-8"></div>
+					<div class="col-sm-2">
+						<p style="text-align: right; color: black">Closing Balance:
+							$125,000.00</p>
+					</div>
+				</div>
+			</div>
+			<table style="width: 100%" class="table">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Reference Number</th>
+						<th style="text-align: right">Amount</th>
+						<th style="text-align: right">Balance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						data-dir-paginate="transactionInfo in transactionInfos.transactionAccountActivityDtos|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+						<td><p style="font-size: x-large; color: black">{{transactionInfo.transactionDate.split(' ')[0]}}</p>
+							<p style="color: black">{{transactionInfo.transactionDate.split(' ')[1]}}&nbsp;{{transactionInfo.transactionDate.split(' ')[2]}}</p></td>
 
-
-
-
-
-
-		
-
+						<td><p style="color: black">{{transactionInfo.transactionDescription}}</p></td>
+						<td><p>{{transactionInfo.transactionReferenceNo}}</p></td>
+						<td><p
+								style=" font-size: large; text-align: right"
+								data-ng-class="{red : transactionInfo.transactionType==='C',green: transactionInfo.transactionType==='D'}">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</p></td>
+						<td><p style="text-align: right">{{transactionInfo.balance}}</p></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="panel-footer">
+				<dir-pagination-controls max-size="5" direction-links="true"
+					boundary-links="true"> </dir-pagination-controls>
+			</div>
 		</div>
 	</div>
 </div>
-

@@ -28,7 +28,7 @@ public class TransactionAccountActivityService {
 	
 
 	private  SimpleDateFormat getSimpleDateFormat(){
-		return new SimpleDateFormat("dd/MM/yyyy"); 
+		return new SimpleDateFormat("dd MMMM yyyy"); 
 	}
 	
 	public TransactionAccountActivityInfo getTransactionAccountActivityInfo(String customerId, String nbrAccount) throws Exception{

@@ -1,226 +1,96 @@
-<style>
-.red {
-    color: red; 
-}
+<div class="wrapper">
 
-.green {
-    color: green;
-}
-</style>
-<div class="row">
-	<div class="col-sm-4 ">
-		<div id="piechart_3d" style="width: 350px; height: 350px;"></div>
-		<h4>Last 5 Transactions</h4>
-		<form name="userForm">
-			<div class="form-group">
-				<select class="form-control" data-ng-change="onAccountChange()"
-					data-ng-model="nbrAccount" name="nbrAccount"
-					data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-				</select>
-			</div>
-		</form>
-		<a href="#/statement" class="btn btn-link">More</a>
-		<div class="table-responsive" style="max-height:250px;">
-			<table class="table ">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Date</th>
-						<th>Description</th>
-						<th>Reference No</th>
-						<th>Amount</th>
-						<th>Balance</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
-						<td>{{transactionInfos.transactionAccountActivityDtos.indexOf(transactionInfo)+1}}</td>
-						<td>{{transactionInfo.transactionDate}}</td>
-						<td>{{transactionInfo.transactionDescription}}</td>
-						<td>{{transactionInfo.transactionReferenceNo}}</td>
-						<td
-							data-ng-class="{red : transactionInfo.transactionType==='C',green: transactionInfo.transactionType==='D'}">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</td>
-						<td>{{transactionInfo.balance}}</td>
-
-					</tr>
-				</tbody>
-			</table>
-
-		</div>
-	</div>
-
-	<div class="col-sm-4">
-		<div class="row">
-			<div class="col-sm-9">
-				<div class="panel-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)"
-									href="#saving-current"><span
-									class="glyphicon glyphicon-usd"></span>Savings And Current:
-									<div style="color: green">
-										<b>{{sumofsavingsandcurrent}}</b>
-									</div></a>
-							</h4>
-						</div>
-						<div id="saving-current" class="panel-collapse collapse">
-							<div class="panel-body"
-								style="background-color: #7070a2; height: 200px; overflow: scroll;">
-								<div class="col-md-10"
-									data-ng-repeat="sgscut in savingsandcurrent">
-									<div class="form-group custextcolor">
-										<label>Account Number :</label> <label>{{sgscut.idaccount}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Description :</label> <label>{{sgscut.prdname}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Balance :</label> <label>{{sgscut.numbalance}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Branch :</label> <label>{{sgscut.codbranch}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Currency :</label> <label>{{sgscut.codacctcurr}}</label>
-									</div>
-									<hr style="border: 1px solid #14192f;"
-										data-ng-if="savingsandcurrent.length>1" />
-								</div>
-							</div>
+	<div class="container-fluid">
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="summary">
+					<div class="page-header">
+						<div class="id">SUMMARY</div>
+					</div>
+					<div class="summary-bar">
+						<div class="row">
+							<div class="col-sm-2 no"></div>
+							<div class="col-sm-10 sum-loans">Account</div>
 						</div>
 					</div>
-				</div>
-
-
-				<div class="panel-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)" href="#loan"><span
-									class="glyphicon glyphicon-duplicate"></span>&nbsp;Loans:
-									<div style="color: red">
-										<b>{{sumofloans}}</b>
-									</div></a>
-							</h4>
-						</div>
-						<div id="loan" class="panel-collapse collapse">
-							<div class="panel-body"
-								style="background-color: #7070a2; height: 200px; overflow: scroll;">
-								<div class="col-md-10" data-ng-repeat="loan in loan">
-									<div class="form-group custextcolor">
-										<label>Account Number :</label> <label>{{loan.idaccount}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Description :</label> <label>{{loan.prdname}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Balance :</label> <label>{{loan.numbalance}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Branch :</label> <label>{{loan.codbranch}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Currency :</label> <label>{{loan.codacctcurr}}</label>
-									</div>
-									<hr style="border: 1px solid #14192f;"
-										data-ng-if="loan.length>1" />
-
-								</div>
-							</div>
-						</div>
+					<div class="account-bubble-container">
+						<div id="piechart_3d" style="width: 350px; height: 350px;"></div>
+						<br />
 					</div>
-				</div>
-
-
-				<div class="panel-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse"
-									data-ng-click="stopDefaultAction($event)"
-									href="#contract-and-termdeposit"><span
-									class="glyphicon glyphicon-piggy-bank"></span>&nbsp;CONTRACT
-									AND TERMDEPOSIT:
-									<div style="color: green">
-										<b>{{sumofcontractandtermdepostit}}</b>
-									</div></a>
-							</h4>
-						</div>
-						<div id="contract-and-termdeposit" class="panel-collapse collapse">
-							<div class="panel-body"
-								style="background-color: #7070a2; height: 200px; overflow: scroll;">
-								<div class="col-md-10"
-									data-ng-repeat="conttempdep in contractandtermdepostit">
-									<div class="form-group custextcolor">
-										<label>Account Number :</label> <label>{{conttempdep.idaccount}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Description :</label> <label>{{conttempdep.prdname}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Balance :</label> <label>{{conttempdep.numbalance}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Branch :</label> <label>{{conttempdep.codbranch}}</label>
-									</div>
-									<div class="form-group custextcolor">
-										<label>Account Currency :</label> <label>{{conttempdep.codacctcurr}}</label>
-									</div>
-									<hr style="border: 1px solid #14192f;"
-										data-ng-if="contractandtermdepostit.length>1" />
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12 well"></div>
-
-
-			</div>
-
-			<div class="col-sm-9" style="background-color: #F0F8FF;">
-				<div class="thumbnail">
-					<p>
-						<b>Loan Calculator</b>
-					</p>
-
-					<img
-						src="https://www.bankbazaar.com/images/india/infographic/how-to-calculate-hdfc-loan-emi.png"
-						alt="Swimming fish" />
 				</div>
 			</div>
 		</div>
+		<div class="col-sm-6 col-md-4">
+
+			<a href="" class="thumbnail"
+				data-ng-repeat="sgscut in savingsandcurrent">
+				<div class="inner-triangle"></div>
+				<div class="id">Savings &amp; Current</div>
+				<p>{{sgscut.idaccount}}</p>
+				<p>{{sgscut.codacctcurr}}</p>
+				<p>{{sgscut.codbranch}}</p>
+				<p>{{sgscut.prdname}}</p>
+				<div class="outstanding">Net Balance</div>
+				<div class="amount">{{sgscut.numbalance}}</div>
+			</a> 
+			
+			
+			
+			<a href="" class="thumbnail" data-ng-repeat="loan in loan" >
+				<div class="inner-triangle"></div>
+				<div class="id">Loans</div>
+				<p>{{loan.idaccount}}</p>
+				<p>{{loan.codacctcurr}}</p>
+				<p>{{loan.codbranch}}</p>
+				<p>{{loan.prdname}}</p>
+				<div class="outstanding">Net Balance</div>
+				<div class="amount">{{loan.numbalance}}</div>
+			</a> 
+			
+			
+			<a href="" class="thumbnail" data-ng-repeat="conttempdep in contractandtermdepostit">
+				<div class="inner-triangle"></div>
+				<div class="id">Contract &amp; Term deposit</div>
+				<p>{{conttempdep.idaccount}}</p>
+				<p>{{conttempdep.codacctcurr}}</p>
+				<p>{{conttempdep.codbranch}}</p>
+				<p>{{conttempdep.prdname}}</p>
+				<div class="outstanding">Net Balance</div>
+				<div class="amount">{{conttempdep.numbalance}}</div>
+			</a>
 
 
-	</div>
-	<div class="col-sm-4">
-
-		<div class="col-sm-12 " style="background-color: #F0F8FF;">
-			<div class="thumbnail">
-				<p>
-					<b>Advertise</b>
-				</p>
-
-				<img src="images/adimage.jpg" alt="Swimming fish" />
-			</div>
 		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="mini-state">
+					<div class="id">MINI STATEMENT</div>
+					<div class="form-group">
+						<select class="form-control" data-ng-change="onAccountChange()"
+							data-ng-model="nbrAccount" name="nbrAccount"
+							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
 
-		<div class="col-sm-12 " style="background-color: #F0F8FF;">
-			<div class="thumbnail">
-				<p>
-					<b>Offer</b>
-				</p>
-
-				<marquee behavior="scroll" direction="right">
-					<img width="100%" height="100%"
-						src="https://3.imimg.com/data3/BQ/RS/MY-13452139/car-loan-250x250.jpg"
-						alt="Swimming fish" />
-				</marquee>
+						</select>
+					</div>
+					<div class="list-group">
+						<a href="" class="list-group-item"
+							data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+							<div class="list item">
+								<p style="color: black">{{transactionInfo.transactionDate}}</p>
+								<p>{{transactionInfo.transactionDescription}}</p>
+								<br />
+								<div class="mini-amount">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</div>
+							</div>
+						</a>
+					</div>
+					<div class="page-footer">
+						<a href="#">MORE DETAILS<img src="images/forward.png"
+							class="img-responsive"
+							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
 </div>

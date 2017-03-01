@@ -151,52 +151,38 @@ app.controller("termDepositsController", function($scope,$http) {
    });
 });
 
+
+
+
+
+
+
 app.controller("accountsSummaryController", function($scope,$http) {
+	
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
+	
 	$http.get("/user/accountdetails/summary").then(function(data,status) {
 		   $scope.response = data.data;
 		   $scope.loan=$scope.response.loans;
+		   $scope.select_prop_nbrAccounts=[];
 		   $scope.savingsandcurrent=$scope.response.savingsAndCurrent;
 		   $scope.contractandtermdepostit=$scope.response.contractAndTermdeposit;
 		   $scope.sumofsavingsandcurrent =data.data.sumOfSavingsAndCurrent;
 		   $scope.sumofloans =data.data.sumOfLoans;
 		   $scope.sumofcontractandtermdepostit =data.data.sumOfContractAndTermdepostit;
-		    google.charts.load("current", {packages:["corechart"]});
-		      google.charts.setOnLoadCallback(drawChart);
-		      function drawChart() {
-		        var data = google.visualization.arrayToDataTable([
-		          ['Task', 'Hours per Day'],
-		          ['SAVING ACCOUNT & CURRENT',$scope.sumofsavingsandcurrent],
-		          ['TERM DEPOSIT', $scope.sumofcontractandtermdepostit],
-		          ['LOANS',  $scope.sumofloans]
-		        ]);
-		        var options = {
-		          title: 'Account Summary',
-		          is3D: true,
-		          legend: 'none',
-		          colors: ['#9de219', '#00FFFF', '#FF4500'],
-		        backgroundColor: 'transparent'
-		        };
-
-		        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-		        chart.draw(data, options);
-		      }
+		   google.charts.load("current", {packages:["corechart"]});
+		   google.charts.setOnLoadCallback(drawChart);
+		   function drawChart() { var data = google.visualization.arrayToDataTable([ ['Task', 'Hours per Day'], ['SAVING ACCOUNT & CURRENT',$scope.sumofsavingsandcurrent], ['TERM DEPOSIT', $scope.sumofcontractandtermdepostit], ['LOANS', $scope.sumofloans] ]); var options = {  is3D: true, legend: 'none', colors: ['#9de219', '#00FFFF', '#FF4500'], backgroundColor: 'transparent' }; var chart = new google.visualization.PieChart(document.getElementById('piechart_3d')); chart.draw(data, options); }
+		   $scope.customerId=$scope.response.customerId;
+	        angular.forEach($scope.response.nbrAccounts, function(name, index) {
+				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		   });
+	       $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+	       onChangeNbrAccountId();
 	});
 	
-   $http.get("/user/accountdetails/").success(function(data,status) {
-		$scope.select_prop_nbrAccounts = [];
-		$scope.nbrAccounts =data;
-		$scope.customerId=$scope.nbrAccounts.customerId;
-        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
-			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
-		});
-        $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
-    	onChangeNbrAccountId();
-	}).error(function(data,status) {
-	   throw { message: 'error message',status:status};
-	});	
 	$scope.onAccountChange=function(){
 		if($scope.nbrAccount!=undefined){
 			onChangeNbrAccountId();
@@ -204,14 +190,15 @@ app.controller("accountsSummaryController", function($scope,$http) {
 	}
 	function onChangeNbrAccountId(){
 		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
-			$scope.transactionInfos =data;
-			
-			
+			$scope.transactionInfos =data;		
 		}).error(function(data,status) {
 			 throw { message: 'error message',status:status};
 		});	
 	}
 });
+
+
+
 
 app.controller("profileController", function($scope,$http) {
 	$scope.stopDefaultAction = function(event) {

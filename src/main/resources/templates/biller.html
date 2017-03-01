@@ -17,6 +17,12 @@ p {
 	font-size: initial;
 }
 
+.biller {
+	padding-left: 20px;
+	padding-top: 20px;
+	height: 175px;
+}
+
 .glyphicon-plus-sign {
 	color: #9d9d9d;
 	font-size: 20px;
@@ -24,23 +30,26 @@ p {
 }
 
 .item {
-	padding-top: 15px;
+	text-align: center;
+	height: 82px;
 }
 </style>
-<div class="row">
+<div class="wrapper">
+
 	<div class="container-fluid">
 		<div class="col-sm-6 col-md-3"
 			data-ng-repeat="billerInfo in billerInfos.billerDtos">
 			<a href="" class="thumbnail">
 				<div class="id">{{billerInfo.billerName}}</div>
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-8" style="margin-top: 11px;">
 						<p>{{billerInfo.billerProfile}}</p>
 						<p>{{billerInfo.idBiller}}</p>
 					</div>
 					<div class="col-sm-4">
-						<img ng-src="{{billerInfo.billerProfile == 'TELECOM' &amp;&amp; 'images/telecom.png' || 'images/electricity.png'}}" class="img-responsive"
-							style="width: 60px; height: 60px;" />
+						<img
+							ng-src="{{billerInfo.billerProfile == 'TELECOM' &amp;&amp; 'images/telecom.png' || 'images/electricity.png'}}"
+							class="img-responsive" style="width: 60px; height: 60px;" />
 					</div>
 				</div>
 			</a>
