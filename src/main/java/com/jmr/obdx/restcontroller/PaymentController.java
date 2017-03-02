@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.service.PaymentService;
-import com.jmr.obdx.service.dto.PaymentDto;
+import com.jmr.obdx.service.dto.OwnAccountPaymentDto;
 import com.jmr.obdx.service.dto.PaymentUpdate;
 import com.jmr.obdx.service.dto.Paymentinfo;
 import com.jmr.obdx.util.Utility;
@@ -45,7 +45,7 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<PaymentUpdate> getPaymentUpdate(@RequestBody PaymentDto paymentDto) {
+	private ResponseEntity<PaymentUpdate> getPaymentUpdate(@RequestBody OwnAccountPaymentDto paymentDto) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod());
 			PaymentUpdate responceObj = paymentService.getUpdateAmount(paymentDto);

@@ -15,21 +15,20 @@ import com.jmr.obdx.service.TermDepositeService;
 import com.jmr.obdx.service.dto.TermDepositeInfo;
 import com.jmr.obdx.util.Utility;
 
-@RequestMapping(value = "/user/termdeposit")
 @RestController
+@RequestMapping(value = "/user/termdeposit")
 public class TermDepositeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(TermDepositeController.class);
-	
+
 	@Autowired
 	private TermDepositeService termDepositeService;
-	
-	@RequestMapping(value="/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<TermDepositeInfo> getTermSummary(Authentication authentication){
-		try 
-		{
-			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
-			TermDepositeInfo responceObj =termDepositeService.getTermDeposite( authentication);
+
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<TermDepositeInfo> getTermDeposite(Authentication authentication) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			TermDepositeInfo responceObj = termDepositeService.getTermDeposite(authentication);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<TermDepositeInfo>(responceObj, HttpStatus.BAD_REQUEST);
@@ -40,10 +39,5 @@ public class TermDepositeController {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<TermDepositeInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-			
-		
-		
 	}
-	
-
 }

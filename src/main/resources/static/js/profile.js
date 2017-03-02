@@ -63,6 +63,41 @@ app.config(function($provide) {
     }]);
 }).call(this);
 
+app.controller("termDepositsController", function($scope,$http) {
+    $http.get("/user/termdeposit/").success(function(data,status) {
+     $scope.termDeposite = data;
+  	 $scope.select_prop_nbrAccounts = [];
+	 $scope.customerId=$scope.termDeposite.customerId;
+        angular.forEach($scope.termDeposite.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+	 });
+     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+     onChangeNbrAccountId();
+    }).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+    
+    
+    $scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;		
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
+});
+
+
+
+
+
+
+
 app.controller("loanController", function($scope,$http) {
 	$http.get("/user/loan/").success(function(data,status) {
 		 $scope.loanInfo=data;		
@@ -140,16 +175,6 @@ app.controller("statementController", function($scope,$http) {
 
 
 
-
-
-
-
-
-app.controller("termDepositsController", function($scope,$http) {
-     $http.get("/user/termdeposit/").then(function(data,status) {
-    $scope.termDeposite = data.data;
-   });
-});
 
 
 

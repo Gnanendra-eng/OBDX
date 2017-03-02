@@ -27,7 +27,7 @@ public class TermDepositeService {
 	private TermDepositeInfo termDepositeInfo;
 	private Double totalTermDeposits;
 	private List<TermDepositeDto> tempDepositeSummary;
-
+	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
 
@@ -40,6 +40,7 @@ public class TermDepositeService {
 	@Autowired
 	private TermDepositeRepo termDepositeRepo;
 
+	
 	public TermDepositeInfo getTermDeposite(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login login = loginRepo.findByUsername(authentication.getName());
@@ -47,11 +48,12 @@ public class TermDepositeService {
 		termDepositeInfo = new TermDepositeInfo();
 		totalTermDeposits=0.0;
 		tempDepositeSummary=new ArrayList<>();
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
-		
+		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());	
+		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
 			List<TermDepositeM> termDepositeMs;
 			try {
+				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 				termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer(),
 						accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH());
 				termDepositeMs.stream().forEach(tempTermDeposit -> {
@@ -80,10 +82,8 @@ public class TermDepositeService {
 				e.printStackTrace();
 			}
 		});
-        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits);
-
+        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer());
 		 return  termDepositeInfo;
-
 	}
 
 }

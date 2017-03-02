@@ -8,6 +8,17 @@ import com.jmr.obdx.dto.StatusInfo;
 public class TermDepositeInfo extends StatusInfo {
 
 	private Double totalTermDeposits;
+	private List<String> nbrAccounts;
+	private String customerId;
+
+
+	public List<String> getNbrAccounts() {
+		return nbrAccounts;
+	}
+
+	public void setNbrAccounts(List<String> nbrAccounts) {
+		this.nbrAccounts = nbrAccounts;
+	}
 
 	private List<TermDepositeDto> tempDepositeSummary = new ArrayList<>(0);
 
@@ -27,12 +38,23 @@ public class TermDepositeInfo extends StatusInfo {
 		this.totalTermDeposits = totalTermDeposits;
 	}
 
-	public TermDepositeInfo(List<TermDepositeDto> tempDepositeSummary, Double totalTermDeposits) {
+	public TermDepositeInfo(List<TermDepositeDto> tempDepositeSummary, Double totalTermDeposits,List<String> nbrAccounts,String customerId) {
 		this.tempDepositeSummary = tempDepositeSummary;
 		this.totalTermDeposits = totalTermDeposits;
+		this.nbrAccounts=nbrAccounts;
+		this.customerId=customerId;
+		
 	}
 
 	public TermDepositeInfo() {
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
 }

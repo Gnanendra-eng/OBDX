@@ -1,57 +1,140 @@
-<div class="row">
- <div class="col-sm-4">
-  <div class="well well-lg" style="background: white;"><b>Summary</b>
-  <hr>
-  <b>Term Deposits </b>
-  </hr>
- 
-  
-  <div><label>Total Current Balance:</label> <label>{{termDeposite.totalTermDeposits}}</label></div>
-  </div>
- <div class="well well-lg" style="background: white;">
-   <div class="thumbnail">
-     <p>
-     <b>New Deposit</b>
-    </p>
+ <script>
+     $(document).ready(function() {
+      $('.progress .progress-bar').css("width",
+                function() {
+                    return $(this).attr("aria-valuenow") + "%";
+                }
+        )
+    });
+  </script>
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="summary">
+					<div class="page-header">
+						<div class="id">SUMMARY</div>
+					</div>
+					<div class="summary-bar">
+						<div class="row">
+							<div class="col-sm-2 no">{{termDeposite.tempDepositeSummary.length}}</div>
+							<div class="col-sm-10 sum-loans">Term Deposits</div>
+						</div>
+					</div>
+					<div class="container-fluid">
+						<br /> <br /> <br />
+						<p>Total Term Deposit</p>
+						<div class="sum-amount" style="color: #f8786b; text-align: left">&#163;{{termDeposite.totalTermDeposits}}</div>
+						<div class="progress skill-bar ">
+							<div class="progress-bar progress-bar-success"
+								style="background-color: #B84B40" role="progressbar"
+								aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
+							</div>
+						</div>
+						<br />
+						<p>Total Current Balance</p>
+						<div class="sum-amount"
+							style="color: #f8786b; font-size: xx-large; text-align: left">&#163;282,865.00</div>
+						<div class="progress skill-bar ">
+							<div class="progress-bar progress-bar-success progress-striped"
+								style="background-color: #f8786b" role="progressbar"
+								aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
+							</div>
+						</div>
+						<br />
+						<p>TE Maturity Amount</p>
+						<div class="sum-amount" style="color: #000000; text-align: left">&#163;300,478.93</div>
+						<div class="progress skill-bar ">
+							<div class="progress-bar progress-bar-success"
+								style="background-color: #9d9d9d" role="progressbar"
+								aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="spec"> <br />
+				<div class="id">NEW DEPOSIT</div>
+				<div class="row">
+					<div class="col-sm-7">
+						<br />
+						<p>Apply for New Term Deposits</p>
+						<br />
+					</div>
+					<div class="col-sm-5">
+						<img src="images/new-deposits.JPG" class="img-responsive"
+							style="width: 147px; height: 80px;" />
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<a href="" class="thumbnail" data-ng-repeat="termdepositetemp in termDeposite.tempDepositeSummary">
+				<div class="inner-triangle"></div>
+				<div class="id">{{termdepositetemp.acctdesc}}</div>
+				<p>{{termdepositetemp.altacctno}}</p>
+				<p>{{termdepositetemp.rate}}&nbsp;&nbsp;|{{termDeposite.maturitydate}}</p>
+				<div class="outstanding">Current Balance</div>
+				<div class="amount">&#163;{{termdepositetemp.numavlbalance}}</div>
+			</a> 
+			<div class="container-fluid">
+				<div class="closed-loan">
+					<div class="id">CLOSED DEPOSITS</div>
+					<div class="row">
+						<br /> <img src="images/closed-deposits.JPG"
+							class="img-responsive" style="width: 60px; height: 60px;" />
+						<div class="closed-no">5</div>
+						<div class="clo-loans">Deposits</div>
+					</div>
+					<div class="page-footer">
+						<a href="#">VIEW ALL<img src="images/forward.png"
+							class="img-responsive"
+							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="container-fluid">
+				<div class="mini-state">
+					<div class="id">MINI STATEMENT</div>
+					<div class="form-group">
+						<select class="form-control" data-ng-change="onAccountChange()"
+							data-ng-model="nbrAccount" name="nbrAccount"
+							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
 
-     <img src="images/New Deposit.PNG"/> 
-     
-     
-</div>
-  </div>
-
-  
- </div>
- 
- 
- <div class="col-sm-4" style="height:580px; overflow: scroll;">
-  <div class="well well-lg" style="background: white;" data-ng-repeat="termdepositetemp in termDeposite.tempDepositeSummary">
-    <div><label>Description :</label> <label>{{termdepositetemp.acctdesc}}</label></div>
-    <div><label>Account Number:</label> <label>{{termdepositetemp.altacctno}}</label></div>
-    <div><label>Interest Rate :</label> <label>{{termdepositetemp.rate}}|{{termDeposite.maturitydate}}</label></div>
-    <div><label>Current Balance:</label> <label>{{termdepositetemp.numavlbalance}}</label></div>
-  
-  
-  
-  
-  </div>
-  
- </div>
- <div class="col-sm-4">
-  <div class="well well-lg" style="background: white;">MiniStatement
-   <select><option>Account Number</option></select>
-   
-   </div>
-  <div class="well well-lg" style="background: white;">
-   <div class="thumbnail">
-     <p>
-     <b>Deposit Calculator</b>
-    </p>
-
-    <img
-     src="https://www.bankbazaar.com/images/india/infographic/how-to-calculate-hdfc-loan-emi.png"
-     alt="Swimming fish" />
-</div>
-  </div>
- </div>
+						</select>
+					</div>
+					<div class="list-group">
+						<a href="" class="list-group-item"
+							data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+							<div class="list item">
+								<p style="color: black">{{transactionInfo.transactionDate}}</p>
+								<p>{{transactionInfo.transactionDescription}}</p>
+								<br />
+								<div class="mini-amount">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</div>
+							</div>
+						</a>
+					</div>
+					<div class="page-footer">
+						<a href="">MORE DETAILS<img src="images/forward.png"
+							class="img-responsive"
+							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="spec"> <br />
+				<div class="id">DEPOSIT CALCULATOR</div>
+				<div class="row">
+					<div class="col-sm-7">
+						<br /> <br /> <br />
+					</div>
+					<div class="col-sm-5">
+						<img src="images/depo-calculator.JPG" class="img-responsive"
+							style="width: 147px; height: 80px;" />
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
 </div>

@@ -7,18 +7,29 @@ import com.jmr.obdx.dto.StatusInfo;
 
 public class Paymentinfo extends StatusInfo {
 
-	private List<PaymentInfoDto> paymentSummary = new ArrayList<>(0);
+	private List<String> Currencies;
 
-	public List<PaymentInfoDto> getPaymentSummary() {
-		return paymentSummary;
+	private List<PaymentInfoDto> paymentInfoDtos = new ArrayList<>(0);
+
+	public List<PaymentInfoDto> getPaymentInfoDtos() {
+		return paymentInfoDtos;
 	}
 
-	public void setPaymentSummary(List<PaymentInfoDto> paymentSummary) {
-		this.paymentSummary = paymentSummary;
+	public void setPaymentInfoDtos(List<PaymentInfoDto> paymentInfoDtos) {
+		this.paymentInfoDtos = paymentInfoDtos;
 	}
 
-	public Paymentinfo(List<PaymentInfoDto> paymentSummary) {
-		this.paymentSummary = paymentSummary;
+	public Paymentinfo(List<PaymentInfoDto> paymentInfoDtos, List<String> Currencies) {
+		this.paymentInfoDtos = paymentInfoDtos;
+		this.Currencies = Currencies;
+	}
+
+	public List<String> getCurrencies() {
+		return Currencies;
+	}
+
+	public void setCurrencies(List<String> currencies) {
+		Currencies = currencies;
 	}
 
 	public Paymentinfo() {

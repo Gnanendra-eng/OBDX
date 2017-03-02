@@ -1,5 +1,4 @@
 package com.jmr.obdx.service;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,6 +14,7 @@ import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.JmrcurrencymRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.service.dto.OwnAccountPaymentDto;
 import com.jmr.obdx.service.dto.PaymentInfoDto;
 import com.jmr.obdx.service.dto.PaymentUpdate;
 import com.jmr.obdx.service.dto.Paymentinfo;
@@ -24,9 +24,7 @@ import com.jmr.obdx.util.Utility;
 public class PaymentService {
 	
 	private final static Logger logger = LoggerFactory.getLogger(PaymentService.class);
-	
 	private Paymentinfo paymentinfo;
-	private List<PaymentInfoDto> paymentSummary;
 	
 	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
@@ -42,27 +40,26 @@ public class PaymentService {
 	
 	public Paymentinfo getPaymentDetails(Authentication authentication) throws Exception{
 		logger.info(Utility.ENTERED, new Object() {}.getClass().getEnclosingMethod());
-		paymentinfo = new Paymentinfo();
-		paymentSummary = new ArrayList<>();
-		
+		paymentinfo=new Paymentinfo();
 		Login login = loginRepo.findByUsername(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
 		List<String> jmrcurrencyms=jmrcurrencymRepo.findByJmrCurrencyShortName();
-				accountdetails.stream().forEachOrdered(accountdetail -> {
-			paymentSummary.add(new PaymentInfoDto(accountdetail.getNBRACCOUNT(), String.valueOf(accountdetail.getBALANCE())));
+		accountdetails.stream().forEachOrdered(accountdetail -> {
+			paymentinfo.getPaymentInfoDtos().add(new PaymentInfoDto(accountdetail.getNBRACCOUNT(), String.valueOf(accountdetail.getBALANCE()),accountdetail.getCCYDESC()));
 		});
-		paymentinfo = new Paymentinfo(paymentSummary);
+		paymentinfo.setCurrencies(jmrcurrencyms);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return paymentinfo;
 	}
 
-	
+	public PaymentUpdate getUpdateAmount(OwnAccountPaymentDto ownAccountPaymentDto) {
 
-	public PaymentUpdate getUpdateAmount(com.jmr.obdx.service.dto.PaymentDto paymentDto) {
 		
 		
 		return null;
+	
+	
 	}
 	
 	
