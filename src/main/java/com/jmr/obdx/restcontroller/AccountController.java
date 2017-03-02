@@ -66,8 +66,7 @@ public class AccountController {
 	
 	@RequestMapping(value="/summary",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<AccountSummaryInfo> getAccountsummary(Authentication authentication){
-		try 
-		{
+		try {
 			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
 			AccountSummaryInfo responceObj = accountService.getAccountSummary( authentication);
 			if (responceObj.getErrorStatus()) {
@@ -80,15 +79,11 @@ public class AccountController {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<AccountSummaryInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-			
-		
-		
 	}
 	
 	@RequestMapping(value="/loansummary",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<LoanSummayInfo> getLoansummary(Authentication authentication){
-		try 
-		{
+		try {
 			logger.info(Utility.ENTERED + new Object(){}.getClass().getEnclosingMethod().getName());
 			LoanSummayInfo responceObj = accountService.getLoansummary( authentication);
 			if (responceObj.getErrorStatus()) {
@@ -101,14 +96,7 @@ public class AccountController {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<LoanSummayInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-			
-		
-		
 	}
 	
 	
-
-	
-	
-
 }

@@ -13,7 +13,6 @@ import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AuthorityMRepo;
 import com.jmr.obdx.repositories.LoginRepo;
-import com.jmr.obdx.service.dto.UserInfo;
 import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
 /***
@@ -32,7 +31,6 @@ public class UserService {
 	
 	private StatusInfo statusInfo;
 	
-	private UserInfo userInfo;
 	
 	/***
 	 * This method is used for user registration.
@@ -65,32 +63,5 @@ public class UserService {
 	    	 return statusInfo;
 	     }
 	}
-	
-	/***
-	 * 
-	 * @param userName
-	 * @return
-	 * @throws Exception
-	 */
-	 public UserInfo getRegisterdUserInfo( String userName) throws Exception{
-	    logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		     userInfo=new UserInfo();
-	    	 if(userName.isEmpty()||userName.equals("")){
-	    		 userInfo.setErrorStatus(true);
-	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.IS_REQUIRED));
-				 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-			     return userInfo;	
-		     }
-	    	 Login loginInfo= loginRepo.findByUsername(userName);
-	    	 if(loginInfo!=null)
-	    	 userInfo=new UserInfo(loginInfo.getUsername(), loginInfo.getPassword(), loginInfo.getIsactive(), loginInfo.getAccountnonexpired(),loginInfo.getCredentialsnonexpired(), loginInfo.getAccountnonlocked());
-	    	 else{
-	    		 userInfo.setErrorStatus(true);
-	    		 userInfo.getErrorMsgs().add(new ErrorMsg(Utility.USER_NAME,Utility.NOT_AVAILABLE));  
-	    	 }
-	    	 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-	    	 return userInfo;
-	     }
-	
 
 }

@@ -22,7 +22,6 @@ import com.jmr.obdx.service.dto.AccountSummaryDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
 import com.jmr.obdx.service.dto.LoanSummayInfo;
-import com.jmr.obdx.service.dto.TermDepositInfo;
 import com.jmr.obdx.util.Utility;
 
 @Service
@@ -31,7 +30,6 @@ public class AccountService {
 	private static Logger logger = Logger.getLogger(AccountService.class);
 	private BasicAccountDetailsDto basicAccountDetailsDto;
 	private AccountSummaryInfo accountSummaryInfo;
-	private TermDepositInfo termdepoisteinfo;
 	private LoanSummayInfo loanSummayInfo;
 	private AccountDetailsDto accountDetailsDto;
 	private Double sumOfSavingsAndCurrent;
@@ -40,11 +38,7 @@ public class AccountService {
 	private List<AccountSummaryDto> savingsAndCurrent;
 	private List<AccountSummaryDto> loans;
 	private List<AccountSummaryDto> contractAndTermdeposit;
-	private List<AccountSummaryDto> activeAccount;
-	private List<AccountSummaryDto> inactiveAccount;
 	private List<AccountSummaryDto> loanPending;
-	private Double sumOfActiveTermDeposite;
-	private Double sumOfInactiveTermDeposite;
 	private Double sumOfTotalLoans;
 	
 	@Autowired
@@ -136,11 +130,23 @@ public class AccountService {
 		return accountSummaryInfo;
 	}
 
-	
-	
-	
-	
-	
+	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
+		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		sumOfTotalLoans =0.0;
+		loanPending = new ArrayList<>();
+		Login login = loginRepo.findByUsername(authentication.getName());
+		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
+		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
+		accountsummarys.stream().forEach(loansummary -> {
+			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))
+				sumOfTotalLoans += Double.parseDouble(loansummary.getNUMAVAILBAL());
+				loanPending.add(getAccountSummaryType(loansummary));
+		});
+		loanSummayInfo = new LoanSummayInfo(sumOfLoans,loanPending);
+		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		return loanSummayInfo;
+	}
+		
 	protected AccountSummaryDto getAccountSummaryType(Accountsummary accountsummary) {
 		return new AccountSummaryDto(accountsummary.getIDACCOUNT(), accountsummary.getIDCUSTOMER(),
 				accountsummary.getCODBRANCH(), accountsummary.getCODACCTTYPE(), accountsummary.getTXTACCTSTATUS(),
@@ -169,27 +175,5 @@ public class AccountService {
 				accountsummary.getUDF10());
 
 	}
-
-
-
-
-	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
-		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		sumOfTotalLoans =0.0;
-		loanPending = new ArrayList<>();
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
-		accountsummarys.stream().forEach(loansummary -> {
-			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))
-				sumOfTotalLoans += Double.parseDouble(loansummary.getNUMAVAILBAL());
-				loanPending.add(getAccountSummaryType(loansummary));
-		});
-		loanSummayInfo = new LoanSummayInfo(sumOfLoans,loanPending);
-		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return loanSummayInfo;
-	}
-		
-		
-	}
+}
 

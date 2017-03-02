@@ -22,15 +22,9 @@ public class TransactionAccountActivityService {
 	private Set<TransactionAccountActivityDto> transactionAccountActivityDtos; 
 	private TransactionAccountActivityInfo transactionAccountActivityInfo;
 	
-	
 	@Autowired
 	private VwTxnaccountactivityRepo txnaccountactivityRepo;
-	
-
-	private  SimpleDateFormat getSimpleDateFormat(){
-		return new SimpleDateFormat("dd MMMM yyyy"); 
-	}
-	
+		
 	public TransactionAccountActivityInfo getTransactionAccountActivityInfo(String customerId, String nbrAccount) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		transactionAccountActivityDtos = new HashSet<TransactionAccountActivityDto>(0);
@@ -60,4 +54,7 @@ public class TransactionAccountActivityService {
 		return transactionAccountActivityInfo;
 	}
 	
+	private  SimpleDateFormat getSimpleDateFormat(){
+		return new SimpleDateFormat("dd MMMM yyyy"); 
+	}
 }

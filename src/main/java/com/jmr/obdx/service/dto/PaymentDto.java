@@ -4,13 +4,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class PaymentDto {
 
-
 	@NotEmpty(message = "Is required")
 	private String transferTO;
 
 	@NotEmpty(message = "Is required")
 	private String transferFrom;
-	
+
 	@NotEmpty(message = "Is required")
 	private String amount;
 
@@ -39,17 +38,14 @@ public class PaymentDto {
 	}
 
 	public PaymentDto(String transferTO, String transferFrom, String amount) {
-	
 		this.transferTO = transferTO;
 		this.transferFrom = transferFrom;
 		this.amount = amount;
 	}
 
 	public PaymentDto() {
-		
+
 		// TODO Auto-generated constructor stub
 	}
 
-
-	
 }

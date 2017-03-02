@@ -24,9 +24,8 @@ public class PaymentInfoDto {
 	public PaymentInfoDto() {
 
 	}
-
+	
 	public PaymentInfoDto(String idAccount, String numBalance) {
-		
 		this.idAccount = idAccount;
 		this.numBalance = numBalance;
 	}

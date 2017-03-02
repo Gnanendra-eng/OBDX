@@ -21,18 +21,16 @@ import com.jmr.obdx.util.Utility;
 @RequestMapping("/user/payment")
 @RestController
 public class PaymentController {
-	
-@Autowired
-private PaymentService paymentService;
-	
-	
+
+	@Autowired
+	private PaymentService paymentService;
 
 	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
-	
-	@RequestMapping(value ="/",method= RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<Paymentinfo> getPaymentDetails(Authentication authentication){
-		try{
-			logger.info(Utility.ENTERED  + new Object(){}.getClass().getEnclosingMethod());
+
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<Paymentinfo> getPaymentDetails(Authentication authentication) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod());
 			Paymentinfo responceObj = paymentService.getPaymentDetails(authentication);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -44,14 +42,11 @@ private PaymentService paymentService;
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<Paymentinfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		
-		
 	}
-	
-	@RequestMapping(value ="/",method= RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<PaymentUpdate> getPaymentUpdate(@RequestBody PaymentDto paymentDto){
-		try{
+
+	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<PaymentUpdate> getPaymentUpdate(@RequestBody PaymentDto paymentDto) {
+		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod());
 			PaymentUpdate responceObj = paymentService.getUpdateAmount(paymentDto);
 			if (responceObj.getErrorStatus()) {
@@ -64,10 +59,6 @@ private PaymentService paymentService;
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<PaymentUpdate>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		}
 	}
 	
-	
-	
-
-
+}
