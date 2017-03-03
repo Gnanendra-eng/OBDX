@@ -1,19 +1,12 @@
 package com.jmr.obdx.domain;
 
 
-import javax.annotation.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Immutable;
-import org.springframework.web.context.annotation.SessionScope;
-
-@ManagedBean
-@SessionScope
 @Entity
-@Immutable
 @Table(name = "VW_ACCOUNT_M", schema = "JMR_OBDX")
 public class Accountsummary  implements java.io.Serializable  {
 	

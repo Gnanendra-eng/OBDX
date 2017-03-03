@@ -12,10 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Immutable;
 import org.springframework.web.context.annotation.SessionScope;
 
-@ManagedBean
-@SessionScope
 @Entity
-@Immutable
 @Table(name = "VW_LOAN_ACCOUNT", schema = "JMR_OBDX")
 public class LoanAccount implements java.io.Serializable {
 
