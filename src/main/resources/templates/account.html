@@ -1,130 +1,132 @@
-<div class="container">
-	<div class="panel panel-default " style="background-color: #F0F8FF;">
-		<div class="panel-body">
-			<p>
-				<b>ACCOUNTS INFO</b>
-			</p>
-			<hr />
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<form name="userForm" novalidate="novalidate">
-						<div class="form-group"
-							data-ng-class="{ 'has-error' : userForm.nbrAccount.$invalid &amp;&amp; !userForm.nbrAccount.$pristine }">
-							<select class="form-control" data-ng-change="onAccountChange()"
-								data-ng-model="nbrAccount" name="nbrAccount" required="required"
-								data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-								<option value="">Select</option>
-							</select> <span
-								data-ng-show="userForm.nbrAccount.$dirty &amp;&amp; userForm.nbrAccount.$invalid"
-								class="help-block">Account number is required.</span>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-3"></div>
+<div class="wrapper">
 
+	<div class="custom-container">
+		<div class="id">ACCOUNT DETAILS</div>
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<form name="userForm" novalidate="novalidate" class="form-horizontal">
+				<div class="form-group"
+					data-ng-class="{ 'has-error' : userForm.nbrAccount.$invalid &amp;&amp; !userForm.nbrAccount.$pristine }">
+					<select class="form-control" data-ng-change="onChangeNbrAccountId()"
+						data-ng-model="nbrAccount" name="nbrAccount" required="required"
+						data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+						<option value="">Select</option>
+					</select> <span
+						data-ng-show="userForm.nbrAccount.$dirty &amp;&amp; userForm.nbrAccount.$invalid"
+						class="help-block">Account number is required.</span>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+
+	<br /> <br />
+
+	<div class="row" >
+		<div class="col-sm-6 col-md-4">
+			<div class="id">BASIC</div>
+			<div class="custom-container">
+				<p>FullName</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.customerName}}</div>
+				<br />
+				<p>Account Number</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.nbrAccount}}</div>
+
+				<br />
+				<p>Account Relationship</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.relation}}</div>
+				<br />
+				<p>Account Branch</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.nbrBranch}}</div>
+				<br />
+				<p>Account Currency</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.ccyDesc}}</div>
+				<br />
+				<p>Opening Date</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.openingDate}}</div>
+				<br />
+				<p>Account Type</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.accType}}</div>
+				<br />
+				<p>Account Status</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.accStatus}}</div>
+				<br />
+				<p>Product Name</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.descAcctType}}</div>
 			</div>
-			<div data-ng-show="accountsResultsStatus">
-				<p align="center" style="background: cadetblue;">
-					<b>Basic Informations</b>
-				</p>
-				<hr />
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>Name :</label> <label>{{accountdetails.customerName}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Account Number :</label> <label>{{accountdetails.nbrAccount}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Account Relationship :</label>{{accountdetails.relation}}
-							<label></label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Branch :</label> <label>{{accountdetails.nbrBranch}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Account Currency :</label> <label>{{accountdetails.ccyDesc}}</label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>Opening Date :</label> <label>{{accountdetails.openingDate}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Account Type :</label> <label>{{accountdetails.accType}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Account Status :</label> <label>{{accountdetails.accStatus}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Product Name :</label> <label>{{accountdetails.descAcctType}}</label>
-						</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="id">BALANCES</div>
+			<div class="custom-container">
+				<p>Current Balance</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.balance}}</div>
+				<br />
+				<p>Amount on Hold</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.amountOnHold}}</div>
+				<br />
+				<p>Uncleared Funds</p>
+				<div class="sum-amount" style="text-align: left; font-size: large"></div>
 
-					</div>
-				</div>
-				<p align="center" style="background: cadetblue;">
-					<b>Facilities</b>
-				</p>
-				<hr />
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>Cheque Book :</label> <label>{{accountdetails.isChqBook}}</label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>OverDraft Allowed :</label> <label>{{accountdetails.isOverDraft}}</label>
-						</div>
-					</div>
-				</div>
-				<p align="center" style="background: cadetblue;">
-					<b>Balances</b>
-				</p>
-				<hr />
+				<br />
+				<p>Minimum Balance Required</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.minBalance}}</div>
+				<br />
+				<p>Total Available Balance</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.availableBalance}}</div>
+				<br />
+				<p>Allowed OverDraft Limit</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit}}</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<div class="id">LIMITS &amp; OTHERS</div>
+			<div class="custom-container">
+				<p>OverDraft Allowed</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.isOverDraft}}</div>
+				<br />
+				<p>Cheque Book</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.isChqBook}}</div>
+				<br />
+				<p>ATM Daily Withdrawal Limit</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.dailyWithDraWalLimit}}</div>
+				<br />
+				<p>Eligible Advance Against Uncleared Funds Limit</p>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.eligibleAdv}}</div>
+			</div>
+		</div>
+	</div>
 
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>Current Balance :</label> <label>{{accountdetails.balance}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Amount on Hold :</label> <label>{{accountdetails.amountOnHold}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Uncleared Funds :</label> <label></label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>Allowed OverDraft Limit :</label> <label>{{accountdetails.odLimit}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Minimum Balance Required :</label> <label>{{accountdetails.minBalance}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Total Available Balance :</label> <label>{{accountdetails.availableBalance}}</label>
-						</div>
-					</div>
-				</div>
-				<p align="center" style="background: cadetblue;">
-					<b>Others</b>
-				</p>
-				<hr />
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group custaccount">
-							<label>ATM Daily Withdrawal Limit :</label> <label>{{accountdetails.dailyWithDraWalLimit}}</label>
-						</div>
-						<div class="form-group custaccount">
-							<label>Eligible Advance Against Uncleared Funds Limit :</label> <label>{{accountdetails.eligibleAdv}}</label>
-						</div>
-					</div>
-				</div>
+	<br /> <br />
+
+	<div class="row"
+		style="margin-right: 0px; margin-left: 0px; margin-top: 0px;">
+		<div class="id">QUICK LINKS</div>
+		<div class="custom-container"
+			style="min-height: 130px; max-height: 440px">
+			<div class="col-sm-3">
+				<img src="images/chequestatus.JPG" class="img-responsive"
+					style="width: 60px; height: 60px; margin-left: auto; margin-right: auto;" />
+				<p style="text-align: center">Check Status Inquiry</p>
+				<br />
+			</div>
+			<div class="col-sm-3">
+				<img src="images/chequestop.JPG" class="img-responsive"
+					style="width: 60px; height: 60px; margin-left: auto; margin-right: auto;" />
+				<p style="text-align: center">Stop/Unblock Cheque</p>
+				<br />
+			</div>
+			<div class="col-sm-3">
+				<img src="images/chequerequest.JPG" class="img-responsive"
+					style="width: 60px; height: 60px; margin-left: auto; margin-right: auto;" />
+				<p style="text-align: center">Check Book Request</p>
+				<br />
+			</div>
+			<div class="col-sm-3">
+				<img src="images/statementreq.JPG" class="img-responsive"
+					style="width: 60px; height: 60px; margin-left: auto; margin-right: auto;" />
+				<p style="text-align: center">Statement Request</p>
+				<br />
 			</div>
 		</div>
 	</div>
 </div>
-
