@@ -1,5 +1,5 @@
 /** Angular app creations and route configurations **/
-var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination"]);
+var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination","ui.bootstrap"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider
     .when('/', {
@@ -23,6 +23,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/biller", {
     	templateUrl : '/fragment/biller.html',
     	controller:'billerController'	
+    }).when("/onwaccounttransfer", {
+    	templateUrl : '/fragment/ownaccounttransfer.html',
+    	controller:'ownAccountTransfer'	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -62,7 +65,24 @@ app.config(function($provide) {
 
     }]);
 }).call(this);
+app.controller("ownAccountTransfer", function($scope,$http) {
+	 self = this;
+	  self.opened = {};
+	  self.open = function($event) {
 
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    self.opened = {};
+	    self.opened[$event.target.id] = true;
+
+	    // log this to check if its setting the log    
+	    console.log(self.opened);
+	    
+	  };
+
+	  self.format = 'dd-MM-yyyy'
+});
 app.controller("loanController", function($scope,$http) {
 	$http.get("/user/loan/").success(function(data,status) {
 		 $scope.loanInfo=data;		
