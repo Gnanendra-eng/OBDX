@@ -31,6 +31,9 @@ public class Login implements java.io.Serializable {
 	private String accountnonlocked;
 	private RetailCustomer retailCustomer;
 	private Set<Biller> billers = new HashSet<Biller>(0);
+	
+	
+	
 
 	public Login(long id) {
 		this.id = id;
@@ -153,4 +156,6 @@ public class Login implements java.io.Serializable {
 	public void setBillers(Set<Biller> billers) {
 		this.billers = billers;
 	}
+	
+
 }
