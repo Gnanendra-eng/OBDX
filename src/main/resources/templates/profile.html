@@ -5,37 +5,22 @@
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>Profile</title>
-<link rel="stylesheet"
-	href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common-material.min.css" />
-<link rel="stylesheet"
-	href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.min.css" />
-<link rel="stylesheet"
-	href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.mobile.min.css" />
-
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.mobile.min.css" />
 <script src="https://kendo.cdn.telerik.com/2017.1.118/js/jquery.min.js"></script>
-<script
-	src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- <link rel="stylesheet"
-	href="https://rawgit.com/mbaez/bubbles-chart/master/dist/css/bubbles-chart.css" /> -->
-<script
-	src="https://rawgit.com/mbaez/bubbles-chart/master/dist/js/bubbles-chart.full.js"></script>
-<script
-	src="https://rawgit.com/mbaez/bubbles-chart/master/test/js/data.js"></script>
+<script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <link rel="stylesheet" href="https://rawgit.com/mbaez/bubbles-chart/master/dist/css/bubbles-chart.css" /> -->
+<script src="https://rawgit.com/mbaez/bubbles-chart/master/dist/js/bubbles-chart.full.js"></script>
+<script src="https://rawgit.com/mbaez/bubbles-chart/master/test/js/data.js"></script>
 <link rel="stylesheet" href="css/newstyle.css" />
 <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 
@@ -62,45 +47,47 @@ html {
 } */
 </style>
 </head>
-<body style="background-color: #ffffff;">
+<body>
 	<span data-us-spinner="{radius:30, width:8, length: 16}"></span>
 
 
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="">Logo</a>
+				<a class="navbar-brand" href="/"><img
+					src="images/mainheader.png" alt="logo" class="img-responsive2" style="height: 40px;width: 70px;margin-top: -11px;margin-left: 10px;" /></a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/">Home</a></li>
-				</ul>
-				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Account <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/account">Account Info</a></li>
 							<li><a href="#/account-summary">Account Summary</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
-						data-toggle="dropdown">Loan<b class="caret"></b></a>
+						data-toggle="dropdown">Loan <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/loan">Loan Info</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Statement <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/statement">Statement Info</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 
 				<ul class="nav navbar-nav ">
@@ -108,7 +95,8 @@ html {
 						data-toggle="dropdown">Term Deposits <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/termdeposit">Term Deposits</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
@@ -122,32 +110,42 @@ html {
 						data-toggle="dropdown">Payments <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 						 <li><a href="#/onwaccounttransfer">Own Account Transfer</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 				
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">New Account Opening <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
-
-
+				
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href=""
 						data-ng-click="stopDefaultAction($event)" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
 							My Account</a>
 						<ul class="dropdown-menu">
-							<li><a href="">Profile</a></li>
-							<li><a href="">Settings</a></li>
-							<li><div class="pull-right">
-									<form th:action="@{/logout}" method="post">
-										<input type="submit"
-											class="btn btn-info btn-sm btn pull-right" value="Sign Out" />
-									</form>
-								</div></li>
-						</ul></li>
+							<li>
+								<div class="profile-info">
+									<div class="col-sm-2 pull-left">
+										<p>Name</p>
+										<p>Email</p>
+									</div>
+									<div class="col-sm-4 pull-right">
+										<div class="circle">R</div>
+									</div>
+								</div>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li style="background-color:grey"><button class="btn btn-info btn-sm pull-left" style="margin-left:10px">Settings</button><form class="pull-right" th:action="@{/logout}" method="post">
+									<input type="submit" style="margin-right:10px" class="btn btn-info btn-sm" value="Sign Out" />
+								</form>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
