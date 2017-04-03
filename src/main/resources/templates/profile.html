@@ -28,8 +28,8 @@
 
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script> -->
 <!-- <link rel="stylesheet"
 	href="https://rawgit.com/mbaez/bubbles-chart/master/dist/css/bubbles-chart.css" /> -->
 <script
@@ -37,9 +37,10 @@
 <script
 	src="https://rawgit.com/mbaez/bubbles-chart/master/test/js/data.js"></script>
 <link rel="stylesheet" href="css/newstyle.css" />
-<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+<script
+	src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <style>
 footer {
 	background-color: #555;
@@ -60,6 +61,14 @@ html {
 .custaccount {
 	margin-bottom: 0px;
 } */
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
 </style>
 </head>
 <body style="background-color: #ffffff;">
@@ -114,17 +123,17 @@ html {
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Bill Payments <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						<li><a href="#/biller">Register Biller</a></li>
+							<li><a href="#/biller">Register Biller</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Payments <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						 <li><a href="#/onwaccounttransfer">Own Account Transfer</a></li>
+							<li><a href="#/onwaccounttransfer">Own Account Transfer</a></li>
 						</ul></li>
 				</ul>
-				
+
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">New Account Opening <b class="caret"></b></a>

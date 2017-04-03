@@ -14,8 +14,16 @@
 						</div>
 					</div>
 					<div class="account-bubble-container">
-						<div id="piechart_3d" style="width: 350px; height: 350px;"></div>
+						<canvas id="account-summary-chart"
+							style="width: 250px; height: 250px;"></canvas>
 						<br />
+						<br/>
+						<br/>
+						<ul>
+							<li style="font-size: 18px;"><span>Term Deposit</span><span style="color: #64c6c1">&nbsp;{{sumofcontractandtermdepostit}}</span></li>
+							<li style="font-size: 18px;"><span>Saving Account &amp; Current</span><span style="color: #64c6c1">&nbsp;{{sumofsavingsandcurrent}}</span></li>
+							<li style="font-size: 18px;"><span>Loan</span><span style="color: #64c6c1">&nbsp;{{sumofloans}}</span></li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -32,11 +40,7 @@
 				<p>{{sgscut.prdname}}</p>
 				<div class="outstanding">Net Balance</div>
 				<div class="amount">{{sgscut.numbalance}}</div>
-			</a> 
-			
-			
-			
-			<a href="" class="thumbnail" data-ng-repeat="loan in loan" >
+			</a> <a href="" class="thumbnail" data-ng-repeat="loan in loan">
 				<div class="inner-triangle"></div>
 				<div class="id">Loans</div>
 				<p>{{loan.idaccount}}</p>
@@ -45,10 +49,8 @@
 				<p>{{loan.prdname}}</p>
 				<div class="outstanding">Net Balance</div>
 				<div class="amount">{{loan.numbalance}}</div>
-			</a> 
-			
-			
-			<a href="" class="thumbnail" data-ng-repeat="conttempdep in contractandtermdepostit">
+			</a> <a href="" class="thumbnail"
+				data-ng-repeat="conttempdep in contractandtermdepostit">
 				<div class="inner-triangle"></div>
 				<div class="id">Contract &amp; Term deposit</div>
 				<p>{{conttempdep.idaccount}}</p>
@@ -79,13 +81,20 @@
 								<p style="color: black">{{transactionInfo.transactionDate}}</p>
 								<p>{{transactionInfo.transactionDescription}}</p>
 								<br />
-								<div class="mini-amount">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</div>
+								<div class="mini-amount">
+									<p style="font-size: large; text-align: right"
+										data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+										{{transactionInfo.transactionAmount}}&nbsp;<span
+											data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+										<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
+									</p>
+								</div>
 							</div>
 						</a>
 					</div>
 					<div class="page-footer">
-						<a href="#">MORE DETAILS<img src="images/forward.png"
-							class="img-responsive"
+						<a href="#/statement">MORE DETAILS<img
+							src="images/forward.png" class="img-responsive"
 							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
 					</div>
 				</div>

@@ -79,9 +79,11 @@
 
 						<td><p style="color: black">{{transactionInfo.transactionDescription}}</p></td>
 						<td><p>{{transactionInfo.transactionReferenceNo}}</p></td>
-						<td><p
-								style=" font-size: large; text-align: right"
-								data-ng-class="{red : transactionInfo.transactionType==='C',green: transactionInfo.transactionType==='D'}">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</p></td>
+						<td>
+						<p style=" font-size: large; text-align: right" data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+						
+								{{transactionInfo.transactionAmount}}&nbsp;<span data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+       							<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span></p></td>
 						<td><p style="text-align: right">{{transactionInfo.balance}}</p></td>
 					</tr>
 				</tbody>

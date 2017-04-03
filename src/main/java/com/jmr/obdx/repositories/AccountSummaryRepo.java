@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.Accountsummary;
 
-
 @Repository
 public class AccountSummaryRepo {
 	

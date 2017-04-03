@@ -225,9 +225,19 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		   $scope.sumofsavingsandcurrent =data.sumOfSavingsAndCurrent;
 		   $scope.sumofloans =data.sumOfLoans;
 		   $scope.sumofcontractandtermdepostit =data.sumOfContractAndTermdepostit;
-		   google.charts.load("current", {packages:["corechart"]});
-		   google.charts.setOnLoadCallback(drawChart);
-		   function drawChart() { var data = google.visualization.arrayToDataTable([ ['Task', 'Hours per Day'], ['SAVING ACCOUNT & CURRENT',$scope.sumofsavingsandcurrent], ['TERM DEPOSIT', $scope.sumofcontractandtermdepostit], ['LOANS', $scope.sumofloans] ]); var options = {  is3D: true, legend: 'none', colors: ['#9de219', '#00FFFF', '#FF4500'], backgroundColor: 'transparent' }; var chart = new google.visualization.PieChart(document.getElementById('piechart_3d')); chart.draw(data, options); }
+		   var doughnutData = [
+				      { value: $scope.sumofloans, color:"#ff8080", highlight: "#ff8090", label: "LOAN" },
+					  { value: $scope.sumofcontractandtermdepostit, color: "#ffa86f", highlight: "#ffa86f", label: "TERM DEPOSIT" },
+					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING ACCOUNT & CURRENT" }
+					];
+					var options = {showTooltips : true,animation: true,percentageInnerCutout : 83,legend: {
+		            display: true,
+		            labels: {
+		                fontColor: 'rgb(255, 99, 132)'
+		            }
+		        }};
+				var chartCtx = $("#account-summary-chart").get(0).getContext("2d");
+				var chart = new Chart(chartCtx).Doughnut(doughnutData, options);
 		   $scope.customerId=$scope.response.customerId;
 	        angular.forEach($scope.response.nbrAccounts, function(name, index) {
 				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
