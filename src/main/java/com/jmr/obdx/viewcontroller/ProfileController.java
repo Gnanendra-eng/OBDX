@@ -16,6 +16,8 @@ public class ProfileController {
 	@RequestMapping(value = "/userprofile", method = RequestMethod.GET)
 	private String getProfile()throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		
+		
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "profile";
 	}
