@@ -1,0 +1,33 @@
+
+
+
+
+
+<div ng-controller="jsonCtrl1">
+	<div class="col-sm-4">
+
+
+		<div>
+		<label for="user" class="uname"  data-icon="u"> Select account number</label>
+			<select ng-model="ddldata"
+				data-ng-options="info.accno as info.accno for info in data.Account"
+				ng-change="GetValue()">
+
+			</select>
+		</div>
+
+		<p>
+			<label for="usernamesignup" class="uname"  data-icon="u"> Balance</label> 
+			<input id="usernamesignup" name="usernamesignup" ng-model="name"
+				required="required" type="text" />
+		</p>
+
+
+
+
+	</div>
+</div>
+
+
+
+
