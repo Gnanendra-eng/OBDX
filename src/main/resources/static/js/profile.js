@@ -26,6 +26,13 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/onwaccounttransfer", {
     	templateUrl : '/fragment/ownaccounttransfer.html',
     	controller:'ownAccountTransfer'	
+    }).when("/balance", {
+    	templateUrl : '/fragment/balance.html',
+    	controller:'jsonCtrl1'	
+    }).when("/aaa", {
+    	templateUrl : '/fragment/aaa.html',
+    	controller:'mainController'	
+ 
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -83,6 +90,35 @@ app.controller("ownAccountTransfer", function($scope,$http) {
 
 	  self.format = 'dd-MM-yyyy'
 });
+
+
+
+
+app.controller('mainController', function($scope) {
+	
+	// function to submit the form after all validation has occurred			
+	$scope.submitForm = function() {
+	
+
+		// check to make sure the form is completely valid
+		if ($scope.userForm.$invalid) {
+			alert('please fill all the fields');
+			
+			
+		}
+		if ($scope.userForm.$valid) {
+			alert('form submitted successfully');
+			
+			
+		}
+
+	};
+
+});
+
+
+
+
 app.controller("loanController", function($scope,$http) {
 	$http.get("/user/loan/").success(function(data,status) {
 		 $scope.loanInfo=data;		
@@ -113,6 +149,51 @@ app.controller("loanController", function($scope,$http) {
 		});	
 	}
 });
+
+
+
+
+
+
+
+
+app.controller('jsonCtrl1', function($scope, $http){
+	$http.get('js/d.json').success(function (data){
+	  $scope.data = data;
+	$scope.GetValue = function() {
+
+	   fin1($scope.ddldata);
+	}
+
+	function fin1(val){
+	angular.forEach($scope.data.balanceinfo,function(value,key){
+	 if(value.accno==$scope.ddldata)
+	 {
+		 $scope.name = value.Balance;
+	 }
+
+	});
+
+	}
+
+	});
+
+
+
+
+	    
+	       
+	    
+	    
+	});
+
+
+
+
+
+
+
+
 
 app.controller("accountsController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
@@ -216,6 +297,7 @@ app.controller("accountsSummaryController", function($scope,$http) {
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();
 	};
+	
 	$http.get("/user/accountdetails/summary").success(function(data,status) {
 		   $scope.response = data;
 		   $scope.loan=$scope.response.loans;
