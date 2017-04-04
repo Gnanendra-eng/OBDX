@@ -1,0 +1,43 @@
+{
+"Account":
+  [
+   {"accno":1234},
+   {"accno":2344},
+   {"accno":7896},
+   {"accno":7123},
+   {"accno":3652}
+  
+  ],
+  "balanceinfo": 
+   [
+    {
+  "accno":1234,
+    "Balance":45633
+ 
+    },
+    
+    {   
+   "accno":2344,
+    "Balance": 78965
+  
+    },
+    
+    {
+    "accno":7896,
+    "Balance":78965
+  
+    },
+    
+    {
+    "accno":7123,
+    "Balance":6468745
+  
+    },
+    
+    {
+    "accno":3652,
+    "Balance":342654687
+   
+    }
+   ]
+   }

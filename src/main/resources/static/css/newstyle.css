@@ -7,16 +7,29 @@ body {
 }
 
 .navbar-brand {
-	transform: translateX(-50%);
-	left: 50%;
-	position: absolute;
+	left: 10px;
+	position: initial;
 }
 
 .navbar-default {
-	background-color: #ffffff;
+	background-color: rgba(66, 138, 201, 0.38);
 	border-color: rgba(94, 94, 94, 0.44);
-	border-left-color: white;
-	border-right-color: white;
+	border-left-color: #b4cde5;
+	border-right-color: #b4cde5;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #428ac9;
+	font-size: large;
+	padding-top: 12px;
+	padding-left: 20px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+	.navbar-default .navbar-nav>.open>a:hover {
+	color: #fff;
+	background-color: #428ac9;
+	height: 48px;
 }
 
 .container-fluid {
@@ -25,14 +38,11 @@ body {
 }
 
 .navbar-default .navbar-brand {
-	color: #1b6d69;
-	font-size: 30px;
-	padding: 25px 15px;
+	padding-left: 15px;
 }
 
 .navbar {
-	min-height: 70px;
-	max-height: 70px;
+	height: 50px;
 }
 
 .navbar-nav>li>a {
@@ -41,21 +51,35 @@ body {
 }
 
 .navbar-default .navbar-toggle {
-	border-color: #1b6d69;
+	border-color: #428ac9;
 }
 
 .navbar-toggle {
-	padding: 13px 10px;
-	margin-top: 18px;
+	padding: 8px 5px;
+	margin-top: 5px;
 }
 
 .navbar {
 	z-index: 1000;
 }
 
+@media ( min-width : 768px) {
+	.navbar {
+		border-radius: 0px;
+	}
+}
+
+/*for dropdown backround in mobile view*/
+@media ( max-width : 767px) {
+	.navbar-nav .open .dropdown-menu>li>a {
+		padding: 5px 15px 5px 25px;
+		background-color: aliceblue;
+	}
+}
+
 .navbar-collapse.in {
-	overflow-y: auto;
-	background-color: white;
+	background-color: #b4cde5;
+	color: black;
 	border: 1px solid #9d9d9d;
 }
 
@@ -104,7 +128,8 @@ p {
 .thumbnail {
 	padding-left: 20px;
 	padding-top: 20px;
-	height: 190px;
+	min-height: 190px;
+	max-height: 250px;
 	border-bottom-color: #d37da4;
 	border-bottom-width: thick;
 	position: relative;
@@ -112,7 +137,8 @@ p {
 }
 
 .summary {
-	height: 520px;
+	min-height: 570px;
+	max-height: 600px;
 	position: relative;
 	display: block;
 	padding: 4px;
@@ -122,17 +148,6 @@ p {
 	border: 1px solid #ddd;
 	border-radius: 0px;
 }
-
-.panel-default > .panel-heading-custom
-{
-  background-image: none;
-  background-color:black;
-  color:white;
-}
-
-
-
-
 
 .inner-triangle {
 	border-right: 60px solid #d37da4;
@@ -231,7 +246,7 @@ p {
 	font-size: large;
 	position: absolute;
 	bottom: 65px;
-	right: 15px;
+	right: 10px;
 }
 
 .page-footer {
@@ -292,7 +307,7 @@ a {
 }
 
 .account-bubble-container {
-	padding-left: 32px;
+	padding-left: 0px;
 	padding-top: 0px;
 	top: 68px;
 	height: 300px;
@@ -303,6 +318,7 @@ a {
 	background-color: #fff;
 	border: 0px solid #ddd;
 	border-radius: 0px;
+	width: 250px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -476,17 +492,25 @@ panel-default>.panel-heading {
 	position: relative;
 }
 
-.custom-button {
-	color: #1b6d69;
-	background-color: #e7ebed;
-	border-color: #ccc;
-	width: 180px;
+.circle {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	font-size: 50px;
+	color: #fff;
+	text-align: center;
+	background: #000;
+	position: relative;
 }
 
-
-
-
-
+.profile-info {
+	padding-left: 10px;
+	padding-top: 15px;
+	min-height: 100px;
+	max-height: 250px;
+	min-width: 300px;
+	position: relative;
+}
 
 .switch {
 	position: relative;
@@ -501,15 +525,17 @@ panel-default>.panel-heading {
 	border-radius: 18px;
 	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
 	cursor: pointer;
-	box-sizing:content-box;
+	box-sizing: content-box;
 }
+
 .switch-input {
 	position: absolute;
 	top: 0;
 	left: 0;
 	opacity: 0;
-	box-sizing:content-box;
+	box-sizing: content-box;
 }
+
 .switch-label {
 	position: relative;
 	display: block;
@@ -518,9 +544,11 @@ panel-default>.panel-heading {
 	text-transform: uppercase;
 	background: #eceeef;
 	border-radius: inherit;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
-	box-sizing:content-box;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px
+		rgba(0, 0, 0, 0.15);
+	box-sizing: content-box;
 }
+
 .switch-label:before, .switch-label:after {
 	position: absolute;
 	top: 50%;
@@ -530,14 +558,16 @@ panel-default>.panel-heading {
 	-moz-transition: inherit;
 	-o-transition: inherit;
 	transition: inherit;
-	box-sizing:content-box;
+	box-sizing: content-box;
 }
+
 .switch-label:before {
 	content: attr(data-off);
 	right: 11px;
 	color: #aaaaaa;
 	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
 }
+
 .switch-label:after {
 	content: attr(data-on);
 	left: 11px;
@@ -545,16 +575,21 @@ panel-default>.panel-heading {
 	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
 	opacity: 0;
 }
+
 .switch-input:checked ~ .switch-label {
 	background: #E1B42B;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px
+		rgba(0, 0, 0, 0.2);
 }
+
 .switch-input:checked ~ .switch-label:before {
 	opacity: 0;
 }
+
 .switch-input:checked ~ .switch-label:after {
 	opacity: 1;
 }
+
 .switch-handle {
 	position: absolute;
 	top: 4px;
@@ -566,6 +601,7 @@ panel-default>.panel-heading {
 	border-radius: 100%;
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
+
 .switch-handle:before {
 	content: "";
 	position: absolute;
@@ -579,11 +615,12 @@ panel-default>.panel-heading {
 	border-radius: 6px;
 	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
 }
+
 .switch-input:checked ~ .switch-handle {
 	left: 74px;
 	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 }
- 
+
 /* Transition
 ========================== */
 .switch-label, .switch-handle {
@@ -592,8 +629,9 @@ panel-default>.panel-heading {
 	-moz-transition: All 0.3s ease;
 	-o-transition: All 0.3s ease;
 }
-.panel-default > .panel-heading-custom{
-  background-image: none;
-  background-color:black;
-  color:white;
+
+.panel-default>.panel-heading-custom {
+	background-image: none;
+	background-color: black;
+	color: white;
 }

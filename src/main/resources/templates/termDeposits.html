@@ -112,18 +112,25 @@
 								<p style="color: black">{{transactionInfo.transactionDate}}</p>
 								<p>{{transactionInfo.transactionDescription}}</p>
 								<br />
-								<div class="mini-amount">{{transactionInfo.transactionAmount}}&nbsp;{{transactionInfo.transactionType}}</div>
+								<div class="mini-amount">
+									<p style="font-size: large; text-align: right"
+										data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+										{{transactionInfo.transactionAmount}}&nbsp;<span
+											data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+										<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
+									</p>
+								</div>
 							</div>
 						</a>
 					</div>
 					<div class="page-footer">
-						<a href="">MORE DETAILS<img src="images/forward.png"
+						<a href="#/statement">MORE DETAILS<img src="images/forward.png"
 							class="img-responsive"
 							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
 					</div>
 				</div>
 			</div>
-			<a href="#" class="spec"> <br />
+			<a href="" class="spec"> <br />
 				<div class="id">DEPOSIT CALCULATOR</div>
 				<div class="row">
 					<div class="col-sm-7">

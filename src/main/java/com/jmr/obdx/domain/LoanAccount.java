@@ -3,14 +3,10 @@ package com.jmr.obdx.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.annotation.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
-import org.springframework.web.context.annotation.SessionScope;
 
 @Entity
 @Table(name = "VW_LOAN_ACCOUNT", schema = "JMR_OBDX")

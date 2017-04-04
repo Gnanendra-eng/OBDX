@@ -1,7 +1,5 @@
 package com.jmr.obdx.service.dto;
 
-import com.jmr.obdx.dto.StatusInfo;
-
 public class AccountSummaryDto{
 	private String IDACCOUNT;
 	private String IDCUSTOMER;

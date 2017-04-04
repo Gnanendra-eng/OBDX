@@ -11,7 +11,7 @@ import com.jmr.obdx.domain.UserSession;
 /***
  * @author JMR
  */
-@Repository
+
 @Transactional
 public interface UserSessionRepo  extends CrudRepository<UserSession,Integer>{
 	
