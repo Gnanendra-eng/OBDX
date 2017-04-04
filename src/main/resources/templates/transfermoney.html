@@ -1,0 +1,126 @@
+<div class="custom-container" data-ng-controller="transfermoneyController">
+    <form class="form-horizontal">
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Transfer Type</p>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-justified" data-toggle="buttons">
+            <label class="btn custom-button active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Existing Payee</input>
+            </label>
+            <label class="btn custom-button">
+              <input type="radio" name="options" id="option2" autocomplete="off">New Payee</input>
+            </label>
+            <label class="btn custom-button">
+              <input type="radio" name="options" id="option3" autocomplete="off">My Accounts</input>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Payee</p>
+        <div class="col-sm-4">
+          <div id="inputtag">
+            <tags-input data-ng-model="tags" display-property="name" placeholder="Add Payee">
+            </tags-input>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Account Type</p>
+        <div class="col-sm-4">
+          <h4>Domestic</h4>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Account Number</p>
+        <div class="col-sm-4">
+          <h4>xxxxxxxxxxxx7041</h4>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Account Name</p>
+        <div class="col-sm-4">
+          <h4>asdfghjkl</h4>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Bank Details</p>
+        <div class="col-sm-4">
+          <h4>AKBKGB99</h4>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Transfer From</p>
+        <div class="col-sm-4">
+          <select class="form-control">
+              <option>xxxxxxxxxxxx8188</option>
+              <option>xxxxxxxxxxxx4063</option>
+              <option>xxxxxxxxxxxx9740</option>
+              <option>xxxxxxxxxxxx7895</option>
+          </select>
+          <p>Balance:&pound;99,196.18</p>
+        </div>
+     </div>
+     <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Amount</p>
+        <div class="col-sm-1">
+          <select class="form-control">
+              <option>INR</option>
+              <option>AUD</option>
+              <option>USD</option>
+              <option>GBP</option>
+          </select>
+          <p><a href="#">View Limits</a></p>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" value="3500" class="form-control" required="required"></input>
+        </div>
+     </div>
+     <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Transfer When</p>
+        <div class="col-sm-4">
+          <div class="btn-group btn-group-justified" data-toggle="buttons">
+            <label class="btn custom-button active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Now</input>
+            </label>
+            <label class="btn custom-button">
+              <input type="radio" name="options" id="option2" autocomplete="off">Later</input>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Purpose</p>
+        <div class="col-sm-4">
+          <select class="form-control">
+              <option>Transaction is an intra-company Payment</option>
+          </select>
+        </div>
+      </div>
+     <div class="form-group">
+       <div class="col-sm-3"></div>
+        <p class="control-label col-sm-2" style="color: gray;text-align: left">Note(optional)</p>
+        <div class="col-sm-4">
+          <input type="text" data-ng-model="test" data-ng-trim="false" maxlength="80" class="form-control"></input>
+          <p><span>{{80 - test.length}} Characters Left</span></p>
+        </div>
+     </div>
+     <div class="form-group">
+       <div class="col-sm-4"></div>
+       <div class="col-sm-4">
+         <button type="button" class="btn custom-button">Cancel</button>
+         <button type="button" class="btn custom-button">Transfer</button>
+       </div>
+     </div>
+    </form>
+  </div>

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" ng-controller="paybillController">
 	<div class="custom-container">
 		<form class="form-horizontal">
 			<div class="form-group">
@@ -6,18 +6,20 @@
 				<p class="control-label col-sm-2"
 					style="color: gray; text-align: left">Biller Name</p>
 				<div class="col-sm-4">
-
 					<select class="form-control">
 						<option>005832</option>
+						<option>007485</option>
+						<option>012048</option>
+						<option>002159</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-3"></div>
 				<p class="control-label col-sm-2"
-					style="color: gray; text-align: left">Relatioship Number</p>
+					style="color: gray; text-align: left">Relationship Number</p>
 				<div class="col-sm-4">
-					<input type="text" value="Electricity" class="form-control"
+					<input type="text" class="form-control"
 						required="required" />
 				</div>
 			</div>
@@ -26,7 +28,7 @@
 				<p class="control-label col-sm-2"
 					style="color: gray; text-align: left">Amount</p>
 				<div class="col-sm-4">
-					<input type="text" value="₹1,000.00" class="form-control"
+					<input type="text" class="form-control"
 						required="required" />
 				</div>
 			</div>
@@ -37,6 +39,10 @@
 				<div class="col-sm-4">
 					<select class="form-control">
 						<option>xxxxxxxxxxxx8188</option>
+						<option>xxxxxxxxxxxx4063</option>
+						<option>xxxxxxxxxxxx6262</option>
+						<option>xxxxxxxxxxxx1058</option>
+						<option>xxxxxxxxxxxx9746</option>
 					</select>
 					<p>Balance:£99,196.18</p>
 				</div>
@@ -60,7 +66,7 @@
 				<p class="control-label col-sm-2"
 					style="color: gray; text-align: left">Bill Number</p>
 				<div class="col-sm-4">
-					<input type="text" value="E32232" class="form-control"
+					<input type="text" class="form-control"
 						required="required" />
 				</div>
 			</div>
@@ -80,7 +86,7 @@
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<button type="button" class="btn custom-button">Cancel</button>
-					<button type="button" class="btn custom-button">Add</button>
+         			<button type="button" class="btn custom-button">Add</button>
 				</div>
 			</div>
 		</form>

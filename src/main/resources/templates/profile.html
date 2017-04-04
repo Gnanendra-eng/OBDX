@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>Profile</title>
@@ -28,6 +29,9 @@
 <link   rel="stylesheet" href="css/newstyle.css" />
 <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
 
 <style>
 footer {
@@ -115,13 +119,14 @@ html {
 						data-toggle="dropdown">Bill Payments <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/biller">Register Biller</a></li>
+							<li><a href="#/paybills">Pay Bills</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav ">
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown">Payments <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						 <li><a href="#/onwaccounttransfer">Own Account Transfer</a></li>
+						 <li><a href="#/transfermoney">Transfer Money</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -154,7 +159,7 @@ html {
 							<li style="background-color:grey">
 								<button class="btn btn-info btn-sm pull-left" style="margin-left:20px">Settings</button>
 								<form class="pull-right" th:action="@{/logout}" method="post">
-									<input type="submit" style="margin-right:10px" class="btn btn-info btn-sm" value="Sign Out" />
+									<input type="submit" style="margin-right:20px" class="btn btn-info btn-sm" value="Sign Out" />
 								</form>
 							</li>
 						</ul>

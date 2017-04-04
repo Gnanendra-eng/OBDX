@@ -1,5 +1,5 @@
 /** Angular app creations and route configurations **/
-var app = angular.module("profileApp", ["ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination","ui.bootstrap"]);
+var app = angular.module("profileApp", ["ngTagsInput","ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination","ui.bootstrap"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider
     .when('/', {
@@ -23,9 +23,12 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/biller", {
     	templateUrl : '/fragment/biller.html',
     	controller:'billerController'	
-    }).when("/onwaccounttransfer", {
-    	templateUrl : '/fragment/ownaccounttransfer.html',
-    	controller:'ownAccountTransfer'	
+    }).when("/paybills", {
+    	templateUrl : '/fragment/paybills.html',
+    	controller:'paybillController'
+    }).when("/transfermoney", {
+    	templateUrl : '/fragment/transfermoney.html',
+    	controller:'transfermoneyController'	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -65,7 +68,14 @@ app.config(function($provide) {
 
     }]);
 }).call(this);
-app.controller("ownAccountTransfer", function($scope,$http) {
+
+app.controller("transfermoneyController",function($scope,$http){
+	$scope.tags = [
+	    { id: 1, name: 'ASDG' }
+	  ];
+});
+
+app.controller("paybillController", function($scope,$http) {
 	 self = this;
 	  self.opened = {};
 	  self.open = function($event) {
