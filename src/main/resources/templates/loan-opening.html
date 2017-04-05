@@ -1,0 +1,269 @@
+<div class="wrapper">
+
+	<div class="container-fluid">
+
+		<div class="container">
+
+			<div class="panel panel-default">
+				<div class="panel-heading panel-heading-custom">
+
+					<div class="row">
+
+						<img style="width: 64px;" src="" />
+						<h1 style="color: white" align="center">
+							Primary
+							Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="glyphicon glyphicon-chevron-down"></span>
+						</h1>
+
+
+
+					</div>
+
+				</div>
+
+
+
+				<p class="text-center">All your details are private and secure</p>
+
+
+				<div class="panel-body">
+
+
+					<br /> <br /> <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<form class="form-horizontal" name="userForm"
+						ng-submit="submitForm()">
+
+						<!-- NAME -->
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.fname.$invalid &amp;&amp; !userForm.fname.$pristine }">
+							<div class="row ">
+								<label for="firstname" class="col-sm-4 control-label">First
+									Name</label>
+								<div class="col-sm-4">
+									<input type="text" name="fname" class="form-control"
+										ng-model="user.fname" required="required" />
+									<p
+										ng-show="userForm.fname.$invalid &amp;&amp; !userForm.fname.$pristine"
+										class="help-block">First name is required</p>
+								</div>
+							</div>
+						</div>
+
+						<br />
+
+
+						<!-- USERNAME -->
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.mname.$invalid &amp;&amp; !userForm.mname.$pristine }">
+							<div class="row ">
+								<label for="mname" class="col-sm-4 control-label">Middle
+									Name</label>
+								<div class="col-sm-4">
+
+									<input type="text" name="mname" class="form-control"
+										ng-model="user.mname" required="required" />
+									<p
+										ng-show="userForm.mname.$invalid &amp;&amp; !userForm.mname.$pristine"
+										class="help-block">Middle name is required</p>
+								</div>
+							</div>
+						</div>
+						<br />
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.lname.$invalid &amp;&amp; !userForm.lname.$pristine }">
+							<div class="row ">
+								<label for="lname" class="col-sm-4 control-label">Last
+									Name</label>
+								<div class="col-sm-4">
+									<input type="text" name="lname" class="form-control"
+										ng-model="user.lname" required="required" />
+									<p
+										ng-show="userForm.lname.$invalid &amp;&amp; !userForm.lname.$pristine"
+										class="help-block">Last name is required</p>
+								</div>
+							</div>
+						</div>
+						<br />
+
+
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.dob.$invalid &amp;&amp; !userForm.dob.$pristine }">
+							<div class="row ">
+								<label for="dob" class="col-sm-4 control-label">Date Of
+									Birth</label>
+								<div class="col-sm-4">
+									<input type="text" name="dob" class="form-control"
+										ng-model="user.dob" required="required" />
+									<p
+										ng-show="userForm.dob.$invalid &amp;&amp; !userForm.dob.$pristine"
+										class="help-block">Date of Birth is required</p>
+								</div>
+							</div>
+						</div>
+						<br />
+
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.gender.$invalid &amp;&amp; !userForm.gender.$pristine }">
+							<div class="row ">
+								<label for="gender" class="col-sm-4 control-label">Gender</label>
+								<div class="dropdown">
+									<div class="col-sm-4">
+										<select id="ddlgender" class="form-control" ng-model="gender"
+											name="gender" required="required">
+											<option value="">Select</option>
+											<option value="0">Male</option>
+											<option value="1">Female</option>
+										</select>
+										<p
+											ng-show="userForm.gender.$invalid &amp;&amp; !userForm.gender.$pristine"
+											class="help-block">Gender is required</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						<br />
+
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.status.$invalid &amp;&amp; !userForm.status.$pristine }">
+							<div class="row ">
+								<label for="status" class="col-sm-4 control-label">Marital
+									Status</label>
+								<div class="dropdown">
+									<div class="col-sm-4">
+										<select id="ddlstatus" class="form-control" ng-model="status"
+											name="status" required="required">
+											<option value="">Select</option>
+											<option value="0">Single</option>
+											<option value="1">Married</option>
+										</select>
+										<p
+											ng-show="userForm.status.$invalid &amp;&amp; !userForm.status.$pristine"
+											class="help-block">Status is required</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						<br />
+
+
+
+
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.dependents.$invalid &amp;&amp; !userForm.dependents.$pristine }">
+							<div class="row ">
+								<label for="dependents" class="col-sm-4 control-label">No
+									Of Dependents</label>
+								<div class="dropdown">
+									<div class="col-sm-4">
+										<select id="ddldependents" class="form-control"
+											ng-model="dependents" name="dependents" required="required">
+											<option value="">Select</option>
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select>
+										<p
+											ng-show="userForm.dependents.$invalid &amp;&amp; !userForm.dependents.$pristine"
+											class="help-block">Dependents is required</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<br />
+
+
+
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : userForm.country.$invalid &amp;&amp; !userForm.country.$pristine }">
+							<div class="row ">
+								<label for="country" class="col-sm-4 control-label">Country
+									of citizenship</label>
+								<div class="dropdown">
+									<div class="col-sm-4">
+										<select id="ddldependents" class="form-control"
+											ng-model="country" name="country" required="required">
+											<option value="">Select</option>
+											<option value="0">Indian</option>
+											<option value="1">Others</option>
+										</select>
+										<p
+											ng-show="userForm.country.$invalid &amp;&amp; !userForm.country.$pristine"
+											class="help-block">Country is required</p>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+						<br />
+
+
+
+
+
+						<div class="form-group">
+							<div class="row ">
+								<label for="lastname" class="col-sm-4 control-label">Permanent
+									Resident</label>
+								<div class="col-sm-6">
+									<label class="switch"> <input class="switch-input"
+										type="checkbox" /> <span class="switch-label" data-on="YES"
+										data-off="NO"></span> <span class="switch-handle"></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<br />
+
+
+
+
+
+						<button type="submit" class="btn btn-primary"
+							style="float: right;" ng-click="userForm.$invalid">Submit</button>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

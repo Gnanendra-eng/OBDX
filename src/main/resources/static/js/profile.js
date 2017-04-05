@@ -32,9 +32,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/balance", {
     	templateUrl : '/fragment/balance.html',
     	controller:'jsonCtrl1'	
-    }).when("/aaa", {
-    	templateUrl : '/fragment/aaa.html',
-    	controller:'mainController'	
+    }).when("/new-loan-account-opening", {
+    	templateUrl : '/fragment/loan-opening.html',
+    	controller:'newLoanAccountOpening'	
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -103,7 +103,7 @@ app.controller("paybillController", function($scope,$http) {
 
 
 
-app.controller('mainController', function($scope) {
+app.controller('newLoanAccountOpening', function($scope) {
 	
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function() {
