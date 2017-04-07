@@ -64,11 +64,11 @@ public class LoanService {
 				CURRENT_OUTSTANDING+=loanAccount.getOutstandingbal().doubleValue();
 				TOTAL_LOAN_BORROWING+=loanAccount.getAmountfinanced().doubleValue();
 				activedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
 			}
 			else{
 				closedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
 			}
 		});
 		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,retailCustomer.getIdcusomer(),tempAccountDetails);

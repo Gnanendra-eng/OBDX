@@ -75,9 +75,11 @@ public class AccountService {
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.getAccountDetails(customerId, nbrAccount);
+		System.out.println(new Double(accountdetail.getBALANCE()));
+
 		accountDetailsDto = new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(),
 				accountdetail.getNBRACCOUNT(), accountdetail.getACCTTYPE(), accountdetail.getACCTSTATUS(),
-				accountdetail.getCCYDESC(), accountdetail.getBALANCE(), accountdetail.getOPENINGBALANCE(),
+				accountdetail.getCCYDESC(),new Double(accountdetail.getBALANCE()).doubleValue(), accountdetail.getOPENINGBALANCE(),
 				accountdetail.getAVAILABLEBALANCE(), accountdetail.getISCHQBOOK(), accountdetail.getISOVERDRAFT(),
 				accountdetail.getISSI(), accountdetail.getNUMUNCOLLECTED(), accountdetail.getMINBALANCE(),
 				accountdetail.getDAILYWITHDRAWALLIMIT(), accountdetail.getCUSTOMERSHORTNAME(),
