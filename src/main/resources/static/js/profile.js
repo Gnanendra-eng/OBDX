@@ -93,12 +93,31 @@ app.config(function($provide) {
 }).call(this);
 
 app.controller("transfermoneyController",function($scope,$http){
+	 self = this;
+	  self.opened = {};
+	  self.open = function($event) {
+
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    self.opened = {};
+	    self.opened[$event.target.id] = true;
+
+	    // log this to check if its setting the log    
+	    console.log(self.opened);
+	    
+	  };
+
+	  self.format = 'dd-MM-yyyy'
+
+
+	
 	$scope.tags = [
 	  ];
 });
 
 app.controller("paybillController", function($scope,$http) {
-	 self = this;
+	   self = this;
 	  self.opened = {};
 	  self.open = function($event) {
 
@@ -120,6 +139,22 @@ app.controller("paybillController", function($scope,$http) {
 
 
 app.controller('newLoanAccountOpening', function($scope) {
+	 self = this;
+	  self.opened = {};
+	  self.open = function($event) {
+
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    self.opened = {};
+	    self.opened[$event.target.id] = true;
+
+	    // log this to check if its setting the log    
+	    console.log(self.opened);
+	    
+	  };
+
+	  self.format = 'dd-MM-yyyy'
 	
 	$scope.stopDefaultAction = function(event) {
 		event.preventDefault();

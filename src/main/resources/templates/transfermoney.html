@@ -92,9 +92,11 @@
             <label class="btn custom-button active">
               <input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Now</input>
             </label>
-            <label class="btn custom-button">
-              <input type="radio" name="options" id="option2" autocomplete="off">Later</input>
-            </label>
+            <label class="btn custom-button form-group has-feedback has-feedback-left"  ng-init="open()" >
+            <input	ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
+							close-text="Close">Later</input>
+							            </label>
           </div>
         </div>
       </div>

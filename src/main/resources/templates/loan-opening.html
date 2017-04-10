@@ -85,26 +85,23 @@
 
 
 
-
-							<div class="form-group" ng-controller="paybillController"
-								ng-class="{ 'has-error' : userForm.dob.$invalid  &amp;&amp; !userForm.dob.$pristine }">
-								<div class="col-sm-3"></div>
-								<p class="control-label col-md-2"
-									style="color: gray; text-align: left">Date Of Birth</p>
-								<div class="col-sm-4">
-									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-									<div>
-										<input type="text" class="form-control"
-											ng-click="demo.dateFrom=true"
-											datepicker-popup="{{demo.format}}" ng-model="demo.dtFrom"
-											is-open="demo.dateFrom" ng-required="true" close-text="Close" />
-										<p
-											ng-show="userForm.dob.$invalid &amp;&amp; !userForm.dob.$pristine"
-											class="help-block">Date of birth is required</p>
-									</div>
-								</div>
-							</div>
-
+	<div class="form-group has-feedback has-feedback-left"  ng-controller="newLoanAccountOpening">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"
+					style="color: gray; text-align: left">Date Of Birth</p>
+				<div class="col-sm-4">
+					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+					<div>
+						<input type="text" class="form-control"
+							ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
+							close-text="Close" />
+					</div>
+				</div>
+			</div>
+							
+							
+							
 
 
 
@@ -234,7 +231,7 @@
 									<button type="submit" style="height: 40px; width: 120px"
 										align="center" class="btn custom-button" 	data-toggle="collapse" data-parent="#accordion" href="#collapse2" data-ng-click="stopDefaultAction($event)" 
 										>Next</button>
-<button type="reset" value="Reset">Reset</button>
+<button type="reset" style="height: 40px; width: 120px" value="Reset" align="center" class="btn custom-button" >Reset</button>
 
 								</div>
 							</div>
@@ -394,26 +391,21 @@
 								</div>
 
 
-
-								<div class="form-group" ng-controller="paybillController"
-									ng-class="{ 'has-error' : userForm1.stay.$invalid  &amp;&amp; !userForm1.stay.$pristine }">
-									<div class="col-sm-3"></div>
-									<p class="control-label col-sm-2"
-										style="color: gray; text-align: left">Staying Since</p>
-									<div class="col-sm-4">
-										<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-										<div>
-											<input type="text" class="form-control"
-												ng-click="demo.dateFrom=true"
-												datepicker-popup="{{demo.format}}" ng-model="demo.dtFrom"
-												is-open="demo.dateFrom" ng-required="true"
-												close-text="Close" />
-											<p
-												ng-show="userForm1.stay.$invalid &amp;&amp; !userForm1.stay.$pristine"
-												class="help-block">Date is required</p>
-										</div>
-									</div>
-								</div>
+	<div class="form-group has-feedback has-feedback-left"  ng-init="open()">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"
+					style="color: gray; text-align: left">Staying Since</p>
+				<div class="col-sm-4">
+					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+					<div>
+						<input type="text" class="form-control"
+							ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
+							close-text="Close" />
+					</div>
+				</div>
+			</div>
+					
 
 
 
@@ -454,7 +446,7 @@
 
 
 						<div class="container">
-							<div class="row">
+							<div class="row"><br/>
 
 								<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Previous
 									Residential Address</h4>
@@ -709,6 +701,7 @@
 									<div class="col-sm-4">
 
 										<button type="submit" style="height: 40px; width: 120px" align="center" class="btn custom-button" ng-click="userForm1.$invalid">Continue</button>
+										<button type="reset" style="height: 40px; width: 120px" value="Reset" align="center" class="btn custom-button" >Reset</button>
 
 </div>
 									</div>
