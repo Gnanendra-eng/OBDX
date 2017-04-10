@@ -51,6 +51,23 @@ app.config(function($provide) {
 	});
 });
 
+/**contact-information**/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**Spinner loader**/
 (function(){
     angular.module('ngLoadingSpinner', ['angularSpinner'])
@@ -105,23 +122,32 @@ app.controller("paybillController", function($scope,$http) {
 
 app.controller('newLoanAccountOpening', function($scope) {
 	
+	$scope.stopDefaultAction = function(event) {
+		event.preventDefault();
+	};
+	
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function() {
 	
 
 		// check to make sure the form is completely valid
-		if ($scope.userForm.$invalid) {
-			alert('please fill all the fields');
-			
-			
-		}
+	
 		if ($scope.userForm.$valid) {
 			alert('form submitted successfully');
 			
 			
 		}
 
+	
+		if ($scope.userForm1.$valid) {
+			alert('form submitted successfully');
+			
+			
+		}
+		
 	};
+	
+
 
 });
 
@@ -197,8 +223,16 @@ app.controller('jsonCtrl1', function($scope, $http){
 	});
 
 
+app.controller('emailController', function ($scope) {
+	  $scope.fields = {
+			    email: '',
+			    emailConfirm: ''
+			  };
 
-
+			  $scope.submit = function() {
+			    alert("Submit!");
+			  };
+			});
 
 
 
@@ -352,3 +386,19 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		});	
 	}
 });
+
+app.directive('match', function($parse) {
+	  return {
+	    require: 'ngModel',
+	    link: function(scope, elem, attrs, ctrl) {
+	      scope.$watch(function() {        
+	        return $parse(attrs.match)(scope) === ctrl.$modelValue;
+	      }, function(currentValue) {
+	        ctrl.$setValidity('mismatch', currentValue);
+	      });
+	    }
+	  };
+	});
+
+
+
