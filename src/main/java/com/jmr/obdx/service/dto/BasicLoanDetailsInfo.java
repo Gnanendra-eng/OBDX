@@ -11,8 +11,17 @@ public class BasicLoanDetailsInfo extends StatusInfo {
 	private Double currentOutStanding;
 	private List<String> nbrAccounts;
 	private String customerId;
+	private String currencyType;
 
 	
+	public String getCurrencyType() {
+		return currencyType;
+	}
+
+	public void setCurrencyType(String currencyType) {
+		this.currencyType = currencyType;
+	}
+
 	private List<BasicLoanDetailsDto> activedBasicLoanDetailsDto = new ArrayList<>();
 
 	private List<BasicLoanDetailsDto> closedBasicLoanDetailsDto = new ArrayList<>();
@@ -22,13 +31,14 @@ public class BasicLoanDetailsInfo extends StatusInfo {
 	}
 
 	public BasicLoanDetailsInfo(Double totalBorrowing, Double currentOutStanding,List<BasicLoanDetailsDto> activedBasicLoanDetailsDto,
-			List<BasicLoanDetailsDto> closedBasicLoanDetailsDto,String customerId, List<String> nbrAccounts) {
+			List<BasicLoanDetailsDto> closedBasicLoanDetailsDto,String customerId, List<String> nbrAccounts,String currencyType) {
 		this.totalBorrowing = totalBorrowing;
 		this.currentOutStanding = currentOutStanding;
 		this.activedBasicLoanDetailsDto = activedBasicLoanDetailsDto;
 		this.closedBasicLoanDetailsDto = closedBasicLoanDetailsDto;
 		this.customerId=customerId;
 		this.nbrAccounts=nbrAccounts;
+		this.currencyType=currencyType;
 	}
 	
 	

@@ -30,6 +30,7 @@ public class LoanService {
 	private static Double CURRENT_OUTSTANDING;
 	private List<BasicLoanDetailsDto> activedBasicLoanDetailsDtos;
 	private List<BasicLoanDetailsDto> closedBasicLoanDetailsDtos;
+	private String currencyType;
 
 	@Autowired
 	private LoanRepo loanRepo;
@@ -64,14 +65,15 @@ public class LoanService {
 				CURRENT_OUTSTANDING+=loanAccount.getOutstandingbal().doubleValue();
 				TOTAL_LOAN_BORROWING+=loanAccount.getAmountfinanced().doubleValue();
 				activedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
 			}
 			else{
 				closedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
 			}
+			currencyType=loanAccount.getCodcurrency();
 		});
-		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,retailCustomer.getIdcusomer(),tempAccountDetails);
+		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,retailCustomer.getIdcusomer(),tempAccountDetails,currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return basicLoanDetailsDto;
 	}

@@ -1,0 +1,453 @@
+
+					<div class="wrapper">
+	<div class="container">
+  
+ <div class="panel panel-default">
+	<div class="panel-heading panel-heading-custom" style="height: 75px;">
+
+		<div class="row">
+
+		
+			<h3 style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Secondary
+				Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <a data-toggle="collapse" href="#collapse2" data-ng-click="stopDefaultAction($event)"><span class="glyphicon glyphicon-chevron-down" style="color: white" ></span></a>
+			</h3>
+			
+
+
+		</div>
+
+	</div>
+
+
+
+	  <div id="collapse2" class="panel-collapse collapse">
+
+	<div class="panel-body">
+				
+				
+			  <form class="form-horizontal" name="userForm" ng-submit="submitForm()" >
+				
+				
+				<div class="container"> 
+				<div class="row">
+				
+				<h4 align="center">Residential Address</h4>
+			
+	<div class="form-group"
+				ng-class="{ 'has-error' : userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Country</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="country" name="country" required="required">
+								<option value="">Select</option>
+								<option value="0">India</option>
+								<option value="1">Others</option>
+							</select>
+							<p
+								ng-show="userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine"
+								class="help-block">Country is required</p>
+
+						</div>
+
+					</div>
+					
+					
+					
+					
+					
+			<div class="form-group" ng-class="{ 'has-error' : userForm.lname.$invalid  &amp;&amp; !userForm.lname.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Last Name</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="lname" class="form-control"
+							ng-model="user.lname"  required="required" />
+						<p ng-show="userForm.lname.$invalid &amp;&amp; !userForm.lname.$pristine"
+							class="help-block">Last name is required</p>
+					</div>
+				</div>
+			
+					
+					
+					
+					
+					
+<div class="form-group" ng-class="{ 'has-error' : userForm.add1.$invalid  &amp;&amp; !userForm.add1.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Address Line 1</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="add1" class="form-control"
+							ng-model="user.add1"  required="required" />
+						<p ng-show="userForm.add1.$invalid &amp;&amp; !userForm.add1.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+   
+<div class="form-group" ng-class="{ 'has-error' : userForm.add2.$invalid  &amp;&amp; !userForm.add2.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Address Line 2</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="add2" class="form-control"
+							ng-model="user.add2"  required="required" />
+						<p ng-show="userForm.add2.$invalid &amp;&amp; !userForm.add2.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+				
+				
+     
+<div class="form-group" ng-class="{ 'has-error' : userForm.city.$invalid  &amp;&amp; !userForm.city.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">City</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="city" class="form-control"
+							ng-model="user.city"  required="required" />
+						<p ng-show="userForm.city.$invalid &amp;&amp; !userForm.city.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+
+				<div class="form-group"
+				ng-class="{ 'has-error' : userForm.state.$invalid  &amp;&amp; !userForm.state.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">State</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="state" name="state" required="required">
+								<option value="">Select</option>
+								<option value="0">India</option>
+								<option value="1">Others</option>
+							</select>
+							<p
+								ng-show="userForm.state.$invalid  &amp;&amp; !userForm.state.$pristine"
+								class="help-block">State is required</p>
+
+						</div>
+
+					</div>
+
+<div class="form-group" ng-class="{ 'has-error' : userForm.zip.$invalid  &amp;&amp; !userForm.zip.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Zip Code</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="zip" class="form-control"
+							ng-model="user.zip"  required="required" />
+						<p ng-show="userForm.zip.$invalid &amp;&amp; !userForm.zip.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+   
+   
+   
+   	<div class="form-group" ng-controller="paybillController" ng-class="{ 'has-error' : userForm.stay.$invalid  &amp;&amp; !userForm.stay.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Staying Since</p>
+				<div class="col-sm-4">
+					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+					<div>
+						<input type="text" class="form-control"
+							ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
+							close-text="Close" />
+							<p ng-show="userForm.stay.$invalid &amp;&amp; !userForm.stay.$pristine"
+							class="help-block">Date  is required</p>
+					</div>
+				</div>
+				</div>
+   
+<div class="form-group"
+				ng-class="{ 'has-error' : userForm.accom.$invalid  &amp;&amp; !userForm.accom.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Accomadation Type</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="accom" name="accom" required="required">
+								<option value="">Select</option>
+								<option value="0">Owned</option>
+								<option value="1">Rent</option>
+							</select>
+							<p
+								ng-show="userForm.accom.$invalid  &amp;&amp; !userForm.accom.$pristine"
+								class="help-block">Accomadation is required</p>
+
+						</div>
+
+					</div>
+   
+   
+	
+
+</div>
+</div>
+
+<br/>
+
+
+
+<div class="container">
+				<div class="row">
+				
+				<h4 align="center">Previous Residential Address</h4>
+				
+				
+   
+	<div class="form-group"
+				ng-class="{ 'has-error' : userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Country</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="country" name="country" required="required">
+								<option value="">Select</option>
+								<option value="0">India</option>
+								<option value="1">Others</option>
+							</select>
+							<p
+								ng-show="userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine"
+								class="help-block">Country is required</p>
+
+						</div>
+
+					</div>
+   
+  
+			<div class="form-group" ng-class="{ 'has-error' : userForm.add1.$invalid  &amp;&amp; !userForm.add1.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Address Line 1</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="add1" class="form-control"
+							ng-model="user.add1"  required="required" />
+						<p ng-show="userForm.add1.$invalid &amp;&amp; !userForm.add1.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+   
+<div class="form-group" ng-class="{ 'has-error' : userForm.add2.$invalid  &amp;&amp; !userForm.add2.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Address Line 2</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="add2" class="form-control"
+							ng-model="user.add2"  required="required" />
+						<p ng-show="userForm.add2.$invalid &amp;&amp; !userForm.add2.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+				
+				
+     
+<div class="form-group" ng-class="{ 'has-error' : userForm.city.$invalid  &amp;&amp; !userForm.city.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">City</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="city" class="form-control"
+							ng-model="user.city"  required="required" />
+						<p ng-show="userForm.city.$invalid &amp;&amp; !userForm.city.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+
+				<div class="form-group"
+				ng-class="{ 'has-error' : userForm.state.$invalid  &amp;&amp; !userForm.state.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">State</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="state" name="state" required="required">
+								<option value="">Select</option>
+								<option value="0">India</option>
+								<option value="1">Others</option>
+							</select>
+							<p
+								ng-show="userForm.state.$invalid  &amp;&amp; !userForm.state.$pristine"
+								class="help-block">State is required</p>
+
+						</div>
+
+					</div>
+
+<div class="form-group" ng-class="{ 'has-error' : userForm.zip.$invalid  &amp;&amp; !userForm.zip.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Zip Code</p>
+				<div class="col-sm-4">
+
+						<input type="text" name="zip" class="form-control"
+							ng-model="user.zip"  required="required" />
+						<p ng-show="userForm.zip.$invalid &amp;&amp; !userForm.zip.$pristine"
+							class="help-block">Address is required</p>
+					</div>
+				</div>
+   
+   
+   
+ 
+   
+<div class="form-group"
+				ng-class="{ 'has-error' : userForm.accom.$invalid  &amp;&amp; !userForm.accom.$pristine }">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Accomadation Type</p>
+				<div class="col-sm-4">
+							<select id="ddlgender" class="form-control" ng-model="accom" name="accom" required="required">
+								<option value="">Select</option>
+								<option value="0">Owned</option>
+								<option value="1">Rent</option>
+							</select>
+							<p
+								ng-show="userForm.accom.$invalid  &amp;&amp; !userForm.accom.$pristine"
+								class="help-block">Accomadation is required</p>
+
+						</div>
+
+					</div>
+  
+  
+  
+  </div></div>
+  <br/>
+  
+  <div class="container">
+				<div class="row">
+				
+				<h4 align="center">Email</h4>
+				
+				
+	<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid &amp;&amp; !userForm.email.$pristine }">
+		<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Email</p>
+				<div class="col-sm-4">
+
+		<input type="email" name="email" class="form-control" id="Email" ng-model="email" />
+		
+			<p ng-show="userForm.email.$invalid &amp;&amp; !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+			</div>
+	</div>
+	
+	
+	
+	
+	<div class="form-group" ng-class="{ 'has-error' : userForm.email2.$invalid &amp;&amp; !userForm.email2.$pristine }">
+		<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Confirm Email Id</p>
+				<div class="col-sm-4">
+		<input type="email" name="email2" class="form-control" id="email2" ng-model="email2" data-match="email" />
+		<div ng-show="userForm.email2.$error.match">Fields do not match!</div>
+			<p ng-show="userForm.email2.$invalid &amp;&amp; !userForm.email2.$pristine" class="help-block">Enter a valid email.</p>
+			</div>
+	</div>
+
+
+
+
+
+
+
+</div>
+</div>
+<br/>
+<div class="container" ng-controller="MyPhone">
+				<div class="row">
+				
+				<h4 align="center">Phone Type</h4>
+				<div class="form-group" ng-controller="MyPhone">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Phone Type</p>
+				<div class="col-sm-4">
+						<select class="form-control" id="PhoneType" ng-model="ddlphnes" ng-options="phne.Id as phne.Name for phne in phnes track by phne.Id"
+						ng-change="GetValue()">
+						</select>
+	
+					</div>
+				</div>
+				<div class = "form-group" ng-class="{ 'has-error' : userForm.phone.$invalid &amp;&amp; !userForm.phone.$pristine }">
+					<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Phone Number</p>
+				<div class="col-sm-4">
+							<input type = "text" class = "form-control" ng-minlength="10" ng-maxlength="10" id = "inputPhone" name="phone"  ng-model="user.phone" ng-required="true" />
+							<span class="help-block" 
+                  ng-show="userForm.phone.$error.required || 
+                           userForm.phone.$error.number">
+                           Valid phone number is required
+            </span>
+            <span class="help-block" 
+                  ng-show="((userForm.phone.$error.minlength ||
+                           userForm.phone.$error.maxlength) &amp;&amp; 
+                           userForm.phone.$dirty) ">
+                           phone number should be 10 digits
+            </span>
+						</div>
+				</div>
+				
+				
+				 <div class = "form-group">
+    <div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"  style="color: gray; text-align: left">Add Alternate Phone Number</p>
+				<div class="col-sm-4">
+	  
+	   <button class="btn" ng-click="showme=true">Yes</button>
+		<button class="btn" ng-click="showme=false">NO</button> 
+  </div>
+			<div class="wrapper">
+				<p ng-hide="showme"></p>
+				 <div class = "col-sm-4">
+				<div ng-show="showme">
+				<input type="text" class = "form-control" id = "AlternateMobileNumberRequired" /></div>
+				</div>
+    
+			</div>
+         
+     
+   </div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				</div>
+</div>		
+
+<div class="form-group">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+         
+			<button type="submit" style="height:40px;width:120px"  align="center" class="btn custom-button" 
+				ng-click="userForm.$invalid">Continue</button>
+
+				
+       </div>
+     </div>
+
+   
+	
+</form>
+</div>
+</div></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

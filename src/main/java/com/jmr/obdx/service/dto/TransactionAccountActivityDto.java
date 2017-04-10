@@ -8,17 +8,29 @@ public class TransactionAccountActivityDto {
 	private Double transactionAmount;
 	private String transactionType;
 	private Double balance;
+	private String ccyDesc;
 
-	public TransactionAccountActivityDto(String transactionType,String transactionDate, String transactionDescription,
-			String transactionReferenceNo, Double transactionAmount, Double balance) {
-		this.transactionType=transactionType;
+
+	public TransactionAccountActivityDto(String transactionType, String transactionDate, String transactionDescription,
+			String transactionReferenceNo, Double transactionAmount, Double balance,String ccyDesc) {
+		this.transactionType = transactionType;
 		this.transactionDate = transactionDate;
 		this.transactionDescription = transactionDescription;
 		this.transactionReferenceNo = transactionReferenceNo;
 		this.transactionAmount = transactionAmount;
 		this.balance = balance;
+		this.ccyDesc=ccyDesc;
 	}
 	
+
+	public String getCcyDesc() {
+		return ccyDesc;
+	}
+
+	public void setCcyDesc(String ccyDesc) {
+		this.ccyDesc = ccyDesc;
+	}
+
 	public String getTransactionType() {
 		return transactionType;
 	}
@@ -26,7 +38,6 @@ public class TransactionAccountActivityDto {
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
 	}
-
 
 	public TransactionAccountActivityDto() {
 		// TODO Auto-generated constructor stub

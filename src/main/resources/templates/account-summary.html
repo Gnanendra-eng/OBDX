@@ -1,5 +1,4 @@
 <div class="wrapper">
-
 	<div class="container-fluid">
 		<div class="col-sm-6 col-md-4">
 			<div class="container-fluid1">
@@ -14,16 +13,22 @@
 					<div class="summary-graph-container" style="width:250px">
 						<canvas id="account-summary-chart"
 							style="width: 250px; height: 250px;"></canvas>
-						<br />
-						<br/>
-						<br/>
+						<br /> <br /> <br />
 						<ul>
-							<li style="font-size: 18px;"><span >Term Deposit</span><span style="color: #64c6c1">&nbsp;{{sumofcontractandtermdepostit}}</span></li>
-							<li style="font-size: 18px;"><span>Saving Account &amp; Current</span><span style="color: #ffa86f">&nbsp;{{sumofsavingsandcurrent}}</span></li>
-							<li style="font-size: 18px;"><span>Loan</span><span style="color: #ff8090">&nbsp;{{sumofloans}}</span></li>
+							<li style="font-size: 18px;"><span>Term Deposit</span><span
+								style="color: #64c6c1">&nbsp;{{sumofcontractandtermdepostit | currency :response.currencyType +'&nbsp;'}}</span></li>
+							<li style="font-size: 18px;"><span>Saving Account
+									&amp; Current</span><span style="color: #ffa86f">&nbsp;{{sumofsavingsandcurrent | currency :response.currencyType +'&nbsp;'}}</span></li>
+							<li style="font-size: 18px;"><span>Loan</span><span
+								style="color: #ff8090">&nbsp;{{sumofloans | currency :response.currencyType+'&nbsp;'}}</span></li>
+
 						</ul>
+
 					</div>
-			</div>
+
+
+					<br /> <br />
+				</div>
 		</div>
 		<div class="col-sm-6 col-md-4">
 
@@ -36,7 +41,7 @@
 				<p>{{sgscut.codbranch}}</p>
 				<p>{{sgscut.prdname}}</p>
 				<div class="outstanding">Net Balance</div>
-				<div class="amount">{{sgscut.numbalance}}</div>
+				<div class="amount">{{sgscut.numbalance | currency :sgscut.codacctcurr +'&nbsp;'}}</div>
 			</a> <a href="" class="thumbnail" data-ng-repeat="loan in loan">
 				<div class="inner-triangle"></div>
 				<div class="id">Loans</div>
@@ -45,7 +50,7 @@
 				<p>{{loan.codbranch}}</p>
 				<p>{{loan.prdname}}</p>
 				<div class="outstanding">Net Balance</div>
-				<div class="amount">{{loan.numbalance}}</div>
+				<div class="amount">{{loan.numbalance | currency :loan.codacctcurr +'&nbsp;'}}</div>
 			</a> <a href="" class="thumbnail"
 				data-ng-repeat="conttempdep in contractandtermdepostit">
 				<div class="inner-triangle"></div>
@@ -55,7 +60,7 @@
 				<p>{{conttempdep.codbranch}}</p>
 				<p>{{conttempdep.prdname}}</p>
 				<div class="outstanding">Net Balance</div>
-				<div class="amount">{{conttempdep.numbalance}}</div>
+				<div class="amount">{{conttempdep.numbalance | currency :conttempdep.codacctcurr +'&nbsp;'}}</div>
 			</a>
 
 
@@ -82,7 +87,7 @@
 								<div class="mini-amount">
 									<p style="font-size: large; text-align: right"
 										data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-										{{transactionInfo.transactionAmount}}&nbsp;<span
+										{{transactionInfo.transactionAmount| currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
 											data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
 										<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
 									</p>

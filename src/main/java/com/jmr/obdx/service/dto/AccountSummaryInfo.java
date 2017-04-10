@@ -15,6 +15,15 @@ public class AccountSummaryInfo extends StatusInfo {
 	private List<AccountSummaryDto> loans = new ArrayList<>();
 	private List<AccountSummaryDto> contractAndTermdeposit = new ArrayList<>();
 	private String customerId;
+	private String currencyType;
+
+	public String getCurrencyType() {
+		return currencyType;
+	}
+
+	public void setCurrencyType(String currencyType) {
+		this.currencyType = currencyType;
+	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -82,7 +91,7 @@ public class AccountSummaryInfo extends StatusInfo {
 
 	public AccountSummaryInfo(Double sumOfSavingsAndCurrent, Double sumOfLoans, Double sumOfContractAndTermdepostit,
 			List<AccountSummaryDto> savingsAndCurrent, List<AccountSummaryDto> loans,
-			List<AccountSummaryDto> contractAndTermdeposit, List<String> nbrAccounts, String customerId) {
+			List<AccountSummaryDto> contractAndTermdeposit, List<String> nbrAccounts, String customerId,String currencyType) {
 
 		this.sumOfSavingsAndCurrent = sumOfSavingsAndCurrent;
 		this.sumOfLoans = sumOfLoans;
@@ -92,6 +101,7 @@ public class AccountSummaryInfo extends StatusInfo {
 		this.contractAndTermdeposit = contractAndTermdeposit;
 		this.nbrAccounts = nbrAccounts;
 		this.customerId = customerId;
+		this.currencyType=currencyType;
 	}
 
 	public AccountSummaryInfo() {

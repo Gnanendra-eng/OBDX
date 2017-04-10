@@ -59,23 +59,23 @@
 			<div class="custom-container">
 				<div class="id">BALANCES</div>
 				<p>Current Balance</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.balance}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.balance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Amount on Hold</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.amountOnHold}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.amountOnHold | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Uncleared Funds</p>
 				<div class="sum-amount" style="text-align: left; font-size: large"></div>
 
 				<br />
 				<p>Minimum Balance Required</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.minBalance}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.minBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Total Available Balance</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.availableBalance}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.availableBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Allowed OverDraft Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit }}</div>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-4">
@@ -88,10 +88,10 @@
 				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.isChqBook}}</div>
 				<br />
 				<p>ATM Daily Withdrawal Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.dailyWithDraWalLimit}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.dailyWithDraWalLimit | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Eligible Advance Against Uncleared Funds Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.eligibleAdv}}</div>
+				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.eligibleAdv | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 			</div>
 		</div>
 	</div>

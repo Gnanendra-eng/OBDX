@@ -1,17 +1,15 @@
 package com.jmr.obdx.service.dto;
 
-import java.math.BigDecimal;
-
 public class BasicLoanDetailsDto {
 
 	private String userReferenceNo;
 	private String productDescription;
 	private String currency;
-	private BigDecimal outStandingLoanAmount;
+	private Double outStandingLoanAmount;
 	private String branch;
 
 	public BasicLoanDetailsDto(String userReferenceNo, String productDescription, String currency,
-			BigDecimal outStandingLoanAmount, String branch) {
+			Double outStandingLoanAmount, String branch) {
 		this.userReferenceNo = userReferenceNo;
 		this.productDescription = productDescription;
 		this.currency = currency;
@@ -43,11 +41,11 @@ public class BasicLoanDetailsDto {
 		this.currency = currency;
 	}
 
-	public BigDecimal getOutStandingLoanAmount() {
+	public Double getOutStandingLoanAmount() {
 		return outStandingLoanAmount;
 	}
 
-	public void setOutStandingLoanAmount(BigDecimal outStandingLoanAmount) {
+	public void setOutStandingLoanAmount(Double outStandingLoanAmount) {
 		this.outStandingLoanAmount = outStandingLoanAmount;
 	}
 

@@ -40,6 +40,7 @@ public class AccountService {
 	private List<AccountSummaryDto> contractAndTermdeposit;
 	private List<AccountSummaryDto> loanPending;
 	private Double sumOfTotalLoans;
+	private String currencyType;
 	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
@@ -75,9 +76,11 @@ public class AccountService {
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.getAccountDetails(customerId, nbrAccount);
+		System.out.println(new Double(accountdetail.getBALANCE()));
+
 		accountDetailsDto = new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(),
 				accountdetail.getNBRACCOUNT(), accountdetail.getACCTTYPE(), accountdetail.getACCTSTATUS(),
-				accountdetail.getCCYDESC(), accountdetail.getBALANCE(), accountdetail.getOPENINGBALANCE(),
+				accountdetail.getCCYDESC(),new Double(accountdetail.getBALANCE()).doubleValue(), accountdetail.getOPENINGBALANCE(),
 				accountdetail.getAVAILABLEBALANCE(), accountdetail.getISCHQBOOK(), accountdetail.getISOVERDRAFT(),
 				accountdetail.getISSI(), accountdetail.getNUMUNCOLLECTED(), accountdetail.getMINBALANCE(),
 				accountdetail.getDAILYWITHDRAWALLIMIT(), accountdetail.getCUSTOMERSHORTNAME(),
@@ -119,13 +122,14 @@ public class AccountService {
 				sumOfLoans += Double.parseDouble(accountsummary.getNUMAVAILBAL());
 				contractAndTermdeposit.add(getAccountSummaryType(accountsummary));
 				}
+			currencyType=accountsummary.getCODACCTCURR();
 		});
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
-				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer());
+				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}

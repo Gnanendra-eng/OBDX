@@ -14,12 +14,12 @@
 					</div>
 					<div class="summary-graph-container" style="width:152px">
 						<p style="text-align: center">Total Borrowing</p>
-						<div class="sum-amount" style="color: #d37da4">&#163;{{loanInfo.totalBorrowing}}</div>
+						<div class="sum-amount" style="color: #d37da4">{{loanInfo.totalBorrowing | currency :loanInfo.currencyType +'&nbsp;'}}</div>
 
 						<div id="loan" height="100px"></div>
 
 						<p style="text-align: center">Current Outstanding</p>
-						<div class="sum-amount" style="color: #83325b">&#163;{{loanInfo.currentOutStanding}}</div>
+						<div class="sum-amount" style="color: #83325b">{{loanInfo.currentOutStanding | currency :loanInfo.currencyType +'&nbsp;'}}</div>
 					</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 				<p>{{loan.currency}}</p>
 
 				<div class="outstanding">Outstanding Amount</div>
-				<div class="amount">&#163;{{loan.outStandingLoanAmount}}</div>
+				<div class="amount">{{loan.outStandingLoanAmount | currency :loan.currency +'&nbsp;'}}</div>
 			</a> <a href="" class="spec"> <br />
 				<div class="id">NEW LOAN</div>
 				<div class="row">
@@ -100,7 +100,7 @@
 								<div class="mini-amount">
 									<p style="font-size: large; text-align: right"
 										data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-										{{transactionInfo.transactionAmount}}&nbsp;<span
+										{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
 											data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
 										<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
 									</p>
