@@ -12,7 +12,7 @@ public class AccountDetailsDto extends StatusInfo {
 	private String accType;
 	private String accStatus;
 	private String ccyDesc;
-	private long balance;
+	private Double balance;
 	private long openingBalance;
 	private long availableBalance;
 	private String isChqBook;
@@ -87,11 +87,11 @@ public class AccountDetailsDto extends StatusInfo {
 		this.ccyDesc = ccyDesc;
 	}
 
-	public long getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(long balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 
@@ -264,7 +264,7 @@ public class AccountDetailsDto extends StatusInfo {
 	}
 
 	public AccountDetailsDto(String idCustomer, String nbrBranch, String nbrAccount, String accType, String accStatus,
-			String ccyDesc, long balance, long openingBalance, long availableBalance, String isChqBook,
+			String ccyDesc, Double balance, long openingBalance, long availableBalance, String isChqBook,
 			String isOverDraft, char issi, long numunCollected, long minBalance, long dailyWithDraWalLimit,
 			String customerShortName, String customerName, String openingDate, String ibanAcNo, String relation,
 			String descAcctType, long amountOnHold, String odLimit, String dailyLimit, long eligibleAdv,

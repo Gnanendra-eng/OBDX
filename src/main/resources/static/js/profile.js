@@ -94,7 +94,6 @@ app.config(function($provide) {
 
 app.controller("transfermoneyController",function($scope,$http){
 	$scope.tags = [
-	    { id: 1, name: 'ASDG' }
 	  ];
 });
 
