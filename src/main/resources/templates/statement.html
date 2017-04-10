@@ -1,63 +1,47 @@
-<style>
-
-.red {
-	color: red;
-}
-
-.green {
-	color: green;
-}
-</style>
-
 <div class="wrapper">
-	<div class="container-fluid">
-		<div class="acc-nameno">
-				<div class="form-group">
-					<select class="form-control"
-						data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
-						name="nbrAccount" required="required"
-						data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-					</select>
-			</div>
-		</div>
+	<div class="container-fluid1">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row row-flex">
-					<div class="col-sm-2 col-flex-item">
-						<div class="filter-select-box" style="margin-left: 0px">
-							<div class="sel-group form-group-sm">
-								<select class="sel-dropdown">
-									<option>Current Period</option>
-								</select>
-							</div>
+					<div class="col-sm-4 col-flex-item"></div>
+					<div class="col-sm-4 col-flex-item">
+						<div class="form-group">
+							<select class="form-control"
+								data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
+								name="nbrAccount" required="required"
+								data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+							</select>
 						</div>
 					</div>
+				</div>
+				<div class="row row-flex">
+					<div class="col-sm-2 col-flex-item">
+						<select class="form-control">
+							<option>Current Period</option>
+						</select>
+					</div>
 					<div class="col-sm-7 col-flex-item"></div>
-					<div class="col-sm-3 col-flex-item">
-						<div class="filter-select-box" style="margin-left: 0px">
-							<div class="sel-group form-group-sm">
-								<select class="sel-dropdown">
-									<option>All</option>
-								</select>
-							</div>
-						</div>
-						<a href="#"><span class="glyphicon glyphicon-floppy-disk"
-							aria-hidden="true"></span> </a><a href="#"><img
-							src="images/glyphicon-@file.jpg" style="width: 23px; height: 24px" /> </a><a
-							href="#"><img src="images/glyphicon-file.jpg"
-							style="width: 20px; height: 25px" /></a>
+					<div class="col-sm-2 col-flex-item">
+						<select class="form-control">
+							<option>All</option>
+						</select>
+					</div>
+					<div class="col-sm-1 col-flex-item">
+						<a href="#"><span class="glyphicon glyphicon-floppy-disk" style="font-size:16px"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-print" style="font-size:16px"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-file" style="font-size:16px"></span></a>
 					</div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-sm-2">
-						<p style="text-align: left; color: black">Opening Balance:
-							$0.00</p>
+						<label style="text-align: left;">Opening Balance:
+							$0.00</label>
 					</div>
-					<div class="col-sm-8"></div>
-					<div class="col-sm-2">
-						<p style="text-align: right; color: black">Closing Balance:
-							$125,000.00</p>
+					<div class="col-sm-7"></div>
+					<div class="col-sm-3">
+						<label style="text-align: right;">Closing Balance:
+							$125,000.00</label>
 					</div>
 				</div>
 			</div>

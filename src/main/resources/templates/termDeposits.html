@@ -10,9 +10,8 @@
 <div class="wrapper">
 	<div class="container-fluid">
 		<div class="col-sm-6 col-md-4">
-			<div class="container-fluid">
-				<div class="summary">
-					<div class="page-header">
+			<div class="container-fluid1">
+					<div class="container-header">
 						<div class="id">SUMMARY</div>
 					</div>
 					<div class="summary-bar">
@@ -25,7 +24,7 @@
 						<br /> <br /> <br />
 						<p>Total Term Deposit</p>
 						<div class="sum-amount" style="color: #f8786b; text-align: left">&#163;{{termDeposite.totalTermDeposits}}</div>
-						<div class="progress skill-bar ">
+						<div class="progress skill-bar">
 							<div class="progress-bar progress-bar-success"
 								style="background-color: #B84B40" role="progressbar"
 								aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
@@ -51,7 +50,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 			<a href="#" class="spec"> <br />
 				<div class="id">NEW DEPOSIT</div>
@@ -81,12 +79,17 @@
 				<div class="closed-loan">
 					<div class="id">CLOSED DEPOSITS</div>
 					<div class="row">
-						<br /> <img src="images/closed-deposits.JPG"
+						<div class="col-sm-3">
+							&nbsp;&nbsp;<img src="images/closed-deposits.JPG"
 							class="img-responsive" style="width: 60px; height: 60px;" />
-						<div class="closed-no">5</div>
-						<div class="clo-loans">Deposits</div>
+						</div>
+						<div class="col-sm-5"></div>
+						<div class="col-sm-3">
+							<div class="closed-no">5</div>
+							<div class="clo-loans">Deposits</div>
+						</div>
 					</div>
-					<div class="page-footer">
+					<div class="container-footer">
 						<a href="#">VIEW ALL<img src="images/forward.png"
 							class="img-responsive"
 							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
@@ -95,9 +98,10 @@
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-4">
-			<div class="container-fluid">
-				<div class="mini-state">
-					<div class="id">MINI STATEMENT</div>
+			<div class="container-fluid1">
+					<div class="container-header">
+						<div class="id">MINI STATEMENT</div>
+					</div>
 					<div class="form-group">
 						<select class="form-control" data-ng-change="onAccountChange()"
 							data-ng-model="nbrAccount" name="nbrAccount"
@@ -123,12 +127,11 @@
 							</div>
 						</a>
 					</div>
-					<div class="page-footer">
+					<div class="container-footer">
 						<a href="#/statement">MORE DETAILS<img src="images/forward.png"
 							class="img-responsive"
 							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
 					</div>
-				</div>
 			</div>
 			<a href="" class="spec"> <br />
 				<div class="id">DEPOSIT CALCULATOR</div>
