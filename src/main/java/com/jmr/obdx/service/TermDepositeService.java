@@ -27,7 +27,8 @@ public class TermDepositeService {
 	private TermDepositeInfo termDepositeInfo;
 	private Double totalTermDeposits;
 	private List<TermDepositeDto> tempDepositeSummary;
-	
+	private String currencyType;
+
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
 
@@ -54,8 +55,7 @@ public class TermDepositeService {
 			List<TermDepositeM> termDepositeMs;
 			try {
 				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
-				termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer(),
-						accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH());
+				termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer(),accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH());
 				termDepositeMs.stream().forEach(tempTermDeposit -> {
 					tempDepositeSummary.add(new TermDepositeDto(tempTermDeposit.getIdaccount(),
 							tempTermDeposit.getCodaccttype(), tempTermDeposit.getCodbranch(),
@@ -76,13 +76,13 @@ public class TermDepositeService {
 							tempTermDeposit.getBlk_mat_days(), tempTermDeposit.getBlk_mat_months(),
 							tempTermDeposit.getPartial_liquidation(), tempTermDeposit.getValuedate()));
 					        totalTermDeposits += Double.parseDouble(tempTermDeposit.getNumavlbalance());
-
+					       currencyType=tempTermDeposit.getCcy();
 				});
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer());
+        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
 		 return  termDepositeInfo;
 	}
 

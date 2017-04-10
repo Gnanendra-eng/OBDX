@@ -40,6 +40,7 @@ public class AccountService {
 	private List<AccountSummaryDto> contractAndTermdeposit;
 	private List<AccountSummaryDto> loanPending;
 	private Double sumOfTotalLoans;
+	private String currencyType;
 	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
@@ -121,13 +122,14 @@ public class AccountService {
 				sumOfLoans += Double.parseDouble(accountsummary.getNUMAVAILBAL());
 				contractAndTermdeposit.add(getAccountSummaryType(accountsummary));
 				}
+			currencyType=accountsummary.getCODACCTCURR();
 		});
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
-				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer());
+				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}

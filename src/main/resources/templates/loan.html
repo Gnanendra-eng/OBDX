@@ -15,12 +15,12 @@
 					</div>
 					<div class="loan-bubble-container">
 						<p style="text-align: center">Total Borrowing</p>
-						<div class="sum-amount" style="color: #d37da4">{{loanInfo.totalBorrowing}}</div>
+						<div class="sum-amount" style="color: #d37da4">{{loanInfo.totalBorrowing | currency :loanInfo.currencyType +'&nbsp;'}}</div>
 
 						<div id="loan" height="100px"></div>
 
 						<p style="text-align: center">Current Outstanding</p>
-						<div class="sum-amount" style="color: #83325b">{{loanInfo.currentOutStanding}}</div>
+						<div class="sum-amount" style="color: #83325b">{{loanInfo.currentOutStanding | currency :loanInfo.currencyType +'&nbsp;'}}</div>
 					</div>
 				</div>
 			</div>

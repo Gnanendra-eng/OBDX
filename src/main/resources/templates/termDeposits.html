@@ -24,7 +24,7 @@
 					<div class="container-fluid">
 						<br /> <br /> <br />
 						<p>Total Term Deposit</p>
-						<div class="sum-amount" style="color: #f8786b; text-align: left">{{termDeposite.totalTermDeposits}}</div>
+						<div class="sum-amount" style="color: #f8786b; text-align: left">{{termDeposite.totalTermDeposits| currency :termDeposite.currencyType +'&nbsp;'}}</div>
 						<div class="progress skill-bar ">
 							<div class="progress-bar progress-bar-success"
 								style="background-color: #B84B40" role="progressbar"
@@ -34,7 +34,7 @@
 						<br />
 						<p>Total Current Balance</p>
 						<div class="sum-amount"
-							style="color: #f8786b; font-size: xx-large; text-align: left">282,865.00</div>
+							style="color: #f8786b; font-size: xx-large; text-align: left">{{termDeposite.currencyType +'&nbsp;'}} 282,865.00 </div>
 						<div class="progress skill-bar ">
 							<div class="progress-bar progress-bar-success progress-striped"
 								style="background-color: #f8786b" role="progressbar"
@@ -43,7 +43,7 @@
 						</div>
 						<br />
 						<p>TE Maturity Amount</p>
-						<div class="sum-amount" style="color: #000000; text-align: left">300,478.93</div>
+						<div class="sum-amount" style="color: #000000; text-align: left">{{termDeposite.currencyType +'&nbsp;'}} 300,478.93 </div>
 						<div class="progress skill-bar ">
 							<div class="progress-bar progress-bar-success"
 								style="background-color: #9d9d9d" role="progressbar"
