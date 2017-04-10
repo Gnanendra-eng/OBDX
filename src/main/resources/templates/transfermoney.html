@@ -92,14 +92,32 @@
             <label class="btn custom-button active">
               <input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Now</input>
             </label>
-            <label class="btn custom-button form-group has-feedback has-feedback-left"  ng-init="open()" >
-            <input	ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
-							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
-							close-text="Close">Later</input>
-							            </label>
+            <label class="btn custom-button" value="Show Hide DIV" ng-click="ShowHide()">Later
+               
+            </label>
           </div>
-        </div>
+      
+            </div>
+        
       </div>
+
+	<div class="form-group has-feedback has-feedback-left" ng-show = "IsVisible"  ng-init="open()">
+				<div class="col-sm-3"></div>
+				<p class="control-label col-sm-2"
+					style="color: gray; text-align: left">Select Your date</p>
+				<div class="col-sm-4">
+					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+					<div>
+						<input type="text" class="form-control"
+							ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+							ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
+							close-text="Close" />
+					</div>
+				</div>
+			</div>
+					
+        
+      
       <div class="form-group">
        <div class="col-sm-3"></div>
         <p class="control-label col-sm-2" style="color: gray;text-align: left">Purpose</p>

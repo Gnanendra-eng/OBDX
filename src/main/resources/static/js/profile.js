@@ -93,6 +93,11 @@ app.config(function($provide) {
 }).call(this);
 
 app.controller("transfermoneyController",function($scope,$http){
+	  $scope.IsVisible = false;
+      $scope.ShowHide = function () {
+          //If DIV is visible it will be hidden and vice versa.
+          $scope.IsVisible = $scope.IsVisible ? false : true;
+      }
 	 self = this;
 	  self.opened = {};
 	  self.open = function($event) {
