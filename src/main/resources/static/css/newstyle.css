@@ -1,5 +1,5 @@
 body {
-	background-color: #f3f7f8;
+	background-color: #d2eaf9;
 	background-size: cover;
 	width: 100%;
 	height: 100%;
@@ -12,24 +12,21 @@ body {
 }
 
 .navbar-default {
-	background-color: rgba(66, 138, 201, 0.38);
-	border-color: rgba(94, 94, 94, 0.44);
-	border-left-color: #b4cde5;
-	border-right-color: #b4cde5;
+	background-color: white;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: #428ac9;
+	color: black;
 	font-size: large;
-	padding-top: 12px;
-	padding-left: 20px;
+    padding-top: 18px;
+    padding-left: 10px;
+    font: small-caption;
 }
 
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
-	.navbar-default .navbar-nav>.open>a:hover {
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover {
 	color: #fff;
 	background-color: #428ac9;
-	height: 48px;
+	height: 58px;
 }
 
 .container-fluid {
@@ -43,7 +40,7 @@ body {
 }
 
 .navbar {
-	height: 50px;
+	height: 60px;
 }
 
 .navbar-nav>li>a {
@@ -52,12 +49,12 @@ body {
 }
 
 .navbar-default .navbar-toggle {
-	border-color: #428ac9;
+	border-color: white;
 }
 
 .navbar-toggle {
 	padding: 8px 5px;
-	margin-top: 5px;
+	margin-top: 12px;
 }
 
 .navbar {
@@ -79,7 +76,7 @@ body {
 }
 
 .navbar-collapse.in {
-	background-color: #b4cde5;
+	background-color: #428ac9;
 	color: black;
 	border: 1px solid #9d9d9d;
 }
@@ -277,6 +274,15 @@ a {
 
 .list-group-item {
 	height: 100px;
+    background-color: #428ac9;
+}
+
+.list-group-item:nth-child(even){
+    background-color: azure;
+}
+
+.list-group-item:nth-child(odd){
+    background-color: aliceblue;
 }
 
 .summary-graph-container {
@@ -295,10 +301,17 @@ a {
     margin-left: auto;
 }
 
-panel-default>.panel-heading {
-	color: #333;
-	background-color: #ededed;
-	border-color: #ddd;
+.panel-default{
+	margin-right:20px;
+	margin-left:20px;
+}
+
+.panel-default>.panel-heading {
+    background-color: #428ac9;
+}
+
+.panel-primary {
+    border-color: #d2eaf9;
 }
 
 .label {
@@ -306,10 +319,6 @@ panel-default>.panel-heading {
 	border-radius: 0em;
 	border: 1px solid #6b6060;
 	font-size: 86%;
-}
-
-.label-default {
-	background-color: #ffffff;
 }
 
 .row-flex {
@@ -327,24 +336,15 @@ panel-default>.panel-heading {
 }
 
 .panel-footer {
-	background-color: white;
-}
-
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
-	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
-	{
-	z-index: 3;
-	color: #fff;
-	cursor: default;
-	background-color: #9d9d9d;
-	border-color: #9d9d9d;
+	background-color: lightsteelblue;
 }
 
 .pagination>li>a {
-	color: #9d9d9d;
+	color: black;
 }
 
 .pagination>.active>a{
+    z-index: initial;
     background-color: #428ac9;
     border-color: #428ac9;
 }
@@ -355,6 +355,19 @@ panel-default>.panel-heading {
 	margin: 3px 0px;
 	border-radius: 0px;
 }
+
+.table>thead>tr>th {
+    background-color: lightskyblue;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: azure;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: aliceblue;
+}
+
 
 @media only screen and (max-width: 760px) , ( min-device-width : 768px)
 	and (max-device-width: 1024px) {
@@ -409,28 +422,11 @@ panel-default>.panel-heading {
 	}
 }
 
-.custom-container {
-    display: block;
-    padding: 4px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    line-height: 1.42857143;
-    background-color: #ffffff;
-	border-bottom-color: #428ac9;
-	border-bottom-width: thick;
-    padding-left: 20px;
-    padding-top: 20px;
-    height: 100%;
-    padding-bottom: 50px;
-    position: relative;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 	.custom-button{
     color: #428ac9;
     background-color: #e7ebed;
     border-color: #ccc;
+    margin-bottom:5px;
     width:180px;
     }
 
@@ -466,12 +462,12 @@ panel-default>.panel-heading {
 }
 
     button:hover{
-    background: #b4cde5;
+    background: #428ac9;
     color: white;
     }
 
     .btn:focus{
-    background: #b4cde5;
+    background: #428ac9;
     color:white;
     }
     
@@ -485,13 +481,15 @@ only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     .custom-button{
         width:98%;
+        padding-bottom:10px;
     }
     }
     
     /* for selectable button groups */
     label.btn.custom-button.active {
     background-color: #428ac9;
-    color:white;
+    color: white;
+    z-index: initial;
 	}
 
 .circle {
@@ -527,8 +525,6 @@ only screen and (max-width: 760px),
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #428ac9;
-    border-bottom-width: thick;
     margin-right: auto;
     margin-left: auto;
     position: relative;
@@ -537,7 +533,7 @@ only screen and (max-width: 760px),
     margin-bottom: 20px;
     line-height: 1.42857143;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: none;
     border-radius: 0px;
 }
 

@@ -1,10 +1,16 @@
 <div class="wrapper" ng-controller="paybillController">
-	<div class="custom-container" style="background:url('images/payment.jpg');background-position: center;background-size: cover;">
+<div class="container-fluid">
+<div class="col-sm-12">
+	<div class="panel panel-primary" style="background:url('images/payment.jpg');background-position: center;background-size: cover;">
+		<div class="panel-heading">
+			<div class="id">PAY BILLS</div>
+		</div>
+		<div class="panel-body">
 		<form class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Biller Name</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Biller Name</label>
 				<div class="col-sm-4">
 					<select class="form-control">
 						<option>005832</option>
@@ -16,8 +22,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Relationship Number</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Relationship Number</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
 						required="required" />
@@ -25,8 +31,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Amount</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Amount</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
 						required="required" />
@@ -34,8 +40,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Pay From</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Pay From</label>
 				<div class="col-sm-4">
 					<select class="form-control">
 						<option>xxxxxxxxxxxx8188</option>
@@ -44,13 +50,13 @@
 						<option>xxxxxxxxxxxx1058</option>
 						<option>xxxxxxxxxxxx9746</option>
 					</select>
-					<p>Balance:&#8356;99,196.18</p>
+					<label style="color: white;">Balance:&#8356;99,196.18</label>
 				</div>
 			</div>
 			<div class="form-group has-feedback has-feedback-left">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Bill Date</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Bill Date</label>
 				<div class="col-sm-4">
 					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 					<div>
@@ -63,8 +69,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Bill Number</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Bill Number</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
 						required="required" />
@@ -72,14 +78,14 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1"></div>
-				<p class="control-label col-sm-2"
-					style="color: black; text-align: left">Note(optional)</p>
+				<label class="control-label col-sm-2"
+					style="color: white; text-align: left">Note(optional)</label>
 				<div class="col-sm-4">
 					<input type="text" ng-model="test" ng-trim="false" maxlength="80"
 						class="form-control" />
-					<p>
-						<span>{{80 - test.length}} Characters Left</span>
-					</p>
+					<label>
+						<span style="color: white;">{{80 - test.length}} Characters Left</span>
+					</label>
 				</div>
 			</div>
 			<div class="form-group">
@@ -90,5 +96,8 @@
 				</div>
 			</div>
 		</form>
+		</div>
 	</div>
+</div>
+</div>
 </div>
