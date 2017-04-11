@@ -395,7 +395,7 @@ app.controller("accountsSummaryController", function($scope,$http) {
 					  { value: $scope.sumofcontractandtermdepostit, color: "#ffa86f", highlight: "#ffa86f", label: "TERM DEPOSIT" },
 					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING ACCOUNT & CURRENT" }
 					];
-					var options = {showTooltips : true,animation: true,percentageInnerCutout : 83,legend: {
+					var options = {showTooltips : true,animation: true,percentageInnerCutout : 50,legend: {
 		            display: true,
 		            labels: {
 		                fontColor: 'rgb(255, 99, 132)'

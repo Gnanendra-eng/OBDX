@@ -7,27 +7,33 @@
 					</div>
 					<div class="summary-bar">
 						<div class="row">
-							<div class="col-sm-10 sum-loans">Account</div>
+							<div class="col-sm-2 no" style="font-size: x-large;left: 30px;top: 0px;">All</div>
+							<div class="col-sm-10 sum-loans">Accounts</div>
 						</div>
 					</div>
 					<div class="summary-graph-container" style="width:250px">
 						<canvas id="account-summary-chart"
 							style="width: 250px; height: 250px;"></canvas>
-						<br /> <br /> <br />
-						<ul>
-							<li style="font-size: 18px;"><span>Term Deposit</span><span
-								style="color: #ffa86f">&nbsp;{{sumofcontractandtermdepostit | currency :response.currencyType +'&nbsp;'}}</span></li>
-							<li style="font-size: 18px;"><span>Saving Account
-									&amp; Current</span><span style="color: #50de7a">&nbsp;{{sumofsavingsandcurrent | currency :response.currencyType +'&nbsp;'}}</span></li>
-							<li style="font-size: 18px;"><span>Loan</span><span
-								style="color: #ff8090">&nbsp;{{sumofloans | currency :response.currencyType+'&nbsp;'}}</span></li>
-
-						</ul>
-
 					</div>
-
-
-					<br /> <br />
+					<div class="summary-graph-container" style="width:100%;text-align:center">
+						<div class="row" style="font-size:large">
+							<span class="glyphicon glyphicon-stop" style="color:#ffa86f"></span>
+							<span>Term Deposit</span>
+							<span style="color: #ffa86f">&nbsp;{{sumofcontractandtermdepostit | currency :response.currencyType +'&nbsp;'}}</span>
+						</div>
+						<br />
+						<div class="row" style="font-size:large">
+							<span class="glyphicon glyphicon-stop" style="color:#50de7a"></span>
+							<span>Saving Account &amp; Current</span>
+							<span style="color: #50de7a">&nbsp;{{sumofsavingsandcurrent | currency :response.currencyType +'&nbsp;'}}</span>
+						</div>
+						<br />
+						<div class="row" style="font-size:large">
+							<span class="glyphicon glyphicon-stop" style="color:#ff8090"></span>
+							<span>Loan</span>
+							<span style="color: #ff8090">&nbsp;{{sumofloans | currency :response.currencyType+'&nbsp;'}}</span>
+						</div>
+					</div>
 				</div>
 		</div>
 		<div class="col-sm-6 col-md-4">
