@@ -144,6 +144,7 @@ app.controller("paybillController", function($scope,$http) {
 
 
 app.controller('newLoanAccountOpening', function($scope) {
+
 	 self = this;
 	  self.opened = {};
 	  self.open = function($event) {

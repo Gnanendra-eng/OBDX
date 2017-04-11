@@ -635,8 +635,7 @@
 								<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone
 									Type</h4>
 
-								<div class="form-group"
-									ng-class="{ 'has-error' : userForm1.phone1.$invalid  &amp;&amp; !userForm1.phone1.$pristine }">
+								<div class="form-group" ng-class="{ 'has-error' : userForm1.phone1.$invalid  &amp;&amp; !userForm1.phone1.$pristine }">
 									<div class="col-sm-3"></div>
 									<p class="control-label col-sm-2"
 										style="color: gray; text-align: left">Phone Type</p>
@@ -655,7 +654,7 @@
 
 								</div>
 								<div class="form-group"
-									ng-class="{ 'has-error' : userForm1.phone.$invalid &amp;&amp; !userForm1.phone.$pristine }">
+ng-class="{ 'has-error' : userForm1.phone.$invalid &amp;&amp; !userForm1.phone.$pristine }">
 									<div class="col-sm-3"></div>
 									<p class="control-label col-sm-2"
 										style="color: gray; text-align: left">Phone Number</p>
@@ -681,11 +680,11 @@
 										style="color: gray; text-align: left">Add Alternate Phone
 										Number</p>
 									<div class="col-sm-4">
-										<label class="switch"> <input class="switch-input"
-											type="checkbox" /> <span class="switch-label" data-on="YES"
-											data-off="NO"></span> <span class="switch-handle"></span>
-										</label>
-
+										 <div class="btn-group btn-toggle"> 
+    <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Open</button>
+    <button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Close</button>
+  </div>
+  <div  id="collapsible"> 
 									</div>
 								</div>
 
@@ -702,7 +701,7 @@
 </div>
 									</div>
 								</div>
-
+</div>
 							</div>
 						
 					</form>
