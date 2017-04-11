@@ -49,7 +49,7 @@ body {
 }
 
 .navbar-default .navbar-toggle {
-	border-color: #428ac9;
+	border-color: white;
 }
 
 .navbar-toggle {
@@ -274,6 +274,15 @@ a {
 
 .list-group-item {
 	height: 100px;
+    background-color: #428ac9;
+}
+
+.list-group-item:nth-child(even){
+    background-color: azure;
+}
+
+.list-group-item:nth-child(odd){
+    background-color: aliceblue;
 }
 
 .summary-graph-container {
@@ -292,10 +301,17 @@ a {
     margin-left: auto;
 }
 
-panel-default>.panel-heading {
-	color: #333;
-	background-color: #ededed;
-	border-color: #ddd;
+.panel-default{
+	margin-right:20px;
+	margin-left:20px;
+}
+
+.panel-default>.panel-heading {
+    background-color: #428ac9;
+}
+
+.panel-primary {
+    border-color: #d2eaf9;
 }
 
 .label {
@@ -303,10 +319,6 @@ panel-default>.panel-heading {
 	border-radius: 0em;
 	border: 1px solid #6b6060;
 	font-size: 86%;
-}
-
-.label-default {
-	background-color: #ffffff;
 }
 
 .row-flex {
@@ -324,23 +336,15 @@ panel-default>.panel-heading {
 }
 
 .panel-footer {
-	background-color: white;
-}
-
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
-	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
-	{
-	color: #fff;
-	cursor: default;
-	background-color: #9d9d9d;
-	border-color: #9d9d9d;
+	background-color: lightsteelblue;
 }
 
 .pagination>li>a {
-	color: #9d9d9d;
+	color: black;
 }
 
 .pagination>.active>a{
+    z-index: initial;
     background-color: #428ac9;
     border-color: #428ac9;
 }
@@ -353,7 +357,15 @@ panel-default>.panel-heading {
 }
 
 .table>thead>tr>th {
-    background-color: #428ac9;
+    background-color: lightskyblue;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: azure;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: aliceblue;
 }
 
 
@@ -410,29 +422,11 @@ panel-default>.panel-heading {
 	}
 }
 
-.custom-container {
-    display: block;
-    padding: 4px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    line-height: 1.42857143;
-    background-color: #ffffff;
-	border-bottom-color: #428ac9;
-	border-bottom-width: thick;
-    padding-left: 20px;
-    padding-top: 20px;
-    height: 100%;
-    padding-bottom: 50px;
-    position: relative;
-    margin-left: 20px;
-    margin-right: 20px;
-    border:1px solid;
-}
-
 	.custom-button{
     color: #428ac9;
     background-color: #e7ebed;
     border-color: #ccc;
+    margin-bottom:5px;
     width:180px;
     }
 
@@ -441,12 +435,12 @@ panel-default>.panel-heading {
     }
 
     button:hover{
-    background: #b4cde5;
+    background: #428ac9;
     color: white;
     }
 
     .btn:focus{
-    background: #b4cde5;
+    background: #428ac9;
     color:white;
     }
     
@@ -460,13 +454,15 @@ only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     .custom-button{
         width:98%;
+        padding-bottom:10px;
     }
     }
     
     /* for selectable button groups */
     label.btn.custom-button.active {
     background-color: #428ac9;
-    color:white;
+    color: white;
+    z-index: initial;
 	}
 
 .circle {
