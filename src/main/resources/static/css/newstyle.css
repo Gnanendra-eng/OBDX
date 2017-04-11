@@ -433,33 +433,6 @@ a {
     .btn{
     border-radius: 2px;
     }
-    
-    
-    
-    
-    .panel-heading [data-toggle="collapse"]:after
-{
-	font-family: 'Glyphicons Halflings';
-	content: "\e072";
-	float: right;
-	color: #b0c5d8;
-	font-size: 18px;
-	line-height: 22px;
-
-	-webkit-transform: rotate(-90deg);
-	-moz-transform:    rotate(-90deg);
-	-ms-transform:     rotate(-90deg);
-	-o-transform:      rotate(-90deg);
-	transform:         rotate(-90deg);
-}
-.panel-heading [data-toggle="collapse"].collapsed:after
-{
-	-webkit-transform: rotate(90deg);
-	-moz-transform:    rotate(90deg);
-	-ms-transform:     rotate(90deg);
-	-o-transform:      rotate(90deg);
-	transform:         rotate(90deg);
-}
 
     button:hover{
     background: #428ac9;
@@ -661,8 +634,26 @@ only screen and (max-width: 760px),
 	-o-transition: All 0.3s ease;
 }
 
-.panel-default>.panel-heading-custom {
-	background-image: none;
-	background-color: black;
-	color: white;
+.panel-heading [data-toggle="collapse"]:after
+{
+	font-family: 'Glyphicons Halflings';
+	content: "\e072";
+	float: right;
+	color: #d2eaf9;
+	font-size: 18px;
+	line-height: 22px;
+
+	-webkit-transform: rotate(-90deg);
+	-moz-transform:    rotate(-90deg);
+	-ms-transform:     rotate(-90deg);
+	-o-transform:      rotate(-90deg);
+	transform:         rotate(-90deg);
+}
+.panel-heading [data-toggle="collapse"].collapsed:after
+{
+	-webkit-transform: rotate(90deg);
+	-moz-transform:    rotate(90deg);
+	-ms-transform:     rotate(90deg);
+	-o-transform:      rotate(90deg);
+	transform:         rotate(90deg);
 }
