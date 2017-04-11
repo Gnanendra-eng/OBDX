@@ -300,6 +300,12 @@ app.controller("accountsController", function($scope,$http) {
 
 	function onChangeNbrAccountId(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+		    if(data.odLimit==null){
+		    	data.odLimit="Nill";
+		    }
+		    if(data.accStatus==null){
+		    	data.accStatus="Unknown";
+		    }
 		    $scope.accountdetails =data;
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};

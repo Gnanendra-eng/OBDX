@@ -76,7 +76,7 @@
 					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.amountOnHold | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 					<br />
 					<p>Uncleared Funds</p>
-					<div class="sum-amount" style="text-align: left; font-size: large"></div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.numunCollected | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 					<br />
 					<p>Minimum Balance Required</p>
 					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.minBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
@@ -85,7 +85,7 @@
 					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.availableBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 					<br />
 					<p>Allowed OverDraft Limit</p>
-					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit }}</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit}}</div>
 				</div>
 			</div>
 		</div>
