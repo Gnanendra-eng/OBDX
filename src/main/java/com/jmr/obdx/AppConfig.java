@@ -7,7 +7,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
  * @author JMR
  */
 @Configuration
-public class Appconfig {
+public class AppConfig {
 
 	 @Bean
 	 public HibernateJpaSessionFactoryBean sessionFactory() {

@@ -92,6 +92,18 @@ app.config(function($provide) {
     }]);
 }).call(this);
 
+
+
+
+app.controller('toggleController', function ($scope) {
+    //This will hide the DIV by default.
+    $scope.IsVisible = false;
+    $scope.Showaddress = function (value) {
+        //If DIV is visible it will be hidden and vice versa.
+        $scope.IsVisible = value == "Y";
+    }
+});
+
 app.controller("transfermoneyController",function($scope,$http){
 	  $scope.IsVisible = false;
       $scope.ShowHide = function () {
@@ -188,10 +200,11 @@ app.controller('newLoanAccountOpening', function($scope) {
 			
 		}
 		
-	}
+	
 	
 
 
+}
 });
 
 
@@ -228,16 +241,6 @@ app.controller("loanController", function($scope,$http) {
 	}
 });
 
-
-
-app.controller('toggleController', function ($scope) {
-    //This will hide the DIV by default.
-    $scope.IsVisible = false;
-    $scope.Showaddress = function (value) {
-        //If DIV is visible it will be hidden and vice versa.
-        $scope.IsVisible = value == "Y";
-    }
-});
 
 
 
