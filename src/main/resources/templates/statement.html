@@ -1,9 +1,63 @@
+<style>
+	@media only screen and (max-width: 760px) , ( min-device-width : 768px)
+	and (max-device-width: 1024px) {
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+		border: 1px solid gray;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 35%;
+		text-align: right;
+		min-height: 30px;
+		max-height: 100px;
+		overflow-wrap: break-word;
+	}
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 5px;
+		white-space: nowrap;
+		text-align: left;
+	}
+	td:nth-of-type(1):before {
+		content: "Date:";
+	}
+	td:nth-of-type(2):before {
+		content: "Description:";
+	}
+	td:nth-of-type(3):before {
+		content: "Reference Number:";
+	}
+	td:nth-of-type(4):before {
+		content: "Amount:";
+	}
+	td:nth-of-type(5):before {
+		content: "Balance:";
+	}
+}
+</style>
 <div class="wrapper">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="row row-flex">
-					<div class="col-sm-4"></div>
-					<div class="col-sm-4">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
 						<div class="form-group">
 							<select class="form-control"
 								data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
@@ -12,34 +66,36 @@
 							</select>
 						</div>
 					</div>
+					<div class="col-md-3"></div>
 				</div>
 				<br />
-				<div class="row row-flex">
-					<div class="col-sm-2 col-flex-item">
+				<div class="row">
+					<div class="col-md-2">
 						<select class="form-control">
 							<option>Current Period</option>
 						</select>
 					</div>
-					<div class="col-sm-7 col-flex-item"></div>
-					<div class="col-sm-2 col-flex-item">
+					<div class="col-md-7"></div>
+					<div class="col-md-2">
 						<select class="form-control">
 							<option>All</option>
 						</select>
 					</div>
-					<div class="col-sm-1 col-flex-item">
-						<a href="#"><span class="glyphicon glyphicon-floppy-disk" style="font-size:16px"></span></a>
-						<a href="#"><span class="glyphicon glyphicon-print" style="font-size:16px"></span></a>
-						<a href="#"><span class="glyphicon glyphicon-file" style="font-size:16px"></span></a>
+					<div class="col-md-1" style="display: -webkit-flex;-webkit-justify-content: space-around;
+    											display: flex;justify-content: space-around;">
+						<a href="#"><span class="glyphicon glyphicon-floppy-disk" style="font-size:16px;top:10px"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-print" style="font-size:16px;top:10px"></span></a>
+						<a href="#"><span class="glyphicon glyphicon-file" style="font-size:16px;top:10px"></span></a>
 					</div>
 				</div>
 				<br />
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-md-2">
 						<label style="text-align: left;">Opening Balance:
 							$0.00</label>
 					</div>
-					<div class="col-sm-7"></div>
-					<div class="col-sm-3">
+					<div class="col-md-7"></div>
+					<div class="col-md-3">
 						<label style="text-align: right;">Closing Balance:
 							$125,000.00</label>
 					</div>

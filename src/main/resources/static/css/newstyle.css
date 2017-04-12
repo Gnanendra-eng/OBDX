@@ -6,79 +6,43 @@ body {
 	overflow-x: hidden;
 }
 
-.navbar-brand {
-	left: 10px;
-	position: initial;
-}
-
-.navbar-default {
-	background-color: white;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: black;
-	font-size: large;
-    padding-top: 18px;
-    padding-left: 10px;
-    font: small-caption;
-}
-
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover {
 	color: #fff;
 	background-color: #428ac9;
 	height: 58px;
 }
 
+.navbar{
+	min-height:60px;
+}
+
+@media (min-width: 768px){
+.navbar {
+    border-radius: 0px;
+}
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
+    font: small-caption;
+}
+
+@media (max-width: 767px){
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #333;
+    background-color: slategray;
+}
+
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #777;
+    background: #d2eaf9;
+}
+}
+
 .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;
     padding-bottom: 25px;
-}
-
-.navbar-default .navbar-brand {
-	padding-left: 15px;
-}
-
-.navbar {
-	height: 60px;
-}
-
-.navbar-nav>li>a {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.navbar-default .navbar-toggle {
-	border-color: white;
-}
-
-.navbar-toggle {
-	padding: 8px 5px;
-	margin-top: 12px;
-}
-
-.navbar {
-	z-index: 1000;
-}
-
-@media ( min-width : 768px) {
-	.navbar {
-		border-radius: 0px;
-	}
-}
-
-/*for dropdown backround in mobile view*/
-@media ( max-width : 767px) {
-	.navbar-nav .open .dropdown-menu>li>a {
-		padding: 5px 15px 5px 25px;
-		background-color: aliceblue;
-	}
-}
-
-.navbar-collapse.in {
-	background-color: #428ac9;
-	color: black;
-	border: 1px solid #9d9d9d;
 }
 
 .glyphicon-plus-sign {
@@ -219,19 +183,21 @@ p {
 }
 
 .closed-no {
-    color: #0a0b0c;
-    font-size: xx-large;
-    position: absolute;
-    top: 40px;
+	color: #0a0b0c;
+	font-size: xx-large;
+	position: absolute;
+	bottom: 60px;
+	right: 80px;
 }
 
 /*for "loans" written in closed loan section*/
 .clo-loans {
-    color: #0a0b0c;
-    font-size: large;
-    position: absolute;
-    right: 1px;
-    top: 53px;
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: large;
+	position: absolute;
+	bottom: 65px;
+	right: 10px;
 }
 
 .container-footer {
@@ -321,16 +287,6 @@ a {
 	font-size: 86%;
 }
 
-.row-flex {
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.col-flex-item {
-	display: flex;
-	flex-flow: row wrap;
-}
-
 .vertical-divider {
 	border-left: 1px solid gray;
 }
@@ -369,58 +325,7 @@ a {
 }
 
 
-@media only screen and (max-width: 760px) , ( min-device-width : 768px)
-	and (max-device-width: 1024px) {
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
-		display: block;
-		border: 1px solid gray;
-	}
 
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	td {
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 35%;
-		text-align: right;
-		min-height: 30px;
-		max-height: 100px;
-		overflow-wrap: break-word;
-	}
-	td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 5px;
-		white-space: nowrap;
-		text-align: left;
-	}
-	td:nth-of-type(1):before {
-		content: "Date:";
-	}
-	td:nth-of-type(2):before {
-		content: "Description:";
-	}
-	td:nth-of-type(3):before {
-		content: "Reference Number:";
-	}
-	td:nth-of-type(4):before {
-		content: "Amount:";
-	}
-	td:nth-of-type(5):before {
-		content: "Balance:";
-	}
-}
 
 	.custom-button{
     color: #428ac9;
@@ -455,6 +360,7 @@ only screen and (max-width: 760px),
     .custom-button{
         width:98%;
         padding-bottom:10px;
+        font-size:x-small;
     }
     }
     
