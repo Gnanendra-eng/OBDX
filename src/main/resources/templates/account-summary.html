@@ -41,7 +41,7 @@
 			<a href="" class="thumbnail"
 				data-ng-repeat="sgscut in savingsandcurrent">
 				<div class="inner-triangle">
-					<img src="savings.png" class="img-circle" style="width: 40px;height: 40px;" />
+					<img src="images/savings.png" class="img-circle" style="width: 40px;height: 40px;margin-top: 10px;margin-left: 10px;" />
 				</div>
 				<div class="id">Savings &amp; Current</div>
 				<p>{{sgscut.idaccount}}</p>
@@ -52,7 +52,7 @@
 				<div class="amount">{{sgscut.numbalance | currency :sgscut.codacctcurr +'&nbsp;'}}</div>
 			</a> <a href="" class="thumbnail" data-ng-repeat="loan in loan">
 				<div class="inner-triangle">
-					<img src="loan.png" class="img-circle" style="width: 40px;height: 40px;" />
+					<img src="images/loan.png" class="img-circle" style="width: 40px;height: 40px;margin-top: 10px;margin-left: 10px;" />
 				</div>
 				<div class="id">Loans</div>
 				<p>{{loan.idaccount}}</p>
@@ -64,7 +64,7 @@
 			</a> <a href="" class="thumbnail"
 				data-ng-repeat="conttempdep in contractandtermdepostit">
 				<div class="inner-triangle">
-					<img src="deposit.png" class="img-circle" style="width: 40px;height: 40px;" />
+					<img src="images/deposit.png" class="img-circle" style="width: 40px;height: 40px;margin-top: 10px;margin-left: 10px;" />
 				</div>
 				<div class="id">Contract &amp; Term deposit</div>
 				<p>{{conttempdep.idaccount}}</p>
