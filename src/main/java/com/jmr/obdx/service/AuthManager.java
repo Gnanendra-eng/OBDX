@@ -82,7 +82,7 @@ public class AuthManager {
 	protected void configureHttpSession( HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
 	   logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		HttpSession httpSession = httpServletRequest.getSession();
-		httpSession.setMaxInactiveInterval(timeOut);
+		//httpSession.setMaxInactiveInterval(timeOut);
 		Cookie[] cookies = httpServletRequest.getCookies();
 		if ((cookies != null) && (cookies.length > 0)) {
 			for (Cookie cookie : cookies) {

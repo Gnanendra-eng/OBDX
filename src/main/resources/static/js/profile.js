@@ -20,6 +20,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/loan-details", {
     	templateUrl : '/fragment/loan-details.html',
     	controller:"loanMoreInfoController"	
+    }).when("/tempDeposite-details", {
+    	templateUrl : '/fragment/tempdeposite-details.html',
+    	controller:"tempDepositeMoreInfoController"	
     }).when("/statement", {
     	templateUrl : '/fragment/statement.html',
     	controller:"statementController"	
@@ -89,6 +92,12 @@ app.controller("loanController", function($scope,$http,sharedProperties,$window)
 app.controller("loanMoreInfoController", function($scope,$http,sharedProperties) {
 
 	$scope.loanMoreInfo=sharedProperties.getProperty();
+
+});
+
+app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedProperties) {
+
+	$scope.tempDepositeMoreInfo=sharedProperties.getProperty();
 
 });
 
@@ -311,7 +320,7 @@ app.controller("statementController", function($scope,$http) {
 	}
 });
 
-app.controller("termDepositsController", function($scope,$http) {
+app.controller("termDepositsController", function($scope,$http,sharedProperties,$window) {
     $http.get("/user/termdeposit/").success(function(data,status) {
      $scope.termDeposite = data;
   	 $scope.select_prop_nbrAccounts = [];
@@ -336,6 +345,11 @@ app.controller("termDepositsController", function($scope,$http) {
 		}).error(function(data,status) {
 			 throw { message: 'error message',status:status};
 		});	
+	}
+	
+	$scope.tempDepositeMoreInfo=function(tempDepositeMoreInfo){
+		sharedProperties.setProperty(tempDepositeMoreInfo);
+		$window.location.href ='#/tempDeposite-details';
 	}
 });
 
@@ -396,7 +410,12 @@ app.config(function($provide) {
     $provide.decorator("$exceptionHandler", function($delegate) {
 		return function(exception, cause) {
 			$delegate(exception, cause);
-			toastrErrorMsg("Internal server error. Please try after sometime.","HTTP - "+exception.status);
+			if(exception.status==500||exception.status==400){
+				toastrErrorMsg("Internal server error. Please try after sometime.","HTTP - "+exception.status);
+			}else{
+				toastrErrorMsg(exception.message,exception.status);
+			}
+			
 		};
 	});
 });

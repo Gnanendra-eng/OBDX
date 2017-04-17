@@ -1,0 +1,111 @@
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="id">TEMPDEPOSITE DETAILS</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-md-5"></div>
+							<label class="control-label col-sm-2" style="text-align: center">{{tempDepositeMoreInfo.customername}}</label>
+							<div class="col-md-5"></div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-4"></div>
+							<label class="control-label col-sm-4" style="text-align: center">{{tempDepositeMoreInfo.idaccount}}</label>
+							<div class="col-md-4"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="id">Account Details</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Deposit
+								Date</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.depositdate}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Maturity
+								Date</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.maturitydate}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Status</label>
+							<div class="col-sm-4">
+								<h4 data-ng-if="tempDepositeMoreInfo.tdstatus=='A'">Active</h4>
+								<h4 data-ng-if="tempDepositeMoreInfo.tdstatus=='c'">Closed</h4>
+								<h4 data-ng-if="tempDepositeMoreInfo.tdstatus=='E'">Expired</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Branch
+								Code</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.codbranch}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Currency
+								Type</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.ccy}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Description</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.proddesc}}</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Balance</label>
+							<div class="col-sm-4">
+								<h4>{{tempDepositeMoreInfo.numavlbalance|currency
+									:tempDepositeMoreInfo.currency+'&nbsp;'}}</h4>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<button type="button" class="btn custom-button">Schedule</button>
+
+								<button type="button" class="btn custom-button">Repay</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
