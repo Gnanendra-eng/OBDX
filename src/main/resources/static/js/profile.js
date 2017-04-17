@@ -41,17 +41,6 @@ app.config(function($routeProvider,$locationProvider) {
     });
 });
 
-/**Exception handler**/
-app.config(function($provide) {
-    $provide.decorator("$exceptionHandler", function($delegate) {
-		return function(exception, cause) {
-			$delegate(exception, cause);
-            alert(exception.message +" "+exception.status);
-		};
-	});
-});
-
-/**contact-information**/
 
 
 
@@ -63,34 +52,6 @@ app.config(function($provide) {
 
 
 
-
-
-
-
-
-/**Spinner loader**/
-(function(){
-    angular.module('ngLoadingSpinner', ['angularSpinner'])
-    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
-        return {
-            link: function (scope, elm, attrs){
-                $rootScope.spinnerActive = false;
-                scope.isLoading = function () {
-                    return $http.pendingRequests.length > 0;
-                };
-                scope.$watch(scope.isLoading, function (loading){
-                    $rootScope.spinnerActive = loading;
-                    if(loading){
-                        elm.removeClass('ng-hide');
-                    }else{
-                        elm.addClass('ng-hide');
-                    }
-                });
-            }
-        };
-
-    }]);
-}).call(this);
 
 app.controller("transfermoneyController",function($scope,$http){
 	  $scope.IsVisible = false;
@@ -263,21 +224,6 @@ app.controller('jsonCtrl1', function($scope, $http){
 	});
 
 
-app.controller('emailController', function ($scope) {
-	  $scope.fields = {
-			    email: '',
-			    emailConfirm: ''
-			  };
-
-			  $scope.submit = function() {
-			    alert("Submit!");
-			  };
-			});
-
-
-
-
-
 app.controller("accountsController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
@@ -399,7 +345,7 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		   var doughnutData = [
 				      { value: $scope.sumofloans, color:"#ff8080", highlight: "#ff8090", label: "LOAN" },
 					  { value: $scope.sumofcontractandtermdepostit, color: "#ffa86f", highlight: "#ffa86f", label: "TERM DEPOSIT" },
-					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING ACCOUNT & CURRENT" }
+					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING & CURRENT" }
 					];
 					var options = {showTooltips : true,animation: true,percentageInnerCutout : 50,legend: {
 		            display: true,
@@ -433,6 +379,44 @@ app.controller("accountsSummaryController", function($scope,$http) {
 	}
 });
 
+
+/**Exception handler**/
+app.config(function($provide) {
+    $provide.decorator("$exceptionHandler", function($delegate) {
+		return function(exception, cause) {
+			$delegate(exception, cause);
+			toastrErrorMsg(exception.message,exception.status);
+		};
+	});
+});
+
+
+/**Spinner loader**/
+(function(){
+    angular.module('ngLoadingSpinner', ['angularSpinner'])
+    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
+        return {
+            link: function (scope, elm, attrs){
+                $rootScope.spinnerActive = false;
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+                scope.$watch(scope.isLoading, function (loading){
+                    $rootScope.spinnerActive = loading;
+                    if(loading){
+                        elm.removeClass('ng-hide');
+                    }else{
+                        elm.addClass('ng-hide');
+                    }
+                });
+            }
+        };
+
+    }]);
+}).call(this);
+
+
+/**Password matcher**/
 app.directive('match', function($parse) {
 	  return {
 	    require: 'ngModel',
@@ -443,8 +427,92 @@ app.directive('match', function($parse) {
 	        ctrl.$setValidity('mismatch', currentValue);
 	      });
 	    }
-	  };
-	});
+	 };
+});
 
 
+/** toaster for success message **/
+function toastrSucessMsg(message, operation_status) {
+	toastr.options = {"debug" : false,"positionClass" : "toast-top-right","onclick" : null,"fadeIn" : 300,"fadeOut" : 100,"timeOut" : 4000,"extendedTimeOut" : 1000}
+	toastrs();
+	var showToastrs = false;
+	function toastrs() {
+		if (!showToastrs) {
+			toastr.success(message, operation_status)
+		}
+	}
+	toastr.options.onFadeIn = function() {
+		showToastrs = true;
+	};
+	toastr.options.onFadeOut = function() {
+		showToastrs = false;
+	};
+}
 
+
+/** toaster for error message**/
+function toastrErrorMsg(message, operation_status) {
+	toastr.options = {"debug" : false,"positionClass" : "toast-top-right","onclick" : null,"fadeIn" : 300,"fadeOut" : 100,"timeOut" : 4000,"extendedTimeOut" : 1000}
+	toastrs();
+	var showToastrs = false;
+	function toastrs() {
+		if (!showToastrs) {
+			toastr.error(message, operation_status)
+		}
+	}
+	toastr.options.onFadeIn = function() {
+		showToastrs = true;
+	};
+	toastr.options.onFadeOut = function() {
+		showToastrs = false;
+	};
+}
+
+
+/** AngularJs unique filter**/
+app.filter('unique', function () {
+	return function (items, filterOn) {
+        if (filterOn === false) {
+            return items;
+        }
+        if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+            var hashCheck = {}, newItems = [];
+            var extractValueToCompare = function (item) {
+                if (angular.isObject(item) && angular.isString(filterOn)) {
+                    return item[filterOn];
+                } else {
+                    return item;
+                }
+            };
+            angular.forEach(items, function (item) {
+                var valueToCheck, isDuplicate = false;
+                for (var i = 0; i < newItems.length; i++) {
+                    if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    newItems.push(item);
+                }
+
+            });
+            items = newItems;
+        }
+        return items;
+    };
+});
+
+
+/**unique filter**/
+function arrayUniqueFilter(arrayInput) {
+    var cleaned = [];
+    arrayInput.forEach(function(itm) {
+        var unique = true;
+        cleaned.forEach(function(itm2) {
+            if (angular.equals(itm, itm2)) unique = false;
+        });
+        if (unique)  cleaned.push(itm);
+    });
+    return cleaned;
+}
