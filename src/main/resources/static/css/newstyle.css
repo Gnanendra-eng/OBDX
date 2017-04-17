@@ -108,9 +108,15 @@ p {
 	font-size: x-large;
 }
 
+.name{
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: large;
+}
+
 .amount {
 	color: #0a0b0c;
-	font-size: xx-large;
+	font-size: large;
 	position: absolute;
 	bottom: 0px;
 	right: 15px;
@@ -121,13 +127,13 @@ p {
 	font-size: initial;
 	position: absolute;
 	right: 20px;
-	bottom: 40px;
+	bottom: 25px;
 }
 
 .thumbnail {
 	padding-left: 20px;
 	padding-top: 20px;
-	min-height: 200px;
+	min-height: 185px;
 	max-height: 300px;
 	border-bottom-color: #428ac9;
 	border-bottom-width: thick;
