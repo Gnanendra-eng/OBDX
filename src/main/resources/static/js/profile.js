@@ -38,6 +38,8 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/new-loan-account-opening", {
     	templateUrl : '/fragment/loan-opening.html',
     	controller:'newLoanAccountOpening'	
+    }).when("/edit-profile", {
+    	templateUrl : '/fragment/edit-profile.html'
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
