@@ -17,6 +17,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/loan", {
     	templateUrl : '/fragment/loan.html',
     	controller:"loanController"	
+    }).when("/loan-details", {
+    	templateUrl : '/fragment/loan-details.html',
+    	controller:"loanController"	
     }).when("/statement", {
     	templateUrl : '/fragment/statement.html',
     	controller:"statementController"	
