@@ -1,4 +1,4 @@
-/** Angular app creations and route configurations **/
+/** Angular application creation and route configurations **/
 var app = angular.module("profileApp", ["ngTagsInput","ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination","ui.bootstrap"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider
@@ -19,7 +19,7 @@ app.config(function($routeProvider,$locationProvider) {
     	controller:"loanController"	
     }).when("/loan-details", {
     	templateUrl : '/fragment/loan-details.html',
-    	controller:"loanController"	
+    	controller:"loanMoreInfoController"	
     }).when("/statement", {
     	templateUrl : '/fragment/statement.html',
     	controller:"statementController"	
@@ -44,16 +44,51 @@ app.config(function($routeProvider,$locationProvider) {
     });
 });
 
+app.controller("loanController", function($scope,$http,sharedProperties,$window) {
+	
+	$http.get("/user/loan/").success(function(data,status) {
+		 $scope.loanInfo=data;		
+		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
+		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+		 var viz = new BubbleChart(options);
+		 viz.data(data);
+		 $scope.select_prop_nbrAccounts = [];
+		 $scope.customerId=$scope.loanInfo.customerId;
+	        angular.forEach($scope.loanInfo.nbrAccounts, function(name, index) {
+				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		 });
+	     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+	     onChangeNbrAccountId();
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;		
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
+	
+	$scope.loanMoreInfo=function(loanMoreInfo){
+		sharedProperties.setProperty(loanMoreInfo);
+		$window.location.href ='#/loan-details';
+	}
+	
+});
 
+app.controller("loanMoreInfoController", function($scope,$http,sharedProperties) {
 
+	$scope.loanMoreInfo=sharedProperties.getProperty();
 
-
-
-
-
-
-
-
+});
 
 
 app.controller("transfermoneyController",function($scope,$http){
@@ -158,36 +193,7 @@ app.controller('newLoanAccountOpening', function($scope) {
 
 
 
-app.controller("loanController", function($scope,$http) {
-	$http.get("/user/loan/").success(function(data,status) {
-		 $scope.loanInfo=data;		
-		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
-		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
-		 var viz = new BubbleChart(options);
-		 viz.data(data);
-		 $scope.select_prop_nbrAccounts = [];
-		 $scope.customerId=$scope.loanInfo.customerId;
-	        angular.forEach($scope.loanInfo.nbrAccounts, function(name, index) {
-				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
-		 });
-	     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
-	     onChangeNbrAccountId();
-	}).error(function(data,status) {
-		 throw { message: 'error message',status:status};
-	});	
-	$scope.onAccountChange=function(){
-		if($scope.nbrAccount!=undefined){
-			onChangeNbrAccountId();
-		}
-	}
-	function onChangeNbrAccountId(){
-		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
-			$scope.transactionInfos =data;		
-		}).error(function(data,status) {
-			 throw { message: 'error message',status:status};
-		});	
-	}
-});
+
 
 
 
@@ -388,7 +394,7 @@ app.config(function($provide) {
     $provide.decorator("$exceptionHandler", function($delegate) {
 		return function(exception, cause) {
 			$delegate(exception, cause);
-			toastrErrorMsg(exception.message,exception.status);
+			toastrErrorMsg("Internal server error. Please try after sometime.","HTTP - "+exception.status);
 		};
 	});
 });

@@ -9,12 +9,12 @@
                     <form class="form-horizontal">
 					<div class="form-group">
 						<div class="col-md-5"></div>
-						<label class="control-label col-sm-2" style="text-align: center">KATHY STEPHENS</label>
+						<label class="control-label col-sm-2" style="text-align: center">{{loanMoreInfo.applicantName}}</label>
 						<div class="col-md-5"></div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-4"></div>
-						<label class="control-label col-sm-4" style="text-align: center">xxxxxxxxxxxxAORU</label>
+						<label class="control-label col-sm-4" style="text-align: center">{{loanMoreInfo.customerId}}</label>
 						<div class="col-md-4"></div>
 					</div>
                     </form>
@@ -27,32 +27,27 @@
 				</div>
 				<div class="panel-body">
                     <form class="form-horizontal">
-					<div class="form-group">
-						<div class="col-sm-4"></div>
-        				<label class="control-label col-sm-2" style="text-align: left">Customer ID</label>
-        				<div class="col-sm-4">
-          					<h4>006**</h4>
-        				</div>
-					</div>
+					
 					<div class="form-group">
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Opening Date</label>
         				<div class="col-sm-4">
-          					<h4>03 Jan 2015</h4>
+          					<h4>{{loanMoreInfo.openingDate}}</h4>
         				</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Maturity Date</label>
         				<div class="col-sm-4">
-          					<h4>03 Jan 2016</h4>
+          					<h4>{{loanMoreInfo.maturityDate}}</h4>
         				</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Status</label>
         				<div class="col-sm-4">
-          					<h4>Active</h4>
+          					<h4 data-ng-if="loanMoreInfo.status=='A'">Active</h4>
+          					<h4 data-ng-if="loanMoreInfo.status=='c'">Not Active</h4>
         				</div>
 					</div>
 					<div class="form-group">
@@ -66,21 +61,21 @@
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Total Amount Disbursed</label>
         				<div class="col-sm-4">
-          					<h4>76,500.00</h4>
+          					<h4>{{loanMoreInfo.amountDisbursed|currency :loanMoreInfo.currency+'&nbsp;'}}</h4>
         				</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Amount Re-paid Till Date</label>
         				<div class="col-sm-4">
-          					<h4>22,912.00</h4>
+          					<h4>{{22912|currency :loanMoreInfo.currency+'&nbsp;'}}</h4>
         				</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-4"></div>
         				<label class="control-label col-sm-2" style="text-align: left">Outstanding Amount</label>
         				<div class="col-sm-4">
-          					<h4>54,031.90</h4>
+          					<h4>{{loanMoreInfo.outStandingLoanAmount|currency :loanMoreInfo.currency+'&nbsp;'}}</h4>
         				</div>
 					</div>
                     </form>
@@ -117,10 +112,10 @@
 				</div>
 				<div class="panel-body">
 					<label class="control-label" style="text-align: left">Loan Tenure</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">12months 0days</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{loanMoreInfo.tenorMonths}}</div>
 					<br />
 					<label class="control-label" style="text-align: left">Total Installments</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">13</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{loanMoreInfo.installMents}}</div>
 					<br />
 					<label class="control-label" style="text-align: left">Remaining Installments</label>
 					<div class="sum-amount" style="text-align: left; font-size: large">9</div>
@@ -129,7 +124,7 @@
 					<div class="sum-amount" style="text-align: left; font-size: large">03 Feb 2015</div>
 					<br />
 					<label class="control-label" style="text-align: left">Next Installment Amount</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">4,629.29</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{4629|currency :loanMoreInfo.currency+'&nbsp;'}}</div>
 				</div>
 			</div>
 		</div>
@@ -140,16 +135,16 @@
 				</div>
 				<div class="panel-body">
 					<label class="control-label" style="text-align: left">Principal Arrears</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">53,588.00</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{53588|currency :loanMoreInfo.currency+'&nbsp;'}}</div>
 					<br />
 					<label class="control-label" style="text-align: left">Interest Arrears</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">0.00</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{0|currency :loanMoreInfo.currency+'&nbsp;'}}</div>
 					<br />
 					<label class="control-label" style="text-align: left">Late Payment Charges</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">0.00</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{0|currency :loanMoreInfo.currency+'&nbsp;'}}</div>
 					<br />
 					<label class="control-label" style="text-align: left">Other Fees</label>
-					<div class="sum-amount" style="text-align: left; font-size: large">0.00</div>
+					<div class="sum-amount" style="text-align: left; font-size: large">{{0|currency :loanMoreInfo.currency+'&nbsp;'}}</div>
 				</div>
 			</div>
 		</div>

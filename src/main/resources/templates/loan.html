@@ -26,8 +26,7 @@
 
 		<div class="col-md-4">
 
-			<a href="#/loan-details" class="thumbnail"
-				data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
+			<a href="#/loan-details" class="thumbnail" data-ng-click="loanMoreInfo(loan)" data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
 				<div class="inner-triangle"></div>
 				<div class="id">{{loan.productDescription}}</div>
 				<p>{{loan.userReferenceNo}}</p>
@@ -35,7 +34,9 @@
 
 				<div class="outstanding">Outstanding Amount</div>
 				<div class="amount">{{loan.outStandingLoanAmount | currency :loan.currency +'&nbsp;'}}</div>
-			</a> <a href="" class="spec"> <br />
+			</a>
+			
+			 <a href="" class="spec"> <br />
 				<div class="id">NEW LOAN</div>
 				<div class="row">
 					<div class="col-sm-5">

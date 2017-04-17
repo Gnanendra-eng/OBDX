@@ -1,5 +1,6 @@
 package com.jmr.obdx.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,11 +66,19 @@ public class LoanService {
 				CURRENT_OUTSTANDING+=loanAccount.getOutstandingbal().doubleValue();
 				TOTAL_LOAN_BORROWING+=loanAccount.getAmountfinanced().doubleValue();
 				activedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(),
+			    		loanAccount.getCodbranch(),loanAccount.getIdcust(),
+			    		loanAccount.getPrimaryapplicantname(),loanAccount.getTenormonths(),
+			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturitydate()),
+			    		loanAccount.getAcctstatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookdate())));
 			}
 			else{
 				closedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(), loanAccount.getOutstandingbal().doubleValue(), loanAccount.getCodbranch()));
+			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(),
+			    		loanAccount.getCodbranch(),loanAccount.getIdcust(),
+			    		loanAccount.getPrimaryapplicantname(),loanAccount.getTenormonths(),
+			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturitydate()),
+			    		loanAccount.getAcctstatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookdate())));
 			}
 			currencyType=loanAccount.getCodcurrency();
 		});
@@ -78,5 +87,10 @@ public class LoanService {
 		return basicLoanDetailsDto;
 	}
 
+	
+	
+	private  SimpleDateFormat getSimpleDateFormat(){
+		return new SimpleDateFormat("dd MMMM yyyy"); 
+	}
 
 }
