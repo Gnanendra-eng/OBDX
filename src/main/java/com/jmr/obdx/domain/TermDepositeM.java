@@ -1,5 +1,7 @@
 package com.jmr.obdx.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -46,7 +48,7 @@ public class TermDepositeM implements java.io.Serializable {
 	@Column(name = "maturitydate")
 	private String maturitydate;
 	@Column(name = "depositdate")
-	private String depositdate;
+	private Date depositdate;
 	@Column(name = "rollovertype")
 	private String rollovertype;
 	@Column(name = "rolloveramt")
@@ -224,11 +226,11 @@ public class TermDepositeM implements java.io.Serializable {
 		this.maturitydate = maturitydate;
 	}
 
-	public String getDepositdate() {
+	public Date getDepositdate() {
 		return depositdate;
 	}
 
-	public void setDepositdate(String depositdate) {
+	public void setDepositdate(Date depositdate) {
 		this.depositdate = depositdate;
 	}
 
@@ -395,7 +397,7 @@ public class TermDepositeM implements java.io.Serializable {
 	public TermDepositeM(String idaccount, String codaccttype, String codbranch, String acctdesc, String depositamt,
 			String accountclass, String jointacctindicator, String nominee1, String nominee2, String rate, String apy,
 			String bookaccount, String bookbranch, String ccy, String customerid, String primarycustomerid,
-			String maturitydate, String depositdate, String rollovertype, String rolloveramt, String acyaccruedcric,
+			String maturitydate, Date depositdate, String rollovertype, String rolloveramt, String acyaccruedcric,
 			String intcap, String altacctno, String proddesc, String autorollover, String closeonmaturity,
 			String numavlbalance, String modeofoperation, String tdstatus, String holdamount, String customername,
 			String allow_topup, String blk_open_days, String blk_open_months, String blk_mat_days,
