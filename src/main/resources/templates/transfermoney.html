@@ -97,14 +97,10 @@
 		       						<div class="col-sm-3"></div>
 		        					<label class="control-label col-sm-2" style="text-align: left">Amount<font
 										color="red">*</font></label>
-		        					<div class="col-sm-2">
-		          						<input type="text" value="{{accountdetails.ccyDesc}}"
-		          						 class="form-control" disabled="disabled" data-ng-model="currency" />
-		          						<span style="font-size: small;"><a href="">View Limits</a></span>
-		        					</div>
-		        					<div class="col-sm-2">
+		        					<div class="col-sm-4">
 		          						<input type="number" value="" class="form-control" required="required"
 		          							name="amount" data-ng-model="amount" />
+		          						<span style="font-size: small;"><a href="">View Limits</a></span>
 		          						<span class="error" data-ng-show="transferMoneyForm.amount.$error.required 
 		          							&amp;&amp; !transferMoneyForm.amount.$pristine">Amount is required.</span>
 		        					</div>
@@ -150,8 +146,8 @@
 		       						<div class="col-sm-3"></div>
 		        					<label class="control-label col-sm-2" style="text-align: left">Note(optional)</label>
 		        					<div class="col-sm-4">
-		          						<input type="text" data-ng-trim="false"
-		          							maxlength="80" class="form-control" data-ng-model="note" />
+		          						<input type="text" class="form-control" data-ng-trim="false"
+		          							maxlength="80" data-ng-model="note" name="note" />
 		          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
 		        					</div>
 		     					</div>
