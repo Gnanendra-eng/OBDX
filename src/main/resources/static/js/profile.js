@@ -1,4 +1,4 @@
-/** Angular app creations and route configurations **/
+/** Angular application creation and route configurations **/
 var app = angular.module("profileApp", ["ngTagsInput","ngRoute","ngLoadingSpinner","angularUtils.directives.dirPagination","ui.bootstrap"]);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider
@@ -17,6 +17,12 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/loan", {
     	templateUrl : '/fragment/loan.html',
     	controller:"loanController"	
+    }).when("/loan-details", {
+    	templateUrl : '/fragment/loan-details.html',
+    	controller:"loanMoreInfoController"	
+    }).when("/tempDeposite-details", {
+    	templateUrl : '/fragment/tempdeposite-details.html',
+    	controller:"tempDepositeMoreInfoController"	
     }).when("/statement", {
     	templateUrl : '/fragment/statement.html',
     	controller:"statementController"	
@@ -35,20 +41,52 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/new-loan-account-opening", {
     	templateUrl : '/fragment/loan-opening.html',
     	controller:'newLoanAccountOpening'	
+    }).when("/edit-profile", {
+    	templateUrl : '/fragment/edit-profile.html'
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
     });
 });
 
-/**Exception handler**/
-app.config(function($provide) {
-    $provide.decorator("$exceptionHandler", function($delegate) {
-		return function(exception, cause) {
-			$delegate(exception, cause);
-            alert(exception.message +" "+exception.status);
-		};
-	});
+app.controller("loanController", function($scope,$http,sharedProperties,$window) {
+	
+	$http.get("/user/loan/").success(function(data,status) {
+		 $scope.loanInfo=data;		
+		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
+		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+		 var viz = new BubbleChart(options);
+		 viz.data(data);
+		 $scope.select_prop_nbrAccounts = [];
+		 $scope.customerId=$scope.loanInfo.customerId;
+	        angular.forEach($scope.loanInfo.nbrAccounts, function(name, index) {
+				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		 });
+	     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+	     onChangeNbrAccountId();
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+	
+	function onChangeNbrAccountId(){
+		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+			$scope.transactionInfos =data;		
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});	
+	}
+	
+	$scope.loanMoreInfo=function(loanMoreInfo){
+		sharedProperties.setProperty(loanMoreInfo);
+		$window.location.href ='#/loan-details';
+	}
+	
 });
 
 
@@ -64,74 +102,76 @@ app.directive('ngRightClick', function($parse) {
     };
 });
 
-/**contact-information**/
+app.controller("loanMoreInfoController", function($scope,$http,sharedProperties) {
+
+	$scope.loanMoreInfo=sharedProperties.getProperty();
+
+});
+
+app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedProperties) {
+
+	$scope.tempDepositeMoreInfo=sharedProperties.getProperty();
+
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**Spinner loader**/
-(function(){
-    angular.module('ngLoadingSpinner', ['angularSpinner'])
-    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
-        return {
-            link: function (scope, elm, attrs){
-                $rootScope.spinnerActive = false;
-                scope.isLoading = function () {
-                    return $http.pendingRequests.length > 0;
-                };
-                scope.$watch(scope.isLoading, function (loading){
-                    $rootScope.spinnerActive = loading;
-                    if(loading){
-                        elm.removeClass('ng-hide');
-                    }else{
-                        elm.addClass('ng-hide');
-                    }
-                });
-            }
-        };
-
-    }]);
-}).call(this);
-
-app.controller("transfermoneyController",function($scope,$http){
-	  $scope.IsVisible = false;
-      $scope.ShowHide = function () {
-          //If DIV is visible it will be hidden and vice versa.
-          $scope.IsVisible = $scope.IsVisible ? false : true;
-      }
-	 self = this;
-	  self.opened = {};
-	  self.open = function($event) {
-
-	    $event.preventDefault();
-	    $event.stopPropagation();
-
-	    self.opened = {};
-	    self.opened[$event.target.id] = true;
-
-	    // log this to check if its setting the log    
-	    console.log(self.opened);
-	    
-	  };
-
-	  self.format = 'dd-MM-yyyy'
-
-
+app.controller("transfermoneyController",function($scope,$http,$window){
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		});
+        if($scope.nbrAccount!=undefined){
+        	onChangeNbrAccountId();
+        }
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
 	
-	$scope.tags = [
-	  ];
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+
+	function onChangeNbrAccountId(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+		    $scope.accountdetails =data;
+		    $scope.select_transfer_nbrAccounts = [];
+		    $http.get("/user/accountdetails/").success(function(data,status) {
+		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+		        	if($scope.nbrAccount!=name){
+		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
+		        	}
+				});
+			}).error(function(data,status) {
+				 throw { message: 'error message',status:status};
+			});
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});			
+	}
+	
+	$scope.transfer = function() {
+		$scope.transferMoneyDetails={};
+		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['fromAccountNo']=$scope.nbrAccount;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.amount.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.transferMoneyForm.currency.$viewValue;
+		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
+		
+		alert(JSON.stringify($scope.transferMoneyDetails));
+		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
 });
 
 app.controller("paybillController", function($scope,$http) {
@@ -207,36 +247,7 @@ app.controller('newLoanAccountOpening', function($scope) {
 
 
 
-app.controller("loanController", function($scope,$http) {
-	$http.get("/user/loan/").success(function(data,status) {
-		 $scope.loanInfo=data;		
-		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
-		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
-		 var viz = new BubbleChart(options);
-		 viz.data(data);
-		 $scope.select_prop_nbrAccounts = [];
-		 $scope.customerId=$scope.loanInfo.customerId;
-	        angular.forEach($scope.loanInfo.nbrAccounts, function(name, index) {
-				$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
-		 });
-	     $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
-	     onChangeNbrAccountId();
-	}).error(function(data,status) {
-		 throw { message: 'error message',status:status};
-	});	
-	$scope.onAccountChange=function(){
-		if($scope.nbrAccount!=undefined){
-			onChangeNbrAccountId();
-		}
-	}
-	function onChangeNbrAccountId(){
-		$http.get("/user/transactionactivity/lastfive/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
-			$scope.transactionInfos =data;		
-		}).error(function(data,status) {
-			 throw { message: 'error message',status:status};
-		});	
-	}
-});
+
 
 
 
@@ -276,21 +287,6 @@ app.controller('jsonCtrl1', function($scope, $http){
 	});
 
 
-app.controller('emailController', function ($scope) {
-	  $scope.fields = {
-			    email: '',
-			    emailConfirm: ''
-			  };
-
-			  $scope.submit = function() {
-			    alert("Submit!");
-			  };
-			});
-
-
-
-
-
 app.controller("accountsController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
@@ -313,6 +309,12 @@ app.controller("accountsController", function($scope,$http) {
 
 	function onChangeNbrAccountId(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+		    if(data.odLimit==null){
+		    	data.odLimit="Nill";
+		    }
+		    if(data.accStatus==null){
+		    	data.accStatus="Unknown";
+		    }
 		    $scope.accountdetails =data;
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};
@@ -361,7 +363,7 @@ app.controller("statementController", function($scope,$http) {
 	}
 });
 
-app.controller("termDepositsController", function($scope,$http) {
+app.controller("termDepositsController", function($scope,$http,sharedProperties,$window) {
     $http.get("/user/termdeposit/").success(function(data,status) {
      $scope.termDeposite = data;
   	 $scope.select_prop_nbrAccounts = [];
@@ -387,6 +389,11 @@ app.controller("termDepositsController", function($scope,$http) {
 			 throw { message: 'error message',status:status};
 		});	
 	}
+	
+	$scope.tempDepositeMoreInfo=function(tempDepositeMoreInfo){
+		sharedProperties.setProperty(tempDepositeMoreInfo);
+		$window.location.href ='#/tempDeposite-details';
+	}
 });
 
 app.controller("accountsSummaryController", function($scope,$http) {
@@ -406,7 +413,7 @@ app.controller("accountsSummaryController", function($scope,$http) {
 		   var doughnutData = [
 				      { value: $scope.sumofloans, color:"#ff8080", highlight: "#ff8090", label: "LOAN" },
 					  { value: $scope.sumofcontractandtermdepostit, color: "#ffa86f", highlight: "#ffa86f", label: "TERM DEPOSIT" },
-					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING ACCOUNT & CURRENT" }
+					  { value: $scope.sumofsavingsandcurrent, color: "#50de7a",highlight: "#50de7a", label: "SAVING & CURRENT" }
 					];
 					var options = {showTooltips : true,animation: true,percentageInnerCutout : 50,legend: {
 		            display: true,
@@ -440,6 +447,49 @@ app.controller("accountsSummaryController", function($scope,$http) {
 	}
 });
 
+
+/**Exception handler**/
+app.config(function($provide) {
+    $provide.decorator("$exceptionHandler", function($delegate) {
+		return function(exception, cause) {
+			$delegate(exception, cause);
+			if(exception.status==500||exception.status==400){
+				toastrErrorMsg("Internal server error. Please try after sometime.","HTTP - "+exception.status);
+			}else{
+				toastrErrorMsg(exception.message,exception.status);
+			}
+			
+		};
+	});
+});
+
+
+/**Spinner loader**/
+(function(){
+    angular.module('ngLoadingSpinner', ['angularSpinner'])
+    .directive('usSpinner',   ['$http', '$rootScope' ,function ($http, $rootScope){
+        return {
+            link: function (scope, elm, attrs){
+                $rootScope.spinnerActive = false;
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+                scope.$watch(scope.isLoading, function (loading){
+                    $rootScope.spinnerActive = loading;
+                    if(loading){
+                        elm.removeClass('ng-hide');
+                    }else{
+                        elm.addClass('ng-hide');
+                    }
+                });
+            }
+        };
+
+    }]);
+}).call(this);
+
+
+/**Password matcher**/
 app.directive('match', function($parse) {
 	  return {
 	    require: 'ngModel',
@@ -450,8 +500,106 @@ app.directive('match', function($parse) {
 	        ctrl.$setValidity('mismatch', currentValue);
 	      });
 	    }
-	  };
-	});
+	 };
+});
 
 
+/** toaster for success message **/
+function toastrSucessMsg(message, operation_status) {
+	toastr.options = {"debug" : false,"positionClass" : "toast-top-right","onclick" : null,"fadeIn" : 300,"fadeOut" : 100,"timeOut" : 4000,"extendedTimeOut" : 1000}
+	toastrs();
+	var showToastrs = false;
+	function toastrs() {
+		if (!showToastrs) {
+			toastr.success(message, operation_status)
+		}
+	}
+	toastr.options.onFadeIn = function() {
+		showToastrs = true;
+	};
+	toastr.options.onFadeOut = function() {
+		showToastrs = false;
+	};
+}
+
+
+/** toaster for error message**/
+function toastrErrorMsg(message, operation_status) {
+	toastr.options = {"debug" : false,"positionClass" : "toast-top-right","onclick" : null,"fadeIn" : 300,"fadeOut" : 100,"timeOut" : 4000,"extendedTimeOut" : 1000}
+	toastrs();
+	var showToastrs = false;
+	function toastrs() {
+		if (!showToastrs) {
+			toastr.error(message, operation_status)
+		}
+	}
+	toastr.options.onFadeIn = function() {
+		showToastrs = true;
+	};
+	toastr.options.onFadeOut = function() {
+		showToastrs = false;
+	};
+}
+
+
+/** AngularJs unique filter**/
+app.filter('unique', function () {
+	return function (items, filterOn) {
+        if (filterOn === false) {
+            return items;
+        }
+        if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+            var hashCheck = {}, newItems = [];
+            var extractValueToCompare = function (item) {
+                if (angular.isObject(item) && angular.isString(filterOn)) {
+                    return item[filterOn];
+                } else {
+                    return item;
+                }
+            };
+            angular.forEach(items, function (item) {
+                var valueToCheck, isDuplicate = false;
+                for (var i = 0; i < newItems.length; i++) {
+                    if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    newItems.push(item);
+                }
+
+            });
+            items = newItems;
+        }
+        return items;
+    };
+});
+
+
+/**unique filter**/
+function arrayUniqueFilter(arrayInput) {
+    var cleaned = [];
+    arrayInput.forEach(function(itm) {
+        var unique = true;
+        cleaned.forEach(function(itm2) {
+            if (angular.equals(itm, itm2)) unique = false;
+        });
+        if (unique)  cleaned.push(itm);
+    });
+    return cleaned;
+}
+
+/** Temporary storage **/
+app.service('sharedProperties', function () {
+	var property = '';
+    return {
+        getProperty: function () {
+            return property;
+        },
+        setProperty: function(value) {
+            property = value;
+        }
+    };
+});
 

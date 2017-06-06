@@ -4,23 +4,7 @@ body {
 	width: 100%;
 	height: 100%;
 	overflow-x: hidden;
-}
-
-.navbar-brand {
-	left: 10px;
-	position: initial;
-}
-
-.navbar-default {
-	background-color: white;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: black;
-	font-size: large;
-    padding-top: 18px;
-    padding-left: 10px;
-    font: small-caption;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover {
@@ -29,56 +13,74 @@ body {
 	height: 58px;
 }
 
+.navbar{
+	min-height:60px;
+}
+
+@media (min-width: 768px){
+.navbar {
+    border-radius: 0px;
+}
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
+    font: small-caption;
+}
+
+@media (max-width: 767px){
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #333;
+    background-color: slategray;
+}
+
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #777;
+    background: #d2eaf9;
+}
+}
+
+@media (max-width: 1112px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
+}
+
 .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;
     padding-bottom: 25px;
-}
-
-.navbar-default .navbar-brand {
-	padding-left: 15px;
-}
-
-.navbar {
-	height: 60px;
-}
-
-.navbar-nav>li>a {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.navbar-default .navbar-toggle {
-	border-color: white;
-}
-
-.navbar-toggle {
-	padding: 8px 5px;
-	margin-top: 12px;
-}
-
-.navbar {
-	z-index: 1000;
-}
-
-@media ( min-width : 768px) {
-	.navbar {
-		border-radius: 0px;
-	}
-}
-
-/*for dropdown backround in mobile view*/
-@media ( max-width : 767px) {
-	.navbar-nav .open .dropdown-menu>li>a {
-		padding: 5px 15px 5px 25px;
-		background-color: aliceblue;
-	}
-}
-
-.navbar-collapse.in {
-	background-color: #428ac9;
-	color: black;
-	border: 1px solid #9d9d9d;
 }
 
 .glyphicon-plus-sign {
@@ -107,9 +109,15 @@ p {
 	font-size: x-large;
 }
 
+.name{
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: large;
+}
+
 .amount {
 	color: #0a0b0c;
-	font-size: xx-large;
+	font-size: large;
 	position: absolute;
 	bottom: 0px;
 	right: 15px;
@@ -120,14 +128,14 @@ p {
 	font-size: initial;
 	position: absolute;
 	right: 20px;
-	bottom: 40px;
+	bottom: 25px;
 }
 
 .thumbnail {
 	padding-left: 20px;
 	padding-top: 20px;
-	min-height: 190px;
-	max-height: 250px;
+	min-height: 185px;
+	max-height: 300px;
 	border-bottom-color: #428ac9;
 	border-bottom-width: thick;
 	position: relative;
@@ -174,7 +182,7 @@ p {
 	font-size: 57px;
 	position: absolute;
 	left: 10px;
-	top: -20px;
+	top: -22px;
 }
 
 .sum-loans {
@@ -182,6 +190,7 @@ p {
 	font-size: x-large;
 	left: 80px;
 	top: 10px;
+	width: 75%;
 }
 
 .sum-amount {
@@ -219,19 +228,21 @@ p {
 }
 
 .closed-no {
-    color: #0a0b0c;
-    font-size: xx-large;
-    position: absolute;
-    top: 40px;
+	color: #0a0b0c;
+	font-size: xx-large;
+	position: absolute;
+	bottom: 60px;
+	right: 80px;
 }
 
 /*for "loans" written in closed loan section*/
 .clo-loans {
-    color: #0a0b0c;
-    font-size: large;
-    position: absolute;
-    right: 1px;
-    top: 53px;
+	color: #0a0b0c;
+	text-decoration: none;
+	font-size: large;
+	position: absolute;
+	bottom: 65px;
+	right: 10px;
 }
 
 .container-footer {
@@ -321,16 +332,6 @@ a {
 	font-size: 86%;
 }
 
-.row-flex {
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.col-flex-item {
-	display: flex;
-	flex-flow: row wrap;
-}
-
 .vertical-divider {
 	border-left: 1px solid gray;
 }
@@ -357,96 +358,41 @@ a {
 }
 
 .table>thead>tr>th {
-    background-color: lightskyblue;
+    background-color: white;
 }
 
-.table-striped>tbody>tr:nth-of-type(even) {
-    background-color: azure;
+.table>tbody>tr>td {
+	border-bottom: none;
+	border-top:none;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: aliceblue;
-}
-
-
-@media only screen and (max-width: 760px) , ( min-device-width : 768px)
-	and (max-device-width: 1024px) {
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
-		display: block;
-		border: 1px solid gray;
-	}
-
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	td {
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 35%;
-		text-align: right;
-		min-height: 30px;
-		max-height: 100px;
-		overflow-wrap: break-word;
-	}
-	td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 5px;
-		white-space: nowrap;
-		text-align: left;
-	}
-	td:nth-of-type(1):before {
-		content: "Date:";
-	}
-	td:nth-of-type(2):before {
-		content: "Description:";
-	}
-	td:nth-of-type(3):before {
-		content: "Reference Number:";
-	}
-	td:nth-of-type(4):before {
-		content: "Amount:";
-	}
-	td:nth-of-type(5):before {
-		content: "Balance:";
-	}
-}
-
-	.custom-button{
-    color: #428ac9;
-    background-color: #e7ebed;
-    border-color: #ccc;
-    margin-bottom:5px;
-    width:180px;
-    }
-
-    .btn{
-    border-radius: 2px;
-    }
-
-    button:hover{
+.btn.custom-button{
     background: #428ac9;
+    border:none;
+    margin-bottom:0px;
+    width:100px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+	
+button:hover{
+    background: #649ed2;
     color: white;
-    }
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
-    .btn:focus{
-    background: #428ac9;
+.btn:focus{
     color:white;
-    }
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    outline: none 0px;
+    outline-color: white;
+}
     
-    .btn:active {
-    background: #428ac9;
-    }
+.btn:active {
+    color:white;
+    outline: none 0px;
+    outline-color: white;
+}
 
 
     @media 
@@ -455,6 +401,7 @@ only screen and (max-width: 760px),
     .custom-button{
         width:98%;
         padding-bottom:10px;
+        font-size:x-small;
     }
     }
     
@@ -509,12 +456,6 @@ only screen and (max-width: 760px),
     border: none;
     border-radius: 0px;
 }
-
-
-
-
-
-
 
 .switch {
 	position: relative;
@@ -656,4 +597,9 @@ only screen and (max-width: 760px),
 	-ms-transform:     rotate(90deg);
 	-o-transform:      rotate(90deg);
 	transform:         rotate(90deg);
+}
+
+.error {
+    color: #a20b0b;
+    font-size: small;
 }

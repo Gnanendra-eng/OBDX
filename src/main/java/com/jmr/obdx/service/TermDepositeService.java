@@ -1,5 +1,6 @@
 package com.jmr.obdx.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class TermDepositeService {
 							tempTermDeposit.getApy(), tempTermDeposit.getBookaccount(), tempTermDeposit.getBookbranch(),
 							tempTermDeposit.getCcy(), tempTermDeposit.getCustomerid(),
 							tempTermDeposit.getPrimarycustomerid(), tempTermDeposit.getMaturitydate(),
-							tempTermDeposit.getDepositdate(), tempTermDeposit.getRollovertype(),
+							getSimpleDateFormat().format(tempTermDeposit.getDepositdate()), tempTermDeposit.getRollovertype(),
 							tempTermDeposit.getRolloveramt(), tempTermDeposit.getAcyaccruedcric(),
 							tempTermDeposit.getIntcap(), tempTermDeposit.getAltacctno(), tempTermDeposit.getProddesc(),
 							tempTermDeposit.getAutorollover(), tempTermDeposit.getCloseonmaturity(),
@@ -75,6 +76,7 @@ public class TermDepositeService {
 							tempTermDeposit.getBlk_open_days(), tempTermDeposit.getBlk_open_months(),
 							tempTermDeposit.getBlk_mat_days(), tempTermDeposit.getBlk_mat_months(),
 							tempTermDeposit.getPartial_liquidation(), tempTermDeposit.getValuedate()));
+					
 					        totalTermDeposits += Double.parseDouble(tempTermDeposit.getNumavlbalance());
 					       currencyType=tempTermDeposit.getCcy();
 				});
@@ -86,4 +88,8 @@ public class TermDepositeService {
 		 return  termDepositeInfo;
 	}
 
+	
+	private  SimpleDateFormat getSimpleDateFormat(){
+		return new SimpleDateFormat("dd MMMM yyyy"); 
+	}
 }
