@@ -103,32 +103,42 @@ app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedPro
 
 
 app.controller("transfermoneyController",function($scope,$http){
-	  $scope.IsVisible = false;
-      $scope.ShowHide = function () {
-          //If DIV is visible it will be hidden and vice versa.
-          $scope.IsVisible = $scope.IsVisible ? false : true;
-      }
-	 self = this;
-	  self.opened = {};
-	  self.open = function($event) {
-
-	    $event.preventDefault();
-	    $event.stopPropagation();
-
-	    self.opened = {};
-	    self.opened[$event.target.id] = true;
-
-	    // log this to check if its setting the log    
-	    console.log(self.opened);
-	    
-	  };
-
-	  self.format = 'dd-MM-yyyy'
-
-
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		});
+        $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
+        onChangeNbrAccountId();
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
 	
-	$scope.tags = [
-	  ];
+	$scope.onAccountChange=function(){
+		if($scope.nbrAccount!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
+
+	function onChangeNbrAccountId(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+		    $scope.accountdetails =data;
+		    $scope.select_transfer_nbrAccounts = [];
+		    $http.get("/user/accountdetails/").success(function(data,status) {
+		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+		        	if($scope.nbrAccount!=name){
+		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
+		        	}
+				});
+			}).error(function(data,status) {
+				 throw { message: 'error message',status:status};
+			});
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});			
+	}
 });
 
 app.controller("paybillController", function($scope,$http) {
