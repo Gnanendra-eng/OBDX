@@ -11,6 +11,8 @@ import com.jmr.obdx.domain.RetailCustomer;
 @Transactional
 public interface RetailCustomerRepo extends CrudRepository<RetailCustomer, Integer> {
 	
+	
 	public RetailCustomer findByIduser(long idUser);
+	public RetailCustomer findByCustomername(String customerName);
 	
 }
