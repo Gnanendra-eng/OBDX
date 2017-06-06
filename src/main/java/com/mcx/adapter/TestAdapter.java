@@ -1,4 +1,4 @@
-package com.mcx.adapter;
+/*package com.mcx.adapter;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -37,4 +37,4 @@ public class TestAdapter {
 
     }
 
-}
+}*/

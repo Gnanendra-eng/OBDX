@@ -22,11 +22,11 @@ import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 
 @Service
 public class FundtransferService {
+
 	
-	
-	@Autowired
+
 	private StatusInfo statusInfo;
-	
+
 	@Autowired
 	private MessageSource messageSource;
 	
@@ -39,10 +39,17 @@ public class FundtransferService {
 	@Autowired
 	private TransferTypeRepo transferTypeRepo;
 	
+	
+	
 	private static Logger logger = Logger.getLogger(FundtransferService.class);
 
+
 	public StatusInfo ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto,BindingResult bindingResult, Locale locale)throws Exception{
+		
+		statusInfo=new StatusInfo();
+
 		if (bindingResult.hasErrors()) {
+
 			statusInfo.setErrorStatus(true);
 			bindingResult.getFieldErrors().forEach(error -> {statusInfo.getErrorMsgs().add(new ErrorMsg(error.getField(), error.getDefaultMessage()));
 			});
