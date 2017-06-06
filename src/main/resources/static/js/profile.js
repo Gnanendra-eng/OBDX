@@ -102,7 +102,7 @@ app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedPro
 });
 
 
-app.controller("transfermoneyController",function($scope,$http){
+app.controller("transfermoneyController",function($scope,$http,$window){
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
 		$scope.nbrAccounts =data;
@@ -110,8 +110,9 @@ app.controller("transfermoneyController",function($scope,$http){
         angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
 			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
 		});
-        $scope.nbrAccount=$scope.select_prop_nbrAccounts[0].value;
-        onChangeNbrAccountId();
+        if($scope.nbrAccount!=undefined){
+        	onChangeNbrAccountId();
+        }
 	}).error(function(data,status) {
 		 throw { message: 'error message',status:status};
 	});
@@ -138,6 +139,25 @@ app.controller("transfermoneyController",function($scope,$http){
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};
 		});			
+	}
+	
+	$scope.transfer = function() {
+		$scope.transferMoneyDetails={};
+		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['fromAccountNo']=$scope.nbrAccount;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.amount.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.transferMoneyForm.currency.$viewValue;
+		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
+		
+		alert(JSON.stringify($scope.transferMoneyDetails));
+		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
 	}
 });
 
