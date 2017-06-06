@@ -160,7 +160,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['fromAccountNo']=$scope.nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.amount.$viewValue;
-		$scope.transferMoneyDetails['currency']=$scope.transferMoneyForm.currency.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
 		
