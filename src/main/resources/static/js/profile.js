@@ -167,6 +167,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
+			angular.copy({},$scope.transferMoneyForm);
 			$window.location.href = '#/transfermoney';
 		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  

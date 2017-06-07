@@ -284,16 +284,8 @@ a {
 }
 
 .list-group-item {
-	height: 100px;
-    background-color: #428ac9;
-}
-
-.list-group-item:nth-child(even){
-    background-color: azure;
-}
-
-.list-group-item:nth-child(odd){
-    background-color: aliceblue;
+	height: 80px;
+    background-color: white;
 }
 
 .summary-graph-container {
