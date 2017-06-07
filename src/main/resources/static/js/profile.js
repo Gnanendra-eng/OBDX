@@ -35,6 +35,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/transfermoney", {
     	templateUrl : '/fragment/transfermoney.html',
     	controller:'transfermoneyController'	
+    }).when("/addpayee", {
+    	templateUrl : '/fragment/add-payee-details.html',
+    	controller:'addPayeeController'	
     }).when("/balance", {
     	templateUrl : '/fragment/balance.html',
     	controller:'jsonCtrl1'	
@@ -115,7 +118,49 @@ app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedPro
 });
 
 
+app.controller("addPayeeController",function($scope,$http){
+	$scope.internal_confirm=true;
+	$scope.domestic_confirm=true;
+	$scope.international_confirm=true;
+	$scope.internal_transfer=false;
+	$scope.domestic_transfer=false;
+	$scope.international_transfer=false;
+	
+	$scope.changeInternal = function(){
+		$scope.internal_transfer=false;
+		$scope.internal_confirm=true;
+	}
+	
+	$scope.verifyInternalPayee = function(){
+		$scope.internal_confirm=false;
+		$scope.internal_transfer=true;
+	}
+	
+	$scope.changeDomestic = function(){
+		$scope.domestic_transfer=false;
+		$scope.domestic_confirm=true;
+	}
+	
+	$scope.verifyDomesticPayee = function(){
+		$scope.domestic_confirm=false;
+		$scope.domestic_transfer=true;
+	}
+	
+	$scope.changeInternational = function(){
+		$scope.international_transfer=false;
+		$scope.international_confirm=true;
+	}
+	
+	$scope.verifyInternationalPayee = function(){
+		$scope.international_confirm=false;
+		$scope.international_transfer=true;
+	}
+});
+
 app.controller("transfermoneyController",function($scope,$http,$window){
+	$scope.myAccount_select=true;
+	$scope.myAccount_confirm=false;
+	$scope.myAccount_transfer=false;
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
 		$scope.nbrAccounts =data;
@@ -123,9 +168,6 @@ app.controller("transfermoneyController",function($scope,$http,$window){
         angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
 			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
 		});
-        if($scope.nbrAccount!=undefined){
-        	onChangeNbrAccountId();
-        }
 	}).error(function(data,status) {
 		 throw { message: 'error message',status:status};
 	});
@@ -133,6 +175,9 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.onAccountChange=function(){
 		if($scope.nbrAccount!=undefined){
 			onChangeNbrAccountId();
+		}
+		if($scope.ept_nbrAccount!=undefined){
+			onChangeEptNbrAccountId();
 		}
 	}
 
@@ -149,9 +194,22 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 			}).error(function(data,status) {
 				 throw { message: 'error message',status:status};
 			});
+		    $scope.myAccount_confirm=true;
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};
 		});			
+	}
+	
+	$scope.verify = function(){
+		$scope.myAccount_select=false;
+		$scope.myAccount_confirm=false;
+		$scope.myAccount_transfer=true;
+	}
+	
+	$scope.change = function(){
+		$scope.myAccount_select=true;
+		$scope.myAccount_confirm=true;
+		$scope.myAccount_transfer=false;
 	}
 	
 	$scope.transfer = function() {
@@ -172,6 +230,25 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
 		});
+	}
+	
+	function onChangeEptNbrAccountId(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.ept_nbrAccount).success(function(data,status) {
+		    $scope.accountdetails =data;
+		    $scope.select_transfer_nbrAccounts = [];
+		    $http.get("/user/accountdetails/").success(function(data,status) {
+		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+		        	if($scope.nbrAccount!=name){
+		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
+		        	}
+				});
+			}).error(function(data,status) {
+				 throw { message: 'error message',status:status};
+			});
+		    $scope.myAccount_confirm=true;
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});			
 	}
 });
 

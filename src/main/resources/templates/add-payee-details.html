@@ -1,0 +1,368 @@
+<div class="container-fluid" data-ng-controller="addPayeeController">
+	<div class="col-sm-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="id">ADD PAYEE</div>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+	    			<li class="active"><a data-toggle="tab" data-target="#internal">Internal</a></li>
+	    			<li><a data-toggle="tab" data-target="#domestic">Domestic</a></li>
+	    			<li><a data-toggle="tab" data-target="#international">International</a></li>
+	  			</ul>
+   				<div class="tab-content">
+   					<div id="internal" class="tab-pane fade in active">
+   						<form class="form-horizontal" name="internalPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="internal_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Branch<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option>Banglore</option>
+			          						</select>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Nickname</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button">Cancel</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="verifyInternalPayee()">Add</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="internal_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_nbrAccount}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Branch</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Nickname</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			        					</div>
+			      					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeInternal()">Change</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createInternalPayee()">Confirm</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   					<div id="domestic" class="tab-pane fade">
+   						<form class="form-horizontal" name="domesticPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="domestic_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Processing Mode</label>
+			        					<div class="col-sm-4">
+			          						<label class="radio-inline">
+										      <input type="radio" name="optradio" />Normal
+										    </label>
+										    <label class="radio-inline">
+										      <input type="radio" name="optradio" />Urgent
+										    </label>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Code</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Address</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">City</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button">Cancel</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="verifyDomesticPayee()">Add</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="domestic_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Processing Mode</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_nbrAccount}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Code</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Name</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Bank Address</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">City</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeDomestic()">Change</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createDomesticPayee()">Confirm</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   					<div id="international" class="tab-pane fade">
+   						<form class="form-horizontal" name="internationalPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="international_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Pay Via</label>
+			        					<label class="control-label col-sm-1">SWIFT Code</label>
+			        					<div class="col-sm-3">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			          						<span>Lookup SWIFT Code</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Nickname</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="payee" name="payee" />
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button">Cancel</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="verifyInternationalPayee()">Add</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="international_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_nbrAccount}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Pay Via</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2" style="text-align: left">Nickname</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeInternational()">Change</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createInternationalPayee()">Confirm</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   				</div>
+   			</div>
+   		</div>
+   	</div>
+ </div>
