@@ -155,6 +155,25 @@ app.controller("addPayeeController",function($scope,$http){
 		$scope.international_confirm=false;
 		$scope.international_transfer=true;
 	}
+	
+	$scope.createInternalPayee = function() {
+		$scope.internalPayeeInfo={};
+		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
+		$scope.internalPayeeInfo['accountNumber']=$scope.internalPayeeForm.ipf_accNo.$viewValue;
+		$scope.internalPayeeInfo['accountName']=$scope.internalPayeeForm.ipf_accName.$viewValue;
+		$scope.internalPayeeInfo['branchId']=$scope.internalPayeeForm.ipf_branch.$viewValue;
+		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
+		
+		alert(JSON.stringify($scope.internalPayeeInfo));
+		$http.post('/beneficiary/newbeneficiary', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
+			toastrSucessMsg('Created Internal Payee','Successfull!');
+			angular.copy({},$scope.internalPayeeForm);
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
+	
 });
 
 app.controller("transfermoneyController",function($scope,$http,$window){
@@ -173,7 +192,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	});
 	
 	$scope.onAccountChange=function(){
-		if($scope.nbrAccount!=undefined){
+		if($scope.mat_nbrAccount!=undefined){
 			onChangeNbrAccountId();
 		}
 		if($scope.ept_nbrAccount!=undefined){
@@ -182,12 +201,12 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	}
 
 	function onChangeNbrAccountId(){
-		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.mat_nbrAccount).success(function(data,status) {
 		    $scope.accountdetails =data;
 		    $scope.select_transfer_nbrAccounts = [];
 		    $http.get("/user/accountdetails/").success(function(data,status) {
 		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
-		        	if($scope.nbrAccount!=name){
+		        	if($scope.mat_nbrAccount!=name){
 		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
 		        	}
 				});
@@ -215,12 +234,12 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['fromAccountNo']=$scope.nbrAccount;
+		$scope.transferMoneyDetails['fromAccountNo']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
-		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.amount.$viewValue;
+		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.mat_amount.$viewValue;
 		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
-		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.transferTo.$viewValue;
-		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
+		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.mat_transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.mat_note.$viewValue;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
@@ -238,7 +257,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		    $scope.select_transfer_nbrAccounts = [];
 		    $http.get("/user/accountdetails/").success(function(data,status) {
 		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
-		        	if($scope.nbrAccount!=name){
+		        	if($scope.ept_nbrAccount!=name){
 		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
 		        	}
 				});
