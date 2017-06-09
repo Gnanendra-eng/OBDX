@@ -2,7 +2,7 @@ package com.jmr.obdx.service.dto;
 
 import javax.validation.constraints.NotNull;
 
-public class InternalFundTransferDto {
+public class BeneficiaryDto {
 	
 	@NotNull(message = "{error.required}")
 	private String payeeName;
@@ -21,7 +21,7 @@ public class InternalFundTransferDto {
 	private String nickName;
 	
 	@NotNull(message = "{error.required}")
-	private String transferVie;
+	private String createdVie;
 
 	public String getPayeeName() {
 		return payeeName;
@@ -63,25 +63,25 @@ public class InternalFundTransferDto {
 		this.nickName = nickName;
 	}
 
-	public String getTransferVie() {
-		return transferVie;
+	public String getCreatedVie() {
+		return createdVie;
 	}
 
-	public void setTransferVie(String transferVie) {
-		this.transferVie = transferVie;
+	public void setCreatedVie(String createdVie) {
+		this.createdVie = createdVie;
 	}
 
-	public InternalFundTransferDto(String payeeName, long accountName, String accountNumber, String branchId,
-			String nickName, String transferVie) {
+	public BeneficiaryDto(String payeeName, long accountName, String accountNumber, String branchId,
+			String nickName, String createdVie) {
 		this.payeeName = payeeName;
 		this.accountName = accountName;
 		this.accountNumber = accountNumber;
 		this.branchId = branchId;
 		this.nickName = nickName;
-		this.transferVie = transferVie;
+		this.createdVie = createdVie;
 	}
 
-	public InternalFundTransferDto() {
+	public BeneficiaryDto() {
 		// TODO Auto-generated constructor stub
 	}
 	

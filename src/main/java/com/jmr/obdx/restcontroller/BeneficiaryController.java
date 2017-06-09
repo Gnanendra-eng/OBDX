@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
-import com.jmr.obdx.service.FundtransferService;
+import com.jmr.obdx.service.BeneficiaryService;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
-import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.Utility;
 
+@RequestMapping(value = "/beneficiary")
 @RestController
-@RequestMapping(value = "/fundtransfer")
-public class FundTransferController {
+public class BeneficiaryController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BeneficiaryController.class);
 	
 	@Autowired
-	private FundtransferService fundtransferService;
-	
-	private final Logger logger = LoggerFactory.getLogger(FundTransferController.class);
+	private BeneficiaryService beneficiaryService;
 
-	@RequestMapping(value = "/ownaccount", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<StatusInfo> ownAccountTransfer(@RequestBody @Valid OwnAccountTransferDto ownAccountTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
+	
+	@RequestMapping(value = "/addbeneficiary", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<StatusInfo> internalTransfer(@RequestBody @Valid BeneficiaryDto internalFundTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			StatusInfo responceObj = fundtransferService.ownAccountTransfer(authentication,ownAccountTransferDto,locale,bindingResult);
+			StatusInfo responceObj = beneficiaryService.addBeneficiary(internalFundTransferDto,authentication,locale,bindingResult);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
@@ -49,6 +49,5 @@ public class FundTransferController {
 		}
 
 	}
-	
 
 }

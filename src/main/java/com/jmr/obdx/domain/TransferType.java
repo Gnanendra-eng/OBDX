@@ -23,7 +23,6 @@ public class TransferType  implements java.io.Serializable {
 
      private long id;
      private String description;
-     private Set<TransactionData> transactionDatas = new HashSet<TransactionData>(0);
      private Set<BranchDetailsM> branchDetailsMs = new HashSet<BranchDetailsM>(0);
 
     public TransferType() {
@@ -33,10 +32,9 @@ public class TransferType  implements java.io.Serializable {
     public TransferType(long id) {
         this.id = id;
     }
-    public TransferType(long id, String description, Set<TransactionData> transactionDatas,Set<BranchDetailsM> branchDetailsMs) {
+    public TransferType(long id, String description,Set<BranchDetailsM> branchDetailsMs) {
        this.id = id;
        this.description = description;
-       this.transactionDatas = transactionDatas;
        this.branchDetailsMs = branchDetailsMs;
 
     }
@@ -63,14 +61,6 @@ public class TransferType  implements java.io.Serializable {
         this.description = description;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="transferType")
-    public Set<TransactionData> getTransactionDatas() {
-        return this.transactionDatas;
-    }
-    
-    public void setTransactionDatas(Set<TransactionData> transactionDatas) {
-        this.transactionDatas = transactionDatas;
-    }
 
 
 

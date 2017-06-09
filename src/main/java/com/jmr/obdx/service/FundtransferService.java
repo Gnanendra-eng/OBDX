@@ -11,24 +11,26 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.jmr.obdx.domain.AccountTypeM;
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.BranchDetailsM;
 import com.jmr.obdx.domain.CurrencyM;
-import com.jmr.obdx.domain.FundTransfer;
+import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.RetailCustomer;
-import com.jmr.obdx.domain.TransactionData;
+import com.jmr.obdx.domain.FundTransfer;
 import com.jmr.obdx.domain.TransferType;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
+import com.jmr.obdx.repositories.AccountTypeRepo;
 import com.jmr.obdx.repositories.CurrencyRepo;
-import com.jmr.obdx.repositories.FundTransferRepo;
+import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
-import com.jmr.obdx.repositories.TransactionDataRepo;
+import com.jmr.obdx.repositories.FundTransferRepo;
 import com.jmr.obdx.repositories.TransferTypeRepo;
-import com.jmr.obdx.service.dto.InternalFundTransferDto;
+import com.jmr.obdx.service.dto.BeneficiaryDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 
 
@@ -43,7 +45,7 @@ public class FundtransferService {
 	private MessageSource messageSource;
 	
 	@Autowired
-	private TransactionDataRepo transactionDataRepo;
+	private FundTransferRepo transactionDataRepo;
 	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
@@ -61,7 +63,10 @@ public class FundtransferService {
 	private LoginRepo loginRepo;
 	
 	@Autowired
-	private FundTransferRepo fundTransferRepo;
+	private BeneficiaryRepo fundTransferRepo;
+	
+	@Autowired
+	private AccountTypeRepo accountTypeRepo;
 	
 	
 	
@@ -85,33 +90,13 @@ public class FundtransferService {
           }*/
          else{
         	 RetailCustomer  retailCustomer =retailCustomerRepo.findByCustomername(authentication.getName());
-        	 TransferType transferType =transferTypeRepo.findByDescription(ownAccountTransferDto.getAccountType());
+        	 AccountTypeM accountTypeM =accountTypeRepo.findByDescription(ownAccountTransferDto.getAccountType());
         	 CurrencyM currencyM =currencyRepo.findByCurrencyType(ownAccountTransferDto.getCurrencyCode());
-             transactionDataRepo.save(new TransactionData(new TransferType(transferType.getId()),currencyM,retailCustomer.getIdcusomer(),ownAccountTransferDto.getFromAccount(), ownAccountTransferDto.getToAccount(), ownAccountTransferDto.getBranchCode(), ownAccountTransferDto.getAmount(),new Date(), "Intransit"));
+             transactionDataRepo.save(new FundTransfer(new AccountTypeM(accountTypeM.getId()),currencyM,retailCustomer.getIdcusomer(),ownAccountTransferDto.getFromAccount(), ownAccountTransferDto.getToAccount(), ownAccountTransferDto.getBranchCode(), ownAccountTransferDto.getAmount(),new Date(), "Intransit",ownAccountTransferDto.getNote()));
          }
     	 return statusInfo; 
     }
 	
-	public StatusInfo internalTransfer(InternalFundTransferDto internalFundTransferDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
-		statusInfo=new StatusInfo();
-		if (bindingResult.hasErrors()) {
-			statusInfo.setErrorStatus(true);
-			bindingResult.getFieldErrors().forEach(error -> {statusInfo.getErrorMsgs().add(new ErrorMsg(error.getField(), error.getDefaultMessage()));
-			});
-		    }
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
-		accountdetails.stream().forEach(accountdetail ->{
-			if(accountdetail.getNBRACCOUNT() != internalFundTransferDto.getAccountNumber() && accountdetail.getNBRACCOUNT() == internalFundTransferDto.getBranchId()){
-			fundTransferRepo.save(new FundTransfer(internalFundTransferDto.getAccountName(),new Long( internalFundTransferDto.getAccountNumber()),new BranchDetailsM(internalFundTransferDto.getBranchId()),internalFundTransferDto.getNickName(),internalFundTransferDto.getPayeeName(),internalFundTransferDto.getTransferVie()));
-			}
-			/*else{
-				statusInfo.setErrorStatus(true);
-	 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
-	 			}*/
-		});
-   	 return statusInfo; 
-	}
+	
 	
 }
