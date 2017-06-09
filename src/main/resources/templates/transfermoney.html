@@ -213,13 +213,13 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Transfer Via<font
 											color="red">*</font></label>
-			        					<div class="col-sm-4" data-ng-class="{ 'has-error' : myAccountForm.entityinfo.$invalid &amp;&amp; myAccountForm.entityinfo.$dirty }">
+			        					<div class="col-sm-4" data-ng-class="{ 'has-error' : newPayeeForm.entityinfo.$invalid &amp;&amp; newPayeeForm.entityinfo.$dirty }">
 			          						<select class="form-control" data-ng-model="transferVia"
 												name="transferVia" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
 												<option>Bank Account</option>
 			          						</select>
-			          						<span data-ng-show="myAccountForm.nbrAccount.$dirty &amp;&amp; myAccountForm.nbrAccount.$invalid"
+			          						<span data-ng-show="newPayeeForm.transferVia.$dirty &amp;&amp; newPayeeForm.transferVia.$invalid"
 												class="error">Please Select Channel</span>
 			        					</div>
 			      					</div>
@@ -308,9 +308,9 @@
 			        					<div class="col-sm-4">
 			          						<input type="number" value="" class="form-control" required="required"
 			          							name="mat_amount" data-ng-model="mat_amount" max="{{accountdetails.balance}}" />
-			          						<span class="error" data-ng-show="myAccountForm.amount.$error.required 
+			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.required 
 			          							&amp;&amp; myAccountForm.amount.$dirty">Amount is required.</span>
-			          						<span class="error" data-ng-show="myAccountForm.amount.$error.max">Amount Exceeded Balance</span>
+			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.max">Amount Exceeded Balance</span>
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
