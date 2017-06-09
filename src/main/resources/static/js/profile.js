@@ -117,7 +117,6 @@ app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedPro
 
 });
 
-
 app.controller("addPayeeController",function($scope,$http){
 	$scope.internal_confirm=true;
 	$scope.domestic_confirm=true;
@@ -143,6 +142,16 @@ app.controller("addPayeeController",function($scope,$http){
 	$scope.verifyInternalPayee = function(){
 		$scope.internal_confirm=false;
 		$scope.internal_transfer=true;
+		$scope.selected_branch;
+		$http.get("/branch/viewallbranch").success(function(data,status) {
+	        angular.forEach(data.allBranch, function(branchInfo, index) {
+	        	if(branchInfo.branchId==$scope.internalPayeeForm.ipf_branch.$viewValue){
+	        		$scope.selected_branch=branchInfo.branchName;
+	        	}
+			});
+		}).error(function(data,status) {
+			 throw { message: 'error message',status:status};
+		});
 	}
 	
 	$scope.changeDomestic = function(){
@@ -163,6 +172,24 @@ app.controller("addPayeeController",function($scope,$http){
 	$scope.verifyInternationalPayee = function(){
 		$scope.international_confirm=false;
 		$scope.international_transfer=true;
+	}
+	
+	$scope.createInternalPayee = function() {
+		$scope.internalPayeeInfo={};
+		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
+		$scope.internalPayeeInfo['accountNumber']=$scope.internalPayeeForm.ipf_accNo.$viewValue;
+		$scope.internalPayeeInfo['accountName']=$scope.internalPayeeForm.ipf_accName.$viewValue;
+		$scope.internalPayeeInfo['branchId']=$scope.internalPayeeForm.ipf_branch.$viewValue;
+		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
+		
+		alert(JSON.stringify($scope.internalPayeeInfo));
+		$http.post('/fundtransfer/internal', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
+			toastrSucessMsg('Created Internal Payee','Successfull!');
+			angular.copy({},$scope.internalPayeeForm);
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
 	}
 	
 });
@@ -225,12 +252,6 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['fromAccount']=parseInt($scope.nbrAccount);
-		$scope.transferMoneyDetails['branchCode']=parseInt($scope.accountdetails.nbrBranch);
-		$scope.transferMoneyDetails['amount']=parseInt($scope.transferMoneyForm.amount.$viewValue);
-		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
-		$scope.transferMoneyDetails['toAccount']=parseInt($scope.transferMoneyForm.transferTo.$viewValue);
-		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
 		$scope.transferMoneyDetails['fromAccountNo']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=parseInt($scope.myAccountForm.mat_amount.$viewValue);
@@ -239,7 +260,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
-		$http.post("/fundtransfer/ownaccount",JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			angular.copy({},$scope.transferMoneyForm);
 			$window.location.href = '#/transfermoney';
