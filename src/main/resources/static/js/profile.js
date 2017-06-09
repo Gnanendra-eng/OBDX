@@ -234,21 +234,18 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-<<<<<<< HEAD
 		$scope.transferMoneyDetails['fromAccount']=parseInt($scope.nbrAccount);
 		$scope.transferMoneyDetails['branchCode']=parseInt($scope.accountdetails.nbrBranch);
 		$scope.transferMoneyDetails['amount']=parseInt($scope.transferMoneyForm.amount.$viewValue);
 		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toAccount']=parseInt($scope.transferMoneyForm.transferTo.$viewValue);
 		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
-=======
 		$scope.transferMoneyDetails['fromAccountNo']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=$scope.transferMoneyForm.mat_amount.$viewValue;
 		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toaccountNo']=$scope.transferMoneyForm.mat_transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.mat_note.$viewValue;
->>>>>>> branch 'spring_security' of https://pritiranjan_jmr@bitbucket.org/obdx_jmr/obdx_jmr.git
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post("/fundtransfer/ownaccount",JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
