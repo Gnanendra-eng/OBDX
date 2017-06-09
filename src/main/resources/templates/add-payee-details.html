@@ -1,0 +1,440 @@
+<div class="container-fluid" data-ng-controller="addPayeeController">
+	<div class="col-sm-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="id">ADD PAYEE</div>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+	    			<li class="active"><a data-toggle="tab" data-target="#internal">Internal</a></li>
+	    			<li><a data-toggle="tab" data-target="#domestic">Domestic</a></li>
+	    			<li><a data-toggle="tab" data-target="#international">International</a></li>
+	  			</ul>
+   				<div class="tab-content">
+   					<div id="internal" class="tab-pane fade in active">
+   						<form class="form-horizontal" name="internalPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="internal_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="ipf_payee"
+			          							name="ipf_payee" required="required" />
+			          						<span class="error" data-ng-show="internalPayeeForm.ipf_payee.$error.required
+			          							&amp;&amp; internalPayeeForm.ipf_payee.$dirty">Payee Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="ipf_accNo"
+			          							name="ipf_accNo" required="required" />
+			          						<span class="error" data-ng-show="internalPayeeForm.ipf_accNo.$error.required
+			          							&amp;&amp; internalPayeeForm.ipf_accNo.$dirty">Account Number is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="ipf_accName"
+			          							name="ipf_accName" required="required" />
+			          						<span class="error" data-ng-show="internalPayeeForm.ipf_accName.$error.required
+			          							&amp;&amp; internalPayeeForm.ipf_accName.$dirty">Account Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Branch<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" data-ng-model="ipf_branch" 
+			          							name="ipf_branch" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option value="Banglore">Banglore</option>
+			          						</select>
+			          						<span class="error" data-ng-show="internalPayeeForm.ipf_branch.$dirty
+			          							&amp;&amp; internalPayeeForm.ipf_branch.$invalid">Branch is required</span>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Nickname<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="ipf_nickname"
+			          							name="ipf_nickname" required="required" />
+			          						<span class="error" data-ng-show="internalPayeeForm.ipf_nickname.$error.required
+			          							&amp;&amp; internalPayeeForm.ipf_nickname.$dirty">Nickname is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button">CANCEL</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-disabled="internalPayeeForm.$invalid"
+			         							data-ng-click="verifyInternalPayee()">ADD</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="internal_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ipf_payee}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ipf_accNo}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ipf_accName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Branch</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ipf_branch}}</h5>
+			        					</div>
+			     					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Nickname</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ipf_nickname}}</h5>
+			        					</div>
+			      					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeInternal()">CHANGE</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createInternalPayee()">CONFIRM</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   					<div id="domestic" class="tab-pane fade">
+   						<form class="form-horizontal" name="domesticPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="domestic_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_bankCity"
+			          							name="dpf_payee" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_payee.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_payee.$dirty">Payee Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Processing Mode<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<label class="radio-inline">
+										      <input type="radio" name="mode"
+										      	checked="checked" required="required" />Normal
+										    </label>
+										    <label class="radio-inline">
+										      <input type="radio" name="mode" />Urgent
+										    </label>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_accNo"
+			          							name="dpf_accNo" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_accNo.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_accNo.$dirty">Account Number is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_accName"
+			          							name="dpf_accName" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_accName.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_accName.$dirty">Account Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Code<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_bankCode"
+			          							name="dpf_bankCode" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_bankCode.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_bankCode.$dirty">Bank Code is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_bankName"
+			          							name="dpf_bankName" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_bankName.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_bankName.$dirty">Bank Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Address<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_bankAddr"
+			          							name="dpf_bankAddr" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_bankAddr.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_bankAddr.$dirty">Bank Address is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">City<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="dpf_bankCity"
+			          							name="dpf_bankCity" required="required" />
+			          						<span class="error" data-ng-show="domesticPayeeForm.dpf_bankCity.$error.required
+			          							&amp;&amp; domesticPayeeForm.dpf_bankCity.$dirty">City is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button">CANCEL</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-disabled="domesticPayeeForm.$invalid"
+			         							data-ng-click="verifyDomesticPayee()">ADD</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="domestic_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{dpf_payee}}</h5>	        					
+										</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Processing Mode</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{dpf_mode}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{dpf_accNo}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{dpf_accName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Code</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{dpf_bankCode}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Name</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{dpf_bankName}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Bank Address</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{dpf_bankAddr}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">City</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{dpf_bankCity}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeDomestic()">CHANGE</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createDomesticPayee()">CONFIRM</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   					<div id="international" class="tab-pane fade">
+   						<form class="form-horizontal" name="internationalPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="international_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="inpf_payee" 
+			          							name="inpf_payee" required="required" />
+			          						<span class="error" data-ng-show="internationalPayeeForm.inpf_payee.$error.required
+			          							&amp;&amp; internationalPayeeForm.inpf_payee.$dirty">Payee Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="inpf_accNo" 
+			          							name="inpf_accNo" required="required" />
+			          						<span class="error" data-ng-show="internationalPayeeForm.inpf_accNo.$dirty 
+			          							&amp;&amp; internationalPayeeForm.inpf_accNo.$error.required">Account Number is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="inpf_accName" 
+			          							name="inpf_accName" required="required" />
+			          						<span class="error" data-ng-show="internationalPayeeForm.inpf_accName.$dirty 
+			          							&amp;&amp; internationalPayeeForm.inpf_accName.$error.required">Account Name is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Pay Via<font
+											color="red">*</font></label>
+			        					<label class="control-label col-sm-1">SWIFT Code</label>
+			        					<div class="col-sm-3">
+			          						<input type="text" class="form-control" data-ng-model="inpf_payVia" 
+			          							name="inpf_payVia" required="required" />
+			          						<span class="error" data-ng-show="internationalPayeeForm.inpf_payVia.$dirty 
+			          							&amp;&amp; internationalPayeeForm.inpf_payVia.$error.required">SWIFT Code is required</span>
+			          						<p>Lookup SWIFT Code</p>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Nickname<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-model="inpf_nickname" 
+			          							name="inpf_nickname" required="required" />
+			          						<span class="error" data-ng-show="internationalPayeeForm.inpf_nickname.$dirty 
+			          							&amp;&amp; internationalPayeeForm.inpf_nickname.$error.required">Nickname is required</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button">CANCEL</button>
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-disabled="internationalPayeeForm.$invalid"
+			         							data-ng-click="verifyInternationalPayee()">ADD</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="international_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{inpf_payee}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{inpf_accName}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{inpf_accName}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Pay Via</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{inpf_payVia}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Nickname</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{inpf_nickname}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-3">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="changeInternational()">CHANGE</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="createInternationalPayee()">CONFIRM</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   				</div>
+   			</div>
+   		</div>
+   	</div>
+ </div>
