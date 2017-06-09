@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.service.FundtransferService;
+import com.jmr.obdx.service.dto.InternalFundTransferDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.Utility;
 
@@ -49,11 +50,11 @@ public class FundTransferController {
 
 	}
 	
-	/*@RequestMapping(value = "/internal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/internal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<StatusInfo> internalTransfer(@RequestBody @Valid InternalFundTransferDto internalFundTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			StatusInfo responceObj = fundtransferService.ownAccountTransfer(authentication,internalFundTransferDto,locale,bindingResult);
+			StatusInfo responceObj = fundtransferService.internalTransfer(internalFundTransferDto,authentication,locale,bindingResult);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
@@ -65,5 +66,5 @@ public class FundTransferController {
 			return new ResponseEntity<StatusInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-	}*/
+	}
 }

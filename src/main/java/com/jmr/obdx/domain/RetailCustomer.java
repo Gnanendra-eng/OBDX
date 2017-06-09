@@ -30,7 +30,7 @@ public class RetailCustomer  implements java.io.Serializable {
      private String idcusomer;
      private Login login;
 
-     private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
+     private Set<FundTransfer> beneficiaryMs = new HashSet<FundTransfer>(0);
 
     public RetailCustomer() {
     }
@@ -43,7 +43,7 @@ public class RetailCustomer  implements java.io.Serializable {
         this.iduser = iduser;
         this.id = id;
     }
-    public RetailCustomer(Login login,long iduser, long id, String isprimery, String typecustomer, String refIdEntity, String customername, String idcusomer, Set<BeneficiaryM> beneficiaryMs) {
+    public RetailCustomer(Login login,long iduser, long id, String isprimery, String typecustomer, String refIdEntity, String customername, String idcusomer, Set<FundTransfer> beneficiaryMs) {
         this.login = login;
     	this.iduser = iduser;
        this.id = id;
@@ -128,11 +128,11 @@ public class RetailCustomer  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="retailCustomer")
-    public Set<BeneficiaryM> getBeneficiaryMs() {
+    public Set<FundTransfer> getBeneficiaryMs() {
         return this.beneficiaryMs;
     }
     
-    public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
+    public void setBeneficiaryMs(Set<FundTransfer> beneficiaryMs) {
         this.beneficiaryMs = beneficiaryMs;
     }
 
