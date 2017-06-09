@@ -34,6 +34,11 @@ public class CurrencyM  implements java.io.Serializable {
     public CurrencyM(long id) {
         this.id = id;
     }
+    public CurrencyM(String currencyType) {
+        this.currencyType = currencyType;
+    }
+    
+  
     public CurrencyM(long id, String currencyType, String currencyDesc, Set<TransactionData> transactionDatas) {
        this.id = id;
        this.currencyType = currencyType;

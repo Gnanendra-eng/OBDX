@@ -19,5 +19,5 @@ public interface TransferTypeRepo extends CrudRepository<TransferType, Integer> 
 	public List<TransferType> transferType();
 
 	
-	 public TransferType findByTransactionDatas(String transationType);
+	 public TransferType findByDescription(String transationType);
 }
