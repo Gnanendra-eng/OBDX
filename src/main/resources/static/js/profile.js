@@ -126,6 +126,15 @@ app.controller("addPayeeController",function($scope,$http){
 	$scope.domestic_transfer=false;
 	$scope.international_transfer=false;
 	
+	$http.get("/branch/viewallbranch").success(function(data,status) {
+		$scope.select_payee_branches = [];
+        angular.forEach(data.allBranch, function(branchInfo, index) {
+			$scope.select_payee_branches.push({"branchName":branchInfo.branchName,"branchId":branchInfo.branchId});
+		});
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
+	
 	$scope.changeInternal = function(){
 		$scope.internal_transfer=false;
 		$scope.internal_confirm=true;
@@ -154,24 +163,6 @@ app.controller("addPayeeController",function($scope,$http){
 	$scope.verifyInternationalPayee = function(){
 		$scope.international_confirm=false;
 		$scope.international_transfer=true;
-	}
-	
-	$scope.createInternalPayee = function() {
-		$scope.internalPayeeInfo={};
-		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
-		$scope.internalPayeeInfo['accountNumber']=$scope.internalPayeeForm.ipf_accNo.$viewValue;
-		$scope.internalPayeeInfo['accountName']=$scope.internalPayeeForm.ipf_accName.$viewValue;
-		$scope.internalPayeeInfo['branchId']=$scope.internalPayeeForm.ipf_branch.$viewValue;
-		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
-		
-		alert(JSON.stringify($scope.internalPayeeInfo));
-		$http.post('/beneficiary/newbeneficiary', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
-			toastrSucessMsg('Created Internal Payee','Successfull!');
-			angular.copy({},$scope.internalPayeeForm);
-			$window.location.href = '#/transfermoney';
-		}).error(function (data, status) {
-			 throw { message: 'error message',status:status};	  
-		});
 	}
 	
 });
@@ -243,6 +234,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['fromAccountNo']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=$scope.myAccountForm.mat_amount.$viewValue;
+		$scope.transferMoneyDetails['amount']=parseInt($scope.myAccountForm.mat_amount.$viewValue);
 		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toaccountNo']=$scope.myAccountForm.mat_transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
