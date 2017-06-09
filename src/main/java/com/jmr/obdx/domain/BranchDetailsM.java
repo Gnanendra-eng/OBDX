@@ -54,9 +54,12 @@ public class BranchDetailsM  implements java.io.Serializable {
        this.createdDate = createdDate;
     }
    
-     @Id 
-
+    public BranchDetailsM(String branchCod){
+    	this.branchCod=branchCod;
+    }
     
+    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=22, scale=0)
     public long getId() {
         return this.id;

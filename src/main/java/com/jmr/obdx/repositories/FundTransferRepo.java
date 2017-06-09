@@ -5,11 +5,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.BeneficiaryM;
+import com.jmr.obdx.domain.FundTransfer;
 
 
 @Repository
 @Transactional
-public interface BeneficiaryRepo extends CrudRepository<BeneficiaryM, Integer> {
+public interface FundTransferRepo extends CrudRepository<FundTransfer, Integer> {
 
 }
