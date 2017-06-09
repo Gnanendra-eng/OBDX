@@ -225,6 +225,12 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['fromAccount']=parseInt($scope.nbrAccount);
+		$scope.transferMoneyDetails['branchCode']=parseInt($scope.accountdetails.nbrBranch);
+		$scope.transferMoneyDetails['amount']=parseInt($scope.transferMoneyForm.amount.$viewValue);
+		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['toAccount']=parseInt($scope.transferMoneyForm.transferTo.$viewValue);
+		$scope.transferMoneyDetails['note']=$scope.transferMoneyForm.note.$viewValue;
 		$scope.transferMoneyDetails['fromAccountNo']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=parseInt($scope.myAccountForm.mat_amount.$viewValue);
@@ -233,7 +239,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
-		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+		$http.post("/fundtransfer/ownaccount",JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			angular.copy({},$scope.transferMoneyForm);
 			$window.location.href = '#/transfermoney';

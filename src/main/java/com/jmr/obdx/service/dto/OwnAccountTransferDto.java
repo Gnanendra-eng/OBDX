@@ -1,37 +1,31 @@
 package com.jmr.obdx.service.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class OwnAccountTransferDto {
-	
-	@NotEmpty(message = "Is required")
+
+	@NotNull(message = "{error.required}")
 	private String accountType;
-	
-	@NotEmpty(message = "Is required")
-	private long currencyCode;
-	
-	@NotEmpty(message = "Is required")
-	private String bankCoad;
 
-	@NotEmpty(message = "Is required")
-	private String sourceAccountNo;
-	
-	@NotEmpty(message = "Is required")
-	private String destinationAccountNo;
-	
-	@NotEmpty(message = "Is required")
+	@NotNull(message = "{error.required}")
+	private String currencyCode;
+
+	@NotNull(message = "{error.required}")
+	private Integer branchCode;
+
+	@NotNull(message = "{error.required}")
 	private Integer amount;
-	
-	@NotEmpty(message = "Is required")
-	private Integer toAccount;
-	
-	@NotEmpty(message = "Is required")
-	private Integer fromAccount;
 
-	@NotEmpty(message = "Is required")
+	@NotNull(message = "{error.required}")
+	private long toAccount;
+
+	@NotNull(message = "{error.required}")
+	private long fromAccount;
+	
+	@NotNull(message = "{error.required}")
+	private long fromAccountBalancy;
+	
 	private String note;
-	
-
 
 	public String getAccountType() {
 		return accountType;
@@ -41,36 +35,20 @@ public class OwnAccountTransferDto {
 		this.accountType = accountType;
 	}
 
-	public long getCurrencyCode() {
+	public String getCurrencyCode() {
 		return currencyCode;
 	}
 
-	public void setCurrencyCode(long currencyCode) {
+	public void setCurrencyCode(String currencyCode) {
 		this.currencyCode = currencyCode;
 	}
 
-	public String getBankCoad() {
-		return bankCoad;
+	public Integer getBranchCode() {
+		return branchCode;
 	}
 
-	public void setBankCoad(String bankCoad) {
-		this.bankCoad = bankCoad;
-	}
-
-	public String getSourceAccountNo() {
-		return sourceAccountNo;
-	}
-
-	public void setSourceAccountNo(String sourceAccountNo) {
-		this.sourceAccountNo = sourceAccountNo;
-	}
-
-	public String getDestinationAccountNo() {
-		return destinationAccountNo;
-	}
-
-	public void setDestinationAccountNo(String destinationAccountNo) {
-		this.destinationAccountNo = destinationAccountNo;
+	public void setBranchCode(Integer branchCode) {
+		this.branchCode = branchCode;
 	}
 
 	public Integer getAmount() {
@@ -81,20 +59,28 @@ public class OwnAccountTransferDto {
 		this.amount = amount;
 	}
 
-	public Integer getToAccount() {
+	public long getToAccount() {
 		return toAccount;
 	}
 
-	public void setToAccount(Integer toAccount) {
+	public void setToAccount(long toAccount) {
 		this.toAccount = toAccount;
 	}
 
-	public Integer getFromAccount() {
+	public long getFromAccount() {
 		return fromAccount;
 	}
 
-	public void setFromAccount(Integer fromAccount) {
+	public void setFromAccount(long fromAccount) {
 		this.fromAccount = fromAccount;
+	}
+
+	public long getFromAccountBalancy() {
+		return fromAccountBalancy;
+	}
+
+	public void setFromAccountBalancy(long fromAccountBalancy) {
+		this.fromAccountBalancy = fromAccountBalancy;
 	}
 
 	public String getNote() {
@@ -105,24 +91,22 @@ public class OwnAccountTransferDto {
 		this.note = note;
 	}
 
-	public OwnAccountTransferDto(String accountType, long currencyCode, String bankCoad, String sourceAccountNo,
-			String destinationAccountNo, Integer amount, Integer toAccount, Integer fromAccount, String note) {
+	public OwnAccountTransferDto(String accountType, String currencyCode, Integer branchCode, Integer amount,
+			long toAccount, long fromAccount, long fromAccountBalancy, String note) {
 		this.accountType = accountType;
 		this.currencyCode = currencyCode;
-		this.bankCoad = bankCoad;
-		this.sourceAccountNo = sourceAccountNo;
-		this.destinationAccountNo = destinationAccountNo;
+		this.branchCode = branchCode;
 		this.amount = amount;
 		this.toAccount = toAccount;
 		this.fromAccount = fromAccount;
+		this.fromAccountBalancy = fromAccountBalancy;
 		this.note = note;
 	}
 
 	public OwnAccountTransferDto() {
 		// TODO Auto-generated constructor stub
 	}
-
-
 	
 	
+
 }

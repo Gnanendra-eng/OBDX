@@ -64,6 +64,7 @@ public class AccountService {
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+			
 		});
 		basicAccountDetailsDto.setNbrAccounts(tempAccountDetails);
 		basicAccountDetailsDto.setCustomerId(retailCustomer.getIdcusomer());

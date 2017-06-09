@@ -1,4 +1,4 @@
-/*package com.mcx.adapter;
+package com.mcx.adapter;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -7,9 +7,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 public class TestAdapter {
 
- public static void main(String[] args) {
+ public String getResponse() {
   HttpURLConnection conn = null;
   try {
    URL url = new URL("httpurl");
@@ -34,7 +35,7 @@ public class TestAdapter {
    } finally {
     conn.disconnect();
    }
+  return "Success";
 
     }
-
-}*/
+}

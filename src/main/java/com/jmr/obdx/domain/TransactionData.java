@@ -27,7 +27,7 @@ public class TransactionData  implements java.io.Serializable {
      private String customerid;
      private long fromaccountno;
      private long toaccountno;
-     private String branchcod;
+     private Integer branchcod;
      private long amount;
      private Date transaferdate;
      private String status;
@@ -36,10 +36,8 @@ public class TransactionData  implements java.io.Serializable {
     }
 
 	
-    public TransactionData(long id) {
-        this.id = id;
-    }
-    public TransactionData(TransferType transferType, CurrencyM currencyM, String customerid, long fromaccountno, long toccountno, String branchcod, long amount, Date transaferdate, String status) {
+   
+    public TransactionData(TransferType transferType, CurrencyM currencyM, String customerid, long fromaccountno, long toccountno, Integer branchcod, long amount, Date transaferdate, String status) {
        this.transferType = transferType;
        this.currencyM = currencyM;
        this.customerid = customerid;
@@ -127,11 +125,11 @@ public class TransactionData  implements java.io.Serializable {
 	}
 	
     @Column(name="BRANCHCOD", length=10)
-    public String getBranchcod() {
+    public Integer getBranchcod() {
         return this.branchcod;
     }
     
-    public void setBranchcod(String branchcod) {
+    public void setBranchcod(Integer branchcod) {
         this.branchcod = branchcod;
     }
 

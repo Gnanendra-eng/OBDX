@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.csrf().and().addFilterAfter(new CsrfTokenResponseCookieBindingFilter(), CsrfFilter.class).authorizeRequests().antMatchers(patterns)
+		httpSecurity.csrf().disable()/*and().addFilterAfter(new CsrfTokenResponseCookieBindingFilter(), CsrfFilter.class)*/.authorizeRequests().antMatchers(patterns)
 				 .permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
 				 .failureUrl("/login/authfail").usernameParameter("userName").passwordParameter("password")
 				 .defaultSuccessUrl("/auth",true).permitAll().and().exceptionHandling()

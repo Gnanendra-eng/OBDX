@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.service.FundtransferService;
-import com.jmr.obdx.service.dto.BillerInfo;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.Utility;
 
@@ -30,13 +29,13 @@ public class FundTransferController {
 	@Autowired
 	private FundtransferService fundtransferService;
 	
-	private final Logger logger = LoggerFactory.getLogger(BillerController.class);
+	private final Logger logger = LoggerFactory.getLogger(FundTransferController.class);
 
-	@RequestMapping(value = "/ownaccoount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<StatusInfo> ownAccountTransfer(Authentication authentication,@RequestBody @Valid OwnAccountTransferDto ownAccountTransferDto,BindingResult bindingResult,Locale locale) {
+	@RequestMapping(value = "/ownaccount", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<StatusInfo> ownAccountTransfer(@RequestBody @Valid OwnAccountTransferDto ownAccountTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			StatusInfo responceObj = fundtransferService.ownAccountTransfer(authentication,ownAccountTransferDto,bindingResult,locale);
+			StatusInfo responceObj = fundtransferService.ownAccountTransfer(authentication,ownAccountTransferDto,locale,bindingResult);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
@@ -50,5 +49,21 @@ public class FundTransferController {
 
 	}
 	
+	/*@RequestMapping(value = "/internal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<StatusInfo> internalTransfer(@RequestBody @Valid InternalFundTransferDto internalFundTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			StatusInfo responceObj = fundtransferService.ownAccountTransfer(authentication,internalFundTransferDto,locale,bindingResult);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<StatusInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
+	}*/
 }
