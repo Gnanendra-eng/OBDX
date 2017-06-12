@@ -198,6 +198,15 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.myAccount_select=true;
 	$scope.myAccount_confirm=false;
 	$scope.myAccount_transfer=false;
+	$http.get("/beneficiary/viewbeneficiary").success(function(data,status) {
+		$scope.select_transfer_nbrAccounts = [];
+        angular.forEach(data.allPayee, function(payeeInfo, index) {
+			$scope.select_transfer_nbrAccounts.push({"payeeId":payeeInfo.id,"payeeName":payeeInfo.payeeName});
+		});
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
+	
 	$http.get("/user/accountdetails/").success(function(data,status) {
 		$scope.select_prop_nbrAccounts = [];
 		$scope.nbrAccounts =data;

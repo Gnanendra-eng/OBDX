@@ -23,8 +23,8 @@
 			          						<select class="form-control" data-ng-model="ept_transferTo"
 												name="ept_transferTo" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
-												<option data-ng-repeat="nbrAccount in select_transfer_nbrAccounts"
-													value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+												<option data-ng-repeat="payee in select_transfer_nbrAccounts"
+													value="{{payee.payeeName}}">{{payee.payeeName}}</option>
 			          						</select>
 			          						<span data-ng-show="existingPayeeForm.ept_transferTo.$dirty &amp;&amp; existingPayeeForm.ept_transferTo.$invalid"
 												class="error">Please Select a Payee</span>		        					
@@ -34,7 +34,7 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Transfer From<font
 											color="red">*</font></label>
-			        					<div class="col-sm-4" data-ng-class="{ 'has-error' : existingPayeeForm.entityinfo.$invalid &amp;&amp; existingPayeeForm.entityinfo.$dirty }">
+			        					<div class="col-sm-4">
 			          						<select class="form-control"
 			          							data-ng-change="onAccountChange()" data-ng-model="ept_nbrAccount"
 												name="ept_nbrAccount" required="required">
