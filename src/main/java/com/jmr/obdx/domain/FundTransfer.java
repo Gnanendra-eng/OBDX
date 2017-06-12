@@ -32,6 +32,8 @@ public class FundTransfer  implements java.io.Serializable {
      private Date transaferdate;
      private String status;
      private String note;
+     private BeneficiaryM beneficiaryM;
+
 
     public FundTransfer() {
     }
@@ -49,6 +51,21 @@ public class FundTransfer  implements java.io.Serializable {
        this.transaferdate = transaferdate;
        this.status = status;
        this.note = note;
+    }
+    
+    public FundTransfer(AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, long fromaccountno, long toccountno, Integer branchcod, long amount, Date transaferdate, String status, String note,BeneficiaryM beneficiaryM) {
+        this.accountTypeM = accountTypeM;
+        this.currencyM = currencyM;
+        this.customerid = customerid;
+        this.fromaccountno = fromaccountno;
+        this.toaccountno = toccountno;
+        this.branchcod = branchcod;
+        this.amount = amount;
+        this.transaferdate = transaferdate;
+        this.status = status;
+        this.note = note;
+        this.beneficiaryM = beneficiaryM;
+ 
     }
    
    
@@ -159,7 +176,16 @@ public class FundTransfer  implements java.io.Serializable {
 		return note;
 	}
 
-
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="BENEFICIARY_ID")
+    public BeneficiaryM getBeneficiaryM() {
+        return this.beneficiaryM;
+    }
+    
+    public void setBeneficiaryM(BeneficiaryM beneficiaryM) {
+        this.beneficiaryM = beneficiaryM;
+    }
+    
     @Column(name="NOTE", length=50)
 	public void setNote(String note) {
 		this.note = note;

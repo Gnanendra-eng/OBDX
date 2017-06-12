@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.jmr.obdx.domain.BranchDetailsM;
+import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.service.dto.AllBranch;
 import com.jmr.obdx.service.dto.BranchInfoDto;
@@ -32,7 +32,7 @@ public class BranchService {
 	
 	
 	public BranchInfoDto getBranchDetails(Authentication authentication){
-	List<BranchDetailsM> branchDetailsMs= branchRepo.findAllBranch();
+	List<BranchM> branchDetailsMs= branchRepo.findAllBranch();
 	branchInfoDto = new BranchInfoDto();
 	allBranch = new ArrayList<>();
 	branchDetailsMs.stream().forEach(branchDetailsM ->{

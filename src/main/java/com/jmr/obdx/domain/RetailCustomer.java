@@ -39,10 +39,14 @@ public class RetailCustomer  implements java.io.Serializable {
         this.login = login;
         this.id = id;
     }
+    public RetailCustomer(String idcusomer) {
+        this.idcusomer = idcusomer;
+    }
     public RetailCustomer(long iduser, long id) {
         this.iduser = iduser;
         this.id = id;
     }
+    
     public RetailCustomer(Login login,long iduser, long id, String isprimery, String typecustomer, String refIdEntity, String customername, String idcusomer, Set<BeneficiaryM> beneficiaryMs) {
         this.login = login;
     	this.iduser = iduser;

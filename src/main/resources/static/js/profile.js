@@ -177,17 +177,17 @@ app.controller("addPayeeController",function($scope,$http){
 	$scope.createInternalPayee = function() {
 		$scope.internalPayeeInfo={};
 		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
-		$scope.internalPayeeInfo['accountNumber']=$scope.internalPayeeForm.ipf_accNo.$viewValue;
+		$scope.internalPayeeInfo['accountNumber']=parseInt($scope.internalPayeeForm.ipf_accNo.$viewValue);
 		$scope.internalPayeeInfo['accountName']=$scope.internalPayeeForm.ipf_accName.$viewValue;
 		$scope.internalPayeeInfo['branchId']=$scope.internalPayeeForm.ipf_branch.$viewValue;
 		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
 		
 		alert(JSON.stringify($scope.internalPayeeInfo));
-		$http.post('/fundtransfer/internal', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
+		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created Internal Payee','Successfull!');
 			angular.copy({},$scope.internalPayeeForm);
-			$window.location.href = '#/transfermoney';
-		}).error(function (data, status) {
+/*			$window.location.href = '#/transfermoney';
+*/		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
 		});
 	}
@@ -271,7 +271,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
-		$http.get('/fundtransfer/ownaccoount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			angular.copy({},$scope.transferMoneyForm);
 			$window.location.href = '#/transfermoney';
