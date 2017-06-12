@@ -23,7 +23,7 @@ public class TransferType  implements java.io.Serializable {
 
      private long id;
      private String description;
-     private Set<BranchDetailsM> branchDetailsMs = new HashSet<BranchDetailsM>(0);
+     private Set<BranchM> branchDetailsMs = new HashSet<BranchM>(0);
 
     public TransferType() {
     }
@@ -32,7 +32,7 @@ public class TransferType  implements java.io.Serializable {
     public TransferType(long id) {
         this.id = id;
     }
-    public TransferType(long id, String description,Set<BranchDetailsM> branchDetailsMs) {
+    public TransferType(long id, String description,Set<BranchM> branchDetailsMs) {
        this.id = id;
        this.description = description;
        this.branchDetailsMs = branchDetailsMs;
@@ -65,11 +65,11 @@ public class TransferType  implements java.io.Serializable {
 
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="transferType")
-    public Set<BranchDetailsM> getBranchDetailsMs() {
+    public Set<BranchM> getBranchDetailsMs() {
         return this.branchDetailsMs;
     }
     
-    public void setBranchDetailsMs(Set<BranchDetailsM> branchDetailsMs) {
+    public void setBranchDetailsMs(Set<BranchM> branchDetailsMs) {
         this.branchDetailsMs = branchDetailsMs;
     }
 

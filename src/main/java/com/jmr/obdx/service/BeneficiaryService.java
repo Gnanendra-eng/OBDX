@@ -1,5 +1,7 @@
 package com.jmr.obdx.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -9,18 +11,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.BeneficiaryM;
-import com.jmr.obdx.domain.BranchDetailsM;
+import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.Login;
-import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
+import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.service.dto.AllPayee;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
+import com.jmr.obdx.service.dto.PayeeInfo;
 
 @Service
 public class BeneficiaryService {
@@ -29,6 +32,10 @@ public class BeneficiaryService {
 
 	
 	private StatusInfo statusInfo;
+	
+	private List<AllPayee> allPayee;
+	
+	private PayeeInfo payeeInfo;
 
 	@Autowired
 	private LoginRepo loginRepo;
@@ -42,9 +49,12 @@ public class BeneficiaryService {
 	@Autowired
 	private BeneficiaryRepo beneficiaryRepo;
 	
+	@Autowired
+	private BranchRepo branchRepo;
 	
 	
-	public StatusInfo addBeneficiary(BeneficiaryDto internalFundTransferDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
+	
+	public StatusInfo addBeneficiary(BeneficiaryDto beneficiaryDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
 		statusInfo=new StatusInfo();
 		if (bindingResult.hasErrors()) {
 			statusInfo.setErrorStatus(true);
@@ -62,8 +72,24 @@ public class BeneficiaryService {
 	 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
 	 			}
 		});*/
-		beneficiaryRepo.save(new BeneficiaryM(internalFundTransferDto.getAccountName(), new Long(internalFundTransferDto.getAccountNumber()), new BranchDetailsM(internalFundTransferDto.getBranchId()),internalFundTransferDto.getNickName(),internalFundTransferDto.getPayeeName(),internalFundTransferDto.getCreatedVie()));
-   	    return statusInfo; 
+		Login login = loginRepo.findByUsername(authentication.getName());
+        BranchM branchDetailsM = branchRepo.findById(beneficiaryDto.getBranchId());
+   	    beneficiaryRepo.save(new BeneficiaryM(new BranchM( branchDetailsM.getId()),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount"));
+		
+		return statusInfo; 
 	}
 
+	public PayeeInfo viewBeneficiary(Authentication authentication,Locale locale){
+		
+		List<BeneficiaryM> beneficiaryM = beneficiaryRepo.findBeneficiary();
+		payeeInfo = new PayeeInfo();
+		allPayee = new ArrayList<>();
+		beneficiaryM.stream().forEach(beneficiary->{
+			allPayee.add(new AllPayee(beneficiary.getId(), beneficiary.getPayyename()));
+		});
+		payeeInfo.setAllPayee(allPayee);
+		return payeeInfo;
+	}
+	
+	
 }

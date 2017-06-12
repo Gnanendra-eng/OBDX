@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 
 import com.jmr.obdx.domain.AccountTypeM;
 import com.jmr.obdx.domain.Accountdetails;
-import com.jmr.obdx.domain.BranchDetailsM;
+import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.CurrencyM;
 import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.Login;

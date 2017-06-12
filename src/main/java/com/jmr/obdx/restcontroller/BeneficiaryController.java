@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.service.BeneficiaryService;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
+import com.jmr.obdx.service.dto.PayeeInfo;
 import com.jmr.obdx.util.Utility;
 
 @RequestMapping(value = "/beneficiary")
@@ -33,10 +34,10 @@ public class BeneficiaryController {
 
 	
 	@RequestMapping(value = "/addbeneficiary", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<StatusInfo> internalTransfer(@RequestBody @Valid BeneficiaryDto internalFundTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
+	private ResponseEntity<StatusInfo> addBeneficiary(@RequestBody @Valid BeneficiaryDto beneficiaryDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-			StatusInfo responceObj = beneficiaryService.addBeneficiary(internalFundTransferDto,authentication,locale,bindingResult);
+			StatusInfo responceObj = beneficiaryService.addBeneficiary(beneficiaryDto,authentication,locale,bindingResult);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<StatusInfo>(responceObj, HttpStatus.BAD_REQUEST);
@@ -50,4 +51,22 @@ public class BeneficiaryController {
 
 	}
 
+	
+	@RequestMapping(value = "/viewbeneficiary", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<PayeeInfo> viewBeneficiary( Authentication authentication, Locale locale) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			PayeeInfo responceObj = beneficiaryService.viewBeneficiary(authentication,locale);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<PayeeInfo>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<PayeeInfo>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<PayeeInfo>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
 }

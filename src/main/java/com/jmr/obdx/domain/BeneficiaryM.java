@@ -1,12 +1,16 @@
 package com.jmr.obdx.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,10 +26,11 @@ public class BeneficiaryM  implements java.io.Serializable {
 
 
      private long id;
-     private BranchDetailsM branchDetailsM;
-     private RetailCustomer retailCustomer;
+     private BranchM branchDetailsM;
+/*     private RetailCustomer retailCustomer;
+*/   private String   retailCustomer;
      private String payyename;
-     private Long accountname;
+     private String accountname;
      private String nickname;
      private Long accountnumber;
      private String isactive;
@@ -33,6 +38,8 @@ public class BeneficiaryM  implements java.io.Serializable {
      private Long swiftCode;
      private Long ncc;
      private String transfervai;
+     private Set<FundTransfer> fundTransfers = new HashSet<FundTransfer>(0);
+
 
     public BeneficiaryM() {
     }
@@ -41,8 +48,7 @@ public class BeneficiaryM  implements java.io.Serializable {
     public BeneficiaryM(long id) {
         this.id = id;
     }
-    public BeneficiaryM(long id, BranchDetailsM branchDetailsM, RetailCustomer retailCustomer, String payyename, Long accountname, String nickname, Long accountnumber, String isactive, Date registrationdate, Long swiftCode, Long ncc, String transfervai) {
-       this.id = id;
+    public BeneficiaryM( BranchM branchDetailsM, String retailCustomer, String payyename, String accountname, String nickname, Long accountnumber, String isactive, Date registrationdate, Long swiftCode, Long ncc, String transfervai,Set<FundTransfer> fundTransfers) {
        this.branchDetailsM = branchDetailsM;
        this.retailCustomer = retailCustomer;
        this.payyename = payyename;
@@ -54,11 +60,23 @@ public class BeneficiaryM  implements java.io.Serializable {
        this.swiftCode = swiftCode;
        this.ncc = ncc;
        this.transfervai = transfervai;
+       this.fundTransfers = fundTransfers;
+
     }
+    public BeneficiaryM( BranchM branchDetailsM, String retailCustomer, String payyename, String accountname, String nickname, Long accountnumber, String isactive, Date registrationdate, String transfervai) {
+    	   this.branchDetailsM = branchDetailsM;
+           this.retailCustomer = retailCustomer;
+           this.payyename = payyename;
+           this.accountname = accountname;
+           this.nickname = nickname;
+           this.accountnumber = accountnumber;
+           this.isactive = isactive;
+           this.registrationdate = registrationdate;
+           this.transfervai = transfervai;
+        }
 
 
-
-	public BeneficiaryM(Long accountname,Long accountnumber, BranchDetailsM branchDetailsM, String nickname, String payyename,
+	public BeneficiaryM(String accountname,Long accountnumber, BranchM branchDetailsM, String nickname, String payyename,
 			String transfervai) {
 	       this.accountname = accountname;
 	       this.accountnumber = accountnumber;
@@ -72,6 +90,12 @@ public class BeneficiaryM  implements java.io.Serializable {
 
 	       
 	}
+
+
+	
+
+
+	
 
 
 	@Id 
@@ -88,21 +112,24 @@ public class BeneficiaryM  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="BRANCH")
-    public BranchDetailsM getBranchDetailsM() {
+    public BranchM getBranchDetailsM() {
         return this.branchDetailsM;
     }
     
-    public void setBranchDetailsM(BranchDetailsM branchDetailsM) {
+    public void setBranchDetailsM(BranchM branchDetailsM) {
         this.branchDetailsM = branchDetailsM;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="REF_USER_ID")
-    public RetailCustomer getRetailCustomer() {
+/*@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="REF_USER_ID")*/
+    
+    @Column(name="REF_USER_ID", length=100)
+
+    public String getRetailCustomer() {
         return this.retailCustomer;
     }
     
-    public void setRetailCustomer(RetailCustomer retailCustomer) {
+    public void setRetailCustomer(String retailCustomer) {
         this.retailCustomer = retailCustomer;
     }
 
@@ -117,17 +144,17 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
     
-    @Column(name="ACCOUNTNAME", precision=10, scale=0)
-    public Long getAccountname() {
+    @Column(name="ACCOUNTNAME", precision=100, scale=0)
+    public String getAccountname() {
         return this.accountname;
     }
     
-    public void setAccountname(Long accountname) {
+    public void setAccountname(String accountname) {
         this.accountname = accountname;
     }
 
     
-    @Column(name="NICKNAME", length=10)
+    @Column(name="NICKNAME", length=100)
     public String getNickname() {
         return this.nickname;
     }
@@ -137,7 +164,7 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
     
-    @Column(name="ACCOUNTNUMBER", precision=10, scale=0)
+    @Column(name="ACCOUNTNUMBER", precision=100, scale=0)
     public Long getAccountnumber() {
         return this.accountnumber;
     }
@@ -147,7 +174,7 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
     
-    @Column(name="ISACTIVE", length=10)
+    @Column(name="ISACTIVE", length=100)
     public String getIsactive() {
         return this.isactive;
     }
@@ -177,7 +204,7 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
     
-    @Column(name="SWIFT_CODE", precision=10, scale=0)
+    @Column(name="SWIFT_CODE", precision=100, scale=0)
     public Long getSwiftCode() {
         return this.swiftCode;
     }
@@ -187,7 +214,7 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
     
-    @Column(name="NCC", precision=10, scale=0)
+    @Column(name="NCC", precision=100, scale=0)
     public Long getNcc() {
         return this.ncc;
     }
@@ -197,6 +224,14 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
 
 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="beneficiaryM")
+    public Set<FundTransfer> getFundTransfers() {
+        return this.fundTransfers;
+    }
+    
+    public void setFundTransfers(Set<FundTransfer> fundTransfers) {
+        this.fundTransfers = fundTransfers;
+    }
 
 
 }
