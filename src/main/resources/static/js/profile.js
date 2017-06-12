@@ -283,16 +283,6 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	function onChangeEptNbrAccountId(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.ept_nbrAccount).success(function(data,status) {
 		    $scope.accountdetails =data;
-		    $scope.select_transfer_nbrAccounts = [];
-		    $http.get("/user/accountdetails/").success(function(data,status) {
-		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
-		        	if($scope.ept_nbrAccount!=name){
-		        		$scope.select_transfer_nbrAccounts.push({"value":name,"text":name});
-		        	}
-				});
-			}).error(function(data,status) {
-				 throw { message: 'error message',status:status};
-			});
 		    $scope.myAccount_confirm=true;
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};
