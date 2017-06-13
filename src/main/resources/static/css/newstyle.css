@@ -598,3 +598,10 @@ label.btn.custom-button.active {
     color: #a20b0b;
     font-size: small;
 }
+
+#img-success{
+	width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}

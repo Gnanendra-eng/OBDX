@@ -46,6 +46,9 @@ app.config(function($routeProvider,$locationProvider) {
     	controller:'newLoanAccountOpening'	
     }).when("/edit-profile", {
     	templateUrl : '/fragment/edit-profile.html'
+    }).when("/success", {
+        templateUrl : '/fragment/success.html',
+        controller:'successController'
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -53,7 +56,6 @@ app.config(function($routeProvider,$locationProvider) {
 });
 
 app.controller("loanController", function($scope,$http,sharedProperties,$window) {
-	
 	$http.get("/user/loan/").success(function(data,status) {
 		 $scope.loanInfo=data;		
 		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
@@ -117,7 +119,7 @@ app.controller("tempDepositeMoreInfoController", function($scope,$http,sharedPro
 
 });
 
-app.controller("addPayeeController",function($scope,$http){
+app.controller("addPayeeController",function($scope,$http,$window,sharedProperties){
 	$scope.internal_confirm=true;
 	$scope.domestic_confirm=true;
 	$scope.international_confirm=true;
@@ -185,13 +187,41 @@ app.controller("addPayeeController",function($scope,$http){
 		alert(JSON.stringify($scope.internalPayeeInfo));
 		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created Internal Payee','Successfull!');
-			angular.copy({},$scope.internalPayeeForm);
+			$scope.payeeName($scope.internalPayeeForm.ipf_payee.$viewValue);
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
+	
+	$scope.createDomesticPayee = function() {
+		$scope.domesticPayeeInfo={};
+		$scope.domesticPayeeInfo['payeeName']=$scope.domesticPayeeForm.dpf_payee.$viewValue;
+		$scope.domesticPayeeInfo['pMode']=$scope.domesticPayeeForm.dpf_mode.$viewValue;
+		$scope.domesticPayeeInfo['accountNumber']=parseInt($scope.domesticPayeeForm.dpf_accNo.$viewValue);
+		$scope.domesticPayeeInfo['accountName']=$scope.domesticPayeeForm.dpf_accName.$viewValue;
+		$scope.domesticPayeeInfo['bankCode']=$scope.domesticPayeeForm.dpf_bankCode.$viewValue;
+		$scope.domesticPayeeInfo['bankName']=$scope.domesticPayeeForm.dpf_bankName.$viewValue;
+		$scope.domesticPayeeInfo['bankAddr']=$scope.domesticPayeeForm.dpf_bankAddr.$viewValue;
+		$scope.domesticPayeeInfo['city']=$scope.domesticPayeeForm.dpf_bankCity.$viewValue;
+		
+		alert(JSON.stringify($scope.domesticPayeeInfo));
+		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.domesticPayeeInfo)).success(function (data) {
+			toastrSucessMsg('Created Domestic Payee','Successfull!');
 /*			$window.location.href = '#/transfermoney';
 */		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
 		});
 	}
 	
+	$scope.payeeName= function(payeeName){
+		sharedProperties.setProperty(payeeName);
+		$window.location.href = '#/success';
+	}
+	
+});
+
+app.controller("successController", function($scope,$http,sharedProperties){
+	$scope.payee_name=sharedProperties.getProperty();
 });
 
 app.controller("transfermoneyController",function($scope,$http,$window){
