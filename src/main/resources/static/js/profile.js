@@ -522,7 +522,13 @@ app.controller("termDepositsController", function($scope,$http,sharedProperties,
     }).error(function(data,status) {
 		 throw { message: 'error message',status:status};
 	});	
-    
+
+	$http.get("/user/accountdetails/summary").success(function(data,status) {
+		$scope.termDepositBalance = data.sumOfContractAndTermdepostit;
+	}).error(function(data,status) {
+	   throw { message: 'error message',status:status};
+	});
+	
     $scope.onAccountChange=function(){
 		if($scope.nbrAccount!=undefined){
 			onChangeNbrAccountId();

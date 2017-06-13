@@ -22,7 +22,7 @@
 					<br /> <br /> <br />
 					<p>Total Term Deposit</p>
 					<div class="sum-amount" style="color: #64c6c1; text-align: left">{{termDeposite.currencyType
-						+'&nbsp;'}} 150,000.00</div>
+						+'&nbsp;'}} {{termDeposite.totalTermDeposits}}</div>
 					<div class="progress skill-bar ">
 						<div class="progress-bar progress-bar-success"
 							style="background-color: #64c6c1" role="progressbar"
@@ -30,9 +30,8 @@
 					</div>
 					<br />
 					<p>Total Current Balance</p>
-					<div class="sum-amount"
-						style="color: #ffa86f; font-size: xx-large; text-align: left">{{termDeposite.currencyType
-						+'&nbsp;'}} 282,865.00</div>
+					<div class="sum-amount" style="color: #ffa86f; text-align: left">{{termDeposite.currencyType
+						+'&nbsp;'}} {{termDepositBalance}}</div>
 					<div class="progress skill-bar ">
 						<div class="progress-bar progress-bar-success progress-striped"
 							style="background-color: #ffa86f" role="progressbar"
