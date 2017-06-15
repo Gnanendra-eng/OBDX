@@ -1,66 +1,28 @@
-<style>
-p {
-	margin: 0 0 10px;
-	color: #9d9d9d;
-}
-
-.addnew {
-	margin: 0 0 10px;
-	color: #9d9d9d;
-	text-align: center;
-	font-size: 20px;
-}
-
-.id {
-	color: #0a0b0c;
-	text-decoration: none;
-	font-size: initial;
-}
-
-.biller {
-	padding-left: 20px;
-	padding-top: 20px;
-	height: 175px;
-}
-
-.glyphicon-plus-sign {
-	color: #9d9d9d;
-	font-size: 20px;
-	top: 50%;
-}
-
-.item {
-	text-align: center;
-	height: 82px;
-}
-</style>
-<div class="wrapper">
-
-	<div class="container-fluid">
-		<div class="col-sm-6 col-md-3"
-			data-ng-repeat="billerInfo in billerInfos.billerDtos">
-			<a href="" class="thumbnail">
-				<div class="id">{{billerInfo.billerName}}</div>
-				<div class="row">
-					<div class="col-sm-8" style="margin-top: 11px;">
-						<p>{{billerInfo.billerProfile}}</p>
-						<p>{{billerInfo.idBiller}}</p>
-					</div>
-					<div class="col-sm-4">
-						<img
-							ng-src="{{billerInfo.billerProfile == 'TELECOM' &amp;&amp; 'images/telecom.png' || 'images/electricity.png'}}"
-							class="img-responsive" style="width: 60px; height: 60px;" />
-					</div>
+<div class="container-fluid">
+	<div class="col-sm-6 col-md-3"
+		data-ng-repeat="billerInfo in billerInfos.billerDtos">
+		<a href="" class="thumbnail">
+			<div class="id">{{billerInfo.billerName}}</div>
+			<div class="row">
+				<div class="col-sm-8" style="margin-top: 11px;">
+					<p>{{billerInfo.billerProfile}}</p>
+					<p>{{billerInfo.idBiller}}</p>
 				</div>
-			</a>
-		</div>
-		<div class="col-sm-6 col-md-3">
-			<a href="" class="thumbnail">
-				<div class="item">
-					<span class="glyphicon glyphicon-plus-sign"></span>
+				<div class="col-sm-4">
+					<img ng-src="{{billerInfo.billerProfile == 'TELECOM' &amp;&amp; 'images/telecom.png' || 'images/electricity.png'}}"
+						class="img-responsive" style="width: 60px; height: 60px;" />
 				</div>
-				<div class="addnew">Add New Biller</div>
-			</a>
+			</div>
+		</a>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="thumbnail">
+			<div class="addnew">
+				<br />
+				<span class="glyphicon glyphicon-plus-sign"></span>
+				<br />
+				<a href="">Add New Biller</a>
+			</div>
 		</div>
 	</div>
 </div>

@@ -222,6 +222,11 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 
 app.controller("successController", function($scope,$http,sharedProperties){
 	$scope.payee_name=sharedProperties.getProperty();
+	if($scope.payee_name!=undefined){
+		$scope.successPageInfo="addPayee";
+	}else{
+		$scope.successPageInfo="transfer";
+	}
 });
 
 app.controller("transfermoneyController",function($scope,$http,$window){
@@ -754,4 +759,3 @@ app.service('sharedProperties', function () {
         }
     };
 });
-
