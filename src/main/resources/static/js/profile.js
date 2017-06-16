@@ -207,8 +207,25 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 		alert(JSON.stringify($scope.domesticPayeeInfo));
 		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.domesticPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created Domestic Payee','Successfull!');
-/*			$window.location.href = '#/transfermoney';
-*/		}).error(function (data, status) {
+			$scope.payeeName($scope.domesticPayeeForm.dpf_payee.$viewValue);
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
+	
+	$scope.createInternationalPayee = function() {
+		$scope.internationalPayeeInfo={};
+		$scope.internationalPayeeInfo['payeeName']=$scope.internationalPayeeForm.inpf_payee.$viewValue;
+		$scope.internationalPayeeInfo['accountNumber']=parseInt($scope.internationalPayeeForm.inpf_accNo.$viewValue);
+		$scope.internationalPayeeInfo['accountName']=$scope.internationalPayeeForm.inpf_accName.$viewValue;
+		$scope.internationalPayeeInfo['payVia']=$scope.internationalPayeeForm.inpf_payVia.$viewValue;
+		$scope.internationalPayeeInfo['nickname']=$scope.internationalPayeeForm.inpf_nickname.$viewValue;
+		
+		alert(JSON.stringify($scope.internationalPayeeInfo));
+		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.internationalPayeeInfo)).success(function (data) {
+			toastrSucessMsg('Created International Payee','Successfull!');
+			$scope.payeeName($scope.internationalPayeeForm.inpf_payee.$viewValue);
+		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
 		});
 	}
