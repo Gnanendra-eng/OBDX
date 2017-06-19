@@ -9,14 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.FundTransfer;
+import com.jmr.obdx.domain.TxnData;
+
 
 @Repository
 @Transactional
-public interface FundTransferRepo extends CrudRepository<FundTransfer, Integer>{
+public interface TxnDataRepo extends CrudRepository<TxnData, Integer>{
 	
-	@Query("from FundTransfer")
-	public List<FundTransfer> transactionData();
+	@Query("from TxnData")
+	public List<TxnData> transactionData();
 
 	
 

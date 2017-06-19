@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxTransactionM;
+import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
@@ -24,6 +26,7 @@ import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AllPayee;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
 import com.jmr.obdx.service.dto.PayeeInfo;
+import com.jmr.obdx.util.Utility;
 
 @Service
 public class BeneficiaryService {
@@ -52,6 +55,7 @@ public class BeneficiaryService {
 	@Autowired
 	private BranchRepo branchRepo;
 	
+	private Utility utilities;
 	
 	
 	public StatusInfo addBeneficiary(BeneficiaryDto beneficiaryDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
@@ -74,8 +78,7 @@ public class BeneficiaryService {
 		});*/
 		Login login = loginRepo.findByUsername(authentication.getName());
         BranchM branchDetailsM = branchRepo.findById(beneficiaryDto.getBranchId());
-   	    beneficiaryRepo.save(new BeneficiaryM(new BranchM( branchDetailsM.getId()),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount"));
-		
+   	    beneficiaryRepo.save(new BeneficiaryM(new BranchM( branchDetailsM.getId()),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
 		return statusInfo; 
 	}
 
@@ -88,6 +91,7 @@ public class BeneficiaryService {
 			allPayee.add(new AllPayee(beneficiary.getId(), beneficiary.getPayyename()));
 		});
 		payeeInfo.setAllPayee(allPayee);
+
 		return payeeInfo;
 	}
 	

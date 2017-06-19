@@ -3,12 +3,14 @@ package com.jmr.obdx.domain;
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +26,6 @@ public class BranchM  implements java.io.Serializable {
 
 
      private long id;
-     private TransferType transferType;
      private String name;
      private String branchCod;
      private String address;
@@ -33,6 +34,7 @@ public class BranchM  implements java.io.Serializable {
      private String processingMode;
      private String isactive;
      private Date createdDate;
+     private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
 
     public BranchM() {
     }
@@ -41,9 +43,8 @@ public class BranchM  implements java.io.Serializable {
     public BranchM(long id) {
         this.id = id;
     }
-    public BranchM(long id, TransferType transferType, String name, String branchCod, String address, long contactInfo, String city, String processingMode, String isactive, Date createdDate) {
+    public BranchM(long id , String name, String branchCod, String address, long contactInfo, String city, String processingMode, String isactive, Date createdDate,Set<BeneficiaryM> beneficiaryMs) {
        this.id = id;
-       this.transferType = transferType;
        this.name = name;
        this.branchCod = branchCod;
        this.address = address;
@@ -52,6 +53,7 @@ public class BranchM  implements java.io.Serializable {
        this.processingMode = processingMode;
        this.isactive = isactive;
        this.createdDate = createdDate;
+       this.beneficiaryMs = beneficiaryMs;
     }
    
     public BranchM(String branchCod){
@@ -69,15 +71,7 @@ public class BranchM  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="REF_TRANSFER_TYPE_ID")
-    public TransferType getTransferType() {
-        return this.transferType;
-    }
-    
-    public void setTransferType(TransferType transferType) {
-        this.transferType = transferType;
-    }
+
 
     
     @Column(name="Name", length=100)
@@ -160,7 +154,14 @@ public class BranchM  implements java.io.Serializable {
     }
 
 
-
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="branchDetailsM")
+    public Set<BeneficiaryM> getBeneficiaryMs() {
+        return this.beneficiaryMs;
+    }
+    
+    public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
+        this.beneficiaryMs = beneficiaryMs;
+    }
 
 }
 

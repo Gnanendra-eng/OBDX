@@ -2,7 +2,6 @@ package com.jmr.obdx.service.dto;
 
 import java.util.Date;
 
-import com.jmr.obdx.domain.TransferType;
 
 public class AllBranch {
 	

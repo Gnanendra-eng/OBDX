@@ -1,4 +1,4 @@
-package com.jmr.obdx.repositories;
+/*package com.jmr.obdx.repositories;
 
 import java.util.List;
 
@@ -20,3 +20,4 @@ public interface TransferTypeRepo extends CrudRepository<TransferType, Integer> 
 
 	
 }
+*/
