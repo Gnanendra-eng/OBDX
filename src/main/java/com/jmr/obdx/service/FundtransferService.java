@@ -103,7 +103,6 @@ public class FundtransferService {
         	 RetailCustomer  retailCustomer =retailCustomerRepo.findByCustomername(authentication.getName());
         	 AccountTypeM accountTypeM =accountTypeRepo.findByDescription(ownAccountTransferDto.getAccountType());
         	 CurrencyM currencyM =currencyRepo.findByCurrencyType(ownAccountTransferDto.getCurrencyCode());
-        	 
         	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("own account Transfer");
         	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), currencyM, retailCustomer.getIdcusomer(), ownAccountTransferDto.getFromAccount(), ownAccountTransferDto.getToAccount(), ownAccountTransferDto.getBranchCode(), ownAccountTransferDto.getAmount(), new Date(), "Intransit", ownAccountTransferDto.getNote(),referenceid));
          }
