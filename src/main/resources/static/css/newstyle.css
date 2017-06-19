@@ -7,7 +7,15 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover {
+#logo{
+	height: 40px;
+	width: 70px;
+	margin-top: -5px;
+	margin-left: 10px;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:hover {
 	color: #fff;
 	background-color: #428ac9;
 	height: 58px;
@@ -83,12 +91,6 @@ body {
     padding-bottom: 25px;
 }
 
-.glyphicon-plus-sign {
-	color: black;
-	font-size: 20px;
-	top: 50%;
-}
-
 a {
 	color: #ffffff;
 }
@@ -98,15 +100,10 @@ p {
 	color: #9d9d9d;
 }
 
-.name {
-	margin: 0 0 0px;
-	color: #9d9d9d;
-}
-
 .id {
-	color: #0a0b0c;
-	text-decoration: none;
-	font-size: x-large;
+    color: #0a0b0c;
+    text-decoration: none;
+    font-size: x-large;
 }
 
 .name{
@@ -199,70 +196,58 @@ p {
 }
 
 .spec {
-	display: block;
-	padding: 4px;
-	margin-bottom: 20px;
-	line-height: 1.42857143;
-	background-color: #ffffff;
-	border: 1px solid #ddd;
-	border-radius: 0px;
-	padding-left: 20px;
-	padding-top: 20px;
-	min-height: 120px;
-	max-height: 2450px;
-	padding-bottom: 0px;
-	position: relative;
+    display: block;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding-top: 20px;
+    min-height: 120px;
+    max-height: 2450px;
+    position: relative;
+    padding-left: 20px;
 }
 
 .closed-loan {
-	padding-left: 20px;
-	padding-top: 20px;
-	height: 180px;
-	position: relative;
-	display: block;
-	margin-bottom: 20px;
-	line-height: 1.42857143;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 0px;
+    padding-top: 20px;
+    height: 170px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    background-color: #fff;
 }
 
 .closed-no {
-	color: #0a0b0c;
-	font-size: xx-large;
-	position: absolute;
-	bottom: 60px;
-	right: 80px;
+    color: #0a0b0c;
+    font-size: xx-large;
+    position: absolute;
+    top: 20px;
 }
 
-/*for "loans" written in closed loan section*/
-.clo-loans {
-	color: #0a0b0c;
-	text-decoration: none;
-	font-size: large;
-	position: absolute;
-	bottom: 65px;
-	right: 10px;
+.closed-desc {
+    color: #0a0b0c;
+    text-decoration: none;
+    font-size: large;
+    position: absolute;
+    top: 35px;
+    left: 40px;
+}
+
+#closed{
+	padding-left:20px;
 }
 
 .container-footer {
     border-top: 1px solid #ddd;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding-top: 9px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-top: 10px;
     padding-bottom: 5px;
-    font-size: large;
+    font-size: medium;
     height: 30px;
 }
 
 a {
 	color: #0a0b0c;
 	padding-left: 10px;
-}
-
-.form-group {
-    margin-bottom: 0px;
-    margin-top: 10px;
 }
 
 .form-control {
@@ -335,7 +320,7 @@ a {
 }
 
 .panel-footer {
-	background-color: lightsteelblue;
+	background-color: dimgrey;
 }
 
 .pagination>li>a {
@@ -362,6 +347,59 @@ a {
 .table>tbody>tr>td {
 	border-bottom: none;
 	border-top:none;
+}
+
+@media only screen and (max-width: 760px) , ( min-device-width : 768px)
+	and (max-device-width: 1024px) {
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+		border: 1px solid gray;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 35%;
+		text-align: right;
+		min-height: 30px;
+		max-height: 100px;
+		overflow-wrap: break-word;
+	}
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 5px;
+		white-space: nowrap;
+		text-align: left;
+	}
+	#statement td:nth-of-type(1):before {
+		content: "Date:";
+	}
+	#statement td:nth-of-type(2):before {
+		content: "Description:";
+	}
+	#statement td:nth-of-type(3):before {
+		content: "Reference Number:";
+	}
+	#statement td:nth-of-type(4):before {
+		content: "Amount:";
+	}
+	#statement td:nth-of-type(5):before {
+		content: "Balance:";
+	}
 }
 
 .btn.custom-button {
@@ -408,23 +446,32 @@ label.btn.custom-button.active {
 	}
 
 .circle {
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	font-size: 50px;
-	color: #fff;
-	text-align: center;
-	background: #000;
-	position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+    background: #9fc2db;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .profile-info {
-	padding-left: 10px;
-	padding-top: 15px;
-	min-height: 100px;
-	max-height: 250px;
-	min-width: 300px;
-	position: relative;
+    margin-top: -5px;
+    margin-bottom: -10px;
+    padding-top: 10px;
+    height: 130px;
+    min-width: 300px;
+    position: relative;
+    background: #428ac9;
+}
+
+#profile-name {
+    color: white;
+    text-align: center;
+    font-family: Verdana;
+    font-size: large;
 }
 
 .red {
@@ -433,6 +480,50 @@ label.btn.custom-button.active {
 
 .green {
 	color: green;
+}
+
+.pull-left{
+	margin-left:10px;
+}
+
+.pull-right{
+	margin-right:10px;
+}
+
+#footer{
+	color: white;
+	position: fixed; 
+	left: 0px; 
+	bottom: 0px; 
+	width: 100%; 
+	background-color: rgba(47, 47, 47, 0.77);
+	height: 51px; 
+	padding-top: 13px;
+}
+
+.bg-success {
+    background-color: #8ebb8e;
+    color: white;
+}
+
+.bg-danger {
+    background-color: #d2a4a3;
+    color: white;
+}
+
+.bg-warning {
+    background-color: #ecca99;
+    color: white;
+}
+
+.bg-info {
+    background-color: #85cade;
+    color: white;
+}
+
+.bg-inverse{
+	background-color:#333;
+	color:white;
 }
 
 .container-fluid1 {
@@ -597,4 +688,108 @@ label.btn.custom-button.active {
 .error {
     color: #a20b0b;
     font-size: small;
+}
+
+#img-success{
+	width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen  and (min-width : 780px) {
+	#info2{
+		height:652px;
+	}
+	#info3{
+		height:652px;
+	}
+}
+
+.addnew {
+	margin: 0 0 10px;
+	color: #9d9d9d;
+	text-align: center;
+	font-size: 20px;
+}
+
+.biller {
+	padding-left: 20px;
+	padding-top: 20px;
+	height: 175px;
+}
+
+.glyphicon-plus-sign {
+	color: #9d9d9d;
+	font-size: 20px;
+	top: 50%;
+}
+
+.btn-group-vertical>.btn.active, .btn-group-vertical>
+.btn:active, .btn-group-vertical>.btn:focus, .btn-group-vertical>
+.btn:hover, .btn-group>.btn.active, .btn-group>
+.btn:active, .btn-group>.btn:focus, .btn-group>.btn:hover {
+    z-index: 0;
+}
+
+/* side navbar in profile settings */
+
+.tabs-left > .nav-tabs {
+  border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+.tabs-left > .nav-tabs > li {
+  float: none;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  border-right: 1px solid #ddd;
+  height: 240px;
+  background-color: white;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -1px;
+  -webkit-border-radius: 0px 0 0 0px;
+     -moz-border-radius: 0px 0 0 0px;
+          border-radius: 0px 0 0 0px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+    border-color: #428ac9 transparent #428ac9 #428ac9;
+    background-color: #428ac9;
+    color: white;
+}
+
+@media only screen  and (max-width : 760px) {
+	#sidenav{
+		float: none;
+   		border-right: 0px;
+   		height: 100%;
+   		border-bottom: 1px solid #ddd;
+	}
 }

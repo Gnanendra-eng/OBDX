@@ -5,144 +5,144 @@
 		})
 	});
 </script>
-<div class="wrapper">
-	<div class="container-fluid">
-		<div class="col-md-4">
-			<div class="container-fluid1">
-				<div class="container-header">
-					<div class="id">SUMMARY</div>
-				</div>
-				<div class="summary-bar">
-					<div class="row">
-						<div class="col-sm-2 no">{{termDeposite.tempDepositeSummary.length}}</div>
-						<div class="col-sm-10 sum-loans">Term Deposits</div>
-					</div>
-				</div>
-				<div class="container-fluid">
-					<br /> <br /> <br />
-					<p>Total Term Deposit</p>
-					<div class="sum-amount" style="color: #64c6c1; text-align: left">{{termDeposite.currencyType
-						+'&nbsp;'}} 150,000.00</div>
-					<div class="progress skill-bar ">
-						<div class="progress-bar progress-bar-success"
-							style="background-color: #64c6c1" role="progressbar"
-							aria-valuenow="64" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-					<br />
-					<p>Total Current Balance</p>
-					<div class="sum-amount"
-						style="color: #ffa86f; font-size: xx-large; text-align: left">{{termDeposite.currencyType
-						+'&nbsp;'}} 282,865.00</div>
-					<div class="progress skill-bar ">
-						<div class="progress-bar progress-bar-success progress-striped"
-							style="background-color: #ffa86f" role="progressbar"
-							aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-					<br />
-					<p>TE Maturity Amount</p>
-					<div class="sum-amount" style="color: #ff8090; text-align: left">{{termDeposite.currencyType
-						+'&nbsp;'}} 300,478.93</div>
-					<div class="progress skill-bar ">
-						<div class="progress-bar progress-bar-success"
-							style="background-color: #ff8090" role="progressbar"
-							aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-						</div>
-					</div>
-				</div>
+<div class="container-fluid">
+	<div class="col-md-4">
+		<div class="container-fluid1">
+			<div class="container-header">
+				<div class="id">SUMMARY</div>
 			</div>
-			<a href="#" class="spec"> <br />
-				<div class="id">NEW DEPOSIT</div>
+			<div class="summary-bar">
 				<div class="row">
-					<div class="col-sm-7">
-						<br />
-						<p>Apply for New Term Deposits</p>
-						<br />
-					</div>
-					<div class="col-sm-5">
-						<img src="images/new-deposits.JPG" class="img-responsive"
-							style="width: 147px; height: 80px;" />
-					</div>
+					<div class="col-sm-2 no">{{termDeposite.tempDepositeSummary.length}}</div>
+					<div class="col-sm-10 sum-loans">Term Deposits</div>
 				</div>
-			</a>
-		</div>
-		<div class="col-md-4">
-			<a href="" class="thumbnail" data-ng-click="tempDepositeMoreInfo(termdepositetemp)"
-				data-ng-repeat="termdepositetemp in termDeposite.tempDepositeSummary">
-				<div class="inner-triangle"></div>
-				<div class="name">{{termdepositetemp.customername}}</div>
-				<p>{{termdepositetemp.altacctno}}</p>
-				<p>{{termdepositetemp.ccy}}</p>
-				<p>{{termdepositetemp.codbranch}}</p>
-				<p>{{termdepositetemp.proddesc}}</p>
-				<div class="outstanding">Current Balance</div>
-				<div class="amount">{{termdepositetemp.numavlbalance |
-					currency :termdepositetemp.ccy +'&nbsp;'}}</div>
-			</a>
+			</div>
 			<div class="container-fluid">
-				<div class="closed-loan">
-					<div class="id">CLOSED DEPOSITS</div>
-					<div class="row">
-						&nbsp;&nbsp;&nbsp;<img src="images/closed-deposits.JPG"
-							class="img-responsive" style="width: 60px; height: 60px;" />
-						<div class="closed-no">0</div>
-						<div class="clo-loans">Deposits</div>
-					</div>
-					<div class="container-footer">
-						<a href="">VIEW ALL<img src="images/forward.png"
-							class="img-responsive"
-							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+				<br /> <br /> <br />
+				<p>Total Term Deposit</p>
+				<div class="sum-amount" style="color: #64c6c1; text-align: left">{{termDeposite.currencyType
+					+'&nbsp;'}} {{termDeposite.totalTermDeposits}}</div>
+				<div class="progress skill-bar ">
+					<div class="progress-bar progress-bar-success"
+						style="background-color: #64c6c1" role="progressbar"
+						aria-valuenow="64" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<br />
+				<p>Total Current Balance</p>
+				<div class="sum-amount" style="color: #ffa86f; text-align: left">{{termDeposite.currencyType
+					+'&nbsp;'}} {{termDepositBalance}}</div>
+				<div class="progress skill-bar">
+					<div class="progress-bar progress-bar-success progress-striped"
+						style="background-color: #ffa86f" role="progressbar"
+						aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<br />
+				<p>TE Maturity Amount</p>
+				<div class="sum-amount" style="color: #ff8090; text-align: left">{{termDeposite.currencyType
+					+'&nbsp;'}} 300,000.00</div>
+				<div class="progress skill-bar ">
+					<div class="progress-bar progress-bar-success"
+						style="background-color: #ff8090" role="progressbar"
+						aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="container-fluid1">
-				<div class="container-header">
-					<div class="id">MINI STATEMENT</div>
+		<div class="spec">
+			<div class="id">NEW DEPOSIT</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br />
+					<p>Apply for New Term Deposits</p>
+					<br />
 				</div>
-				<div class="form-group">
-					<select class="form-control" data-ng-change="onAccountChange()"
-						data-ng-model="nbrAccount" name="nbrAccount"
-						data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-
-					</select>
+				<div class="col-sm-5">
+					<img src="images/new-deposits.JPG" class="img-responsive"
+						style="width: 147px; height: 80px;" />
 				</div>
-				<div class="list-group">
-					<a href="" class="list-group-item"
-						data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
-						<div class="list item">
-							<p style="color: black">{{transactionInfo.transactionDate}}</p>
-							<p>{{transactionInfo.transactionDescription}}</p>
-							<div class="mini-amount">
-								<p style="font-size: large; text-align: right"
-									data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-									{{transactionInfo.transactionAmount | currency
-									:transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
-										data-ng-if="transactionInfo.transactionType==='C'">Cr</span> <span
-										data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
-								</p>
-							</div>
-						</div>
-					</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<a href="" class="thumbnail" data-ng-click="tempDepositeMoreInfo(termdepositetemp)"
+			data-ng-repeat="termdepositetemp in termDeposite.tempDepositeSummary">
+			<div class="inner-triangle"></div>
+			<div class="name">{{termdepositetemp.customername}}</div>
+			<p>{{termdepositetemp.altacctno}}</p>
+			<p>{{termdepositetemp.ccy}}</p>
+			<p>{{termdepositetemp.codbranch}}</p>
+			<p>{{termdepositetemp.proddesc}}</p>
+			<div class="outstanding">Current Balance</div>
+			<div class="amount">{{termdepositetemp.numavlbalance |
+				currency :termdepositetemp.ccy +'&nbsp;'}}</div>
+		</a>
+		<div class="container-fluid">
+			<div class="closed-loan">
+				<div class="id" id="closed">CLOSED DEPOSITS</div>
+				<br />
+				<div class="row">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-3">
+						<img src="images/closed-deposits.JPG"
+						class="img-responsive" style="width: 60px; height: 60px;" />
+					</div>
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+						<div class="closed-no">0</div>
+						<div class="closed-desc">Deposits</div>
+					</div>
 				</div>
 				<div class="container-footer">
-					<a href="#/statement">MORE DETAILS<img src="images/forward.png"
-						class="img-responsive"
-						style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
+					<a href="">View All<span class="fa fa-arrow-right pull-right"></span></a>
 				</div>
 			</div>
-			<a href="" class="spec"> <br />
-				<div class="id">DEPOSIT CALCULATOR</div>
-				<div class="row">
-					<div class="col-sm-7">
-						<br /> <br /> <br />
-					</div>
-					<div class="col-sm-5">
-						<img src="images/depo-calculator.JPG" class="img-responsive"
-							style="width: 147px; height: 80px;" />
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="container-fluid1">
+			<div class="container-header">
+				<div class="id">MINI STATEMENT</div>
+			</div>
+			<div class="form-group">
+				<select class="form-control" data-ng-change="onAccountChange()"
+					data-ng-model="nbrAccount" name="nbrAccount"
+					data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+
+				</select>
+			</div>
+			<div class="list-group">
+				<div class="list-group-item"
+					data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+					<div class="list item">
+						<p style="color: black">{{transactionInfo.transactionDate}}</p>
+						<p>{{transactionInfo.transactionDescription}}</p>
+						<div class="mini-amount">
+							<p style="font-size: large; text-align: right"
+								data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+								{{transactionInfo.transactionAmount | currency
+								:transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
+									data-ng-if="transactionInfo.transactionType==='C'">Cr</span> <span
+									data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
+							</p>
+						</div>
 					</div>
 				</div>
-			</a>
+			</div>
+			<div class="container-footer">
+				<a href="#/statement">More Details<span class="fa fa-arrow-right pull-right"></span></a>
+			</div>
+		</div>
+		<div class="spec">
+			<div class="id">DEPOSIT CALCULATOR</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br /> <br /> <br />
+				</div>
+				<div class="col-sm-5">
+					<img src="images/depo-calculator.JPG" class="img-responsive"
+						style="width: 147px; height: 80px;" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

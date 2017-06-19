@@ -7,161 +7,115 @@
 <meta charset="utf-8" />
 <title>JMR</title>
 <meta name="description" content="User login page" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 
 <link rel="stylesheet" href="/css/login.css" />
 <script src="/js/login.js" type="text/javascript"></script>
 </head>
 <body data-ng-controller="loginController">
-	<nav class="navbar navbar-default navbar-fixed-top" role="banner"
-		style="height: 97px; background-color: #ffffff;">
-		<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" type="button" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-
-				<a class="navbar-brand" style="color: #fff;" href="/login"> <img
-					src="/images/mainheader.png" alt="logo" class="img-responsive2"
-					style="margin-top: -3px;" /></a>
-			</div>
+	<nav class="navbar navbar-default navbar-fixed-top" role="banner">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/login"><img
+				src="/images/mainheader.png" class="img-responsive" id="logo" /></a>
 		</div>
 	</nav>
-
-	<div class="container">
-		<div class="row">
-
-			<div class="col-md-8"></div>
-			<div class="col-md-4" style="margin-top: 200px;">
-				<div class="panel panel-login"
-					style="background-color: transparent;">
-					<div class="panel-heading" style="background-color: transparent;">
-						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" style="color: #ffffff;" class="active"
-									id="login-form-link">Login</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="#" style="color: #ffffff;" id="register-form-link">Register</a>
-							</div>
-						</div>
-						<hr />
+	<div class="container-fluid">
+		<div class="col-md-8"></div>
+		<div class="col-md-4" style="margin-top: 200px;">
+			<div class="panel panel-login">
+				<div class="panel-heading">
+					<div class="col-xs-6">
+						<a href="#" class="active" id="login-form-link">Login</a>
 					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-
-								<form id="login-form" th:action="@{/login}" name="userForm"
-									novalidate="novalidate" method="post" style="display: block;">
-									<div class="form-group">
-										<span class="error-msg" style="margin-left: 50px;">Username and password incorrect</span>
-
-									</div>
-									<div class="form-group"
-										data-ng-class="{ 'has-error' : userForm.userName.$invalid &amp;&amp; !userForm.userName.$pristine}">
-										<input type="text" name="userName" autocomplete="off"
-											style="background-color: transparent; color: white;"
-											data-ng-paste="userNamePaste()" data-ng-model="user.userName"
-											data-no-spaces="noSpaces" data-ng-pattern="/^[a-z0-9]+$/i"
-											required="required" tabindex="1" class="form-control"
-											placeholder="Username" /> <span
-											data-ng-show="userForm.userName.$error.pattern"
-											class="help-block">only allows alphanumeric </span> <span
-											class="error-msg"
-											data-ng-show="userForm.userName.$error.required &amp;&amp; !userForm.userName.$pristine">Username
-											is required.</span>
-									</div>
-									<div class="form-group"
-										data-ng-class="{ 'has-error' : userForm.password.$invalid &amp;&amp; !userForm.password.$pristine }">
-										<input type="password" id="password" class="form-control"
-											data-no-spaces="nospaces" name="password"
-											style="background-color: transparent; color: white;"
-											data-ng-model="user.password" data-ng-paste="passwordPaste()"
-											required="required" tabindex="2" placeholder="Password" /> <span
-											class="error-msg"
-											data-ng-show="userForm.password.$error.required &amp;&amp; !userForm.password.$pristine">Password
-											is required.</span>
-									</div>
-
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit"
-													tabindex="3" class="form-control btn btn-primary"
-													value="LOGIN" data-ng-disabled="userForm.$invalid" />
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="#" tabindex="5" class="forgot-password">Forgot
-														Password?</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-								<form id="register-form" action="#" method="post" role="form"
-									style="display: none;">
-									<div class="form-group">
-										<input type="text" name="usernames" id="usernames"
-											style="background-color: transparent; color: white;"
-											tabindex="1" class="form-control" placeholder="Username"
-											value="" />
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1"
-											style="background-color: transparent; color: white;"
-											class="form-control" placeholder="Email Address" value="" />
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password"
-											style="background-color: transparent; color: white;"
-											tabindex="2" class="form-control" placeholder="Password" />
-									</div>
-
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit"
-													id="register-submit" tabindex="4"
-													class="form-control btn btn-primary" value="Register Now" />
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
+					<div class="col-xs-6">
+						<a href="#" id="register-form-link">Register</a>
 					</div>
+					<hr />
 				</div>
-
+				<div class="panel-body">
+					<form id="login-form" th:action="@{/login}" name="userForm"
+						novalidate="novalidate" method="post" style="display: block;">
+						<div class="form-group">
+							<span class="error-msg" style="margin-left: 50px;">Username and password incorrect</span>
+						</div>
+						<div class="form-group"
+							data-ng-class="{ 'has-error' : userForm.userName.$invalid &amp;&amp; !userForm.userName.$pristine}">
+							<input type="text" name="userName" autocomplete="off"
+								data-ng-paste="userNamePaste()" data-ng-model="user.userName"
+								data-no-spaces="noSpaces" data-ng-pattern="/^[a-z0-9]+$/i"
+								required="required" tabindex="1" class="form-control"
+								placeholder="Username" /> <span
+								data-ng-show="userForm.userName.$error.pattern"
+								class="help-block">only allows alphanumeric </span> <span
+								class="error-msg"
+								data-ng-show="userForm.userName.$error.required &amp;&amp; !userForm.userName.$pristine">Username
+								is required.</span>
+						</div>
+						<div class="form-group"
+							data-ng-class="{ 'has-error' : userForm.password.$invalid &amp;&amp; !userForm.password.$pristine }">
+							<input type="password" id="password" class="form-control"
+								data-no-spaces="nospaces" name="password"
+								data-ng-model="user.password" data-ng-paste="passwordPaste()"
+								required="required" tabindex="2" placeholder="Password" /> <span
+								class="error-msg"
+								data-ng-show="userForm.password.$error.required &amp;&amp; !userForm.password.$pristine">Password
+								is required.</span>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-3">
+									<input type="submit" name="login-submit" id="login-submit"
+										tabindex="3" class="form-control btn btn-primary"
+										value="LOGIN" data-ng-disabled="userForm.$invalid" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="text-center">
+										<a href="#" tabindex="5" class="forgot-password">Forgot
+											Password?</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<form id="register-form" action="#" method="post" role="form"
+						style="display: none;">
+						<div class="form-group">
+							<input type="text" name="usernames" id="usernames"
+								tabindex="1" class="form-control" placeholder="Username"
+								value="" />
+						</div>
+						<div class="form-group">
+							<input type="email" name="email" id="email" tabindex="1"
+								class="form-control" placeholder="Email Address" value="" />
+						</div>
+						<div class="form-group">
+							<input type="password" name="password" id="password"
+								tabindex="2" class="form-control" placeholder="Password" />
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="register-submit"
+									id="register-submit" tabindex="4"
+									class="form-control btn btn-primary" value="REGISTER" />
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-
-
-
-		<div class="navbar navbar-blend navbar-fixed-bottom"
-			style="background-color: rgba(47, 47, 47, 0.77); height: 51px">
-			<div class="nav">
-				<div class=" text-center" style="margin-top: 17px; color: white;">JMR
-					INFOTECH</div>
-			</div>
-		</div>
+		<br />
+		<footer class="text-center bg-inverse" id="footer">
+			<p>Copyright © 2017. JMR Infotech. All rights reserved.</p>
+		</footer>
 	</div>
 </body>
 <script type="text/javascript">
