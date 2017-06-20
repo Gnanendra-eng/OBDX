@@ -25,7 +25,7 @@ public class CurrencyM  implements java.io.Serializable {
      private long id;
      private String currencyType;
      private String currencyDesc;
-     private Set<FundTransfer> transactionDatas = new HashSet<FundTransfer>(0);
+     private Set<TxnData> transactionDatas = new HashSet<TxnData>(0);
 
     public CurrencyM() {
     }
@@ -39,7 +39,7 @@ public class CurrencyM  implements java.io.Serializable {
     }
     
   
-    public CurrencyM(long id, String currencyType, String currencyDesc, Set<FundTransfer> transactionDatas) {
+    public CurrencyM(long id, String currencyType, String currencyDesc, Set<TxnData> transactionDatas) {
        this.id = id;
        this.currencyType = currencyType;
        this.currencyDesc = currencyDesc;
@@ -79,11 +79,11 @@ public class CurrencyM  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="currencyM")
-    public Set<FundTransfer> getTransactionDatas() {
+    public Set<TxnData> getTransactionDatas() {
         return this.transactionDatas;
     }
     
-    public void setTransactionDatas(Set<FundTransfer> transactionDatas) {
+    public void setTransactionDatas(Set<TxnData> transactionDatas) {
         this.transactionDatas = transactionDatas;
     }
 

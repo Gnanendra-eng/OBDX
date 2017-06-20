@@ -27,7 +27,7 @@ public class AccountTypeM  implements java.io.Serializable {
 
      private long id;
      private String description;
-     private Set<FundTransfer> transactionDatas = new HashSet<FundTransfer>(0);
+     private Set<TxnData> transactionDatas = new HashSet<TxnData>(0);
 
     public AccountTypeM() {
     }
@@ -36,7 +36,7 @@ public class AccountTypeM  implements java.io.Serializable {
     public AccountTypeM(long id) {
         this.id = id;
     }
-    public AccountTypeM(long id, String description, Set<FundTransfer> transactionDatas) {
+    public AccountTypeM(long id, String description, Set<TxnData> transactionDatas) {
        this.id = id;
        this.description = description;
        this.transactionDatas = transactionDatas;
@@ -65,11 +65,11 @@ public class AccountTypeM  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="accountTypeM")
-    public Set<FundTransfer> getTransactionDatas() {
+    public Set<TxnData> getTransactionDatas() {
         return this.transactionDatas;
     }
     
-    public void setTransactionDatas(Set<FundTransfer> transactionDatas) {
+    public void setTransactionDatas(Set<TxnData> transactionDatas) {
         this.transactionDatas = transactionDatas;
     }
 

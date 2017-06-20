@@ -9,7 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.CurrencyM;
-import com.jmr.obdx.domain.TransferType;
 
 @Repository
 @Transactional
