@@ -61,16 +61,14 @@
 			<tbody>
 				<tr
 					data-dir-paginate="transactionInfo in transactionInfos.transactionAccountActivityDtos|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
-					<td><p style="font-size: x-large; color: black">{{transactionInfo.transactionDate.split(' ')[0]}}</p>
+					<td><p style="font-size: small; color: black">{{transactionInfo.transactionDate.split(' ')[0]}}</p>
 						<p style="color: black">{{transactionInfo.transactionDate.split(' ')[1]}}&nbsp;{{transactionInfo.transactionDate.split(' ')[2]}}</p></td>
-
 					<td><p style="color: black">{{transactionInfo.transactionDescription}}</p></td>
 					<td><p>{{transactionInfo.transactionReferenceNo}}</p></td>
 					<td>
-					<p style=" font-size: large; text-align: right" data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-					
-							{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
-      							<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span></p></td>
+					<p style=" font-size: inherit; text-align: right" data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+						{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+      					<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span></p></td>
 					<td><p style="text-align: right">{{transactionInfo.balance | currency :transactionInfo.ccyDesc +'&nbsp;'}}</p></td>
 				</tr>
 			</tbody>

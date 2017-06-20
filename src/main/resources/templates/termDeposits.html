@@ -117,8 +117,7 @@
 						<p style="color: black">{{transactionInfo.transactionDate}}</p>
 						<p>{{transactionInfo.transactionDescription}}</p>
 						<div class="mini-amount">
-							<p style="font-size: large; text-align: right"
-								data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+							<p data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
 								{{transactionInfo.transactionAmount | currency
 								:transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
 									data-ng-if="transactionInfo.transactionType==='C'">Cr</span> <span

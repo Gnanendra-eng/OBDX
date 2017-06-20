@@ -34,31 +34,31 @@
 			</div>
 			<div class="panel-body">
 				<p>FullName</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.customerName}}</div>
+				<div class="info-font">{{accountdetails.customerName}}</div>
 				<br />
 				<p>Account Number</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.nbrAccount}}</div>
+				<div class="info-font">{{accountdetails.nbrAccount}}</div>
 				<br />
 				<p>Account Relationship</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.relation}}</div>
+				<div class="info-font">{{accountdetails.relation}}</div>
 				<br />
 				<p>Account Branch</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.nbrBranch}}</div>
+				<div class="info-font">{{accountdetails.nbrBranch}}</div>
 				<br />
 				<p>Account Currency</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.ccyDesc}}</div>
+				<div class="info-font">{{accountdetails.ccyDesc}}</div>
 				<br />
 				<p>Opening Date</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.openingDate}}</div>
+				<div class="info-font">{{accountdetails.openingDate}}</div>
 				<br />
 				<p>Account Type</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.accType}}</div>
+				<div class="info-font">{{accountdetails.accType}}</div>
 				<br />
 				<p>Account Status</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.accStatus}}</div>
+				<div class="info-font">{{accountdetails.accStatus}}</div>
 				<br />
 				<p>Product Name</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.descAcctType}}</div>
+				<div class="info-font">{{accountdetails.descAcctType}}</div>
 			</div>
 		</div>
 	</div>
@@ -69,22 +69,22 @@
 			</div>
 			<div class="panel-body">
 				<p>Current Balance</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.balance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.balance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Amount on Hold</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.amountOnHold | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.amountOnHold | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Uncleared Funds</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.numunCollected | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.numunCollected | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Minimum Balance Required</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.minBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.minBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Total Available Balance</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.availableBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.availableBalance | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Allowed OverDraft Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.odLimit}}</div>
+				<div class="info-font">{{accountdetails.odLimit}}</div>
 			</div>
 		</div>
 	</div>
@@ -95,16 +95,16 @@
 			</div>
 			<div class="panel-body">
 				<p>OverDraft Allowed</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.isOverDraft}}</div>
+				<div class="info-font">{{accountdetails.isOverDraft}}</div>
 				<br />
 				<p>Cheque Book</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.isChqBook}}</div>
+				<div class="info-font">{{accountdetails.isChqBook}}</div>
 				<br />
 				<p>ATM Daily Withdrawal Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.dailyWithDraWalLimit | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.dailyWithDraWalLimit | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 				<br />
 				<p>Eligible Advance Against Uncleared Funds Limit</p>
-				<div class="sum-amount" style="text-align: left; font-size: large">{{accountdetails.eligibleAdv | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
+				<div class="info-font">{{accountdetails.eligibleAdv | currency :accountdetails.ccyDesc +'&nbsp;'}}</div>
 			</div>
 		</div>
 	</div>
