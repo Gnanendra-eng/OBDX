@@ -313,11 +313,11 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['branchCode']=parseInt($scope.accountdetails.nbrBranch);
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.mat_nbrAccount;
 		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
-		$scope.transferMoneyDetails['amount']=parseInt($scope.myAccountForm.mat_amount.$viewValue);
+		$scope.transferMoneyDetails['amount']=$scope.myAccountForm.mat_amount.$viewValue;
 		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toAccount']=$scope.myAccountForm.mat_transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
@@ -325,7 +325,29 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
-			angular.copy({},$scope.transferMoneyForm);
+			angular.copy({},$scope.myAccountForm);
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
+	
+	$scope.existingTransfer = function() {
+		$scope.transferMoneyDetails={};
+		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
+		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['payee']=$scope.existingPayeeForm.ept_transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
+		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
+		
+		alert(JSON.stringify($scope.transferMoneyDetails));
+		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+			angular.copy({},$scope.existingPayeeForm);
 			$window.location.href = '#/transfermoney';
 		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
