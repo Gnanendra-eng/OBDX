@@ -59,7 +59,13 @@ app.controller("loanController", function($scope,$http,sharedProperties,$window)
 	$http.get("/user/loan/").success(function(data,status) {
 		 $scope.loanInfo=data;		
 		 var options = {container: "#loan",label: "label",width: 150,height: 150,type: "liquid",percentage: function (d) {  return d.count/100;}, size: "Remaining amount" };
-		 var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+		// var data = [{"label": "Loan","Remaining amount": parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding),"count": 100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}]; 
+		$scope.remaingAmount=parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding);
+		if( $scope.remaingAmount==0){
+			$scope.remaingAmount=0.1;
+		} 
+		var data = [{"label": "Loan","Remaining amount": parseFloat($scope.remaingAmount),"count":100-Math.round(((parseFloat($scope.loanInfo.totalBorrowing)-parseFloat($scope.loanInfo.currentOutStanding))/parseFloat($scope.loanInfo.totalBorrowing))*100),"tipo": "loan","year": 2017}];
+
 		 var viz = new BubbleChart(options);
 		 viz.data(data);
 		 $scope.select_prop_nbrAccounts = [];
@@ -451,47 +457,25 @@ app.controller('newLoanAccountOpening', function($scope) {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 app.controller('jsonCtrl1', function($scope, $http){
 	$http.get('js/d.json').success(function (data){
 	  $scope.data = data;
-	$scope.GetValue = function() {
+	  $scope.GetValue = function() {
+		  fin1($scope.ddldata);
+	  }	
 
-	   fin1($scope.ddldata);
-	}
-
-	function fin1(val){
-	angular.forEach($scope.data.balanceinfo,function(value,key){
-	 if(value.accno==$scope.ddldata)
-	 {
-		 $scope.name = value.Balance;
-	 }
-
+		function fin1(val){
+		angular.forEach($scope.data.balanceinfo,function(value,key){
+		 if(value.accno==$scope.ddldata)
+		 {
+			 $scope.name = value.Balance;
+		 }
+	
+		});
+	
+		}	
 	});
-
-	}
-
-	});
-
-
-
-
-	    
-	       
-	    
-	    
-	});
+});
 
 
 app.controller("accountsController", function($scope,$http) {
@@ -529,7 +513,6 @@ app.controller("accountsController", function($scope,$http) {
 	}
 });
 
-
 app.controller("billerController", function($scope,$http) {
 	$http.get("/user/biller/").success(function(data,status) {
 		$scope.billerInfos =data;
@@ -537,7 +520,6 @@ app.controller("billerController", function($scope,$http) {
 		 throw { message: 'error message',status:status};
 	});	
 });
-
 
 app.controller("statementController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
@@ -815,3 +797,18 @@ app.service('sharedProperties', function () {
         }
     };
 });
+
+
+/** disabling right click **/
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
+

@@ -1,7 +1,5 @@
 package com.jmr.obdx.repositories;
 
-import java.util.Date;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -9,18 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.TxnData;
-
+import com.jmr.obdx.domain.BasebranchCodeM;
 
 @Repository
 @Transactional
-public interface TxnDataRepo extends CrudRepository<TxnData, Integer>{
+public interface BasebranchCodeRepo extends CrudRepository<BasebranchCodeM, Integer>{
+
+	@Query("from BasebranchCodeM")
+	public BasebranchCodeM baseBranchDetailsM();
 	
-	@Query("from TxnData")
-	public List<TxnData> transactionData();
-	
-	public TxnData findByReferenceId( String refId);
 
 	
-
 }

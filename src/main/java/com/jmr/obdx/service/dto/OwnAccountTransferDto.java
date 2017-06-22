@@ -11,16 +11,19 @@ public class OwnAccountTransferDto {
 	private String currencyCode;
 
 	@NotNull(message = "{error.required}")
-	private Integer branchCode;
+	private String toBranchCode;
+	
+	@NotNull(message = "{error.required}")
+	private String fromBranchCode;
 
 	@NotNull(message = "{error.required}")
-	private Integer amount;
+	private String amount;
 
 	@NotNull(message = "{error.required}")
-	private long toAccount;
+	private String toAccount;
 
 	@NotNull(message = "{error.required}")
-	private long fromAccount;
+	private String fromAccount;
 	
 	@NotNull(message = "{error.required}")
 	private long fromAccountBalancy;
@@ -43,35 +46,43 @@ public class OwnAccountTransferDto {
 		this.currencyCode = currencyCode;
 	}
 
-	public Integer getBranchCode() {
-		return branchCode;
+	public String getToBranchCode() {
+		return toBranchCode;
 	}
 
-	public void setBranchCode(Integer branchCode) {
-		this.branchCode = branchCode;
+	public void setToBranchCode(String toBranchCode) {
+		this.toBranchCode = toBranchCode;
 	}
 
-	public Integer getAmount() {
+	public String getFromBranchCode() {
+		return fromBranchCode;
+	}
+
+	public void setFromBranchCode(String fromBranchCode) {
+		this.fromBranchCode = fromBranchCode;
+	}
+
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Integer amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public long getToAccount() {
+	public String getToAccount() {
 		return toAccount;
 	}
 
-	public void setToAccount(long toAccount) {
+	public void setToAccount(String toAccount) {
 		this.toAccount = toAccount;
 	}
 
-	public long getFromAccount() {
+	public String getFromAccount() {
 		return fromAccount;
 	}
 
-	public void setFromAccount(long fromAccount) {
+	public void setFromAccount(String fromAccount) {
 		this.fromAccount = fromAccount;
 	}
 
@@ -91,11 +102,12 @@ public class OwnAccountTransferDto {
 		this.note = note;
 	}
 
-	public OwnAccountTransferDto(String accountType, String currencyCode, Integer branchCode, Integer amount,
-			long toAccount, long fromAccount, long fromAccountBalancy, String note) {
+	public OwnAccountTransferDto(String accountType, String currencyCode, String toBranchCode, String fromBranchCode,
+			String amount, String toAccount, String fromAccount, long fromAccountBalancy, String note) {
 		this.accountType = accountType;
 		this.currencyCode = currencyCode;
-		this.branchCode = branchCode;
+		this.toBranchCode = toBranchCode;
+		this.fromBranchCode = fromBranchCode;
 		this.amount = amount;
 		this.toAccount = toAccount;
 		this.fromAccount = fromAccount;
@@ -106,7 +118,7 @@ public class OwnAccountTransferDto {
 	public OwnAccountTransferDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 
 }

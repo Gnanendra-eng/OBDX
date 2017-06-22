@@ -1,4 +1,4 @@
-/*package com.mcx.xml;
+package com.mcx.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name ="FCUBS_BODY")
 public class McxBody {
 	
 	@XmlElement(name="Contract-Details-Full")
@@ -33,4 +32,3 @@ public class McxBody {
 	
 
 }
-*/

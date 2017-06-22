@@ -31,6 +31,7 @@ public class McxTransactionM  implements java.io.Serializable {
      private String modcd;
      private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
      private Set<TxnData> mcxTxnDatas = new HashSet<TxnData>(0);
+     private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
 
     public McxTransactionM() {
@@ -56,6 +57,22 @@ public class McxTransactionM  implements java.io.Serializable {
 
     }
    
+    
+    public McxTransactionM( String service, String isactive, String allowauthorization, String allowinitiation, String allowview, String operation, String prod, String proddesc, String modcd, Set<TxnData> mcxTxnDatas, Set<McxAuditLog> mcxAuditLogs) {
+        this.service = service;
+        this.isactive = isactive;
+        this.allowauthorization = allowauthorization;
+        this.allowinitiation = allowinitiation;
+        this.allowview = allowview;
+        this.operation = operation;
+        this.prod = prod;
+        this.proddesc = proddesc;
+        this.modcd = modcd;
+        this.mcxTxnDatas = mcxTxnDatas;
+        this.mcxAuditLogs = mcxAuditLogs;
+     }
+    
+    
      @Id 
 
     
@@ -168,7 +185,14 @@ public class McxTransactionM  implements java.io.Serializable {
     }
 
 
-
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionM")
+    public Set<McxAuditLog> getMcxAuditLogs() {
+        return this.mcxAuditLogs;
+    }
+    
+    public void setMcxAuditLogs(Set<McxAuditLog> mcxAuditLogs) {
+        this.mcxAuditLogs = mcxAuditLogs;
+    }
     @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionM")
     public Set<TxnData> getMcxTxnDatas() {
         return this.mcxTxnDatas;
@@ -176,5 +200,6 @@ public class McxTransactionM  implements java.io.Serializable {
     
     public void setMcxTxnDatas(Set<TxnData> mcxTxnDatas) {
         this.mcxTxnDatas = mcxTxnDatas;
+ 
     }
 }

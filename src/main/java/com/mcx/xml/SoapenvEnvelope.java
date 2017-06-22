@@ -1,10 +1,12 @@
-/*package com.mcx.xml;
+package com.mcx.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.jmr.obdx.dto.StatusInfo;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="soapenv:Envelope") 
@@ -60,4 +62,3 @@ public class SoapenvEnvelope {
      
 	
 }
-*/
