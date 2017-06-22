@@ -24,7 +24,12 @@ public class AccountDetailsRepo {
 	public Accountdetails getAccountDetails(String customerId,String nbrAccount) throws Exception {
 		return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
 				.add(Restrictions.eq("IDCUSTOMER", customerId)).add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
-
+		
+	}
+		public Accountdetails getAccountBranch(String nbrAccount) throws Exception {
+			return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
+					.add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
+			
 	}
 	
 }

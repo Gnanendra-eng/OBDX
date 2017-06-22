@@ -17,6 +17,7 @@ import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.service.dto.AccountBranch;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
@@ -181,5 +182,15 @@ public class AccountService {
 				accountsummary.getUDF10());
 
 	}
+	
+	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
+		AccountBranch accountBranch = new AccountBranch();
+		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
+		accountBranch  = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), accountdetail.getNBRBRANCH(),accountdetail.getCUSTOMERNAME());
+
+	return accountBranch;
+	}
+	
+	
 }
 

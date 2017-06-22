@@ -117,7 +117,7 @@ public class FundtransferService {
 	public FundTransferDto ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
-		
+		 fundTransferDto = new FundTransferDto();
 		 String  referenceid =utilities.getReferenceNumber(String.valueOf(System.currentTimeMillis()), 13);
 		if (bindingResult.hasErrors()) {
 			statusInfo.setErrorStatus(true);
@@ -168,10 +168,9 @@ public class FundtransferService {
      		StringWriter requestObj= objectMarshaller.marshallerToXml(soapenvEnvelope);
      		System.out.println(requestObj);
      		String responseString =mcxAdapter.getAdapterResponse(requestObj, "http://192.168.1.27:7001/FCUBSFTService/FCUBSFTService", "POST");
-     		
+    		byte responseStringBytr[] =responseString.getBytes();
      		System.out.println(responseString);
-     		
-     		
+     		byte requestObjectBytr[] =requestObj.toString().getBytes();
      		  String Status = responseString.substring(responseString.indexOf("<MSGSTAT>") +9, responseString.indexOf("</MSGSTAT>"));
 
      		  if(Status.equals("FAILURE")){
@@ -179,11 +178,11 @@ public class FundtransferService {
      		         String errorDescrption = responseString.substring(responseString.indexOf("<EDESC>") +7, responseString.indexOf("</EDESC>"));
      		  }
      		  else{
-    		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +12, responseString.indexOf("</REFERENCE_NO>"));
+    		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
 
      		  }
-	     		McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-     		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObj.toString(), responseString.toString(), errorCode, errorDescrption, new Date(), Status, hostReference));
+	     	 McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
+     		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
 
      		 fundTransferDto.setStatus(Status);
      		 fundTransferDto.setFcdbRefId(referenceid);
@@ -192,7 +191,7 @@ public class FundtransferService {
     	 return fundTransferDto;
         }
 	
-/*	public StatusInfo internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
+	/*public FundTransferDto internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
 		
@@ -202,14 +201,7 @@ public class FundtransferService {
 			bindingResult.getFieldErrors().forEach(error -> {statusInfo.getErrorMsgs().add(new ErrorMsg(error.getField(), error.getDefaultMessage()));
 			});
 		    }
-        if(ownAccountTransferDto.getToAccount()==ownAccountTransferDto.getFromAccount() && (ownAccountTransferDto.getAmount()== 0)){
-			statusInfo.setErrorStatus(true);
-			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.date.not.valid.selection",new Object[] {}, locale)));
-        }
-        if(ownAccountTransferDto.getFromAccountBalancy() < ownAccountTransferDto.getAmount()){
- 			statusInfo.setErrorStatus(true);
-			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
-         }
+       
         else{
        	
        	 
@@ -263,10 +255,12 @@ public class FundtransferService {
 	     		McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
     		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObj.toString(), responseString.toString(), errorCode, errorDescrption, new Date(), Status, hostReference));
 
-
+    		  fundTransferDto.setStatus(Status);
+      		 fundTransferDto.setFcdbRefId(referenceid);
+      		 fundTransferDto.setHostRefId(hostReference);
              }
-   	 return statusInfo; 
-       }
-	*/
+   	 return fundTransferDto; 
+       }*/
+	
 	
 }

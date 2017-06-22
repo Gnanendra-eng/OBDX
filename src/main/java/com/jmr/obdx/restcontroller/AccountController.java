@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jmr.obdx.service.AccountService;
+import com.jmr.obdx.service.dto.AccountBranch;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
@@ -98,5 +99,23 @@ public class AccountController {
 		}
 	}
 	
+	
+	@RequestMapping(value = "/{nbrAccount}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	private ResponseEntity<AccountBranch> getAccountBranch(@PathVariable("nbrAccount") String nbrAccount) {
+		try {
+			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+			AccountBranch responceObj = accountService.getAccountBranch(nbrAccount);
+			if (responceObj.getErrorStatus()) {
+				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+				return new ResponseEntity<AccountBranch>(responceObj, HttpStatus.BAD_REQUEST);
+			}
+			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<AccountBranch>(responceObj, HttpStatus.OK);
+		} catch (Exception exception) {
+			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
+			return new ResponseEntity<AccountBranch>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
 	
 }
