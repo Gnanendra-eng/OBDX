@@ -15,13 +15,13 @@ import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.McxTransactionM;
-import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AllPayee;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
@@ -54,6 +54,9 @@ public class BeneficiaryService {
 	
 	@Autowired
 	private BranchRepo branchRepo;
+	
+	@Autowired
+	private MstBranchRepo mstBranchRepo;
 	
 	private Utility utilities;
 	
