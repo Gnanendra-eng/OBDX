@@ -3,6 +3,7 @@ package com.jmr.obdx.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 
 /***
  * @author JMR
@@ -31,6 +33,8 @@ public class Login implements java.io.Serializable {
 	private String accountnonlocked;
 	private RetailCustomer retailCustomer;
 	private Set<Biller> billers = new HashSet<Biller>(0);
+    private long authorityRefId;
+
 	
 	
 	
@@ -65,6 +69,18 @@ public class Login implements java.io.Serializable {
 		this.accountnonlocked = accountnonlocked;
 	}
 
+	public Login(String username, String password, String isactive, String accountnonexpired,
+			String credentialsnonexpired, String accountnonlocked, AuthorityM authorityM,long authorityRefId) {
+		this.authorityM = authorityM;
+		this.username = username;
+		this.password = password;
+		this.isactive = isactive;
+		this.accountnonexpired = accountnonexpired;
+		this.credentialsnonexpired = credentialsnonexpired;
+		this.accountnonlocked = accountnonlocked;
+	    this.authorityRefId = authorityRefId;
+
+	}
 	@Id
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getId() {
@@ -139,7 +155,7 @@ public class Login implements java.io.Serializable {
 		this.accountnonlocked = accountnonlocked;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "login")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "login",cascade = {CascadeType.REFRESH})
 	public RetailCustomer getRetailCustomer() {
 		return this.retailCustomer;
 	}
@@ -156,6 +172,6 @@ public class Login implements java.io.Serializable {
 	public void setBillers(Set<Biller> billers) {
 		this.billers = billers;
 	}
-	
+	  
 
 }

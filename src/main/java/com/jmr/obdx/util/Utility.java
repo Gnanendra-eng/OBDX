@@ -24,5 +24,14 @@ public class Utility {
 	public static final String INACTIVEACCOUNT = "I";
 	public static final String ACTIVE = "A";
 	public static final String CLOSED = "C";
+	
+	
+	public static String getReferenceNumber(String text, int length) {
+		  String referenceNumber = text;
+		  for (int idx = referenceNumber.length(); idx < length; idx++) {
+		   referenceNumber = referenceNumber + " ";
+		  }
+		  return referenceNumber;
+		 }
 
 }

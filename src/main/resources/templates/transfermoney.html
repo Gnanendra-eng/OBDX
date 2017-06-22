@@ -1,151 +1,391 @@
-<div class="wrapper" data-ng-controller="transfermoneyController">
-	<div class="container-fluid">
-		<div class="col-sm-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="id">TRANSFER MONEY</div>
-				</div>
-				<div class="panel-body">
-    				<form class="form-horizontal">
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Transfer Type</label>
-       						<div class="col-sm-4">
-          						<div class="btn-group btn-group-justified" data-toggle="buttons">
-            						<label class="btn custom-button active">
-              							<input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Existing Payee</input>
-            						</label>
-            						<label class="btn custom-button">
-              							<input type="radio" name="options" id="option2" autocomplete="off">New Payee</input>
-            						</label>
-            						<label class="btn custom-button">
-              							<input type="radio" name="options" id="option3" autocomplete="off">My Accounts</input>
-            						</label>
-          						</div>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Payee</label>
-        					<div class="col-sm-4">
-          						<div id="inputtag">
-            						<tags-input data-ng-model="tags" display-property="name" placeholder="Add Payee">
-            						</tags-input>
-          						</div>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Account Type</label>
-        					<div class="col-sm-4">
-          						<h4>Domestic</h4>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Account Number</label>
-        					<div class="col-sm-4">
-          						<h4>xxxxxxxxxxxx7041</h4>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Account Name</label>
-        					<div class="col-sm-4">
-          						<h4>Rishad K</h4>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Bank Details</label>
-        					<div class="col-sm-4">
-          						<h4>AKBKGB99</h4>
-        					</div>
-      					</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Transfer From</label>
-        					<div class="col-sm-4">
-          						<select class="form-control">
-              						<option>xxxxxxxxxxxx8188</option>
-              						<option>xxxxxxxxxxxx4063</option>
-              						<option>xxxxxxxxxxxx9740</option>
-              						<option>xxxxxxxxxxxx7895</option>
-          						</select>
-          						<label>Balance:&pound;99,196.18</label>
-        					</div>
-     					</div>
-     					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Amount</label>
-        					<div class="col-sm-2">
-          						<select class="form-control">
-              						<option>INR</option>
-              						<option>AUD</option>
-              						<option>USD</option>
-              						<option>GBP</option>
-          						</select>
-          						<label><a href="#">View Limits</a></label>
-        					</div>
-        					<div class="col-sm-2">
-          						<input type="text" value="3500" class="form-control" required="required"></input>
-        					</div>
-     					</div>
-     					<div class="form-group">
-      						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Transfer When</label>
-        					<div class="col-sm-4">
-          						<div class="btn-group btn-group-justified" data-toggle="buttons">
-            						<label class="btn custom-button ">
-               							<input type="radio" name="options" id="option1" autocomplete="off" checked="checked">Now</input>
-            						</label>
-            						<label class="btn custom-button" value="Show Hide DIV" ng-click="ShowHide()"> 
-              							<input type="radio" name="options" id="option1" autocomplete="off" checked="checked"  >Later</input>
-            						</label>
-          						</div>
-            				</div>
-      					</div>
-						<div class="form-group has-feedback has-feedback-left" ng-show = "IsVisible"  ng-init="open()">
-							<div class="col-sm-3"></div>
-								<label class="control-label col-sm-2"
-									style="color: gray; text-align: left">Select Your date</label>
-								<div class="col-sm-4">
-									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-									<div>
-										<input type="text" class="form-control"
-											ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
-											ng-model="demo.dtFrom" is-open="demo.dateFrom" ng-required="true"
-											close-text="Close" />
-									</div>
-								</div>
-						</div>
-      					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Purpose</label>
-        					<div class="col-sm-4">
-          						<select class="form-control">
-              						<option>Transaction is an intra-company Payment</option>
-          						</select>
-        					</div>
-      					</div>
-     					<div class="form-group">
-       						<div class="col-sm-3"></div>
-        					<label class="control-label col-sm-2" style="text-align: left">Note(optional)</label>
-        					<div class="col-sm-4">
-          						<input type="text" data-ng-model="test" data-ng-trim="false" maxlength="80" class="form-control"></input>
-          						<label><span>{{80 - test.length}} Characters Left</span></label>
-        					</div>
-     					</div>
-     					<div class="form-group">
-       						<div class="col-sm-4"></div>
-       						<div class="col-sm-4">
-         						<button type="button" class="btn custom-button">Cancel</button>
-         					<button type="button" class="btn custom-button">Transfer</button>
-       						</div>
-     					</div>
-    				</form>
-    			</div>
-    		</div>
-  		</div>
-  	</div>
+<div class="container-fluid" data-ng-controller="transfermoneyController">
+	<div class="col-sm-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="id">TRANSFER MONEY</div>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+	    			<li class="active"><a data-toggle="tab" data-target="#existPay">Existing Payee</a></li>
+	    			<li><a data-toggle="tab" data-target="#newPay">New Payee</a></li>
+	    			<li><a data-toggle="tab" data-target="#myAcc">My Accounts</a></li>
+	  			</ul>
+   				<div class="tab-content">
+   					<div id="existPay" class="tab-pane fade in active">
+   						<form class="form-horizontal" name="existingPayeeForm" novalidate="novalidate">
+   							<div class="panel panel-primary" data-ng-show="myAccount_select">
+		      					<div class="panel-body">
+		      						<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" data-ng-model="ept_transferTo"
+												name="ept_transferTo" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option data-ng-repeat="payee in select_transfer_nbrAccounts"
+													value="{{payee.payeeName}}">{{payee.payeeName}}</option>
+			          						</select>
+			          						<span data-ng-show="existingPayeeForm.ept_transferTo.$dirty &amp;&amp; existingPayeeForm.ept_transferTo.$invalid"
+												class="error">Please Select a Payee</span>		        					
+										</div>
+			     					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer From<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control"
+			          							data-ng-change="onAccountChange()" data-ng-model="ept_nbrAccount"
+												name="ept_nbrAccount" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option data-ng-repeat="nbrAccount in select_prop_nbrAccounts" 
+													value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+			          						</select>
+			          						<span data-ng-show="existingPayeeForm.ept_nbrAccount.$dirty &amp;&amp; existingPayeeForm.ept_nbrAccount.$invalid"
+												class="error">Please Select Account Number</span>
+			        					</div>
+			      					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="myAccount_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Type</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.accType}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Balance</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Amount<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="number" value="" class="form-control" required="required"
+			          							name="ept_amount" data-ng-model="ept_amount" max="{{accountdetails.balance}}" />
+			          						<span class="error" data-ng-show="existingPayeeForm.ept_amount.$error.required 
+			          							&amp;&amp; existingPayeeForm.ept_amount.$dirty">Amount is required.</span>
+			          						<span class="error" data-ng-show="existingPayeeForm.ept_amount.$error.max">Amount Exceeded Balance</span>
+			        					</div>
+			     					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Purpose<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" data-ng-model="ept_purpose"
+												name="ept_purpose" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option>Payment Towards Loan Repayment</option>
+												<option>Deposit/ Investment</option>
+												<option>Gift to Relatives/ Friends</option>
+												<option>Donation</option>
+												<option>Payment of Education Fee</option>
+												<option>Others</option>
+			          						</select>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Note(optional)</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-trim="false"
+			          							maxlength="80" data-ng-model="ept_note" name="ept_note" />
+			          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button">CANCEL</button>
+			         						<button type="button" class="btn custom-button" 
+			         							data-ng-disabled="existingPayeeForm.$invalid"
+			         							data-ng-click="verify()">CONTINUE</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="myAccount_transfer">
+	      						<div class="panel-body">	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Payee</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer From</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{ept_nbrAccount}}</h5>
+			        					</div>
+			      					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Type</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.accType}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Balance</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			        					</div>
+			      					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Amount</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Purpose</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_purpose}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Note</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{ept_note}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="change()">CHANGE</button>
+			         						<button type="submit" class="btn custom-button"
+												data-ng-click="existingTransfer()">TRANSFER</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+   						</form>
+   					</div>
+   					<div id="newPay" class="tab-pane fade">
+   						<form class="form-horizontal" name="newPayeeForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="myAccount_select">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer Via<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" data-ng-model="transferVia"
+												name="transferVia" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option>Bank Account</option>
+			          						</select>
+			          						<span data-ng-show="newPayeeForm.transferVia.$dirty &amp;&amp; newPayeeForm.transferVia.$invalid"
+												class="error">Please Select Channel</span>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-5"></div>
+			        					<div class="col-sm-4">
+			          						<h5>You will first add the bank account details of the recipient and continue to transfer</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-9"></div>
+			       						<div class="col-sm-2">
+			       							<a href="#/addpayee">
+			         							<button type="button" class="btn custom-button"
+			         							data-ng-disabled="newPayeeForm.$invalid">ADD BANK ACCOUNT</button>
+			         						</a>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      				</form>
+   					</div>
+   					<div id="myAcc" class="tab-pane fade">
+   						<form class="form-horizontal" name="myAccountForm" novalidate="novalidate">
+	      					<div class="panel panel-primary" data-ng-show="myAccount_select">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Number<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control"
+			          							data-ng-change="onAccountChange()" data-ng-model="mat_nbrAccount"
+												name="mat_nbrAccount" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option data-ng-repeat="nbrAccount in select_prop_nbrAccounts" 
+													value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+			          						</select>
+			          						<span data-ng-show="myAccountForm.mat_nbrAccount.$dirty &amp;&amp; myAccountForm.mat_nbrAccount.$invalid"
+												class="error">Please Select Account Number</span>
+			        					</div>
+			      					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="myAccount_confirm">
+		      					<div class="panel-body">
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Type</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.accType}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Balance</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			        					</div>
+			      					</div>	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer To<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<select class="form-control" data-ng-model="mat_transferTo"
+												name="mat_transferTo" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option data-ng-repeat="nbrAccount in select_transfer_nbrAccounts"
+													value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+			          						</select>
+			          						<span data-ng-show="myAccountForm.mat_transferTo.$dirty &amp;&amp; myAccountForm.mat_transferTo.$invalid"
+												class="error">Please Select Account Number to Transfer</span>		        					
+										</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Amount<font
+											color="red">*</font></label>
+			        					<div class="col-sm-4">
+			          						<input type="number" value="" class="form-control" required="required"
+			          							name="mat_amount" data-ng-model="mat_amount" max="{{accountdetails.balance}}" />
+			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.required 
+			          							&amp;&amp; myAccountForm.amount.$dirty">Amount is required.</span>
+			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.max">Amount Exceeded Balance</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Note(optional)</label>
+			        					<div class="col-sm-4">
+			          						<input type="text" class="form-control" data-ng-trim="false"
+			          							maxlength="80" data-ng-model="mat_note" name="mat_note" />
+			          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button">CANCEL</button>
+			         						<button type="button" class="btn custom-button" 
+			         							data-ng-disabled="myAccountForm.$invalid"
+			         							data-ng-click="verify()">CONTINUE</button>
+			       						</div>
+			     					</div>
+		      					</div>
+	      					</div>
+	      					<div class="panel panel-primary" data-ng-show="myAccount_transfer">
+	      						<div class="panel-body">
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer From</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{mat_nbrAccount}}</h5>
+			        					</div>
+			      					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Type</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.accType}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Account Name</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.customerShortName}}</h5>
+			        					</div>
+			      					</div>
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Balance</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			        					</div>
+			      					</div>	
+			      					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Transfer To</label>
+			        					<div class="col-sm-4">
+			          						<h5>{{mat_transferTo}}</h5>	        					
+										</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Amount</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{mat_amount}}</h5>
+			        					</div>
+			     					</div>
+			     					<div class="form-group">
+			       						<div class="col-sm-3"></div>
+			        					<label class="control-label col-sm-2">Note</label>
+			        					<div class="col-sm-4">
+			        						<h5>{{mat_note}}</h5>
+			        					</div>
+			     					</div>
+	      							<div class="form-group">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
+			         						<button type="button" class="btn custom-button"
+			         							data-ng-click="change()">CHANGE</button>
+			         						<button type="submit" class="btn custom-button" 
+			         							data-ng-click="transfer()">TRANSFER</button>
+			       						</div>
+			     					</div>
+	      						</div>
+	      					</div>
+	    				</form>
+   					</div>
+   				</div>
+   			</div>
+   		</div>
+   	</div>
  </div>
