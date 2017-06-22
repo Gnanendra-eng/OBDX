@@ -132,6 +132,7 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 	$scope.internal_transfer=false;
 	$scope.domestic_transfer=false;
 	$scope.international_transfer=false;
+	$scope.internal_confirm_accDetails=false;
 	
 	$http.get("/branch/viewallbranch").success(function(data,status) {
 		$scope.select_payee_branches = [];
@@ -145,21 +146,13 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 	$scope.changeInternal = function(){
 		$scope.internal_transfer=false;
 		$scope.internal_confirm=true;
+		$scope.internal_confirm_accDetails=true;
 	}
 	
 	$scope.verifyInternalPayee = function(){
 		$scope.internal_confirm=false;
+		$scope.internal_confirm_accDetails=false;
 		$scope.internal_transfer=true;
-		$scope.selected_branch;
-		$http.get("/branch/viewallbranch").success(function(data,status) {
-	        angular.forEach(data.allBranch, function(branchInfo, index) {
-	        	if(branchInfo.branchId==$scope.internalPayeeForm.ipf_branch.$viewValue){
-	        		$scope.selected_branch=branchInfo.branchName;
-	        	}
-			});
-		}).error(function(data,status) {
-			 throw { message: 'error message',status:status};
-		});
 	}
 	
 	$scope.changeDomestic = function(){
@@ -182,12 +175,21 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 		$scope.international_transfer=true;
 	}
 	
+	$scope.syncAccount = function(accNo){
+		$http.get("/user/accountdetails/"+accNo).success(function(data,status) {
+			$scope.accDetails = data;
+			$scope.internal_confirm_accDetails=true;
+		}).error(function(data,status) {
+			throw { message: 'error message',status:status};
+		});
+	}
+	
 	$scope.createInternalPayee = function() {
 		$scope.internalPayeeInfo={};
 		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
 		$scope.internalPayeeInfo['accountNumber']=parseInt($scope.internalPayeeForm.ipf_accNo.$viewValue);
-		$scope.internalPayeeInfo['accountName']=$scope.internalPayeeForm.ipf_accName.$viewValue;
-		$scope.internalPayeeInfo['branchId']=$scope.internalPayeeForm.ipf_branch.$viewValue;
+		$scope.internalPayeeInfo['accountName']=$scope.accDetails.accName;
+		$scope.internalPayeeInfo['branchId']=$scope.accDetails.branchCod;
 		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
 		
 		alert(JSON.stringify($scope.internalPayeeInfo));
@@ -244,11 +246,14 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 });
 
 app.controller("successController", function($scope,$http,sharedProperties){
-	$scope.payee_name=sharedProperties.getProperty();
-	if($scope.payee_name!=undefined){
-		$scope.successPageInfo="addPayee";
-	}else{
-		$scope.successPageInfo="transfer";
+	$scope.sharedValue=sharedProperties.getProperty();
+	if($scope.sharedValue!=undefined){
+		if($scope.sharedValue=="transfer"){
+			$scope.successPageInfo=$scope.sharedValue;
+		}
+		else{
+			$scope.successPageInfo="addPayee";
+		}
 	}
 });
 
@@ -348,8 +353,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
-			angular.copy({},$scope.myAccountForm);
-			$window.location.href = '#/transfermoney';
+			$scope.success("transfer");
 		}).error(function (data, status) {
 			 throw { message: 'error message',status:status};	  
 		});
@@ -384,6 +388,11 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		}).error(function(data,status) {
 		   throw { message: 'error message',status:status};
 		});			
+	}
+	
+	$scope.success= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/success';
 	}
 });
 

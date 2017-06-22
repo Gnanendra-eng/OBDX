@@ -32,20 +32,22 @@
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
 			          						<input type="number" class="form-control" data-ng-model="ipf_accNo"
-			          							name="ipf_accNo" required="required" />
+			          							name="ipf_accNo" required="required" data-ng-model-options="{ updateOn: 'blur' }"
+			          							data-ng-change="syncAccount(ipf_accNo)" />
 			          						<span class="error" data-ng-show="internalPayeeForm.ipf_accNo.$error.required
-			          							&amp;&amp; internalPayeeForm.ipf_accNo.$dirty">Account Number is required</span>
+			          							&amp;&amp; internalPayeeForm.ipf_accNo.$dirty">Account Number is required</span>			          						
 			        					</div>
 			     					</div>
+			     				</div>
+			     			</div>
+			     			<div class="panel panel-primary" data-ng-show="internal_confirm_accDetails">
+		      					<div class="panel-body">
 			     					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<input type="text" class="form-control" data-ng-model="ipf_accName"
-			          							name="ipf_accName" required="required" />
-			          						<span class="error" data-ng-show="internalPayeeForm.ipf_accName.$error.required
-			          							&amp;&amp; internalPayeeForm.ipf_accName.$dirty">Account Name is required</span>
+			          						<h5>{{accDetails.accName}}</h5>
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
@@ -53,14 +55,7 @@
 			        					<label class="control-label col-sm-2">Branch<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<select class="form-control" data-ng-model="ipf_branch" 
-			          							name="ipf_branch" required="required">
-												<option value="" data-ng-selected="selected">Select</option>
-												<option data-ng-repeat="branch in select_payee_branches" 
-													value="{{branch.branchId}}">{{branch.branchName}}</option>
-			          						</select>
-			          						<span class="error" data-ng-show="internalPayeeForm.ipf_branch.$dirty
-			          							&amp;&amp; internalPayeeForm.ipf_branch.$invalid">Branch is required</span>
+			          						<h5>{{accDetails.branchName}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
@@ -75,8 +70,8 @@
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button">CANCEL</button>
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-disabled="internalPayeeForm.$invalid"
@@ -105,14 +100,14 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{ipf_accName}}</h5>
+			          						<h5>{{accDetails.accName}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Branch</label>
 			        					<div class="col-sm-4">
-			        						<h5>{{selected_branch}}</h5>
+			        						<h5>{{accDetails.branchName}}</h5>
 			        					</div>
 			     					</div>
 			      					<div class="form-group">
@@ -123,8 +118,8 @@
 			        					</div>
 			      					</div>
 	      							<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-click="changeInternal()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button"
@@ -231,8 +226,8 @@
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button">CANCEL</button>
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-disabled="domesticPayeeForm.$invalid"
@@ -300,8 +295,8 @@
 			        					</div>
 			     					</div>
 	      							<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-click="changeDomestic()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button"
@@ -374,8 +369,8 @@
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button">CANCEL</button>
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-disabled="internationalPayeeForm.$invalid"
@@ -422,8 +417,8 @@
 			        					</div>
 			     					</div>
 	      							<div class="form-group">
-			       						<div class="col-sm-9"></div>
-			       						<div class="col-sm-3">
+			       						<div class="col-sm-8"></div>
+			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-click="changeInternational()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button"
