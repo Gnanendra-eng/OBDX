@@ -36,6 +36,7 @@ import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.McxUserMRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.repositories.TxnDataRepo;
+import com.jmr.obdx.service.dto.FundTransferDto;
 import com.jmr.obdx.service.dto.InternalAccountTransferDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.McxAdapter;
@@ -106,12 +107,14 @@ public class FundtransferService {
 	
 	private  String hostReference;
 	
+	private FundTransferDto fundTransferDto;
+	
 	private static Logger logger = Logger.getLogger(FundtransferService.class);
 	 private String errorCode = null;
 	 private String errorDescrption = null;
 
 
-	public StatusInfo ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
+	public FundTransferDto ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
 		
@@ -182,9 +185,11 @@ public class FundtransferService {
 	     		McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
      		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObj.toString(), responseString.toString(), errorCode, errorDescrption, new Date(), Status, hostReference));
 
-
+     		 fundTransferDto.setStatus(Status);
+     		 fundTransferDto.setFcdbRefId(referenceid);
+     		 fundTransferDto.setHostRefId(hostReference);
               }
-    	 return statusInfo; 
+    	 return fundTransferDto;
         }
 	
 /*	public StatusInfo internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
