@@ -111,6 +111,7 @@ public class AccountService {
 		sumOfLoans = 0.0;
 		sumOfContractAndTermdepostit = 0.0;
 		accountsummarys.stream().forEach(accountsummary -> {
+			System.out.println(accountsummary.getCODACCTTYPE());
 			if (accountsummary.getCODACCTTYPE().equals(Utility.SAVINGSANDCURRENT)) {
 				sumOfSavingsAndCurrent += Double.parseDouble(accountsummary.getAVAILAMT());
 				savingsAndCurrent.add(getAccountSummaryType(accountsummary));

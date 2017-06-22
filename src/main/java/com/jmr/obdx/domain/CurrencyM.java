@@ -46,7 +46,10 @@ public class CurrencyM  implements java.io.Serializable {
        this.transactionDatas = transactionDatas;
     }
    
-     @Id 
+   
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=22, scale=0)

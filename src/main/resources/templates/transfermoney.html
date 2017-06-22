@@ -83,13 +83,6 @@
 			          						<span class="error" data-ng-show="existingPayeeForm.ept_amount.$error.max">Amount Exceeded Balance</span>
 			        					</div>
 			     					</div>
-			     					<div class="form-group">
-			       						<div class="col-sm-3"></div>
-			        					<label class="control-label col-sm-2">Transfer When</label>
-			        					<div class="col-sm-4">
-			          						<h5>Now</h5>
-			        					</div>
-			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Purpose<font
@@ -112,7 +105,7 @@
 			        					<label class="control-label col-sm-2">Note(optional)</label>
 			        					<div class="col-sm-4">
 			          						<input type="text" class="form-control" data-ng-trim="false"
-			          							maxlength="80" data-ng-model="note" name="note" />
+			          							maxlength="80" data-ng-model="ept_note" name="ept_note" />
 			          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
 			        					</div>
 			     					</div>
@@ -173,13 +166,6 @@
 			     					</div>
 			     					<div class="form-group">
 			       						<div class="col-sm-3"></div>
-			        					<label class="control-label col-sm-2">Transfer When</label>
-			        					<div class="col-sm-4">
-			        						<h5>Now</h5>
-			        					</div>
-			     					</div>
-			     					<div class="form-group">
-			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Purpose</label>
 			        					<div class="col-sm-4">
 			        						<h5>{{ept_purpose}}</h5>
@@ -189,7 +175,7 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Note</label>
 			        					<div class="col-sm-4">
-			        						<h5>{{note}}</h5>
+			        						<h5>{{ept_note}}</h5>
 			        					</div>
 			     					</div>
 	      							<div class="form-group">
@@ -198,7 +184,7 @@
 			         						<button type="button" class="btn custom-button"
 			         							data-ng-click="change()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button"
-												data-ng-click="transfer()">TRANSFER</button>
+												data-ng-click="existingTransfer()">TRANSFER</button>
 			       						</div>
 			     					</div>
 	      						</div>
@@ -292,7 +278,8 @@
 			        					<label class="control-label col-sm-2">Transfer To<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<select class="form-control" data-ng-model="mat_transferTo"
+			          						<select class="form-control" 
+			          							data-ng-change="onToAccountChange()" data-ng-model="mat_transferTo"
 												name="mat_transferTo" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
 												<option data-ng-repeat="nbrAccount in select_transfer_nbrAccounts"

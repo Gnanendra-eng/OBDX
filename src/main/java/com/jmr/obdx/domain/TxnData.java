@@ -23,39 +23,53 @@ import javax.persistence.TemporalType;
 public class TxnData  implements java.io.Serializable {
 
 
-     private long id;
+     public TxnData() {
+		// TODO Auto-generated constructor stub
+	}
+
+	private long id;
      private AccountTypeM accountTypeM;
      private CurrencyM currencyM;
      private String customerid;
-     private long fromaccountno;
-     private long toaccountno;
-     private Integer branchcod;
-     private long amount;
+     private String fromaccountno;
+     private String toaccountno;
+     private String tobranchcod;
+     private String frombranchcod;
+     private String amount;
      private Date transaferdate;
      private String status;
      private String note;
      private BeneficiaryM beneficiaryM;
      private String referenceId;
      private McxTransactionM mcxTransactionM;
+     private String purpose;
 
 
 
-     
+     @Column(name="PURPOSE", length=20)
+	public String getPurpose() {
+		return purpose;
+	}
 
 
-    public TxnData(AccountTypeM accountTypeM2, CurrencyM currencyM2, String string, long l, long m, Integer integer, Integer integer2, Date date, String string2, String string3, String referenceid2) {
-    }
 
-	
-   
-    public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, long fromaccountno, long toccountno, Integer branchcod, long amount, Date transaferdate, String status, String note, String referenceId,BeneficiaryM beneficiaryM) {
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+
+
+
+	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note, String referenceId,BeneficiaryM beneficiaryM) {
     this.mcxTransactionM = mcxTransactionM;
        this.accountTypeM = accountTypeM;
        this.currencyM = currencyM;
        this.customerid = customerid;
        this.fromaccountno = fromaccountno;
        this.toaccountno = toccountno;
-       this.branchcod = branchcod;
+       this.tobranchcod = tobranchcod;
+       this.frombranchcod = frombranchcod;
        this.amount = amount;
        this.transaferdate = transaferdate;
        this.status = status;
@@ -68,14 +82,36 @@ public class TxnData  implements java.io.Serializable {
    
 
 
-	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, long fromaccountno, long toccountno, Integer branchcod, long amount, Date transaferdate, String status, String note,String referenceId) {
+	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note,String referenceId,String purpose) {
 	    this.mcxTransactionM = mcxTransactionM;
 		this.accountTypeM = accountTypeM;
         this.currencyM = currencyM;
         this.customerid = customerid;
         this.fromaccountno = fromaccountno;
         this.toaccountno = toccountno;
-        this.branchcod = branchcod;
+        this.tobranchcod = tobranchcod;
+        this.frombranchcod = frombranchcod;
+        this.amount = amount;
+        this.transaferdate = transaferdate;
+        this.status = status;
+        this.note = note;
+        this.referenceId = referenceId;
+        this.purpose = purpose;
+        
+ 
+    }
+   
+   
+
+	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note,String referenceId) {
+	    this.mcxTransactionM = mcxTransactionM;
+		this.accountTypeM = accountTypeM;
+        this.currencyM = currencyM;
+        this.customerid = customerid;
+        this.fromaccountno = fromaccountno;
+        this.toaccountno = toccountno;
+        this.tobranchcod = tobranchcod;
+        this.frombranchcod = frombranchcod;
         this.amount = amount;
         this.transaferdate = transaferdate;
         this.status = status;
@@ -86,10 +122,8 @@ public class TxnData  implements java.io.Serializable {
  
     }
    
-   
 
-
-	public void setToaccountno(long toaccountno) {
+	public void setToaccountno(String toaccountno) {
 		this.toaccountno = toaccountno;
 	}
 
@@ -127,6 +161,24 @@ public class TxnData  implements java.io.Serializable {
     }
 
     
+    @Column(name="TOBRANCHCOD", length=10)
+    public String getTobranchcod() {
+		return tobranchcod;
+	}
+	public void setTobranchcod(String tobranchcod) {
+		this.tobranchcod = tobranchcod;
+	}
+
+
+
+	 @Column(name="FROMBRANCHCOD", length=10)
+	public String getFrombranchcod() {
+		return frombranchcod;
+	}
+	public void setFrombranchcod(String frombranchcod) {
+		this.frombranchcod = frombranchcod;
+	}
+    
     @Column(name="CUSTOMERID", precision=22, scale=0)
     public String getCustomerid() {
         return this.customerid;
@@ -149,36 +201,29 @@ public class TxnData  implements java.io.Serializable {
 
   
     @Column(name="FROMACCOUNTNO", precision=22, scale=0)
-    public long getFromaccountno() {
+    public String getFromaccountno() {
 		return fromaccountno;
 	}
 
 
-	public void setFromaccountno(long fromaccountno) {
+	public void setFromaccountno(String fromaccountno) {
 		this.fromaccountno = fromaccountno;
 	}
 
 	@Column(name="TOACCOUNTNO", precision=22, scale=0)
-	public long getToaccountno() {
+	public String getToaccountno() {
 		return toaccountno;
 	}
 	
-    @Column(name="BRANCHCOD", length=10)
-    public Integer getBranchcod() {
-        return this.branchcod;
-    }
-    
-    public void setBranchcod(Integer branchcod) {
-        this.branchcod = branchcod;
-    }
+   
 
     
     @Column(name="AMOUNT", precision=22, scale=0)
-    public long getAmount() {
+    public String getAmount() {
         return this.amount;
     }
     
-    public void setAmount(long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

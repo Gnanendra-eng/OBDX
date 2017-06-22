@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name ="FCUBS_HEADER")
+@XmlRootElement()
 public class McxHeader {
 	
 	@XmlElement
@@ -15,12 +15,14 @@ public class McxHeader {
 	@XmlElement
 	private String UBSCOMP;
 	
+	
+	
+	
+	@XmlElement
+	private String CORRELID;
+	
 	@XmlElement
 	private String USERID;
-	
-	
-	@XmlElement
-	private long CORRELID;
 	
 	@XmlElement
 	private String BRANCH;
@@ -55,11 +57,11 @@ public class McxHeader {
 		USERID = uSERID;
 	}
 
-	public long getCORRELID() {
+	public String getCORRELID() {
 		return CORRELID;
 	}
 
-	public void setCORRELID(long cORRELID) {
+	public void setCORRELID(String cORRELID) {
 		CORRELID = cORRELID;
 	}
 
@@ -87,7 +89,7 @@ public class McxHeader {
 		OPERATION = oPERATION;
 	}
 
-	public McxHeader(String sOURCE, String uBSCOMP, String uSERID, long cORRELID, String bRANCH, String sERVICE,
+	public McxHeader(String sOURCE, String uBSCOMP, String  cORRELID, String uSERID, String bRANCH, String sERVICE,
 			String oPERATION) {
 		SOURCE = sOURCE;
 		UBSCOMP = uBSCOMP;
