@@ -26,8 +26,8 @@ public class McxAuditLog  implements java.io.Serializable {
      private long mcxUserM;
      private McxTransactionM mcxTransactionM;
      private String txnReferance;
-     private String request;
-     private String response;
+     private byte [] request;
+     private byte [] response;
      private String errorCode;
      private String errorDesc;
      private Date txnDate;
@@ -41,7 +41,7 @@ public class McxAuditLog  implements java.io.Serializable {
     public McxAuditLog(long id) {
         this.id = id;
     }
-    public McxAuditLog( long mcxUserM, McxTransactionM mcxTransactionM, String txnReferance, String request, String response, String errorCode, String errorDesc, Date txnDate, String status, String hostRefNo) {
+    public McxAuditLog( long mcxUserM, McxTransactionM mcxTransactionM, String txnReferance, byte [] request, byte [] response, String errorCode, String errorDesc, Date txnDate, String status, String hostRefNo) {
        this.id = id;
        this.mcxUserM = mcxUserM;
        this.mcxTransactionM = mcxTransactionM;
@@ -101,21 +101,21 @@ public class McxAuditLog  implements java.io.Serializable {
 
     
     @Column(name="REQUEST", length=1000)
-    public String getRequest() {
+    public byte [] getRequest() {
         return this.request;
     }
     
-    public void setRequest(String request) {
+    public void setRequest(byte [] request) {
         this.request = request;
     }
 
     
     @Column(name="RESPONSE", length=1000)
-    public String getResponse() {
+    public byte [] getResponse() {
         return this.response;
     }
     
-    public void setResponse(String response) {
+    public void setResponse(byte [] response) {
         this.response = response;
     }
 
