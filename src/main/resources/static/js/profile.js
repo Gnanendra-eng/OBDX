@@ -301,7 +301,67 @@ function onChangeNbrAccountId(){
 	        	}
 			});
 		}).error(function(data,status) {
+<<<<<<< HEAD
 			 throw { message: 'error message',status:status};
+=======
+		   throw { message: 'error message',status:status};
+		});			
+	}
+	
+	$scope.verify = function(){
+		$scope.myAccount_select=false;
+		$scope.myAccount_confirm=false;
+		$scope.myAccount_transfer=true;
+	}
+	
+	$scope.change = function(){
+		$scope.myAccount_select=true;
+		$scope.myAccount_confirm=true;
+		$scope.myAccount_transfer=false;
+	}
+	
+	$scope.transfer = function() {
+		$scope.transferMoneyDetails={};
+		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['fromAccount']=$scope.mat_nbrAccount;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['amount']=$scope.myAccountForm.mat_amount.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['toAccount']=$scope.myAccountForm.mat_transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
+		
+		alert(JSON.stringify($scope.transferMoneyDetails));
+		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+			angular.copy({},$scope.myAccountForm);
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+		});
+	}
+	
+	$scope.existingTransfer = function() {
+		$scope.transferMoneyDetails={};
+		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
+		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
+		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
+		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['payee']=$scope.existingPayeeForm.ept_transferTo.$viewValue;
+		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
+		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
+		
+		alert(JSON.stringify($scope.transferMoneyDetails));
+		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+			angular.copy({},$scope.existingPayeeForm);
+			$window.location.href = '#/transfermoney';
+		}).error(function (data, status) {
+			 throw { message: 'error message',status:status};	  
+>>>>>>> branch 'spring_security' of https://pritiranjan_jmr@bitbucket.org/obdx_jmr/obdx_jmr.git
 		});
 	    $scope.myAccount_confirm=true;
 	}).error(function(data,status) {
@@ -453,47 +513,25 @@ app.controller('newLoanAccountOpening', function($scope) {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 app.controller('jsonCtrl1', function($scope, $http){
 	$http.get('js/d.json').success(function (data){
 	  $scope.data = data;
-	$scope.GetValue = function() {
+	  $scope.GetValue = function() {
+		  fin1($scope.ddldata);
+	  }	
 
-	   fin1($scope.ddldata);
-	}
-
-	function fin1(val){
-	angular.forEach($scope.data.balanceinfo,function(value,key){
-	 if(value.accno==$scope.ddldata)
-	 {
-		 $scope.name = value.Balance;
-	 }
-
+		function fin1(val){
+		angular.forEach($scope.data.balanceinfo,function(value,key){
+		 if(value.accno==$scope.ddldata)
+		 {
+			 $scope.name = value.Balance;
+		 }
+	
+		});
+	
+		}	
 	});
-
-	}
-
-	});
-
-
-
-
-	    
-	       
-	    
-	    
-	});
+});
 
 
 app.controller("accountsController", function($scope,$http) {
@@ -531,7 +569,6 @@ app.controller("accountsController", function($scope,$http) {
 	}
 });
 
-
 app.controller("billerController", function($scope,$http) {
 	$http.get("/user/biller/").success(function(data,status) {
 		$scope.billerInfos =data;
@@ -539,7 +576,6 @@ app.controller("billerController", function($scope,$http) {
 		 throw { message: 'error message',status:status};
 	});	
 });
-
 
 app.controller("statementController", function($scope,$http) {
 	$http.get("/user/accountdetails/").success(function(data,status) {
@@ -817,3 +853,18 @@ app.service('sharedProperties', function () {
         }
     };
 });
+
+
+/** disabling right click **/
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
+
