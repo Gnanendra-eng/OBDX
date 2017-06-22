@@ -24,7 +24,7 @@
 												name="ept_transferTo" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
 												<option data-ng-repeat="payee in select_transfer_nbrAccounts"
-													value="{{payee.payeeName}}">{{payee.payeeName}}</option>
+													value="{{payee.payeeId}}::{{payee.payeeName}}">{{payee.payeeName}}</option>
 			          						</select>
 			          						<span data-ng-show="existingPayeeForm.ept_transferTo.$dirty &amp;&amp; existingPayeeForm.ept_transferTo.$invalid"
 												class="error">Please Select a Payee</span>		        					
@@ -126,7 +126,7 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Payee</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{ept_transferTo}}</h5>	        					
+			          						<h5>{{payee_name}}</h5>	        					
 										</div>
 			     					</div>
 	      							<div class="form-group">
@@ -278,7 +278,8 @@
 			        					<label class="control-label col-sm-2">Transfer To<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<select class="form-control" data-ng-model="mat_transferTo"
+			          						<select class="form-control" 
+			          							data-ng-change="onToAccountChange()" data-ng-model="mat_transferTo"
 												name="mat_transferTo" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
 												<option data-ng-repeat="nbrAccount in select_transfer_nbrAccounts"

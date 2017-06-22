@@ -278,6 +278,12 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 			onChangeEptNbrAccountId();
 		}
 	}
+	
+	$scope.onToAccountChange=function(){
+		if($scope.mat_transferTo!=undefined){
+			selectTransferAccount();
+		}
+	}
 
 	function onChangeNbrAccountId(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.mat_nbrAccount).success(function(data,status) {
@@ -298,7 +304,19 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		});			
 	}
 	
+	function selectTransferAccount(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.mat_transferTo).success(function(data,status) {
+		    $scope.transferAccountDetails =data;
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});	
+	}
+	
 	$scope.verify = function(){
+		if($scope.ept_transferTo!=undefined){
+			$scope.payee_id=$scope.ept_transferTo.split("::")[0];
+			$scope.payee_name=$scope.ept_transferTo.split("::")[1];
+		}
 		$scope.myAccount_select=false;
 		$scope.myAccount_confirm=false;
 		$scope.myAccount_transfer=true;
@@ -313,14 +331,13 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.transfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.mat_nbrAccount;
-		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['fromBranchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=$scope.myAccountForm.mat_amount.$viewValue;
-		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['toAccount']=$scope.myAccountForm.mat_transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
+		$scope.transferMoneyDetails['toBranchCode']=$scope.transferAccountDetails.nbrBranch;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
@@ -335,12 +352,12 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 	$scope.existingTransfer = function() {
 		$scope.transferMoneyDetails={};
 		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['branchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['fromBranchCode']=$scope.accountdetails.nbrBranch;
 		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
 		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
-		$scope.transferMoneyDetails['currency']=$scope.accountdetails.ccyDesc;
-		$scope.transferMoneyDetails['payee']=$scope.existingPayeeForm.ept_transferTo.$viewValue;
+		$scope.transferMoneyDetails['payeeName']=$scope.payee_name;
+		$scope.transferMoneyDetails['payeeId']=$scope.payee_id;
 		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
 		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
 		
