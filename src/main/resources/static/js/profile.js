@@ -446,12 +446,16 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 	}
 	
 	$scope.confirm = function(){
+		if($scope.biller!=undefined){
+			$scope.billerId=$scope.biller.split("::")[0];
+			$scope.billerName=$scope.biller.split("::")[1];
+		}
 		$scope.verify=false;
 		$scope.verifyAccount=false;
 		$scope.payment=true;
 	}
 	
-	$http.get("/user/biller/").success(function(data,status) {
+	$http.get("/biller/").success(function(data,status) {
 		$scope.billerInfos =data;
 	}).error(function(data,status) {
 		 throw { message: 'error message',status:status};
@@ -485,19 +489,19 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 	
 	$scope.payBill = function() {
 		$scope.payBillInfo={};
-		$scope.payBillInfo['billerName']=$scope.biller;
+		$scope.payBillInfo['billerId']=$scope.billerId;
 		$scope.payBillInfo['fromAccount']=$scope.payFrom;
-		$scope.payBillInfo['fromBranchCode']=$scope.accountDetails.nbrBranch;
-		$scope.payBillInfo['currencyCode']=$scope.accountDetails.ccyDesc;
+		$scope.payBillInfo['branchCode']=$scope.accountDetails.nbrBranch;
+		$scope.payBillInfo['fromAccountCurrency']=$scope.accountDetails.ccyDesc;
 		$scope.payBillInfo['amount']=$scope.payBillForm.amount.$viewValue;
-		$scope.payBillInfo['relationNo']=$scope.payBillForm.relationNo.$viewValue;
-		$scope.payBillInfo['dtFrom']=$scope.payBillForm.dtFrom.$viewValue;
-		$scope.payBillInfo['billNo']=$scope.payBillForm.billNo.$viewValue;
+		$scope.payBillInfo['relationId']=$scope.payBillForm.relationNo.$viewValue;
+		$scope.payBillInfo['billDate']=$scope.dtFrom;
+		$scope.payBillInfo['billerNo']=$scope.payBillForm.billNo.$viewValue;
 		$scope.payBillInfo['note']=$scope.payBillForm.note.$viewValue;
 		
 		alert(JSON.stringify($scope.payBillInfo));
-		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.payBillInfo)).success(function (data) {
-			toastrSucessMsg('Payement Successful','Successful!');
+		$http.post('/user/biller/payBills', JSON.stringify($scope.payBillInfo)).success(function (data) {
+			toastrSucessMsg('Payment Successful','Successful!');
 			angular.copy({},$scope.payBillForm);
 			$scope.success("paybills");
 		}).error(function (data, status) {
@@ -517,8 +521,34 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 	}
 });
 
-app.controller("addBillerController", function($scope,$http) {
+app.controller("addBillerController", function($scope,$http,sharedProperties,$window) {
+	$scope.registerBiller = function() {
+		$scope.registerBillerInfo={};
+		$scope.registerBillerInfo['customer']=$scope.biller;
+		$scope.registerBillerInfo['biller']=$scope.payFrom;
+		$scope.registerBillerInfo['accNo']=$scope.accountDetails.nbrBranch;
+		$scope.registerBillerInfo['nickname']=$scope.accountDetails.ccyDesc;
+		
+		alert(JSON.stringify($scope.payBillInfo));
+		$http.post('/biller/register', JSON.stringify($scope.payBillInfo)).success(function (data) {
+			toastrSucessMsg('Payment Successful','Successful!');
+			angular.copy({},$scope.payBillForm);
+			$scope.success("paybills");
+		}).error(function (data, status) {
+			$scope.error(status);
+			throw { message: 'error message',status:status};	  
+		});
+	}
 	
+	$scope.success= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/success';
+	}
+	
+	$scope.error= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/error';
+	}
 });
 
 app.controller('newLoanAccountOpening', function($scope) {
@@ -626,7 +656,7 @@ app.controller("accountsController", function($scope,$http) {
 });
 
 app.controller("billerController", function($scope,$http) {
-	$http.get("/user/biller/").success(function(data,status) {
+	$http.get("/biller/user/").success(function(data,status) {
 		$scope.billerInfos =data;
 	}).error(function(data,status) {
 		 throw { message: 'error message',status:status};

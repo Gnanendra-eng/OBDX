@@ -495,17 +495,6 @@ label.btn.custom-button.active {
 	margin-right:10px;
 }
 
-#footer{
-	color: white;
-	position: fixed; 
-	left: 0px; 
-	bottom: 0px; 
-	width: 100%; 
-	background-color: rgba(47, 47, 47, 0.77);
-	height: 51px; 
-	padding-top: 13px;
-}
-
 .bg-success {
     background-color: #8ebb8e;
     color: white;
