@@ -11,10 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.McxTransactionM;
+import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
@@ -80,8 +82,12 @@ public class BeneficiaryService {
 	 			}
 		});*/
 		Login login = loginRepo.findByUsername(authentication.getName());
-        BranchM branchDetailsM = branchRepo.findById(beneficiaryDto.getBranchId());
-   	    beneficiaryRepo.save(new BeneficiaryM(new BranchM( branchDetailsM.getId()),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
+		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(beneficiaryDto.getBranchId());
+		Accountdetails  accountdetails=  accountDetailsRepo.findByAccountno(beneficiaryDto.getAccountNumber());
+
+
+        //BranchM branchDetailsM = branchRepo.findById(beneficiaryDto.getBranchId());
+   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
 		return statusInfo; 
 	}
 

@@ -192,8 +192,9 @@ public class AccountService {
 	
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
 		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
+		
 		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(accountdetail.getNBRBRANCH());
-		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), "HFC Bank Fiji",accountdetail.getCUSTOMERNAME());
+		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
 	    return accountBranch;
 	}
 	

@@ -50,9 +50,9 @@ public class FundTransferController {
 		}
 
 		
-
+	}
 		
-	/*
+	
 	@RequestMapping(value = "/internal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<FundTransferDto> internalFundTransfer(@RequestBody @Valid InternalAccountTransferDto internalAccountTransfer, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
@@ -68,7 +68,7 @@ public class FundTransferController {
 			logger.info(Utility.EXCEPTION_IN + new Object() {}.getClass().getEnclosingMethod().getName());
 			return new ResponseEntity<FundTransferDto>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-*/
+
 		
 		
 		

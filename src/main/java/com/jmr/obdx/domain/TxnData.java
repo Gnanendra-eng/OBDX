@@ -61,28 +61,12 @@ public class TxnData  implements java.io.Serializable {
 
 
 
-	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note, String referenceId,BeneficiaryM beneficiaryM) {
-    this.mcxTransactionM = mcxTransactionM;
-       this.accountTypeM = accountTypeM;
-       this.currencyM = currencyM;
-       this.customerid = customerid;
-       this.fromaccountno = fromaccountno;
-       this.toaccountno = toccountno;
-       this.tobranchcod = tobranchcod;
-       this.frombranchcod = frombranchcod;
-       this.amount = amount;
-       this.transaferdate = transaferdate;
-       this.status = status;
-       this.note = note;
-       this.referenceId = referenceId;
-       this.beneficiaryM = beneficiaryM;
 
-    }
     
    
 
 
-	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note,String referenceId,String purpose) {
+	public TxnData(McxTransactionM mcxTransactionM,AccountTypeM accountTypeM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note,String referenceId,String purpose,BeneficiaryM beneficiaryM) {
 	    this.mcxTransactionM = mcxTransactionM;
 		this.accountTypeM = accountTypeM;
         this.currencyM = currencyM;
@@ -97,6 +81,8 @@ public class TxnData  implements java.io.Serializable {
         this.note = note;
         this.referenceId = referenceId;
         this.purpose = purpose;
+        this.beneficiaryM = beneficiaryM;
+
         
  
     }

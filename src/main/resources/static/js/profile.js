@@ -366,13 +366,13 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
 		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
-		$scope.transferMoneyDetails['payeeName']=$scope.payee_name;
+		$scope.transferMoneyDetails['payeeName']=parseInt($scope.payee_name);
 		$scope.transferMoneyDetails['payeeId']=$scope.payee_id;
 		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
 		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
-		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			angular.copy({},$scope.existingPayeeForm);
 			$window.location.href = '#/transfermoney';
@@ -820,4 +820,3 @@ app.directive('ngRightClick', function($parse) {
         });
     };
 });
-
