@@ -29,6 +29,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/biller", {
     	templateUrl : '/fragment/biller.html',
     	controller:'billerController'	
+    }).when("/add-biller", {
+    	templateUrl : '/fragment/add-biller.html',
+    	controller:'addBillerController'		
     }).when("/paybills", {
     	templateUrl : '/fragment/paybills.html',
     	controller:'paybillController'
@@ -49,6 +52,9 @@ app.config(function($routeProvider,$locationProvider) {
     }).when("/success", {
         templateUrl : '/fragment/success.html',
         controller:'successController'
+    }).when("/error", {
+        templateUrl : '/fragment/error.html',
+        controller:'errorController'
     }).otherwise({
 	   redirectTo : '/oops',
 	   templateUrl : '/fragment/oops.html'
@@ -250,21 +256,33 @@ app.controller("successController", function($scope,$http,sharedProperties){
 	if($scope.sharedValue!=undefined){
 		if($scope.sharedValue=="transfer"){
 			$scope.successPageInfo=$scope.sharedValue;
-		}
-		else{
+		}else{
 			$scope.successPageInfo="addPayee";
 		}
 	}
 });
 
-app.controller("transfermoneyController",function($scope,$http,$window){
-	$scope.myAccount_select=true;
-	$scope.myAccount_confirm=false;
-	$scope.myAccount_transfer=false;
+app.controller("errorController", function($scope,$http,sharedProperties){
+	$scope.sharedValue=sharedProperties.getProperty();
+	if($scope.sharedValue!=undefined){
+		
+	}
+});
+
+app.controller("transfermoneyController",function($scope,$http,$window,sharedProperties){
+	$scope.reset = function(){
+		$scope.myAccount_select=true;
+		$scope.myAccount_confirm=false;
+		$scope.myAccount_transfer=false;
+		$scope.existAccount_select=true;
+		$scope.existAccount_confirm=false;
+		$scope.existAccount_transfer=false;
+	}
+	
 	$http.get("/beneficiary/viewbeneficiary").success(function(data,status) {
-		$scope.select_transfer_nbrAccounts = [];
+		$scope.payees = [];
         angular.forEach(data.allPayee, function(payeeInfo, index) {
-			$scope.select_transfer_nbrAccounts.push({"payeeId":payeeInfo.id,"payeeName":payeeInfo.payeeName});
+			$scope.payees.push({"payeeId":payeeInfo.id,"payeeName":payeeInfo.payeeName});
 		});
 	}).error(function(data,status) {
 		 throw { message: 'error message',status:status};
@@ -298,7 +316,7 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 
 	function onChangeNbrAccountId(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.mat_nbrAccount).success(function(data,status) {
-		    $scope.accountdetails =data;
+		    $scope.myAccountDetails =data;
 		    $scope.select_transfer_nbrAccounts = [];
 		    $http.get("/user/accountdetails/").success(function(data,status) {
 		        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
@@ -315,6 +333,15 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		});			
 	}
 	
+	function onChangeEptNbrAccountId(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.ept_nbrAccount).success(function(data,status) {
+		    $scope.existAccountDetails =data;
+		    $scope.existAccount_confirm=true;
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});			
+	}
+	
 	function selectTransferAccount(){
 		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.mat_transferTo).success(function(data,status) {
 		    $scope.transferAccountDetails =data;
@@ -323,28 +350,24 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		});	
 	}
 	
-	$scope.verify = function(){
-		if($scope.ept_transferTo!=undefined){
-			$scope.payee_id=$scope.ept_transferTo.split("::")[0];
-			$scope.payee_name=$scope.ept_transferTo.split("::")[1];
-		}
+	$scope.verifymatransfer = function(){
 		$scope.myAccount_select=false;
 		$scope.myAccount_confirm=false;
 		$scope.myAccount_transfer=true;
 	}
 	
-	$scope.change = function(){
+	$scope.changematransfer = function(){
 		$scope.myAccount_select=true;
 		$scope.myAccount_confirm=true;
 		$scope.myAccount_transfer=false;
 	}
 	
-	$scope.transfer = function() {
+	$scope.myAccountTransfer = function() {
 		$scope.transferMoneyDetails={};
-		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['accountType']=$scope.myAccountDetails.accType;
+		$scope.transferMoneyDetails['currencyCode']=$scope.myAccountDetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.mat_nbrAccount;
-		$scope.transferMoneyDetails['fromBranchCode']=$scope.accountdetails.nbrBranch;
+		$scope.transferMoneyDetails['fromBranchCode']=$scope.myAccountDetails.nbrBranch;
 		$scope.transferMoneyDetails['amount']=$scope.myAccountForm.mat_amount.$viewValue;
 		$scope.transferMoneyDetails['toAccount']=$scope.myAccountForm.mat_transferTo.$viewValue;
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
@@ -355,15 +378,32 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			$scope.success("transfer");
 		}).error(function (data, status) {
-			 throw { message: 'error message',status:status};	  
+			$scope.error(status);
+			throw { message: 'error message',status:status};	  
 		});
+	}
+	
+	$scope.verifyeptransfer = function(){
+		if($scope.ept_transferTo!=undefined){
+			$scope.payee_id=$scope.ept_transferTo.split("::")[0];
+			$scope.payee_name=$scope.ept_transferTo.split("::")[1];
+		}
+		$scope.existAccount_select=false;
+		$scope.existAccount_confirm=false;
+		$scope.existAccount_transfer=true;
+	}
+	
+	$scope.changeeptransfer = function(){
+		$scope.existAccount_select=true;
+		$scope.existAccount_confirm=true;
+		$scope.existAccount_transfer=false;
 	}
 	
 	$scope.existingTransfer = function() {
 		$scope.transferMoneyDetails={};
-		$scope.transferMoneyDetails['accountType']=$scope.accountdetails.accType;
-		$scope.transferMoneyDetails['fromBranchCode']=$scope.accountdetails.nbrBranch;
-		$scope.transferMoneyDetails['currencyCode']=$scope.accountdetails.ccyDesc;
+		$scope.transferMoneyDetails['accountType']=$scope.existAccountDetails.accType;
+		$scope.transferMoneyDetails['fromBranchCode']=$scope.existAccountDetails.nbrBranch;
+		$scope.transferMoneyDetails['currencyCode']=$scope.existAccountDetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
 		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
 		$scope.transferMoneyDetails['payeeName']=parseInt($scope.payee_name);
@@ -375,48 +415,111 @@ app.controller("transfermoneyController",function($scope,$http,$window){
 		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 			angular.copy({},$scope.existingPayeeForm);
-			$window.location.href = '#/transfermoney';
+			$scope.success("transfer");
 		}).error(function (data, status) {
-			 throw { message: 'error message',status:status};	  
+			$scope.error(status);
+			throw { message: 'error message',status:status};	  
 		});
-	}
-	
-	function onChangeEptNbrAccountId(){
-		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.ept_nbrAccount).success(function(data,status) {
-		    $scope.accountdetails =data;
-		    $scope.myAccount_confirm=true;
-		}).error(function(data,status) {
-		   throw { message: 'error message',status:status};
-		});			
 	}
 	
 	$scope.success= function(value){
 		sharedProperties.setProperty(value);
 		$window.location.href = '#/success';
 	}
+	
+	$scope.error= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/error';
+	}
 });
 
-app.controller("paybillController", function($scope,$http) {
-	   self = this;
-	  self.opened = {};
-	  self.open = function($event) {
+app.controller("paybillController", function($scope,$http,$window,sharedProperties) {
+	$scope.init = function(){
+		$scope.verify=true;
+		$scope.payment=false;
+	}
+	
+	$scope.change = function(){
+		$scope.verify=true;
+		$scope.verifyAccount=true;
+		$scope.payment=false;
+	}
+	
+	$scope.confirm = function(){
+		$scope.verify=false;
+		$scope.verifyAccount=false;
+		$scope.payment=true;
+	}
+	
+	$http.get("/user/biller/").success(function(data,status) {
+		$scope.billerInfos =data;
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
+		});
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
+	
+	$scope.onAccountChange=function(){
+		if($scope.payFrom!=undefined){
+			onChangeNbrAccountId();
+		}
+	}
 
-	    $event.preventDefault();
-	    $event.stopPropagation();
-
-	    self.opened = {};
-	    self.opened[$event.target.id] = true;
-
-	    // log this to check if its setting the log    
-	    console.log(self.opened);
-	    
-	  };
-
-	  self.format = 'dd-MM-yyyy'
+	function onChangeNbrAccountId(){
+		$http.get("/user/accountdetails/"+$scope.customerId+"/"+$scope.payFrom).success(function(data,status) {
+		    $scope.accountDetails =data;
+		    $scope.verifyAccount=true;
+		}).error(function(data,status) {
+		   throw { message: 'error message',status:status};
+		});			
+	}
+	
+	$scope.payBill = function() {
+		$scope.payBillInfo={};
+		$scope.payBillInfo['billerName']=$scope.biller;
+		$scope.payBillInfo['fromAccount']=$scope.payFrom;
+		$scope.payBillInfo['fromBranchCode']=$scope.accountDetails.nbrBranch;
+		$scope.payBillInfo['currencyCode']=$scope.accountDetails.ccyDesc;
+		$scope.payBillInfo['amount']=$scope.payBillForm.amount.$viewValue;
+		$scope.payBillInfo['relationNo']=$scope.payBillForm.relationNo.$viewValue;
+		$scope.payBillInfo['dtFrom']=$scope.payBillForm.dtFrom.$viewValue;
+		$scope.payBillInfo['billNo']=$scope.payBillForm.billNo.$viewValue;
+		$scope.payBillInfo['note']=$scope.payBillForm.note.$viewValue;
+		
+		alert(JSON.stringify($scope.payBillInfo));
+		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.payBillInfo)).success(function (data) {
+			toastrSucessMsg('Payement Successful','Successful!');
+			angular.copy({},$scope.payBillForm);
+			$scope.success("paybills");
+		}).error(function (data, status) {
+			$scope.error(status);
+			throw { message: 'error message',status:status};	  
+		});
+	}
+	
+	$scope.success= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/success';
+	}
+	
+	$scope.error= function(value){
+		sharedProperties.setProperty(value);
+		$window.location.href = '#/error';
+	}
 });
 
-
-
+app.controller("addBillerController", function($scope,$http) {
+	
+});
 
 app.controller('newLoanAccountOpening', function($scope) {
 
@@ -543,11 +646,13 @@ app.controller("statementController", function($scope,$http) {
 	}).error(function(data,status) {
 	   throw { message: 'error message',status:status};
 	});	
+	
 	$scope.onAccountChange=function(){
 		if($scope.nbrAccount!=undefined){
 			onChangeNbrAccountId();
 		}
 	}
+	
 	function onChangeNbrAccountId(){
 		$http.get("/user/transactionactivity/"+$scope.customerId+"/"+$scope.nbrAccount).success(function(data,status) {
 			$scope.transactionInfos =data;

@@ -1,4 +1,4 @@
-<div class="container-fluid" data-ng-controller="transfermoneyController">
+<div class="container-fluid" data-ng-init="reset()">
 	<div class="col-sm-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -6,14 +6,14 @@
 			</div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
-	    			<li class="active"><a data-toggle="tab" data-target="#existPay">Existing Payee</a></li>
-	    			<li><a data-toggle="tab" data-target="#newPay">New Payee</a></li>
-	    			<li><a data-toggle="tab" data-target="#myAcc">My Accounts</a></li>
+	    			<li class="active"><a data-toggle="tab" data-target="#existPay" data-ng-click="reset()">Existing Payee</a></li>
+	    			<li><a data-toggle="tab" data-target="#newPay" data-ng-click="reset()">New Payee</a></li>
+	    			<li><a data-toggle="tab" data-target="#myAcc" data-ng-click="reset()">My Accounts</a></li>
 	  			</ul>
    				<div class="tab-content">
    					<div id="existPay" class="tab-pane fade in active">
    						<form class="form-horizontal" name="existingPayeeForm" novalidate="novalidate">
-   							<div class="panel panel-primary" data-ng-show="myAccount_select">
+   							<div class="panel panel-primary" data-ng-show="existAccount_select">
 		      					<div class="panel-body">
 		      						<div class="form-group">
 			       						<div class="col-sm-3"></div>
@@ -23,7 +23,7 @@
 			          						<select class="form-control" data-ng-model="ept_transferTo"
 												name="ept_transferTo" required="required">
 												<option value="" data-ng-selected="selected">Select</option>
-												<option data-ng-repeat="payee in select_transfer_nbrAccounts"
+												<option data-ng-repeat="payee in payees"
 													value="{{payee.payeeId}}::{{payee.payeeName}}">{{payee.payeeName}}</option>
 			          						</select>
 			          						<span data-ng-show="existingPayeeForm.ept_transferTo.$dirty &amp;&amp; existingPayeeForm.ept_transferTo.$invalid"
@@ -48,27 +48,27 @@
 			      					</div>
 		      					</div>
 	      					</div>
-	      					<div class="panel panel-primary" data-ng-show="myAccount_confirm">
+	      					<div class="panel panel-primary" data-ng-show="existAccount_confirm">
 		      					<div class="panel-body">
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Type</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.accType}}</h5>
+			          						<h5>{{existAccountDetails.accType}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.customerShortName}}</h5>
+			          						<h5>{{existAccountDetails.customerShortName}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Balance</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			          						<h5>{{existAccountDetails.ccyDesc}} {{existAccountDetails.balance}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
@@ -77,7 +77,7 @@
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
 			          						<input type="number" value="" class="form-control" required="required"
-			          							name="ept_amount" data-ng-model="ept_amount" max="{{accountdetails.balance}}" />
+			          							name="ept_amount" data-ng-model="ept_amount" max="{{existAccountDetails.balance}}" />
 			          						<span class="error" data-ng-show="existingPayeeForm.ept_amount.$error.required 
 			          							&amp;&amp; existingPayeeForm.ept_amount.$dirty">Amount is required.</span>
 			          						<span class="error" data-ng-show="existingPayeeForm.ept_amount.$error.max">Amount Exceeded Balance</span>
@@ -106,7 +106,7 @@
 			        					<div class="col-sm-4">
 			          						<input type="text" class="form-control" data-ng-trim="false"
 			          							maxlength="80" data-ng-model="ept_note" name="ept_note" />
-			          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
+			          						<span style="font-size: small;">{{80 - ept_note.length}} Characters Left</span>
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
@@ -115,12 +115,12 @@
 			         						<button type="button" class="btn custom-button">CANCEL</button>
 			         						<button type="button" class="btn custom-button" 
 			         							data-ng-disabled="existingPayeeForm.$invalid"
-			         							data-ng-click="verify()">CONTINUE</button>
+			         							data-ng-click="verifyeptransfer()">CONTINUE</button>
 			       						</div>
 			     					</div>
 		      					</div>
 	      					</div>
-	      					<div class="panel panel-primary" data-ng-show="myAccount_transfer">
+	      					<div class="panel panel-primary" data-ng-show="existAccount_transfer">
 	      						<div class="panel-body">	
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
@@ -140,21 +140,21 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Type</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.accType}}</h5>
+			          						<h5>{{existAccountDetails.accType}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.customerShortName}}</h5>
+			          						<h5>{{existAccountDetails.customerShortName}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Balance</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			          						<h5>{{existAccountDetails.ccyDesc}} {{existAccountDetails.balance}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
@@ -182,7 +182,7 @@
 			       						<div class="col-sm-8"></div>
 			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button"
-			         							data-ng-click="change()">CHANGE</button>
+			         							data-ng-click="changeeptransfer()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button"
 												data-ng-click="existingTransfer()">TRANSFER</button>
 			       						</div>
@@ -193,7 +193,7 @@
    					</div>
    					<div id="newPay" class="tab-pane fade">
    						<form class="form-horizontal" name="newPayeeForm" novalidate="novalidate">
-	      					<div class="panel panel-primary" data-ng-show="myAccount_select">
+	      					<div class="panel panel-primary">
 		      					<div class="panel-body">
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
@@ -256,21 +256,21 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Type</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.accType}}</h5>
+			          						<h5>{{myAccountDetails.accType}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.customerShortName}}</h5>
+			          						<h5>{{myAccountDetails.customerShortName}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Balance</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			          						<h5>{{myAccountDetails.ccyDesc}} {{myAccountDetails.balance}}</h5>
 			        					</div>
 			      					</div>	
 			      					<div class="form-group">
@@ -295,7 +295,7 @@
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
 			          						<input type="number" value="" class="form-control" required="required"
-			          							name="mat_amount" data-ng-model="mat_amount" max="{{accountdetails.balance}}" />
+			          							name="mat_amount" data-ng-model="mat_amount" max="{{myAccountDetails.balance}}" />
 			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.required 
 			          							&amp;&amp; myAccountForm.amount.$dirty">Amount is required.</span>
 			          						<span class="error" data-ng-show="myAccountForm.mat_amount.$error.max">Amount Exceeded Balance</span>
@@ -307,7 +307,7 @@
 			        					<div class="col-sm-4">
 			          						<input type="text" class="form-control" data-ng-trim="false"
 			          							maxlength="80" data-ng-model="mat_note" name="mat_note" />
-			          						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
+			          						<span style="font-size: small;">{{80 - mat_note.length}} Characters Left</span>
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
@@ -316,7 +316,7 @@
 			         						<button type="button" class="btn custom-button">CANCEL</button>
 			         						<button type="button" class="btn custom-button" 
 			         							data-ng-disabled="myAccountForm.$invalid"
-			         							data-ng-click="verify()">CONTINUE</button>
+			         							data-ng-click="verifymatransfer()">CONTINUE</button>
 			       						</div>
 			     					</div>
 		      					</div>
@@ -334,21 +334,21 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Type</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.accType}}</h5>
+			          						<h5>{{myAccountDetails.accType}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.customerShortName}}</h5>
+			          						<h5>{{myAccountDetails.customerShortName}}</h5>
 			        					</div>
 			      					</div>
 			      					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Balance</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accountdetails.ccyDesc}} {{accountdetails.balance}}</h5>
+			          						<h5>{{myAccountDetails.ccyDesc}} {{myAccountDetails.balance}}</h5>
 			        					</div>
 			      					</div>	
 			      					<div class="form-group">
@@ -376,9 +376,9 @@
 			       						<div class="col-sm-8"></div>
 			       						<div class="col-sm-4">
 			         						<button type="button" class="btn custom-button"
-			         							data-ng-click="change()">CHANGE</button>
+			         							data-ng-click="changematransfer()">CHANGE</button>
 			         						<button type="submit" class="btn custom-button" 
-			         							data-ng-click="transfer()">TRANSFER</button>
+			         							data-ng-click="myAccountTransfer()">TRANSFER</button>
 			       						</div>
 			     					</div>
 	      						</div>
