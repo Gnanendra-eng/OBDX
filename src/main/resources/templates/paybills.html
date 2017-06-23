@@ -1,101 +1,183 @@
-<div class="container-fluid" data-ng-controller="paybillController">
+<div class="container-fluid"  data-ng-init="init()">
 <div class="col-sm-12">
-	<div class="panel panel-primary" style="background:url('images/payment.jpg');background-position: center;background-size: cover;">
+	<div class="panel panel-primary"><!-- style="background:url('images/payment.jpg');background-position: center;background-size: cover;"-->
 		<div class="panel-heading">
 			<div class="id">PAY BILLS</div>
 		</div>
-		<div class="panel-body">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Biller Name</label>
-				<div class="col-sm-4">
-					<select class="form-control">
-						<option>005832</option>
-						<option>007485</option>
-						<option>012048</option>
-						<option>002159</option>
-					</select>
+		<form class="form-horizontal" name="payBillForm" novalidate="novalidate">
+		<div class="panel panel-primary" data-ng-show="verify">
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Biller Name<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<select class="form-control" data-ng-model="biller"
+							name="biller" required="required">
+							<option value="" data-ng-selected="selected">Select</option>
+							<option data-ng-repeat="billerInfo in billerInfos.billerDtos"
+								value="{{billerInfo.billerName}}">{{billerInfo.billerName}}</option>
+						</select>
+						<span data-ng-show="payBillForm.biller.$dirty &amp;&amp; payBillForm.biller.$invalid"
+							class="error">Please Select a Biller</span>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Relationship Number</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control"
-						required="required" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Amount</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control"
-						required="required" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Pay From</label>
-				<div class="col-sm-4">
-					<select class="form-control">
-						<option>xxxxxxxxxxxx8188</option>
-						<option>xxxxxxxxxxxx4063</option>
-						<option>xxxxxxxxxxxx6262</option>
-						<option>xxxxxxxxxxxx1058</option>
-						<option>xxxxxxxxxxxx9746</option>
-					</select>
-					<label style="color: white;">Balance:&#8356;99,196.18</label>
-				</div>
-			</div>
-			<div class="form-group has-feedback has-feedback-left">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Bill Date</label>
-				<div class="col-sm-4">
-					<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-					<div>
-						<input type="text" class="form-control"
-							data-ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
-							data-ng-model="demo.dtFrom" is-open="demo.dateFrom" data-ng-required="true"
-							close-text="Close" />
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Pay From<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<select class="form-control"
+			     			data-ng-change="onAccountChange()" data-ng-model="payFrom"
+							name="payFrom" required="required">
+							<option value="" data-ng-selected="selected">Select</option>
+							<option data-ng-repeat="nbrAccount in select_prop_nbrAccounts" 
+								value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+			     		</select>
+			     		<span data-ng-show="payBillForm.payFrom.$dirty &amp;&amp; payBillForm.payFrom.$invalid"
+							class="error">Please Select Account Number</span>
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Bill Number</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control"
-						required="required" />
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-1"></div>
-				<label class="control-label col-sm-2"
-					style="text-align: left">Note(optional)</label>
-				<div class="col-sm-4">
-					<input type="text" data-ng-model="test" data-ng-trim="false" maxlength="80"
-						class="form-control" />
-					<label>
-						<span style="color: white;">{{80 - test.length}} Characters Left</span>
-					</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-5"></div>
-				<div class="col-sm-4">
-					<button type="button" class="btn custom-button">CANCEL</button>
-         			<button type="button" class="btn custom-button">ADD</button>
-				</div>
-			</div>
-		</form>
 		</div>
+		<div class="panel panel-primary" data-ng-show="verifyAccount">
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Relationship Number<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" 
+							name="relationNo" data-ng-model="relationNo" required="required" />
+						<span class="error" data-ng-show="payBillForm.relationNo.$error.required 
+							&amp;&amp; payBillForm.relationNo.$dirty">Relationship Number is required.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Balance</label>
+					<div class="col-sm-4">
+	 					<h5>{{accountDetails.ccyDesc}} {{accountDetails.balance}}</h5>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Amount<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<input type="number" value="" class="form-control" required="required"
+				          	name="amount" data-ng-model="amount" max="{{accountDetails.balance}}" />
+						<span class="error" data-ng-show="payBillForm.amount.$error.required 
+							&amp;&amp; payBillForm.amount.$dirty">Amount is required.</span>
+						<span class="error" data-ng-show="payBillForm.amount.$error.max">Amount Exceeded Balance</span>
+					</div>
+				</div>
+				<div class="form-group has-feedback has-feedback-left">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Bill Date<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+						<div>
+							<input type="text" class="form-control"
+								data-ng-click="dateFrom=true" datepicker-popup="{{format}}"
+								data-ng-model="dtFrom" is-open="dateFrom" data-ng-required="true"
+								close-text="Close" />
+						</div>
+						<span data-ng-show="payBillForm.dtFrom.$dirty &amp;&amp; payBillForm.dtFrom.$invalid"
+							class="error">Enter Bill Date</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Bill Number<font 
+						color="red">*</font></label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="billNo" data-ng-model="billNo"
+							required="required" />
+					</div>
+					<span data-ng-show="payBillForm.billNo.$dirty &amp;&amp; payBillForm.billNo.$invalid"
+							class="error">Enter Bill Number</span>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Note(optional)</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" data-ng-trim="false"
+							maxlength="80" data-ng-model="note" name="note" />
+						<span style="font-size: small;">{{80 - note.length}} Characters Left</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10"></div>
+					<div class="col-sm-2">
+	         			<button type="button" class="btn custom-button" 
+	         				data-ng-disabled="payBillForm.$invalid" data-ng-click="confirm()">CONFIRM</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-primary" data-ng-show="payment">
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Biller Name</label>
+					<div class="col-sm-4">
+						<h5>{{biller}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Pay From</label>
+					<div class="col-sm-4">
+						<h5>{{payFrom}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Relationship Number</label>
+					<div class="col-sm-4">
+						<h5>{{relationNo}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Amount</label>
+					<div class="col-sm-4">
+						<h5>{{amount}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group has-feedback has-feedback-left">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Bill Date</label>
+					<div class="col-sm-4">
+						<h5>{{dtFrom}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Bill Number</label>
+					<div class="col-sm-4">
+						<h5>{{billNo}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-1"></div>
+					<label class="control-label col-sm-2">Note(optional)</label>
+					<div class="col-sm-4">
+						<h5>{{note}}</h5>	 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"></div>
+					<div class="col-sm-4">
+						<button type="button" class="btn custom-button" data-ng-click="change()">CHANGE</button>
+	         			<button type="button" class="btn custom-button" data-ng-click="payBill()">PAY</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
 	</div>
 </div>
 </div>
