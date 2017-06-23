@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jmr.obdx.dto.StatusInfo;
+import com.mcx.xml.PayBillSoapenvEnvelope;
 import com.mcx.xml.SoapenvEnvelope;
 
 
@@ -36,6 +37,12 @@ public class ObjectMarshaller   {
 		return requestObj;
 	  }
        
-	  
+	public StringWriter marshallerToXml (PayBillSoapenvEnvelope payBillSoapenvEnvelope)throws Exception{ 
+		JAXBContext contextObj = JAXBContext.newInstance(SoapenvEnvelope.class);
+		Marshaller marshallerObj = contextObj.createMarshaller();
+		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	    marshallerObj.marshal(payBillSoapenvEnvelope, requestObj);
+		return requestObj;
+	  } 
 	  
 }
