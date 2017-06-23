@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.Accountsummary;
 import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AccountBranch;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
@@ -54,6 +56,11 @@ public class AccountService {
 
 	@Autowired
 	private AccountSummaryRepo accountsummaryrepo;
+	
+
+	
+	@Autowired
+	private MstBranchRepo mstBranchRepo;
 
 
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
@@ -184,11 +191,11 @@ public class AccountService {
 	}
 	
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
-		AccountBranch accountBranch = new AccountBranch();
 		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
-		accountBranch  = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), accountdetail.getNBRBRANCH(),accountdetail.getCUSTOMERNAME());
-
-	return accountBranch;
+		
+		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(accountdetail.getNBRBRANCH());
+		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
+	    return accountBranch;
 	}
 	
 	

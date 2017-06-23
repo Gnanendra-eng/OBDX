@@ -1,8 +1,5 @@
 package com.jmr.obdx.service.dto;
 
-import java.util.Set;
-
-import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 
 public class AccountBranch extends StatusInfo{

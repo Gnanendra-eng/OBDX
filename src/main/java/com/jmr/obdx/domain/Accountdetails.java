@@ -12,9 +12,6 @@ import javax.persistence.Table;
 @Table(name = "VW_ACCOUNT_DETAILS", schema = "JMR_OBDX")
 public class Accountdetails implements java.io.Serializable {
 
-public Accountdetails() {
-		
-	}
 
 
 	@Column(name = "IDCUSTOMER")
@@ -282,6 +279,9 @@ public Accountdetails() {
 	}
 	
 
+public Accountdetails() {
+		
+	}
 	
 	
 

@@ -12,6 +12,11 @@ public class InternalAccountTransferDto {
     private String payeeName;
     private String note;
     private String purpose;
+    
+    
+    
+    
+  
 	public long getPayeeId() {
 		return payeeId;
 	}

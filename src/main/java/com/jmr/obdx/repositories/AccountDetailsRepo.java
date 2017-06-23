@@ -5,9 +5,12 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.Accountdetails;
+import com.jmr.obdx.domain.MstBranch;
 
 @Repository
 public class AccountDetailsRepo {
@@ -31,5 +34,17 @@ public class AccountDetailsRepo {
 					.add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
 			
 	}
+	
+		
+		public Accountdetails findByAccountno(String accNo) throws Exception {
+			return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
+					.add(Restrictions.eq("NBRACCOUNT", accNo)).uniqueResult();
+			
+	}	
+		
+		
+		
+		
+		
 	
 }

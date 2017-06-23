@@ -12,10 +12,10 @@ public class BeneficiaryDto {
 	
 
 	@NotNull(message = "{error.required}")
-	private Long accountNumber;
+	private String accountNumber;
 	
 	@NotNull(message = "{error.required}")
-	private Long  branchId;
+	private String  branchId;
 	
 	@NotNull(message = "{error.required}")
 	private String nickName;
@@ -38,19 +38,19 @@ public class BeneficiaryDto {
 		this.accountName = accountName;
 	}
 
-	public Long getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(Long accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
-	public Long getBranchId() {
+	public String getBranchId() {
 		return branchId;
 	}
 
-	public void setBranchId(Long branchId) {
+	public void setBranchId(String branchId) {
 		this.branchId = branchId;
 	}
 
@@ -70,7 +70,7 @@ public class BeneficiaryDto {
 		this.createdVie = createdVie;
 	}
 
-	public BeneficiaryDto(String payeeName, String accountName, Long accountNumber, Long branchId,
+	public BeneficiaryDto(String payeeName, String accountName, String accountNumber, String branchId,
 			String nickName, String createdVie) {
 		this.payeeName = payeeName;
 		this.accountName = accountName;

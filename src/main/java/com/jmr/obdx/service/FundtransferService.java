@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 
 import com.jmr.obdx.domain.AccountTypeM;
 import com.jmr.obdx.domain.BasebranchCodeM;
+import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.CurrencyM;
 import com.jmr.obdx.domain.McxAuditLog;
 import com.jmr.obdx.domain.McxTransactionM;
@@ -59,6 +60,9 @@ public class FundtransferService {
 
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private BeneficiaryRepo beneficiaryRepo;
 	
 	@Autowired
 	private TxnDataRepo transactionDataRepo;
@@ -112,6 +116,8 @@ public class FundtransferService {
 	private static Logger logger = Logger.getLogger(FundtransferService.class);
 	 private String errorCode = null;
 	 private String errorDescrption = null;
+	 private String wDesc=null;
+	 private String wCode = null;
 
 
 	public FundTransferDto ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
@@ -191,9 +197,11 @@ public class FundtransferService {
     	 return fundTransferDto;
         }
 	
-	/*public FundTransferDto internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
+	public FundTransferDto internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
+		 fundTransferDto = new FundTransferDto();
+
 		
 		 String  referenceid =utilities.getReferenceNumber(String.valueOf(System.currentTimeMillis()), 13);
 		if (bindingResult.hasErrors()) {
@@ -209,8 +217,9 @@ public class FundtransferService {
        	 RetailCustomer  retailCustomer =retailCustomerRepo.findByCustomername(authentication.getName());
        	 AccountTypeM accountTypeM =accountTypeRepo.findByDescription(internalAccountTransfer.getAccountType());
        	 CurrencyM currencyM =currencyRepo.findByCurrencyType(internalAccountTransfer.getCurrencyCode());
-       	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("own account Transfer");
-       	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), currencyM, retailCustomer.getIdcusomer(), internalAccountTransfer.getFromAccount(), internalAccountTransfer.getToAccount(), internalAccountTransfer.getToBranchCode(),internalAccountTransfer.getFromBranchCode(), internalAccountTransfer.getAmount(), new Date(), "Intransit", internalAccountTransfer.getNote(),referenceid));
+       	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("internal account Transfer");
+         BeneficiaryM beneficiaryM=	beneficiaryRepo.findByBeneficiaryId(internalAccountTransfer.getPayeeId());
+       	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), currencyM, retailCustomer.getIdcusomer(), internalAccountTransfer.getFromAccount(), internalAccountTransfer.getFromBranchCode(), internalAccountTransfer.getToAccount(), beneficiaryM.getAccountnumber(), internalAccountTransfer.getAmount(), new Date(),"Intransit" , internalAccountTransfer.getNote(), referenceid, internalAccountTransfer.getPurpose(), beneficiaryM));
        	 TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
 
     		java.io.StringWriter sw = new StringWriter();
@@ -243,24 +252,29 @@ public class FundtransferService {
     		
     		
     		  String Status = responseString.substring(responseString.indexOf("<MSGSTAT>") +9, responseString.indexOf("</MSGSTAT>"));
-
+    		  
     		  if(Status.equals("FAILURE")){
-    		         String errorCode = responseString.substring(responseString.indexOf("<ECODE>") +7, responseString.indexOf("</ECODE>"));
-    		         String errorDescrption = responseString.substring(responseString.indexOf("<EDESC>") +7, responseString.indexOf("</EDESC>"));
+ 		             String wCode = responseString.substring(responseString.indexOf("<WCODE>") +7, responseString.indexOf("</WCODE>"));
+ 		             String wDesc = responseString.substring(responseString.indexOf("<WDESC>") +7, responseString.indexOf("</WDESC>"));
+                 
+    		        /* String errorCode = responseString.substring(responseString.indexOf("<ECODE>") +7, responseString.indexOf("</ECODE>"));
+    		         String errorDescrption = responseString.substring(responseString.indexOf("<EDESC>") +7, responseString.indexOf("</EDESC>"));*/
     		  }
     		  else{
    		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +12, responseString.indexOf("</REFERENCE_NO>"));
 
     		  }
-	     		McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-    		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObj.toString(), responseString.toString(), errorCode, errorDescrption, new Date(), Status, hostReference));
-
+    		  byte responseStringBytr[] =responseString.getBytes();
+       		  System.out.println(responseString);
+       		  byte requestObjectBytr[] =requestObj.toString().getBytes();
+	     	  McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
+	     	  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, wCode, wDesc, new Date(), Status, hostReference));
     		  fundTransferDto.setStatus(Status);
-      		 fundTransferDto.setFcdbRefId(referenceid);
-      		 fundTransferDto.setHostRefId(hostReference);
+      		  fundTransferDto.setFcdbRefId(referenceid);
+      		  fundTransferDto.setHostRefId(hostReference);
              }
-   	 return fundTransferDto; 
-       }*/
+   	         return fundTransferDto; 
+       }
 	
 	
 }
