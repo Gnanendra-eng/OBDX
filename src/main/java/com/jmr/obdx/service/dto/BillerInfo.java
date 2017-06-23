@@ -1,29 +1,18 @@
 package com.jmr.obdx.service.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import com.jmr.obdx.dto.StatusInfo;
 
-public class BillerInfo extends StatusInfo{
-	
-	private List<BillerDto> billerDtos=new ArrayList<>(0);
+public class BillerInfo extends StatusInfo {
 
+	private HashSet<BillerDto> billerDtos = new HashSet<>(0);
 
-	public List<BillerDto> getBillerDtos() {
+	public HashSet<BillerDto> getBillerDtos() {
 		return billerDtos;
 	}
 
-	public void setBillerDtos(List<BillerDto> billerDtos) {
+	public void setBillerDtos(HashSet<BillerDto> billerDtos) {
 		this.billerDtos = billerDtos;
 	}
-
-	public BillerInfo(List<BillerDto> billerDtos) {
-		this.billerDtos = billerDtos;
-	}
-
-
-	public BillerInfo() {
-	}
-
 }
