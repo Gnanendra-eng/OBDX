@@ -11,17 +11,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BILLER", schema = "JMR_OBDX")
+@Table(name = "MCX_BILLER", schema = "JMR_OBDX")
 public class Biller implements java.io.Serializable {
 
+
 	private long id;
-	private String idbiller;
-	private String billeraccountnumber;
-	private Serializable registrationdate;
-	private String billername;
-	private String billerprofile;
-	private String billercustomerid;
+	private String billerId;
+	private String billerReferenceNumber;
+	private Serializable registrationDate;
+	private String name;
 	private Login login;
+	private McxBillerOperator mcxBillerOperator;
 
 	@Id
 	@Column(name = "ID", nullable = false, precision = 10, scale = 0)
@@ -29,6 +29,19 @@ public class Biller implements java.io.Serializable {
 		return this.id;
 	}
 
+	
+	public Biller( String billerId, String billerReferenceNumber, Serializable registrationDate, String name,
+			Login login, McxBillerOperator mcxBillerOperator) {
+		this.billerId = billerId;
+		this.billerReferenceNumber = billerReferenceNumber;
+		this.registrationDate = registrationDate;
+		this.name = name;
+		this.login = login;
+		this.mcxBillerOperator = mcxBillerOperator;
+	}
+
+	
+	
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -37,72 +50,52 @@ public class Biller implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	public Biller( String idbiller, String billeraccountnumber, Serializable registrationdate,
-			String billername, String billerprofile, String billercustomerid, Login login) {
-		this.idbiller = idbiller;
-		this.billeraccountnumber = billeraccountnumber;
-		this.registrationdate = registrationdate;
-		this.billername = billername;
-		this.billerprofile = billerprofile;
-		this.billercustomerid = billercustomerid;
+	public Biller(String billerId, String billerReferenceNumber, Serializable registrationDate, String name,
+			 Login login) {
+		this.billerId = billerId;
+		this.billerReferenceNumber = billerReferenceNumber;
+		this.registrationDate = registrationDate;
+		this.name = name;
 		this.login = login;
 	}
 
-	@Column(name = "IDBILLER", nullable = false, length = 55)
-	public String getIdbiller() {
-		return this.idbiller;
+	@Column(name = "BILLERID", nullable = false, length = 55)
+	public String getBillerId() {
+		return this.billerId;
 	}
 
-	public void setIdbiller(String idbiller) {
-		this.idbiller = idbiller;
+	public void setBillerId(String idbiller) {
+		this.billerId = idbiller;
 	}
 
-	@Column(name = "BILLERACCOUNTNUMBER", nullable = false, length = 100)
-	public String getBilleraccountnumber() {
-		return this.billeraccountnumber;
+	@Column(name = "REFERENCENUMBER", nullable = false, length = 100)
+	public String getBillerReferenceNumber() {
+		return this.billerReferenceNumber;
 	}
 
-	public void setBilleraccountnumber(String billeraccountnumber) {
-		this.billeraccountnumber = billeraccountnumber;
+	public void setBillerReferenceNumber(String billerReferenceNumber) {
+		this.billerReferenceNumber = billerReferenceNumber;
 	}
 
 	@Column(name = "REGISTRATIONDATE")
-	public Serializable getRegistrationdate() {
-		return this.registrationdate;
+	public Serializable getRegistrationDate() {
+		return this.registrationDate;
 	}
 
-	public void setRegistrationdate(Serializable registrationdate) {
-		this.registrationdate = registrationdate;
+	public void setRegistrationDate(Serializable registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
-	@Column(name = "BILLERNAME", nullable = false, length = 200)
-	public String getBillername() {
-		return this.billername;
+	@Column(name = "NAME", nullable = false, length = 200)
+	public String getname() {
+		return this.name;
 	}
 
-	public void setBillername(String billername) {
-		this.billername = billername;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	@Column(name = "BILLERPROFILE", nullable = false, length = 200)
-	public String getBillerprofile() {
-		return this.billerprofile;
-	}
-
-	public void setBillerprofile(String billerprofile) {
-		this.billerprofile = billerprofile;
-	}
-
-	@Column(name = "BILLERCUSTOMERID", nullable = false, length = 50)
-	public String getBillercustomerid() {
-		return this.billercustomerid;
-	}
-
-	public void setBillercustomerid(String billercustomerid) {
-		this.billercustomerid = billercustomerid;
-	}
+	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_REF_ID", nullable = false, insertable = false, updatable = false)
@@ -112,6 +105,16 @@ public class Biller implements java.io.Serializable {
 
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "BILLER_OPEARTOR_ID")
+	public McxBillerOperator getMcxBillerOperator() {
+		return this.mcxBillerOperator;
+	}
+
+	public void setMcxBillerOperator(McxBillerOperator mcxBillerOperator) {
+		this.mcxBillerOperator = mcxBillerOperator;
 	}
 
 }
