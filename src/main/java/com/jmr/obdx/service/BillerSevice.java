@@ -77,7 +77,7 @@ public class BillerSevice {
 	@Autowired
 	private LoginRepo loginRepo;
 	
-	@Autowired
+	
 	private PayBillInfo payBillInfo;
 	
 	@Autowired
