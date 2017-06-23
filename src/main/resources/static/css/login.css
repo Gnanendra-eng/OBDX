@@ -117,14 +117,3 @@ html, body {
 	background-color:#333;
 	color:white;
 }
-
-#footer{
-	color: white;
-	position: fixed; 
-	left: 0px; 
-	bottom: 0px; 
-	width: 100%; 
-	background-color: rgba(47, 47, 47, 0.77);
-	height: 51px; 
-	padding-top: 13px;
-}
