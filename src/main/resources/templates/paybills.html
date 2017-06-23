@@ -13,10 +13,10 @@
 						color="red">*</font></label>
 					<div class="col-sm-4">
 						<select class="form-control" data-ng-model="biller"
-							name="biller" required="required">
+							data-ng-change="onBillerChange()" name="biller" required="required">
 							<option value="" data-ng-selected="selected">Select</option>
 							<option data-ng-repeat="billerInfo in billerInfos.billerDtos"
-								value="{{billerInfo.billerID}}::{{billerInfo.billerDescription}}">{{billerInfo.billerDescription}}</option>
+								value="{{billerInfo.idBiller}}::{{billerInfo.billerName}}::{{billerInfo.billerOperator}}">{{billerInfo.billerName}}</option>
 						</select>
 						<span data-ng-show="payBillForm.biller.$dirty &amp;&amp; payBillForm.biller.$invalid"
 							class="error">Please Select a Biller</span>
@@ -47,10 +47,7 @@
 					<label class="control-label col-sm-2">Relationship Number<font 
 						color="red">*</font></label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" 
-							name="relationNo" data-ng-model="relationNo" required="required" />
-						<span class="error" data-ng-show="payBillForm.relationNo.$error.required 
-							&amp;&amp; payBillForm.relationNo.$dirty">Relationship Number is required.</span>
+						<h5>{{billerRelation}}</h5>
 					</div>
 				</div>
 				<div class="form-group">
@@ -137,7 +134,7 @@
 					<div class="col-sm-1"></div>
 					<label class="control-label col-sm-2">Relationship Number</label>
 					<div class="col-sm-4">
-						<h5>{{relationNo}}</h5>	 
+						<h5>{{billerRelation}}</h5> 
 					</div>
 				</div>
 				<div class="form-group">

@@ -5,7 +5,7 @@
 				<div class="id">ADD BILLER</div>
 			</div>
 			<form class="form-horizontal" name="addBillerForm" novalidate="novalidate">
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" data-ng-show="verify">
 					<div class="panel-body">
 						<div class="form-group">
 	      					<div class="col-sm-3"></div>
@@ -15,6 +15,8 @@
 	         					<select class="form-control" data-ng-model="customer"
 									name="customer" required="required">
 									<option value="" data-ng-selected="selected">Select</option>
+									<option value="DTH OPERATOR">DTH OPERATOR</option>
+									<option value="Electricity">Electricity</option>
 	         					</select>
 	         					<span data-ng-show="addBillerForm.customer.$dirty &amp;&amp; addBillerForm.customer.$invalid"
 									class="error">Please Select a Customer</span>		        					
@@ -28,6 +30,8 @@
 	         					<select class="form-control" data-ng-model="biller"
 									name="biller" required="required">
 									<option value="" data-ng-selected="selected">Select</option>
+									<option value="AIRTEL">AIRTEL</option>
+									<option value="JIO">JIO</option>
 	         					</select>
 	         					<span data-ng-show="addBillerForm.biller.$dirty &amp;&amp; addBillerForm.biller.$invalid"
 									class="error">Please Select a Biller</span>
@@ -38,58 +42,37 @@
 	       					<label class="control-label col-sm-2">Account Number<font
 								color="red">*</font></label>
 	       					<div class="col-sm-4">
-	         					<input type="number" class="form-control" data-ng-model="accNo"
-	         						name="accNo" required="required" data-ng-model-options="{ updateOn: 'blur' }"
-	         						data-ng-change="syncAccount(accNo)" />
-	         					<span class="error" data-ng-show="addBillerForm.accNo.$error.required
-	         						&amp;&amp; addBillerForm.accNo.$dirty">Account Number is required</span>			          						
-	       					</div>
-				     	</div>
-	     				<div class="form-group">
-	      					<div class="col-sm-3"></div>
-	       					<label class="control-label col-sm-2">Nickname<font
-								color="red">*</font></label>
-	       					<div class="col-sm-4">
-	       						<input type="text" class="form-control" data-ng-model="nickname"
-	       							name="nickname" required="required" />
-	       						<span class="error" data-ng-show="addBillerForm.nickname.$error.required
-	       							&amp;&amp; addBillerForm.nickname.$dirty">Nickname is required</span>
+	       						<input type="number" class="form-control" data-ng-model="accNo"
+	       							name="accNo" required="required" />
+	       						<span class="error" data-ng-show="addBillerForm.accNo.$error.required
+	       							&amp;&amp; addBillerForm.accNo.$dirty">Account Number is required</span>
 	       					</div>
 	    				</div>
 	    				<div class="form-group">
 							<div class="col-sm-10"></div>
 							<div class="col-sm-2">
-			         			<button type="button" class="btn custom-button" data-ng-click="add()">ADD</button>
+			         			<button type="button" class="btn custom-button" 
+			         				data-ng-disabled="addBillerForm.$invalid" data-ng-click="confirm()">ADD</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" data-ng-show="add">
 					<div class="panel-body">
 						<div class="form-group">
 	      					<div class="col-sm-3"></div>
-	       					<label class="control-label col-sm-2">Select Customer<font
+	       					<label class="control-label col-sm-2">Customer<font
 								color="red">*</font></label>
 	       					<div class="col-sm-4">
-	         					<select class="form-control" data-ng-model="customer"
-									name="customer" required="required">
-									<option value="" data-ng-selected="selected">Select</option>
-	         					</select>
-	         					<span data-ng-show="addBillerForm.customer.$dirty &amp;&amp; addBillerForm.customer.$invalid"
-									class="error">Please Select a Customer</span>		        					
+	         					<h5>{{customer}}</h5>		        					
 							</div>
 	    				</div>
 	     				<div class="form-group">
 	      					<div class="col-sm-3"></div>
-	       					<label class="control-label col-sm-2">Select a Biller<font
+	       					<label class="control-label col-sm-2">Biller<font
 								color="red">*</font></label>
 	       					<div class="col-sm-4">
-	         					<select class="form-control" data-ng-model="biller"
-									name="biller" required="required">
-									<option value="" data-ng-selected="selected">Select</option>
-	         					</select>
-	         					<span data-ng-show="addBillerForm.biller.$dirty &amp;&amp; addBillerForm.biller.$invalid"
-									class="error">Please Select a Biller</span>
+	         					<h5>{{biller}}</h5>	
 	       					</div>
 	     				</div>
 	     				<div class="form-group">
@@ -97,24 +80,9 @@
 	       					<label class="control-label col-sm-2">Account Number<font
 								color="red">*</font></label>
 	       					<div class="col-sm-4">
-	         					<input type="number" class="form-control" data-ng-model="accNo"
-	         						name="accNo" required="required" data-ng-model-options="{ updateOn: 'blur' }"
-	         						data-ng-change="syncAccount(accNo)" />
-	         					<span class="error" data-ng-show="addBillerForm.accNo.$error.required
-	         						&amp;&amp; addBillerForm.accNo.$dirty">Account Number is required</span>			          						
+	         					<h5>{{accNo}}</h5>			          						
 	       					</div>
 				     	</div>
-	     				<div class="form-group">
-	      					<div class="col-sm-3"></div>
-	       					<label class="control-label col-sm-2">Nickname<font
-								color="red">*</font></label>
-	       					<div class="col-sm-4">
-	       						<input type="text" class="form-control" data-ng-model="nickname"
-	       							name="nickname" required="required" />
-	       						<span class="error" data-ng-show="addBillerForm.nickname.$error.required
-	       							&amp;&amp; addBillerForm.nickname.$dirty">Nickname is required</span>
-	       					</div>
-	    				</div>
 	    				<div class="form-group">
 							<div class="col-sm-8"></div>
 							<div class="col-sm-4">
