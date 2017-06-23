@@ -43,10 +43,26 @@ public class TxnData  implements java.io.Serializable {
      private String referenceId;
      private McxTransactionM mcxTransactionM;
      private String purpose;
+     private String billerId;
+
+
+ 	@Column(name="REF_BILLER_ID", length=20)
+
+     public String getBillerId() {
+		return billerId;
+	}
 
 
 
-     @Column(name="PURPOSE", length=20)
+
+	public void setBillerId(String billerId) {
+		this.billerId = billerId;
+	}
+
+
+
+
+	@Column(name="PURPOSE", length=20)
 	public String getPurpose() {
 		return purpose;
 	}
@@ -61,7 +77,23 @@ public class TxnData  implements java.io.Serializable {
 
 
 
-
+	public TxnData(McxTransactionM mcxTransactionM, CurrencyM currencyM, String customerid, String fromaccountno,String frombranchcod, String toccountno, String tobranchcod, String amount, Date transaferdate, String status, String note,String referenceId, String billerId) {
+	    this.mcxTransactionM = mcxTransactionM;
+        this.currencyM = currencyM;
+        this.customerid = customerid;
+        this.fromaccountno = fromaccountno;
+        this.toaccountno = toccountno;
+        this.tobranchcod = tobranchcod;
+        this.frombranchcod = frombranchcod;
+        this.amount = amount;
+        this.transaferdate = transaferdate;
+        this.status = status;
+        this.note = note;
+        this.referenceId = referenceId;
+        this.billerId = billerId;
+        
+ 
+    }
     
    
 

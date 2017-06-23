@@ -37,7 +37,7 @@ import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.McxUserMRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.repositories.TxnDataRepo;
-import com.jmr.obdx.service.dto.FundTransferDto;
+import com.jmr.obdx.service.dto.FundTransferInfo;
 import com.jmr.obdx.service.dto.InternalAccountTransferDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.McxAdapter;
@@ -111,7 +111,7 @@ public class FundtransferService {
 	
 	private  String hostReference;
 	
-	private FundTransferDto fundTransferDto;
+	private FundTransferInfo fundTransferDto;
 	
 	private static Logger logger = Logger.getLogger(FundtransferService.class);
 	 private String errorCode = null;
@@ -120,10 +120,10 @@ public class FundtransferService {
 	 private String wCode = null;
 
 
-	public FundTransferDto ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
+	public FundTransferInfo ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
-		 fundTransferDto = new FundTransferDto();
+		 fundTransferDto = new FundTransferInfo();
 		 String  referenceid =utilities.getReferenceNumber(String.valueOf(System.currentTimeMillis()), 13);
 		if (bindingResult.hasErrors()) {
 			statusInfo.setErrorStatus(true);
@@ -197,10 +197,10 @@ public class FundtransferService {
     	 return fundTransferDto;
         }
 	
-	public FundTransferDto internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
+	public FundTransferInfo internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
 		
 		 statusInfo=new StatusInfo();
-		 fundTransferDto = new FundTransferDto();
+		 fundTransferDto = new FundTransferInfo();
 
 		
 		 String  referenceid =utilities.getReferenceNumber(String.valueOf(System.currentTimeMillis()), 13);

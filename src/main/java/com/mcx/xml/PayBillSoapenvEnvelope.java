@@ -6,11 +6,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.jmr.obdx.dto.StatusInfo;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="soapenv:Envelope") 
-public class SoapenvEnvelope {
+public class PayBillSoapenvEnvelope {
 	
 	@XmlAttribute(name="xmlns:soapenv")
 	private String soapUrl;
@@ -21,47 +19,54 @@ public class SoapenvEnvelope {
 	
      
      @XmlElement(name ="soapenv:Body")
-     private SoapBody soapBody;
+     private PayBillSoapBody payBillSoapBody;
+
+
 
 	public String getSoapUrl() {
 		return soapUrl;
 	}
 
+
+
 	public void setSoapUrl(String soapUrl) {
 		this.soapUrl = soapUrl;
 	}
+
+
 
 	public String getXmlns() {
 		return xmlns;
 	}
 
+
+
 	public void setXmlns(String xmlns) {
 		this.xmlns = xmlns;
 	}
 
-	
 
-	public SoapBody getSoapBody() {
-		return soapBody;
-	}
 
-	public void setSoapBody(SoapBody soapBody) {
-		this.soapBody = soapBody;
+	public PayBillSoapBody getPayBillSoapBody() {
+		return payBillSoapBody;
 	}
 
 
-	public SoapenvEnvelope(String soapUrl, String xmlns , SoapBody soapBody) {
+
+	public void setPayBillSoapBody(PayBillSoapBody payBillSoapBody) {
+		this.payBillSoapBody = payBillSoapBody;
+	}
+
+
+
+	public PayBillSoapenvEnvelope(String soapUrl, String xmlns, PayBillSoapBody payBillSoapBody) {
 		this.soapUrl = soapUrl;
 		this.xmlns = xmlns;
-		this.soapBody = soapBody;
+		this.payBillSoapBody = payBillSoapBody;
 	}
 
-	
-	
-	
-	public SoapenvEnvelope() {
-		// TODO Auto-generated constructor stub
-	}
-     
-	
+
+
+
+
 }

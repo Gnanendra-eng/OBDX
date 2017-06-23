@@ -5,7 +5,9 @@ import java.util.Set;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 
-public class FundTransferDto extends StatusInfo {
+public class PayBillInfo extends StatusInfo {
+
+	
 
 	private String fcdbRefId;
 	private String hostRefId;
@@ -28,15 +30,14 @@ public class FundTransferDto extends StatusInfo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public FundTransferDto(String fcdbRefId, String hostRefId, String status) {
+	public PayBillInfo(String fcdbRefId, String hostRefId, String status) {
 		this.fcdbRefId = fcdbRefId;
 		this.hostRefId = hostRefId;
 		this.status = status;
 	}
-	public FundTransferDto() {
+	public PayBillInfo() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 	
 }
