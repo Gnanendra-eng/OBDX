@@ -184,11 +184,10 @@ public class BillerSevice {
 
         	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), customerAccountCurrencyM, retailCustomer.getIdcusomer(), payBillIDto.getFromAccount(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(),payBillIDto.getFromAccountCurrency(), payBillIDto.getAmount(), new Date(), "Intransit", payBillIDto.getNote(),referenceid, payBillIDto.getBillerId()));
         	 TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
-
      		java.io.StringWriter sw = new StringWriter();
      		Date myDate = new Date();
-		  
-     		TransactionDetailsIo transactionDetailsIo = new TransactionDetailsIo(referenceid, mcxTransactionM.getProddesc(), payBillIDto.getBillerId(), payBillIDto.getBillerNo(), payBillIDto.getAmount(), payBillIDto.getFromAccountCurrency(), retailCustomer.getIdcusomer(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillDate(), basebranchCodeM.getBranchcode());
+            System.out.println(referenceid);
+     		TransactionDetailsIo transactionDetailsIo = new TransactionDetailsIo(referenceid, mcxTransactionM.getProddesc(), payBillIDto.getBillerId(), payBillIDto.getBillerNo(), payBillIDto.getAmount(), payBillIDto.getFromAccountCurrency(), retailCustomer.getIdcusomer(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(), payBillIDto.getFromAccountCurrency(), new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), basebranchCodeM.getBranchcode());
      		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", txnData.getReferenceId(),"SYSTEM", basebranchCodeM.getBranchcode(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
             McxPayBillBody mcxPayBillBody = new McxPayBillBody(transactionDetailsIo);
      		CreateuptransactionIopkReq createuptransactionIopkReq = new CreateuptransactionIopkReq(mcxHeader, mcxPayBillBody);
