@@ -14,7 +14,7 @@ public class PayBillSoapenvEnvelope {
 	private String soapUrl;
 	
 	@XmlAttribute()
-    	private String xmlns;
+    private String xmlns;
     
 	
      
@@ -63,6 +63,12 @@ public class PayBillSoapenvEnvelope {
 		this.soapUrl = soapUrl;
 		this.xmlns = xmlns;
 		this.payBillSoapBody = payBillSoapBody;
+	}
+
+
+
+	public PayBillSoapenvEnvelope() {
+		// TODO Auto-generated constructor stub
 	}
 
 

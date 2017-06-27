@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jmr.obdx.dto.StatusInfo;
@@ -38,7 +37,7 @@ public class ObjectMarshaller   {
 	  }
        
 	public StringWriter marshallerToXml (PayBillSoapenvEnvelope payBillSoapenvEnvelope)throws Exception{ 
-		JAXBContext contextObj = JAXBContext.newInstance(SoapenvEnvelope.class);
+		JAXBContext contextObj = JAXBContext.newInstance(PayBillSoapenvEnvelope.class);
 		Marshaller marshallerObj = contextObj.createMarshaller();
 		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 	    marshallerObj.marshal(payBillSoapenvEnvelope, requestObj);

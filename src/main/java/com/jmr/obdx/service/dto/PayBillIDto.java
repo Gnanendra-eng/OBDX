@@ -10,8 +10,8 @@ public class PayBillIDto {
 	private String fromAccountCurrency;
 	private String billerNo;
 	private String note;
-	private String billDate;
-	public String getBillerId() {
+/*	private String billDate;
+*/	public String getBillerId() {
 		return billerId;
 	}
 	public void setBillerId(String billerId) {
@@ -59,14 +59,14 @@ public class PayBillIDto {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public String getBillDate() {
+	/*public String getBillDate() {
 		return billDate;
 	}
 	public void setBillDate(String billDate) {
 		this.billDate = billDate;
-	}
-	public PayBillIDto(String billerId, String fromAccount, String relationId, String amount, String branchCode,
-			String fromAccountCurrency, String billerNo, String note, String billDate) {
+	}*/
+	public PayBillIDto(String billerId, String fromAccount,String branchCode,String fromAccountCurrency,  String amount, 
+			String relationId, String billerNo, String note/*, String billDate*/) {
 		this.billerId = billerId;
 		this.fromAccount = fromAccount;
 		this.relationId = relationId;
@@ -75,8 +75,8 @@ public class PayBillIDto {
 		this.fromAccountCurrency = fromAccountCurrency;
 		this.billerNo = billerNo;
 		this.note = note;
-		this.billDate = billDate;
-	}
+/*		this.billDate = billDate;
+*/	}
 	public PayBillIDto() {
 		// TODO Auto-generated constructor stub
 	}
