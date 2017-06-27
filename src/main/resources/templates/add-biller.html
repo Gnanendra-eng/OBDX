@@ -15,8 +15,7 @@
 	         					<select class="form-control" data-ng-model="customer"
 									name="customer" required="required">
 									<option value="" data-ng-selected="selected">Select</option>
-									<option value="DTH OPERATOR">DTH OPERATOR</option>
-									<option value="Electricity">Electricity</option>
+									<option value="{{customerId}}">{{customerId}}</option>
 	         					</select>
 	         					<span data-ng-show="addBillerForm.customer.$dirty &amp;&amp; addBillerForm.customer.$invalid"
 									class="error">Please Select a Customer</span>		        					
@@ -30,8 +29,8 @@
 	         					<select class="form-control" data-ng-model="biller"
 									name="biller" required="required">
 									<option value="" data-ng-selected="selected">Select</option>
-									<option value="AIRTEL">AIRTEL</option>
-									<option value="JIO">JIO</option>
+									<option data-ng-repeat="billerInfo in billerInfos"
+								value="{{billerInfo.billerID}}::{{billerInfo.billerDescription}}">{{billerInfo.billerDescription}}</option>
 	         					</select>
 	         					<span data-ng-show="addBillerForm.biller.$dirty &amp;&amp; addBillerForm.biller.$invalid"
 									class="error">Please Select a Biller</span>
@@ -72,7 +71,7 @@
 	       					<label class="control-label col-sm-2">Biller<font
 								color="red">*</font></label>
 	       					<div class="col-sm-4">
-	         					<h5>{{biller}}</h5>	
+	         					<h5>{{billerDescription}}</h5>	
 	       					</div>
 	     				</div>
 	     				<div class="form-group">

@@ -498,9 +498,9 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 		$scope.payBillInfo['branchCode']=$scope.accountDetails.nbrBranch;
 		$scope.payBillInfo['fromAccountCurrency']=$scope.accountDetails.ccyDesc;
 		$scope.payBillInfo['amount']=$scope.payBillForm.amount.$viewValue;
+	    $scope.payBillInfo['billerNo']=$scope.payBillForm.billNo.$viewValue;
 		$scope.payBillInfo['relationId']=$scope.billerRelation;
 /*		$scope.payBillInfo['billDate']=$scope.dtFrom; */	
-	$scope.payBillInfo['billerNo']=$scope.payBillForm.billNo.$viewValue;
 		$scope.payBillInfo['note']=$scope.payBillForm.note.$viewValue;
 		
 		alert(JSON.stringify($scope.payBillInfo));
@@ -530,6 +530,10 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 	$scope.add=false;
 	
 	$scope.confirm = function(){
+		if($scope.biller!=undefined){
+			$scope.billerID=biller.split("::")[0];
+			$scope.billerDescription=biller.split("::")[1];
+		}
 		$scope.verify=false;
 		$scope.add=true;
 	}
@@ -539,11 +543,23 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 		$scope.add=false;
 	}
 	
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.customerId=data.customerId;
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
+	
+	$http.get("/biller/").success(function(data,status) {
+		$scope.billerInfos =data.billerDtos;
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});	
+	
 	$scope.registerBiller = function() {
 		$scope.registerBillerInfo={};
-		$scope.registerBillerInfo['billerReferenceNumber']=$scope.addBillerForm.customer.$viewValue;
-		$scope.registerBillerInfo['billerId']=$scope.addBillerForm.accNo.$viewValue;
-		$scope.registerBillerInfo['billerName']=$scope.addBillerForm.biller.$viewValue;
+		$scope.registerBillerInfo['billerId']=$scope.billerID;
+		$scope.registerBillerInfo['billerReferenceNumber']=$scope.addBillerForm.accNo.$viewValue;
+		$scope.registerBillerInfo['billerName']=$scope.billerDescription;
 		
 		alert(JSON.stringify($scope.registerBillerInfo));
 		$http.post('/biller/register/', JSON.stringify($scope.registerBillerInfo)).success(function (data) {
