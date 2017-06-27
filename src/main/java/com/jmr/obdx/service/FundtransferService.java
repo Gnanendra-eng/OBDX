@@ -19,6 +19,7 @@ import com.jmr.obdx.domain.AccountTypeM;
 import com.jmr.obdx.domain.BasebranchCodeM;
 import com.jmr.obdx.domain.BeneficiaryM;
 import com.jmr.obdx.domain.CurrencyM;
+import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.McxAuditLog;
 import com.jmr.obdx.domain.McxTransactionM;
 import com.jmr.obdx.domain.McxUserM;
@@ -177,7 +178,7 @@ public class FundtransferService {
     		byte responseStringBytr[] =responseString.getBytes();
      		System.out.println(responseString);
      		byte requestObjectBytr[] =requestObj.toString().getBytes();
-     		  String Status = responseString.substring(responseString.indexOf("<MSGSTAT>") +9, responseString.indexOf("</MSGSTAT>"));
+     		String Status = responseString.substring(responseString.indexOf("<MSGSTAT>") +9, responseString.indexOf("</MSGSTAT>"));
 
      		  if(Status.equals("FAILURE")){
      		         String errorCode = responseString.substring(responseString.indexOf("<ECODE>") +7, responseString.indexOf("</ECODE>"));
@@ -187,8 +188,10 @@ public class FundtransferService {
     		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
 
      		  }
+       		Login login = loginRepo.findByUsername(authentication.getName());
+
 	     	 McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-     		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
+     		 mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
 
      		 fundTransferDto.setStatus(Status);
      		 fundTransferDto.setFcdbRefId(referenceid);
@@ -267,8 +270,10 @@ public class FundtransferService {
     		  byte responseStringBytr[] =responseString.getBytes();
        		  System.out.println(responseString);
        		  byte requestObjectBytr[] =requestObj.toString().getBytes();
+         		Login login = loginRepo.findByUsername(authentication.getName());
+
 	     	  McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-	     	  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, wCode, wDesc, new Date(), Status, hostReference));
+	     	  mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, wCode, wDesc, new Date(), Status, hostReference));
     		  fundTransferDto.setStatus(Status);
       		  fundTransferDto.setFcdbRefId(referenceid);
       		  fundTransferDto.setHostRefId(hostReference);

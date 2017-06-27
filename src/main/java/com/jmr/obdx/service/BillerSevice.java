@@ -180,6 +180,7 @@ public class BillerSevice {
         	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("bill payment");
         		
         	 
+     		Login login = loginRepo.findByUsername(authentication.getName());
 
 
         	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), customerAccountCurrencyM, retailCustomer.getIdcusomer(), payBillIDto.getFromAccount(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(),payBillIDto.getFromAccountCurrency(), payBillIDto.getAmount(), new Date(), "Intransit", payBillIDto.getNote(),referenceid, payBillIDto.getBillerId()));
@@ -209,7 +210,7 @@ public class BillerSevice {
 
      		  }
 	     	 McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-     		  mcxAuditLogRepo.save(new McxAuditLog(41,new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
+     		  mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
 
      		payBillInfo.setStatus(Status);
      		payBillInfo.setFcdbRefId(referenceid);

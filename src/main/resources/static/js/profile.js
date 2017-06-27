@@ -497,9 +497,9 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 		$scope.payBillInfo['branchCode']=$scope.accountDetails.nbrBranch;
 		$scope.payBillInfo['fromAccountCurrency']=$scope.accountDetails.ccyDesc;
 		$scope.payBillInfo['amount']=$scope.payBillForm.amount.$viewValue;
-/*		$scope.payBillInfo['billDate']=$scope.dtFrom;
-*/		$scope.payBillInfo['billerNo']=$scope.payBillForm.billNo.$viewValue;
+	    $scope.payBillInfo['billerNo']=$scope.payBillForm.billNo.$viewValue;
 		$scope.payBillInfo['relationId']=$scope.billerRelation;
+/*		$scope.payBillInfo['billDate']=$scope.dtFrom; */	
 		$scope.payBillInfo['note']=$scope.payBillForm.note.$viewValue;
 		
 		alert(JSON.stringify($scope.payBillInfo));
