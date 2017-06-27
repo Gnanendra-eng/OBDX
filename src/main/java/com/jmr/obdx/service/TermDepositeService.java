@@ -53,10 +53,11 @@ public class TermDepositeService {
 		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());	
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
-			List<TermDepositeM> termDepositeMs;
-			try {
+			
 				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
-				termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer(),accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH());
+		});
+				
+				List<TermDepositeM> termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer());
 				termDepositeMs.stream().forEach(tempTermDeposit -> {
 					
 					if(tempTermDeposit.getCodaccttype().equals(Utility.CONTRACTANDTERMDEPOSIT)){
@@ -84,10 +85,8 @@ public class TermDepositeService {
 				       currencyType=tempTermDeposit.getCcy();
 					
 				});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+			
+		
         termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
 		 return  termDepositeInfo;
 	}

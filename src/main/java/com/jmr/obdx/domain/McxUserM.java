@@ -44,16 +44,15 @@ public class McxUserM  implements java.io.Serializable {
      private Date dateofbirth;
      private String phonenumber;
      private Character isactive;
-     private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
     public McxUserM() {
     }
 
 	
-    public McxUserM(int id) {
+    public McxUserM(long id) {
         this.id = id;
     }
-    public McxUserM(long id, McxEntityM mcxEntityM, String firstname, String lastname, String address, String city, String state, String country, String mobilenumber, String zipcode, String faxnumber, String emailid, Long refBaseuserId, String salutation, Date registrationdate, Date dateofbirth, String phonenumber, Character isactive, Set<McxAuditLog> mcxAuditLogs) {
+    public McxUserM(long id, McxEntityM mcxEntityM, String firstname, String lastname, String address, String city, String state, String country, String mobilenumber, String zipcode, String faxnumber, String emailid, Long refBaseuserId, String salutation, Date registrationdate, Date dateofbirth, String phonenumber, Character isactive) {
        this.id = id;
        this.mcxEntityM = mcxEntityM;
        this.firstname = firstname;
@@ -72,7 +71,6 @@ public class McxUserM  implements java.io.Serializable {
        this.dateofbirth = dateofbirth;
        this.phonenumber = phonenumber;
        this.isactive = isactive;
-       this.mcxAuditLogs = mcxAuditLogs;
     }
    
      @Id 
@@ -257,14 +255,7 @@ public class McxUserM  implements java.io.Serializable {
         this.isactive = isactive;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxUserM")
-    public Set<McxAuditLog> getMcxAuditLogs() {
-        return this.mcxAuditLogs;
-    }
-    
-    public void setMcxAuditLogs(Set<McxAuditLog> mcxAuditLogs) {
-        this.mcxAuditLogs = mcxAuditLogs;
-    }
+
 
 
 

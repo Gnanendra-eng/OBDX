@@ -23,7 +23,7 @@ public class McxAuditLog  implements java.io.Serializable {
 
 
      private long id;
-     private long mcxUserM;
+     private Login mcxUserM;
      private McxTransactionM mcxTransactionM;
      private String txnReferance;
      private byte [] request;
@@ -41,8 +41,7 @@ public class McxAuditLog  implements java.io.Serializable {
     public McxAuditLog(long id) {
         this.id = id;
     }
-    public McxAuditLog( long mcxUserM, McxTransactionM mcxTransactionM, String txnReferance, byte [] request, byte [] response, String errorCode, String errorDesc, Date txnDate, String status, String hostRefNo) {
-       this.id = id;
+    public McxAuditLog( Login mcxUserM, McxTransactionM mcxTransactionM, String txnReferance, byte [] request, byte [] response, String errorCode, String errorDesc, Date txnDate, String status, String hostRefNo) {
        this.mcxUserM = mcxUserM;
        this.mcxTransactionM = mcxTransactionM;
        this.txnReferance = txnReferance;
@@ -67,15 +66,15 @@ public class McxAuditLog  implements java.io.Serializable {
         this.id = id;
     }
 
-/*@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_USER")*/
-    @Column(name="ID_USER", length=150)
-
-    public long getMcxUserM() {
+      @ManyToOne(fetch=FetchType.LAZY)
+      @JoinColumn(name="ID_USER")
+/*    @Column(name="ID_USER", length=150)             
+*/
+    public Login getMcxUserM() {
         return this.mcxUserM;
     }
     
-    public void setMcxUserM(long mcxUserM) {
+    public void setMcxUserM(Login mcxUserM) {
         this.mcxUserM = mcxUserM;
     }
 
