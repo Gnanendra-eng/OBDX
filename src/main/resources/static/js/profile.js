@@ -375,8 +375,12 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
-			toastrSucessMsg('Transfer Initiated','Successfull!');
-			$scope.success("transfer");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Transfer Initiated','Successfull!');
+				$scope.success("transfer");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -413,8 +417,12 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
-			toastrSucessMsg('Transfer Initiated','Successfull!');
-			$scope.success("transfer");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Transfer Initiated','Successfull!');
+				$scope.success("transfer");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
