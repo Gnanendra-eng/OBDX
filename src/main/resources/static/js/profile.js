@@ -417,6 +417,9 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
+			toastrSucessMsg('Transfer Initiated','Successfull!');
+/*			angular.copy({},$scope.existingPayeeForm);
+*/			$scope.success("transfer");
 			if(data.status=="FAILURE"){
 				$scope.error(data);
 			}else if(data.status=="SUCCESS"){
@@ -541,8 +544,8 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 	
 	$scope.confirm = function(){
 		if($scope.biller!=undefined){
-			$scope.billerID=biller.split("::")[0];
-			$scope.billerDescription=biller.split("::")[1];
+			$scope.billerID=$scope.biller.split("::")[0];
+			$scope.billerDescription=$scope.biller.split("::")[1];
 		}
 		$scope.verify=false;
 		$scope.add=true;

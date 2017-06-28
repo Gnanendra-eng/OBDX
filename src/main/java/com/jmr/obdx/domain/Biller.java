@@ -1,6 +1,7 @@
 package com.jmr.obdx.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Biller implements java.io.Serializable {
 	private long id;
 	private String billerId;
 	private String billerReferenceNumber;
-	private Serializable registrationDate;
+	private Date registrationDate;
 	private String name;
 	private Login login;
 	private McxBillerOperator mcxBillerOperator;
@@ -30,7 +31,7 @@ public class Biller implements java.io.Serializable {
 	}
 
 	
-	public Biller( String billerId, String billerReferenceNumber, Serializable registrationDate, String name,
+	public Biller( String billerId, String billerReferenceNumber, Date registrationDate, String name,
 			Login login, McxBillerOperator mcxBillerOperator) {
 		this.billerId = billerId;
 		this.billerReferenceNumber = billerReferenceNumber;
@@ -50,7 +51,7 @@ public class Biller implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Biller(String billerId, String billerReferenceNumber, Serializable registrationDate, String name,
+	public Biller(String billerId, String billerReferenceNumber, Date registrationDate, String name,
 			 Login login) {
 		this.billerId = billerId;
 		this.billerReferenceNumber = billerReferenceNumber;
@@ -78,11 +79,11 @@ public class Biller implements java.io.Serializable {
 	}
 
 	@Column(name = "REGISTRATIONDATE")
-	public Serializable getRegistrationDate() {
+	public Date getRegistrationDate() {
 		return this.registrationDate;
 	}
 
-	public void setRegistrationDate(Serializable registrationDate) {
+	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

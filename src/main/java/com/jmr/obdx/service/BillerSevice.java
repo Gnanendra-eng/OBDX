@@ -154,6 +154,7 @@ public class BillerSevice {
 	public StatusInfo registerBiller(RegisterBillerDto registerBillerDto,Authentication authentication)throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Login login = loginRepo.findByUsername(authentication.getName());
+		System.out.println(login.getId());
 		billerRepo.save(new Biller(registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), new Login(login.getId())));
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		return statusInfo;
