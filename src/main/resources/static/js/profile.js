@@ -107,7 +107,7 @@ app.controller("loanController", function($scope,$http,sharedProperties,$window)
 });
 
 
-app.directive('ngRightClick', function($parse) {
+/*app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
         element.bind('contextmenu', function(event) {
@@ -117,7 +117,7 @@ app.directive('ngRightClick', function($parse) {
             });
         });
     };
-});
+});*/
 
 app.controller("loanMoreInfoController", function($scope,$http,sharedProperties) {
 
@@ -375,8 +375,12 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
-			toastrSucessMsg('Transfer Initiated','Successfull!');
-			$scope.success("transfer");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Transfer Initiated','Successfull!');
+				$scope.success("transfer");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -416,6 +420,12 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 			toastrSucessMsg('Transfer Initiated','Successfull!');
 /*			angular.copy({},$scope.existingPayeeForm);
 */			$scope.success("transfer");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Transfer Initiated','Successfull!');
+				$scope.success("transfer");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -976,7 +986,7 @@ app.service('sharedProperties', function () {
 
 
 /** disabling right click **/
-app.directive('ngRightClick', function($parse) {
+/*app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
         element.bind('contextmenu', function(event) {
@@ -986,4 +996,4 @@ app.directive('ngRightClick', function($parse) {
             });
         });
     };
-});
+});*/

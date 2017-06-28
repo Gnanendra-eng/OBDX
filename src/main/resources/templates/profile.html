@@ -37,6 +37,8 @@
 <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
 
 <link rel="stylesheet" href="css/toastr.css" />
+
+<link rel="stylesheet" href="css/ChatBot.css" />
 </head>
 <body>
 	<span data-us-spinner="{radius:30, width:8, length: 16}"></span>
@@ -108,8 +110,13 @@
 						data-toggle="dropdown">New account opening <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#/new-loan-account-opening">Loan</a></li>
-						
 						</ul>
+					</li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" onclick="openNav()" class="dropdown-toggle"
+						data-toggle="dropdown"><span class="fa fa-keyboard-o"></span>Chat with Bot</a>
 					</li>
 				</ul>
 				
@@ -139,18 +146,26 @@
 			</div>
 	</nav>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-9">
-				<div data-ng-view="ng-view"></div>
-			</div>
-			<div class="col-sm-3">
-				<iframe width="310" height="430" style="margin-left: -10px;"
-				    src="https://console.api.ai/api-client/demo/embedded/d7b5967b-fbab-4da5-9758-8e463eecb478">
-				</iframe>
-			</div>
-		</div>
+		<div data-ng-view="ng-view"></div>
+	</div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" id="closebtn" class="closebtn" onclick="closeNav()">&times;</a>
+		<iframe width="310" height="430"
+			src="https://console.api.ai/api-client/demo/embedded/d7b5967b-fbab-4da5-9758-8e463eecb478">
+		</iframe>
 	</div>
 </body>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "310px";
+    document.getElementById("closebtn").style.right = "0";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("closebtn").style.right = "initial";
+}
+</script>
 <script type="text/javascript" src="js/profile.js"></script>
 <script type="text/javascript" src="js/spin-min.js"></script>
 <script type="text/javascript" src="js/angular-spinner-min.js"></script>
