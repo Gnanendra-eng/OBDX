@@ -512,9 +512,12 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 		
 		alert(JSON.stringify($scope.payBillInfo));
 		$http.post('/biller/payBills', JSON.stringify($scope.payBillInfo)).success(function (data) {
-			toastrSucessMsg('Payment Successful','Successful!');
-			angular.copy({},$scope.payBillForm);
-			$scope.success("paybills");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Payment Successful','Successful!');
+				$scope.success("paybills");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -570,9 +573,12 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 		
 		alert(JSON.stringify($scope.registerBillerInfo));
 		$http.post('/biller/register/', JSON.stringify($scope.registerBillerInfo)).success(function (data) {
-			toastrSucessMsg('Biller Created','Successful!');
-			angular.copy({},$scope.addBillerForm);
-			$scope.success("paybills");
+			if(data.status=="FAILURE"){
+				$scope.error(data);
+			}else if(data.status=="SUCCESS"){
+				toastrSucessMsg('Biller Created','Successful!');
+				$scope.success("paybills");
+			}
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -738,6 +744,7 @@ app.controller("statementController", function($scope,$http) {
 app.controller("termDepositsController", function($scope,$http,sharedProperties,$window) {
     $http.get("/user/termdeposit/").success(function(data,status) {
      $scope.termDeposite = data;
+     $scope.totaltd = $scope.termDeposite.totalTermDeposits/3000;
   	 $scope.select_prop_nbrAccounts = [];
 	 $scope.customerId=$scope.termDeposite.customerId;
         angular.forEach($scope.termDeposite.nbrAccounts, function(name, index) {
@@ -751,6 +758,7 @@ app.controller("termDepositsController", function($scope,$http,sharedProperties,
 
 	$http.get("/user/accountdetails/summary").success(function(data,status) {
 		$scope.termDepositBalance = data.sumOfContractAndTermdepostit;
+		$scope.totalcb = $scope.termDepositBalance/3000;
 	}).error(function(data,status) {
 	   throw { message: 'error message',status:status};
 	});
