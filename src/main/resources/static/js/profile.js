@@ -406,7 +406,7 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		$scope.transferMoneyDetails['currencyCode']=$scope.existAccountDetails.ccyDesc;
 		$scope.transferMoneyDetails['fromAccount']=$scope.ept_nbrAccount;
 		$scope.transferMoneyDetails['amount']=$scope.existingPayeeForm.ept_amount.$viewValue;
-		$scope.transferMoneyDetails['payeeName']=parseInt($scope.payee_name);
+		$scope.transferMoneyDetails['payeeName']=$scope.payee_name;
 		$scope.transferMoneyDetails['payeeId']=$scope.payee_id;
 		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
 		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
@@ -414,8 +414,8 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			toastrSucessMsg('Transfer Initiated','Successfull!');
-			angular.copy({},$scope.existingPayeeForm);
-			$scope.success("transfer");
+/*			angular.copy({},$scope.existingPayeeForm);
+*/			$scope.success("transfer");
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -531,8 +531,8 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 	
 	$scope.confirm = function(){
 		if($scope.biller!=undefined){
-			$scope.billerID=biller.split("::")[0];
-			$scope.billerDescription=biller.split("::")[1];
+			$scope.billerID=$scope.biller.split("::")[0];
+			$scope.billerDescription=$scope.biller.split("::")[1];
 		}
 		$scope.verify=false;
 		$scope.add=true;

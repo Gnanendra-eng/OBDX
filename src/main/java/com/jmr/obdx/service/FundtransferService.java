@@ -172,6 +172,7 @@ public class FundtransferService {
      		CreateContractReq createContractReq = new CreateContractReq(mcxHeader, "http://fcubs.ofss.com/service/FCUBSFTService", mcxBody);
      		SoapBody soapBody = new SoapBody(createContractReq);
      		SoapenvEnvelope soapenvEnvelope = new SoapenvEnvelope("http://schemas.xmlsoap.org/soap/envelope/","http://fcubs.ofss.com/service/FCUBSFTService", soapBody);
+     		
      		StringWriter requestObj= objectMarshaller.marshallerToXml(soapenvEnvelope);
      		System.out.println(requestObj);
      		String responseString =mcxAdapter.getAdapterResponse(requestObj, "http://192.168.1.27:7001/FCUBSFTService/FCUBSFTService", "POST");
