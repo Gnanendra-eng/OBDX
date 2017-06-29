@@ -10,28 +10,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class McxHeader {
 	
 	@XmlElement
-	private String SOURCE;
+	private String SOURCE = null;
 	
 	@XmlElement
-	private String UBSCOMP;
+	private String UBSCOMP = null;
 	
 	
 	
 	
 	@XmlElement
-	private String CORRELID;
+	private String CORRELID = null;
 	
 	@XmlElement
-	private String USERID;
+	private String USERID = null;
 	
 	@XmlElement
-	private String BRANCH;
+	private String BRANCH = null;
 	
 	@XmlElement
-	private String SERVICE;
+	private String SERVICE = null;
 	
 	@XmlElement
-	private String OPERATION;
+	private String OPERATION = null;
 
 	public String getSOURCE() {
 		return SOURCE;

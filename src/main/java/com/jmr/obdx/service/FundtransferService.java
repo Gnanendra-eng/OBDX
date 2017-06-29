@@ -119,6 +119,7 @@ public class FundtransferService {
 	 private String errorDescrption = null;
 	 private String wDesc=null;
 	 private String wCode = null;
+	 
 
 
 	public FundTransferInfo ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
@@ -178,6 +179,7 @@ public class FundtransferService {
      		String responseString =mcxAdapter.getAdapterResponse(requestObj, "http://192.168.1.27:7001/FCUBSFTService/FCUBSFTService", "POST");
     		byte responseStringBytr[] =responseString.getBytes();
      		System.out.println(responseString);
+     		
      		byte requestObjectBytr[] =requestObj.toString().getBytes();
      		String Status = responseString.substring(responseString.indexOf("<MSGSTAT>") +9, responseString.indexOf("</MSGSTAT>"));
 
@@ -197,8 +199,9 @@ public class FundtransferService {
      		 fundTransferDto.setStatus(Status);
      		 fundTransferDto.setFcdbRefId(referenceid);
      		 fundTransferDto.setHostRefId(hostReference);
+     		
               }
-    	 return fundTransferDto;
+    	   return fundTransferDto;
         }
 	
 	public FundTransferInfo internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{

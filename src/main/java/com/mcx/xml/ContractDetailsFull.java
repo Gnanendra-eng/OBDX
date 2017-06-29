@@ -12,72 +12,72 @@ public class ContractDetailsFull {
 	
 	
 	@XmlElement(name="PROD")
-	private String prod;
+	private String prod = null;
 
 	@XmlElement(name ="USERREFNO")
-	private String userRefNO;
+	private String userRefNO = null;
 
 	@XmlElement(name ="DRVALDT")
-	private String drvaldt;
+	private String drvaldt = null;
 
 	@XmlElement(name ="CRBRN")
-	private String crben;
+	private String crben = null;
 
 	@XmlElement(name ="CRACC")
-	private String crAcc;
+	private String crAcc = null;
 
 	@XmlElement(name ="CRCCY")
-	private String crCcy;
+	private String crCcy = null;
 
 	@XmlElement(name ="CRAMT")
-	private String crAmt;
+	private String crAmt = null;
 
 	@XmlElement(name ="CRVALDT")
-	private String crvaldt;
+	private String crvaldt = null;
 
 	
 
 	@XmlElement(name ="DBTBRN")
-	private String dbtbrn;
+	private String dbtbrn = null;
 
 	@XmlElement(name ="DBTACC")
-	private String  dbtAcc;
+	private String  dbtAcc = null;
 
 	@XmlElement(name ="DRCCY")
-	private String drCcy;
+	private String drCcy  = null;
 
 	@XmlElement(name ="DR_AMOUNT")
-	private String drAmount;
+	private String drAmount = null;
 
 	@XmlElement(name ="SOURCEREFNO")
-	private String sourcerefNo;
+	private String sourcerefNo = null;
 
 	@XmlElement(name ="SOURCECD")
-	private String sourceCD;
+	private String sourceCD = null;
 	
 	@XmlElement(name ="ACCOUNTING_DATE")
-	private String accountingDate;
+	private String accountingDate = null;
 
 	@XmlElement(name ="PRODDESC")
-	private String prodDesc;
+	private String prodDesc = null;
 
 	@XmlElement(name ="OVEROVERDRFT")
-	private String overoverdrft;
+	private String overoverdrft = null;
 	
 	@XmlElement(name ="MAKER")
-	private String maker;
+	private String maker = null;
 
 	@XmlElement(name ="MAKDTTIME")
-	private String makdtTime;
+	private String makdtTime =null;
 
 	@XmlElement(name ="AUTHSTAT")
-	private String authstat;
+	private String authstat= null;
 
 	@XmlElement(name ="BOOKDT")
-	private String bookDt;
+	private String bookDt = null;
 
 	@XmlElement(name ="PRDCD")
-	private String prdCd;
+	private String prdCd = null;
 
 
 
@@ -90,6 +90,8 @@ public class ContractDetailsFull {
 	@XmlElement(name ="SOURCE")
 	private String source;
 
+	
+	
 	public String getProd() {
 		return prod;
 	}

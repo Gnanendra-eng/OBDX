@@ -23,6 +23,7 @@ import com.jmr.obdx.domain.Biller;
 import com.jmr.obdx.domain.CurrencyM;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.McxAuditLog;
+import com.jmr.obdx.domain.McxBillerOperator;
 import com.jmr.obdx.domain.McxTransactionM;
 import com.jmr.obdx.domain.McxUserM;
 import com.jmr.obdx.domain.RetailCustomer;
@@ -115,7 +116,7 @@ public class BillerSevice {
 	
 	private Utility utility;
 	
-	private String errorCode = null;
+	 private String errorCode = null;
 	 private String errorDescrption = null;
 	 private String wDesc=null;
 	 private String wCode = null;
@@ -127,8 +128,9 @@ public class BillerSevice {
 		userAddedBillerInfo = new UserAddedBillerInfo();
 		List<UserAddedBillerDto> billerDtos = new ArrayList<>(0);
 		Login login = loginRepo.findByUsername(authentication.getName());
-	    List<Biller> billers = (List<Biller>) billerRepo.findByUserBillerInfo(new Login(login.getId()));
+	    List<Biller> billers = (List<Biller>) billerRepo.findByUserBillerInfo(login.getId());
 		billers.stream().forEach(biller -> {
+			System.out.println( biller.getMcxBillerOperator().getOperator());
 			billerDtos.add(new UserAddedBillerDto(biller.getBillerId(), biller.getname(), biller.getMcxBillerOperator().getOperator()));
 		});
 		userAddedBillerInfo.setBillerDtos(billerDtos);
@@ -152,11 +154,14 @@ public class BillerSevice {
 	
 	
 	public StatusInfo registerBiller(RegisterBillerDto registerBillerDto,Authentication authentication)throws Exception {
+		
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		statusInfo = new StatusInfo();
 		Login login = loginRepo.findByUsername(authentication.getName());
 		System.out.println(login.getId());
-		billerRepo.save(new Biller(registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), new Login(login.getId())));
+		billerRepo.save(new Biller(registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), login.getId(),new McxBillerOperator(2)));
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
+		System.out.println(statusInfo);
 		return statusInfo;
 	}
 
@@ -183,9 +188,8 @@ public class BillerSevice {
         	 
      		Login login = loginRepo.findByUsername(authentication.getName());
 
-
-        	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), customerAccountCurrencyM, retailCustomer.getIdcusomer(), payBillIDto.getFromAccount(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(),payBillIDto.getFromAccountCurrency(), payBillIDto.getAmount(), new Date(), "Intransit", payBillIDto.getNote(),referenceid, payBillIDto.getBillerId()));
-        	 TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
+        	transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), customerAccountCurrencyM, retailCustomer.getIdcusomer(), payBillIDto.getFromAccount(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(),payBillIDto.getFromAccountCurrency(), payBillIDto.getAmount(), new Date(), "Intransit", payBillIDto.getNote(),referenceid, payBillIDto.getBillerId()));
+        	TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
      		java.io.StringWriter sw = new StringWriter();
      		Date myDate = new Date();
             System.out.println(referenceid);
@@ -210,7 +214,7 @@ public class BillerSevice {
     		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
 
      		  }
-	     	 McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
+	     	  McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
      		  mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
 
      		payBillInfo.setStatus(Status);

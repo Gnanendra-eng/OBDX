@@ -18,6 +18,6 @@ import com.jmr.obdx.domain.Login;
 public interface BillerRepo extends CrudRepository<Biller, Integer> {
 	
 	@Query("from Biller where login=:login")
-	public List<Biller> findByUserBillerInfo(@Param("login") Login login);
+	public List<Biller> findByUserBillerInfo(@Param("login") long login);
 
 }

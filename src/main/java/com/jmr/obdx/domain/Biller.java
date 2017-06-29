@@ -21,7 +21,7 @@ public class Biller implements java.io.Serializable {
 	private String billerReferenceNumber;
 	private Date registrationDate;
 	private String name;
-	private Login login;
+	private long login;
 	private McxBillerOperator mcxBillerOperator;
 
 	@Id
@@ -32,7 +32,7 @@ public class Biller implements java.io.Serializable {
 
 	
 	public Biller( String billerId, String billerReferenceNumber, Date registrationDate, String name,
-			Login login, McxBillerOperator mcxBillerOperator) {
+			long login, McxBillerOperator mcxBillerOperator) {
 		this.billerId = billerId;
 		this.billerReferenceNumber = billerReferenceNumber;
 		this.registrationDate = registrationDate;
@@ -52,7 +52,7 @@ public class Biller implements java.io.Serializable {
 	}
 
 	public Biller(String billerId, String billerReferenceNumber, Date registrationDate, String name,
-			 Login login) {
+			long login) {
 		this.billerId = billerId;
 		this.billerReferenceNumber = billerReferenceNumber;
 		this.registrationDate = registrationDate;
@@ -98,13 +98,16 @@ public class Biller implements java.io.Serializable {
 
 	
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_REF_ID", nullable = false, insertable = false, updatable = false)
-	public Login getLogin() {
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_REF_ID", nullable = false, insertable = false, updatable = false)*/
+	
+	
+	@Column(name ="USER_REF_ID",nullable = false, length =100)
+	public long getLogin() {
 		return this.login;
 	}
 
-	public void setLogin(Login login) {
+	public void setLogin(long login) {
 		this.login = login;
 	}
 

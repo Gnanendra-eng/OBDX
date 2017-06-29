@@ -13,15 +13,15 @@ import com.jmr.obdx.dto.StatusInfo;
 public class SoapenvEnvelope {
 	
 	@XmlAttribute(name="xmlns:soapenv")
-	private String soapUrl;
+	private String soapUrl = null;
 	
 	@XmlAttribute()
-    	private String xmlns;
+    	private String xmlns = null;
     
 	
      
      @XmlElement(name ="soapenv:Body")
-     private SoapBody soapBody;
+     private SoapBody soapBody = null;
 
 	public String getSoapUrl() {
 		return soapUrl;

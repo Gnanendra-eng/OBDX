@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CreateContractReq {
 	
 	@XmlElement(name ="FCUBS_HEADER")
-	private McxHeader mcxHeader;
+	private McxHeader mcxHeader = null;
 	
 	@XmlAttribute()
-	private String xmlns;
+	private String xmlns = null;
 
 	@XmlElement(name ="FCUBS_BODY")
-	private McxBody  mcxBody;
+	private McxBody  mcxBody = null;
 
 	public McxHeader getMcxHeader() {
 		return mcxHeader;

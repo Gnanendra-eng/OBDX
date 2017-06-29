@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class McxBody {
 	
 	@XmlElement(name="Contract-Details-Full")
-	private ContractDetailsFull contractDetailsFull;
+	private ContractDetailsFull contractDetailsFull = null;
 
 	public ContractDetailsFull getContractDetailsFull() {
 		return contractDetailsFull;

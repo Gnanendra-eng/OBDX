@@ -32,8 +32,8 @@ public class Login implements java.io.Serializable {
 	private String credentialsnonexpired;
 	private String accountnonlocked;
 	private RetailCustomer retailCustomer;
-	private Set<Biller> billers = new HashSet<Biller>(0);
-    private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
+/*	private Set<Biller> billers = new HashSet<Biller>(0);
+*/    private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
 
     private long authorityRefId;
@@ -181,7 +181,7 @@ public class Login implements java.io.Serializable {
 	public void setRetailCustomer(RetailCustomer retailCustomer) {
 		this.retailCustomer = retailCustomer;
 	}
-
+/*
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "login")
 	public Set<Biller> getBillers() {
 		return this.billers;
@@ -189,7 +189,7 @@ public class Login implements java.io.Serializable {
 
 	public void setBillers(Set<Biller> billers) {
 		this.billers = billers;
-	}
+	}*/
 	 
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxUserM")

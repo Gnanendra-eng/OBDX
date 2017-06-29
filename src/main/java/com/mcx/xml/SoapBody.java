@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SoapBody {
 	
 	@XmlElement(name="CREATECONTRACT_FSFS_REQ")
-	private CreateContractReq createContractReq;
+	private CreateContractReq createContractReq = null;
 
 	public CreateContractReq getCreateContractReq() {
 		return createContractReq;
