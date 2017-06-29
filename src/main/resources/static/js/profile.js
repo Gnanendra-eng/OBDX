@@ -107,7 +107,7 @@ app.controller("loanController", function($scope,$http,sharedProperties,$window)
 });
 
 
-/*app.directive('ngRightClick', function($parse) {
+app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
         element.bind('contextmenu', function(event) {
@@ -117,7 +117,7 @@ app.controller("loanController", function($scope,$http,sharedProperties,$window)
             });
         });
     };
-});*/
+});
 
 app.controller("loanMoreInfoController", function($scope,$http,sharedProperties) {
 
@@ -181,24 +181,35 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 		$scope.international_transfer=true;
 	}
 	
-	$scope.syncAccount = function(accNo){
-		$http.get("/user/accountdetails/"+accNo).success(function(data,status) {
-			$scope.accDetails = data;
-			$scope.internal_confirm_accDetails=true;
-		}).error(function(data,status) {
-			throw { message: 'error message',status:status};
+	$http.get("/user/accountdetails/").success(function(data,status) {
+		$scope.select_prop_nbrAccounts = [];
+		$scope.nbrAccounts =data;
+		$scope.customerId=$scope.nbrAccounts.customerId;
+        angular.forEach($scope.nbrAccounts.nbrAccounts, function(name, index) {
+			$scope.select_prop_nbrAccounts.push({"value":name,"text":name});
 		});
+	}).error(function(data,status) {
+		 throw { message: 'error message',status:status};
+	});
+	
+	$scope.syncAccount = function(accNo){
+		if(accNo!=undefined){
+			$http.get("/user/accountdetails/"+$scope.customerId+"/"+accNo).success(function(data,status) {
+				$scope.accDetails = data;
+				$scope.internal_confirm_accDetails=true;
+			}).error(function(data,status) {
+				throw { message: 'error message',status:status};
+			});
+		}
 	}
 	
 	$scope.createInternalPayee = function() {
 		$scope.internalPayeeInfo={};
 		$scope.internalPayeeInfo['payeeName']=$scope.internalPayeeForm.ipf_payee.$viewValue;
-		$scope.internalPayeeInfo['accountNumber']=parseInt($scope.internalPayeeForm.ipf_accNo.$viewValue);
-		$scope.internalPayeeInfo['accountName']=$scope.accDetails.accName;
-		$scope.internalPayeeInfo['branchId']=$scope.accDetails.branchCod;
+		$scope.internalPayeeInfo['accountNumber']=$scope.internalPayeeForm.ipf_accNo.$viewValue;
+		$scope.internalPayeeInfo['accountName']=$scope.accDetails.customerName;
+		$scope.internalPayeeInfo['branchId']=$scope.accDetails.nbrBranch;
 		$scope.internalPayeeInfo['nickName']=$scope.internalPayeeForm.ipf_nickname.$viewValue;
-		
-		alert(JSON.stringify($scope.internalPayeeInfo));
 		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.internalPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created Internal Payee','Successfull!');
 			$scope.payeeName($scope.internalPayeeForm.ipf_payee.$viewValue);
@@ -218,7 +229,6 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 		$scope.domesticPayeeInfo['bankAddr']=$scope.domesticPayeeForm.dpf_bankAddr.$viewValue;
 		$scope.domesticPayeeInfo['city']=$scope.domesticPayeeForm.dpf_bankCity.$viewValue;
 		
-		alert(JSON.stringify($scope.domesticPayeeInfo));
 		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.domesticPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created Domestic Payee','Successfull!');
 			$scope.payeeName($scope.domesticPayeeForm.dpf_payee.$viewValue);
@@ -235,7 +245,6 @@ app.controller("addPayeeController",function($scope,$http,$window,sharedProperti
 		$scope.internationalPayeeInfo['payVia']=$scope.internationalPayeeForm.inpf_payVia.$viewValue;
 		$scope.internationalPayeeInfo['nickname']=$scope.internationalPayeeForm.inpf_nickname.$viewValue;
 		
-		alert(JSON.stringify($scope.internationalPayeeInfo));
 		$http.post('/beneficiary/addbeneficiary', JSON.stringify($scope.internationalPayeeInfo)).success(function (data) {
 			toastrSucessMsg('Created International Payee','Successfull!');
 			$scope.payeeName($scope.internationalPayeeForm.inpf_payee.$viewValue);
@@ -255,6 +264,10 @@ app.controller("successController", function($scope,$http,sharedProperties){
 	$scope.sharedValue=sharedProperties.getProperty();
 	if($scope.sharedValue!=undefined){
 		if($scope.sharedValue=="transfer"){
+			$scope.successPageInfo=$scope.sharedValue;
+		}else if($scope.sharedValue=="paybills"){
+			$scope.successPageInfo=$scope.sharedValue;
+		}else if($scope.sharedValue=="addbiller"){
 			$scope.successPageInfo=$scope.sharedValue;
 		}else{
 			$scope.successPageInfo="addPayee";
@@ -373,7 +386,6 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		$scope.transferMoneyDetails['note']=$scope.myAccountForm.mat_note.$viewValue;
 		$scope.transferMoneyDetails['toBranchCode']=$scope.transferAccountDetails.nbrBranch;
 		
-		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/ownaccount', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
 			if(data.status=="FAILURE"){
 				$scope.error(data);
@@ -415,11 +427,7 @@ app.controller("transfermoneyController",function($scope,$http,$window,sharedPro
 		$scope.transferMoneyDetails['note']=$scope.existingPayeeForm.ept_note.$viewValue;
 		$scope.transferMoneyDetails['purpose']=$scope.existingPayeeForm.ept_purpose.$viewValue;
 		
-		alert(JSON.stringify($scope.transferMoneyDetails));
 		$http.post('/fundtransfer/internal', JSON.stringify($scope.transferMoneyDetails)).success(function (data) {
-			toastrSucessMsg('Transfer Initiated','Successfull!');
-/*			angular.copy({},$scope.existingPayeeForm);
-*/			$scope.success("transfer");
 			if(data.status=="FAILURE"){
 				$scope.error(data);
 			}else if(data.status=="SUCCESS"){
@@ -513,7 +521,6 @@ app.controller("paybillController", function($scope,$http,$window,sharedProperti
 /*		$scope.payBillInfo['billDate']=$scope.dtFrom; */	
 		$scope.payBillInfo['note']=$scope.payBillForm.note.$viewValue;
 		
-		alert(JSON.stringify($scope.payBillInfo));
 		$http.post('/biller/payBills', JSON.stringify($scope.payBillInfo)).success(function (data) {
 			if(data.status=="FAILURE"){
 				$scope.error(data);
@@ -573,15 +580,9 @@ app.controller("addBillerController", function($scope,$http,sharedProperties,$wi
 		$scope.registerBillerInfo['billerId']=$scope.billerID;
 		$scope.registerBillerInfo['billerReferenceNumber']=$scope.addBillerForm.accNo.$viewValue;
 		$scope.registerBillerInfo['billerName']=$scope.billerDescription;
-		
-		alert(JSON.stringify($scope.registerBillerInfo));
 		$http.post('/biller/register/', JSON.stringify($scope.registerBillerInfo)).success(function (data) {
-			if(data.status=="FAILURE"){
-				$scope.error(data);
-			}else if(data.status=="SUCCESS"){
-				toastrSucessMsg('Biller Created','Successful!');
-				$scope.success("paybills");
-			}
+			toastrSucessMsg('Biller Created','Successful!');
+			$scope.success("paybills");
 		}).error(function (data, status) {
 			$scope.error(status);
 			throw { message: 'error message',status:status};	  
@@ -994,7 +995,7 @@ app.service('sharedProperties', function () {
 
 
 /** disabling right click **/
-/*app.directive('ngRightClick', function($parse) {
+app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
         element.bind('contextmenu', function(event) {
@@ -1004,4 +1005,4 @@ app.service('sharedProperties', function () {
             });
         });
     };
-});*/
+});

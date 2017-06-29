@@ -31,9 +31,12 @@
 			        					<label class="control-label col-sm-2">Account Number<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<input type="number" class="form-control" data-ng-model="ipf_accNo"
-			          							name="ipf_accNo" required="required" data-ng-model-options="{ updateOn: 'blur' }"
-			          							data-ng-change="syncAccount(ipf_accNo)" />
+			          						<select class="form-control" data-ng-model="ipf_accNo" name="ipf_accNo"
+			          							data-ng-change="syncAccount(ipf_accNo)" required="required">
+												<option value="" data-ng-selected="selected">Select</option>
+												<option data-ng-repeat="nbrAccount in select_prop_nbrAccounts" 
+													value="{{nbrAccount.value}}">{{nbrAccount.value}}</option>
+			          						</select>
 			          						<span class="error" data-ng-show="internalPayeeForm.ipf_accNo.$error.required
 			          							&amp;&amp; internalPayeeForm.ipf_accNo.$dirty">Account Number is required</span>			          						
 			        					</div>
@@ -47,7 +50,7 @@
 			        					<label class="control-label col-sm-2">Account Name<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accDetails.accName}}</h5>
+			          						<h5>{{accDetails.customerName}}</h5>
 			        					</div>
 			     					</div>
 			     					<div class="form-group">
@@ -55,7 +58,7 @@
 			        					<label class="control-label col-sm-2">Branch<font
 											color="red">*</font></label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accDetails.branchName}}</h5>
+			          						<h5>{{accDetails.nbrBranch}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
@@ -100,14 +103,14 @@
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Account Name</label>
 			        					<div class="col-sm-4">
-			          						<h5>{{accDetails.accName}}</h5>
+			          						<h5>{{accDetails.customerName}}</h5>
 			        					</div>
 			      					</div>
 			     					<div class="form-group">
 			       						<div class="col-sm-3"></div>
 			        					<label class="control-label col-sm-2">Branch</label>
 			        					<div class="col-sm-4">
-			        						<h5>{{accDetails.branchName}}</h5>
+			        						<h5>{{accDetails.nbrBranch}}</h5>
 			        					</div>
 			     					</div>
 			      					<div class="form-group">
