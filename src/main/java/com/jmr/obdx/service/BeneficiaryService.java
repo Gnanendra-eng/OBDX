@@ -87,7 +87,7 @@ public class BeneficiaryService {
 
 
         //BranchM branchDetailsM = branchRepo.findById(beneficiaryDto.getBranchId());
-   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
+   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBranchCode(),login.getRetailCustomer().getIdcusomer(), beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
 		return statusInfo; 
 	}
 

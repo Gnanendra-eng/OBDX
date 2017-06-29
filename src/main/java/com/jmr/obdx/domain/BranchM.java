@@ -34,8 +34,8 @@ public class BranchM  implements java.io.Serializable {
      private String processingMode;
      private String isactive;
      private Date createdDate;
-     private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
-
+/*     private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
+*/
     public BranchM() {
     }
 
@@ -53,8 +53,8 @@ public class BranchM  implements java.io.Serializable {
        this.processingMode = processingMode;
        this.isactive = isactive;
        this.createdDate = createdDate;
-       this.beneficiaryMs = beneficiaryMs;
-    }
+/*       this.beneficiaryMs = beneficiaryMs;
+*/    }
    
     public BranchM(String branchCod){
     	this.branchCod=branchCod;
@@ -154,7 +154,7 @@ public class BranchM  implements java.io.Serializable {
     }
 
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="branchDetailsM")
+   /* @OneToMany(fetch=FetchType.LAZY, mappedBy="branchDetailsM")
     public Set<BeneficiaryM> getBeneficiaryMs() {
         return this.beneficiaryMs;
     }
@@ -162,7 +162,7 @@ public class BranchM  implements java.io.Serializable {
     public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
         this.beneficiaryMs = beneficiaryMs;
     }
-
+*/
 }
 
 
