@@ -30,7 +30,6 @@ public class RetailCustomer  implements java.io.Serializable {
      private String idcusomer;
      private Login login;
 
-     private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
 
     public RetailCustomer() {
     }
@@ -52,7 +51,7 @@ public class RetailCustomer  implements java.io.Serializable {
         this.id = id;
     }
     
-    public RetailCustomer(Login login,long iduser, long id, String isprimery, String typecustomer, String refIdEntity, String customername, String idcusomer, Set<BeneficiaryM> beneficiaryMs) {
+    public RetailCustomer(Login login,long iduser, long id, String isprimery, String typecustomer, String refIdEntity, String customername, String idcusomer) {
         this.login = login;
     	this.iduser = iduser;
        this.id = id;
@@ -61,7 +60,6 @@ public class RetailCustomer  implements java.io.Serializable {
        this.refIdEntity = refIdEntity;
        this.customername = customername;
        this.idcusomer = idcusomer;
-       this.beneficiaryMs = beneficiaryMs;
     }
    
      @Id 
@@ -136,14 +134,7 @@ public class RetailCustomer  implements java.io.Serializable {
         this.idcusomer = idcusomer;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="retailCustomer")
-    public Set<BeneficiaryM> getBeneficiaryMs() {
-        return this.beneficiaryMs;
-    }
-    
-    public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
-        this.beneficiaryMs = beneficiaryMs;
-    }
+
 
 
     @OneToOne(fetch=FetchType.LAZY)@PrimaryKeyJoinColumn

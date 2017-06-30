@@ -33,7 +33,11 @@ public class Login implements java.io.Serializable {
 	private String accountnonlocked;
 	private RetailCustomer retailCustomer;
 /*	private Set<Biller> billers = new HashSet<Biller>(0);
-*/    private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
+*/   
+    private Set<BeneficiaryM> beneficiaryMs = new HashSet<BeneficiaryM>(0);
+
+	
+	private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
 
     private long authorityRefId;
@@ -99,6 +103,25 @@ public class Login implements java.io.Serializable {
 
 
 	}
+	
+	public Login(String username, String password, String isactive, String accountnonexpired,
+			String credentialsnonexpired, String accountnonlocked, AuthorityM authorityM,long authorityRefId,Set<McxAuditLog> mcxAuditLogs,Set<BeneficiaryM> beneficiaryMs) {
+		this.authorityM = authorityM;
+		this.username = username;
+		this.password = password;
+		this.isactive = isactive;
+		this.accountnonexpired = accountnonexpired;
+		this.credentialsnonexpired = credentialsnonexpired;
+		this.accountnonlocked = accountnonlocked;
+	    this.authorityRefId = authorityRefId;
+	    this.mcxAuditLogs = mcxAuditLogs;
+	    this.beneficiaryMs = beneficiaryMs;
+	}
+
+
+
+	
+	
 	@Id
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getId() {
@@ -191,6 +214,16 @@ public class Login implements java.io.Serializable {
 		this.billers = billers;
 	}*/
 	 
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="login")
+    public Set<BeneficiaryM> getBeneficiaryMs() {
+        return this.beneficiaryMs;
+    }
+    
+    public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
+        this.beneficiaryMs = beneficiaryMs;
+    }
+	
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxUserM")
     public Set<McxAuditLog> getMcxAuditLogs() {

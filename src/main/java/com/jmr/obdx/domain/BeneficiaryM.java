@@ -27,9 +27,8 @@ public class BeneficiaryM  implements java.io.Serializable {
 
      private long id;
      private String branchDetailsM;
-/*     private RetailCustomer retailCustomer;
-*/     
-     private String retailCustomer;
+     private Login login;
+     
      private String payyename;
      private String accountname;
      private String nickname;
@@ -52,9 +51,9 @@ public class BeneficiaryM  implements java.io.Serializable {
     }
     
     
-    public BeneficiaryM( String branchDetailsM, String retailCustomer, String payyename, String accountname, String nickname, String accountnumber, String isactive, Date registrationdate, String transfervai,McxTransactionM mcxTransactionM) {
+    public BeneficiaryM( String branchDetailsM, Login login, String payyename, String accountname, String nickname, String accountnumber, String isactive, Date registrationdate, String transfervai,McxTransactionM mcxTransactionM) {
  	   this.branchDetailsM = branchDetailsM;
-        this.retailCustomer = retailCustomer;
+        this.login = login;
         this.payyename = payyename;
         this.accountname = accountname;
         this.nickname = nickname;
@@ -65,9 +64,9 @@ public class BeneficiaryM  implements java.io.Serializable {
         this.mcxTransactionM = mcxTransactionM;
 
      }
-    public BeneficiaryM( String branchDetailsM, String retailCustomer, String payyename, String accountname, String nickname, String accountnumber, String isactive, Date registrationdate, Long swiftCode, Long ncc, String transfervai,Set<TxnData> fundTransfers, McxTransactionM mcxTransactionM) {
+    public BeneficiaryM( String branchDetailsM, Login login, String payyename, String accountname, String nickname, String accountnumber, String isactive, Date registrationdate, Long swiftCode, Long ncc, String transfervai,Set<TxnData> fundTransfers, McxTransactionM mcxTransactionM) {
        this.branchDetailsM = branchDetailsM;
-       this.retailCustomer = retailCustomer;
+       this.login = login;
        this.payyename = payyename;
        this.accountname = accountname;
        this.nickname = nickname;
@@ -184,6 +183,18 @@ public class BeneficiaryM  implements java.io.Serializable {
         this.isactive = isactive;
     }
     
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="REF_USER_ID")
+    public Login getLogin() {
+        return this.login;
+    }
+    
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
+    
   
     @Column(name="TRANSFER_VIA", length=100)
     public String getTransfervai() {
@@ -236,25 +247,9 @@ public class BeneficiaryM  implements java.io.Serializable {
 
 
     
-   /* @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="REF_USER_ID")
-    public RetailCustomer getRetailCustomer() {
-        return this.retailCustomer;
-    }
+  
     
-    public void setRetailCustomer(RetailCustomer retailCustomer) {
-        this.retailCustomer = retailCustomer;
-    }*/
-    
-    @Column(name="REF_USER_ID")
-    public String getRetailCustomer() {
-        return this.retailCustomer;
-    }
-    
-    public void setRetailCustomer(String retailCustomer) {
-        this.retailCustomer = retailCustomer;
-    }
-
+  
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="TRANSFER_TYPE")
     public McxTransactionM getMcxTransactionM() {

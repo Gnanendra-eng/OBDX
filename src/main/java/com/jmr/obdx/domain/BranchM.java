@@ -43,7 +43,7 @@ public class BranchM  implements java.io.Serializable {
     public BranchM(long id) {
         this.id = id;
     }
-    public BranchM(long id , String name, String branchCod, String address, long contactInfo, String city, String processingMode, String isactive, Date createdDate,Set<BeneficiaryM> beneficiaryMs) {
+    public BranchM(long id , String name, String branchCod, String address, long contactInfo, String city, String processingMode, String isactive, Date createdDate) {
        this.id = id;
        this.name = name;
        this.branchCod = branchCod;
@@ -53,8 +53,7 @@ public class BranchM  implements java.io.Serializable {
        this.processingMode = processingMode;
        this.isactive = isactive;
        this.createdDate = createdDate;
-/*       this.beneficiaryMs = beneficiaryMs;
-*/    }
+    }
    
     public BranchM(String branchCod){
     	this.branchCod=branchCod;
@@ -153,16 +152,16 @@ public class BranchM  implements java.io.Serializable {
         this.createdDate = createdDate;
     }
 
-
-   /* @OneToMany(fetch=FetchType.LAZY, mappedBy="branchDetailsM")
+/*
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="branchDetailsM")
     public Set<BeneficiaryM> getBeneficiaryMs() {
         return this.beneficiaryMs;
     }
     
     public void setBeneficiaryMs(Set<BeneficiaryM> beneficiaryMs) {
         this.beneficiaryMs = beneficiaryMs;
-    }
-*/
+    }*/
+
 }
 
 
