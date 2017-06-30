@@ -17,7 +17,7 @@ import com.mcx.xml.SoapenvEnvelope;
 
 @Component
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ObjectMarshaller   {
+public class McxObjectMarshaller   {
 	
 	 
 	private StatusInfo statusInfo;
@@ -25,7 +25,7 @@ public class ObjectMarshaller   {
 	java.io.StringWriter requestObj = new StringWriter();
 
 	
-	private static Logger logger = Logger.getLogger(ObjectMarshaller.class);
+	private static Logger logger = Logger.getLogger(McxObjectMarshaller.class);
 
   
 	public StringWriter marshallerToXml (SoapenvEnvelope soapenvEnvelope)throws Exception{ 

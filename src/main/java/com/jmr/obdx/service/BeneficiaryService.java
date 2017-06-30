@@ -23,6 +23,7 @@ import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AllPayee;
@@ -62,6 +63,9 @@ public class BeneficiaryService {
 	
 	private Utility utilities;
 	
+	@Autowired
+	private McxTransactionMRepo mcxTransactionMRepo;
+	
 	
 	public StatusInfo addBeneficiary(BeneficiaryDto beneficiaryDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
 		statusInfo=new StatusInfo();
@@ -82,11 +86,9 @@ public class BeneficiaryService {
 	 			}
 		});*/
 		Login login = loginRepo.findByUsername(authentication.getName());
+		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc(Utility.IAT);
 		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(beneficiaryDto.getBranchId());
-		Accountdetails  accountdetails=  accountDetailsRepo.findByAccountno(beneficiaryDto.getAccountNumber());
-
-
-   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(5)));
+   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(mcxTransactionM.getId())));
 		return statusInfo; 
 	}
 

@@ -42,7 +42,7 @@ import com.jmr.obdx.service.dto.FundTransferInfo;
 import com.jmr.obdx.service.dto.InternalAccountTransferDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.McxAdapter;
-import com.jmr.obdx.util.ObjectMarshaller;
+import com.jmr.obdx.util.McxObjectMarshaller;
 import com.jmr.obdx.util.Utility;
 import com.mcx.xml.CreateContractReq;
 import com.mcx.xml.McxBody;
@@ -94,7 +94,7 @@ public class FundtransferService {
 	private TxnDataRepo txnDataRepo;
 	
 	@Autowired 
-	private ObjectMarshaller objectMarshaller;
+	private McxObjectMarshaller objectMarshaller;
 
 	private Utility utilities;
 	

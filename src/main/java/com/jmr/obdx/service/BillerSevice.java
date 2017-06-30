@@ -46,7 +46,7 @@ import com.jmr.obdx.service.dto.BillerInfo;
 import com.jmr.obdx.service.dto.PayBillIDto;
 import com.jmr.obdx.service.dto.PayBillInfo;
 import com.jmr.obdx.util.McxAdapter;
-import com.jmr.obdx.util.ObjectMarshaller;
+import com.jmr.obdx.util.McxObjectMarshaller;
 import com.jmr.obdx.service.dto.RegisterBillerDto;
 import com.jmr.obdx.service.dto.UserAddedBillerDto;
 import com.jmr.obdx.service.dto.UserAddedBillerInfo;
@@ -98,7 +98,7 @@ public class BillerSevice {
 	private TxnDataRepo transactionDataRepo;
 	
 	@Autowired 
-	private ObjectMarshaller objectMarshaller;
+	private McxObjectMarshaller objectMarshaller;
 	
 	@Autowired
 	private TxnDataRepo txnDataRepo;

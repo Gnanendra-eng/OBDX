@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class TestAdapter {
+public class McxAdapter {
 
  public String getResponse() {
   HttpURLConnection conn = null;
