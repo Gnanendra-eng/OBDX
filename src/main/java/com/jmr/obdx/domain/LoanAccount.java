@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VW_LOAN_ACCOUNT", schema = "JMR_OBDX")
+@Table(name = "MCX_VW_LOAN_ACCOUNT", schema = "JMR_OBDX")
 public class LoanAccount implements java.io.Serializable {
 
 	private String codProdCateg;

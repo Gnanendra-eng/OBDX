@@ -47,7 +47,7 @@ public class McxAdapter {
 		   bufferedReader.close();
 		   conn.disconnect();
 		   return response.toString();
-		
+		    
 		}
 }
 

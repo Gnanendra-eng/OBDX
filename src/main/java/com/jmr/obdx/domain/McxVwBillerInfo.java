@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 
 @Entity
-@Table(name = "MCX_VW_BILLER_INFO", schema = "JMR_OBDX")
+@Table(name = "mcx_fcc_vw_biller_info", schema = "JMR_OBDX")
 public class McxVwBillerInfo implements java.io.Serializable  {
 
 	private String idbiller;
