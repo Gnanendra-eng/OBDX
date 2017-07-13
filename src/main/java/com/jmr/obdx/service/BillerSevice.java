@@ -122,7 +122,12 @@ public class BillerSevice {
 	 private String wCode = null;
 
 
-	
+	 /***
+		 * Gives all mapped biller for the user
+		 * 
+		 * @param authentication - Hold the login user inof.
+		 * @return all mapped biller for the user
+		 */
 	public UserAddedBillerInfo getUserAddedBillerInfo(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		userAddedBillerInfo = new UserAddedBillerInfo();
@@ -130,7 +135,6 @@ public class BillerSevice {
 		Login login = loginRepo.findByUsername(authentication.getName());
 	    List<Biller> billers = (List<Biller>) billerRepo.findByUserBillerInfo(login.getId());
 		billers.stream().forEach(biller -> {
-			System.out.println( biller.getMcxBillerOperator().getOperator());
 			billerDtos.add(new UserAddedBillerDto(biller.getBillerId(), biller.getname(), biller.getMcxBillerOperator().getOperator()));
 		});
 		userAddedBillerInfo.setBillerDtos(billerDtos);
@@ -165,7 +169,15 @@ public class BillerSevice {
 		return statusInfo;
 	}
 
-	
+
+/***
+ * Used for Paybills
+ * @param payBillIDto Receives the paybill info.
+ * @param authentication - Hold the login user info.
+ * @param locale -A Locale object represents a specific geographical, political, or cultural region. 
+ * @param bindingResult-Represents binding results
+ * @return  FCDB reference id,Host reference id and Status of the transaction
+ */
 	
 	public PayBillInfo payBill(Authentication authentication,PayBillIDto payBillIDto,Locale locale,BindingResult bindingResult) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());

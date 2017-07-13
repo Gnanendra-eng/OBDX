@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Entity
 @Table(name = "MCX_VW_LOAN_ACCOUNT", schema = "JMR_OBDX")
 public class LoanAccount implements java.io.Serializable {

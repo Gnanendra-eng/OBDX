@@ -23,6 +23,9 @@ import com.jmr.obdx.service.dto.BeneficiaryDto;
 import com.jmr.obdx.service.dto.PayeeInfo;
 import com.jmr.obdx.util.Utility;
 
+/***
+ * @author Pritiranjan Swain (JMR Infotech)
+ */
 @RequestMapping(value = "/beneficiary")
 @RestController
 public class BeneficiaryController {
@@ -31,6 +34,15 @@ public class BeneficiaryController {
 	
 	@Autowired
 	private BeneficiaryService beneficiaryService;
+	
+	/***
+	 * Adding a new Beneficiary.
+	 * @param beneficiaryDto-Hold the user input Beneficiary details
+	 * @param authentication- Hold the currently logined user info
+	 * @param locale -A Locale object represents a specific geographical, political, or cultural region
+	 * @param bindingResult-General interface that represents binding results.
+	 * @return StatusInfo
+	 */
 
 	
 	@RequestMapping(value = "/addbeneficiary", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -52,6 +64,12 @@ public class BeneficiaryController {
 	}
 
 	
+	/***
+	 * Return all Beneficiary for the logined user
+	 * @param authentication -Hold the currently logined user info
+	 * @param locale A Locale object represents a specific geographical, political, or cultural region
+	 * @return Return all Beneficiary for the logined user
+	 */
 	@RequestMapping(value = "/viewbeneficiary", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<PayeeInfo> viewBeneficiary( Authentication authentication, Locale locale) {
 		try {

@@ -67,6 +67,16 @@ public class BeneficiaryService {
 	private McxTransactionMRepo mcxTransactionMRepo;
 	
 	
+	/***
+	 * Adding a new Payee.
+	 * @param beneficiaryDto-Hold the user input Payee details
+	 * @param authentication- Hold the currently logined user info
+	 * @param locale -A Locale object represents a specific geographical, political, or cultural region
+	 * @param bindingResult-General interface that represents binding results.
+	 * @return StatusInfo
+	 */
+
+	
 	public StatusInfo addBeneficiary(BeneficiaryDto beneficiaryDto , Authentication authentication, Locale locale,BindingResult bindingResult) throws Exception{
 		statusInfo=new StatusInfo();
 		if (bindingResult.hasErrors()) {
@@ -91,6 +101,14 @@ public class BeneficiaryService {
    	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(mcxTransactionM.getId())));
 		return statusInfo; 
 	}
+	
+	
+	/***
+	 * Return all Beneficiary for the logined user
+	 * @param authentication -Hold the currently logined user info
+	 * @param locale A Locale object represents a specific geographical, political, or cultural region
+	 * @return Return all Beneficiary for the logined user
+	 */
 
 	public PayeeInfo viewBeneficiary(Authentication authentication,Locale locale){
 		

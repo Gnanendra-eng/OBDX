@@ -24,6 +24,10 @@ import com.jmr.obdx.service.dto.InternalAccountTransferDto;
 import com.jmr.obdx.service.dto.OwnAccountTransferDto;
 import com.jmr.obdx.util.Utility;
 
+/***
+ * @author Pritiranjan Swain (JMR Infotech)
+ */
+
 @RestController
 @RequestMapping(value = "/fundtransfer")
 public class FundTransferController {
@@ -33,6 +37,14 @@ public class FundTransferController {
 	
 	private final Logger logger = LoggerFactory.getLogger(FundTransferController.class);
 
+	/***
+	 * Method used for Own Account Fund transfer
+	 * @param ownAccountTransferDto - This object receives  the information of Own Account Transfer
+	 * @param authentication - Hold the information of login user
+	 * @param locale A Locale object represents a specific geographical, political, or cultural region
+	 * @param bindingResult General interface that represents binding results
+	 * @return  FCDB reference id, host reference id and Status of the transaction
+	 */
 	@RequestMapping(value = "/ownaccount", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<FundTransferInfo> ownAccountTransfer(@RequestBody @Valid OwnAccountTransferDto ownAccountTransferDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
@@ -51,7 +63,14 @@ public class FundTransferController {
 
 		
 	}
-		
+	/***
+	 * Method used for Internal account transfer
+	 * @param InternalAccountTransferDto - This object receives  the information of Internal Account Transfer
+	 * @param authentication - Hold the information of login user
+	 * @param locale A Locale object represents a specific geographical, political, or cultural region
+	 * @param bindingResult General interface that represents binding results
+	 * @return  FCDB reference id, host reference id and Status of the transaction
+	 */
 	
 	@RequestMapping(value = "/internal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<FundTransferInfo> internalFundTransfer(@RequestBody @Valid InternalAccountTransferDto internalAccountTransfer, Authentication authentication, Locale locale,BindingResult bindingResult) {

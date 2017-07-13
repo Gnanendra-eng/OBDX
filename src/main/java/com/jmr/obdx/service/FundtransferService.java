@@ -120,7 +120,14 @@ public class FundtransferService {
 	 private String wDesc=null;
 	 private String wCode = null;
 	 
-
+	 /***
+		 * Method used for Own Account Fund transfer
+		 * @param ownAccountTransferDto - This object receives  the information of Own Account Transfer
+		 * @param authentication - Hold the information of login user
+		 * @param locale A Locale object represents a specific geographical, political, or cultural region
+		 * @param bindingResult General interface that represents binding results
+		 * @return  FCDB reference id, host reference id and Status of the transaction
+		 */
 
 	public FundTransferInfo ownAccountTransfer(Authentication authentication,OwnAccountTransferDto ownAccountTransferDto, Locale locale,BindingResult bindingResult)throws Exception{
 		
@@ -203,6 +210,16 @@ public class FundtransferService {
               }
     	   return fundTransferDto;
         }
+	
+	
+	/***
+	 * Method used for Internal account transfer
+	 * @param InternalAccountTransferDto - This object receives  the information of Internal Account Transfer
+	 * @param authentication - Hold the information of login user
+	 * @param locale A Locale object represents a specific geographical, political, or cultural region
+	 * @param bindingResult General interface that represents binding results
+	 * @return  FCDB reference id, host reference id and Status of the transaction
+	 */
 	
 	public FundTransferInfo internalFundTransfer(Authentication authentication,InternalAccountTransferDto internalAccountTransfer, Locale locale,BindingResult bindingResult)throws Exception{
 		

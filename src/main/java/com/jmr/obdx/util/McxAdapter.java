@@ -7,17 +7,27 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-
 import com.jmr.obdx.service.FundtransferService;
+
+/***
+ * @author Pritiranjan Swain (JMR Infotech)
+ */
 
 @Component
 public class McxAdapter {
 	
 	private static Logger logger = Logger.getLogger(McxAdapter.class);
 
+	/***
+	 * Common adapter to interact with UBS
+	 * @param requestObject - Hold the request body
+	 * @param requestUrl - Hold the the request Url
+	 * @param requestMethod- Hold the request method
+	 * @return response from UBS
+	 * @throws Exception
+	 */
 	
 	public String getAdapterResponse(StringWriter requestObject,String requestUrl,String requestMethod) throws Exception {
 		  HttpURLConnection conn = null;

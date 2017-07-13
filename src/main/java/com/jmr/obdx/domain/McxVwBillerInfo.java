@@ -5,6 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Entity
 @Table(name = "mcx_fcc_vw_biller_info", schema = "JMR_OBDX")
 public class McxVwBillerInfo implements java.io.Serializable  {

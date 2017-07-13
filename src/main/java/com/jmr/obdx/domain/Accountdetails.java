@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Entity
 @Table(name = "MCX_FCAT_VW_ACCOUNT_DETAILS", schema = "JMR_OBDX")
 public class Accountdetails implements java.io.Serializable {

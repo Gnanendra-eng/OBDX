@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
+@Entity
 @Table(name = "VW_MSTTDDETAILS", schema = "JMR_OBDX")
 public class TermDepositeM implements java.io.Serializable {
 

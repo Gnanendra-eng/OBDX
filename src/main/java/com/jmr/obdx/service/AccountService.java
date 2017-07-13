@@ -63,6 +63,11 @@ public class AccountService {
 	private MstBranchRepo mstBranchRepo;
 
 
+	/***
+	 * Returns all account number hold login user
+	 * @param authentication-Hold Login user info.
+	 * @return  all account number hold login user
+	 */
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
@@ -80,6 +85,15 @@ public class AccountService {
 		return basicAccountDetailsDto;
 	}
 
+	
+	/***
+	 * Return the information for a particular account
+	 * 
+	 * @param customerId -Hold login customerId what had mapped with login user
+	 * @param nbrAccount -Hold a account info.
+	 * @return - Details about a particular account
+	 */
+	
 	public AccountDetailsDto getAccountDetails(String customerId, String nbrAccount) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		accountDetailsDto = new AccountDetailsDto();
@@ -102,7 +116,11 @@ public class AccountService {
 		return accountDetailsDto;
 	}
 
-	
+	/***
+	 * Returns account details for login user
+	 * @param authentication-Hold Login user info.
+	 * @return Return account details
+	 */
 	
 	
 
@@ -143,6 +161,12 @@ public class AccountService {
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}
+	
+	/***
+	 * Returns sum of loan account and there details
+	 * @param authentication
+	 * @return Returns sum of loan account and there details
+	 */
 
 	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -189,6 +213,13 @@ public class AccountService {
 				accountsummary.getUDF10());
 
 	}
+	
+	/***
+	 * Returns the branch details for a particular account
+	 * @param nbrAccount - Hold the user input account number 
+	 * @return  Returns the branch details for a particular account
+	 */
+	
 	
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
 		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
