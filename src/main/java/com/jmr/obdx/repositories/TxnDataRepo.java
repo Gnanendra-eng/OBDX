@@ -9,17 +9,21 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.TxnData;
-
+import com.jmr.obdx.domain.McxTransactionData;
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 
 @Repository
 @Transactional
-public interface TxnDataRepo extends CrudRepository<TxnData, Integer>{
+public interface TxnDataRepo extends CrudRepository<McxTransactionData, Integer>{
 	
 	@Query("from TxnData")
-	public List<TxnData> transactionData();
+	public List<McxTransactionData> transactionData();
 	
-	public TxnData findByReferenceId( String refId);
+	public McxTransactionData findByReferenceId( String refId);
 
 	
 

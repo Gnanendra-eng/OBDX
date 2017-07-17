@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.McxVwBillerInfo;
 
+
+/***
+ * \
+ * @author Rishad K
+ *
+ */
 @Repository
 public class McxVwBillerInfoRepo {
 	

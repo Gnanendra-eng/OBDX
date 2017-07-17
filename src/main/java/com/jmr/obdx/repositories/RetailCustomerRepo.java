@@ -1,4 +1,4 @@
-package com.jmr.obdx.repositories;
+/*package com.jmr.obdx.repositories;
 
 import javax.transaction.Transactional;
 
@@ -16,3 +16,4 @@ public interface RetailCustomerRepo extends CrudRepository<RetailCustomer, Integ
 	public RetailCustomer findByCustomername(String customerName);
 	
 }
+*/

@@ -12,6 +12,11 @@ import org.springframework.stereotype.Repository;
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.MstBranch;
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Repository
 public class AccountDetailsRepo {
 

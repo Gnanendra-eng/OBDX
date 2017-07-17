@@ -6,16 +6,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxLogin;
 
 /***
- * @author JMR
+ * \
+ * @author Rishad K
+ *
  */
 @Repository
 @Transactional
-public interface LoginRepo extends CrudRepository<Login, Integer> {
+public interface LoginRepo extends CrudRepository<McxLogin, Integer> {
 
 	@Query("from Login where username=:userName")
-	public Login findByUsername(@Param("userName") String userName);
+	public McxLogin findByUsername(@Param("userName") String userName);
 	
 }

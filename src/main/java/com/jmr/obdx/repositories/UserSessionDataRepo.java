@@ -7,16 +7,19 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.UserSessionData;
+import com.jmr.obdx.domain.McxUser;
+import com.jmr.obdx.domain.McxUserSession;
 
 /***
- * @author JMR
+ * \
+ * @author Rishad K
+ *
  */
 @Repository
 @Transactional
-public interface UserSessionDataRepo extends CrudRepository<UserSessionData, Integer> {
+public interface UserSessionDataRepo extends CrudRepository<McxUserSession, Integer> {
          
-	public List<UserSessionData> findByIduser(long userId);
+	public List<McxUserSession> findByMcxUser(McxUser mcxUser);
 	
 	
 

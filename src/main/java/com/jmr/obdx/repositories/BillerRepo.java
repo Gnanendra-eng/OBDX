@@ -9,15 +9,18 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.Biller;
-import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxBiller;
 
-
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Repository
 @Transactional
-public interface BillerRepo extends CrudRepository<Biller, Integer> {
+public interface BillerRepo extends CrudRepository<McxBiller, Integer> {
 	
 	@Query("from Biller where login=:login")
-	public List<Biller> findByUserBillerInfo(@Param("login") long login);
+	public List<McxBiller> findByUserBillerInfo(@Param("login") long login);
 
 }

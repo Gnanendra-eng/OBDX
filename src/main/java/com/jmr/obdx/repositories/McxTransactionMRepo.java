@@ -4,9 +4,14 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.jmr.obdx.domain.McxTransactionM;
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 public interface McxTransactionMRepo extends CrudRepository<McxTransactionM, Integer>{
 	
-	 public McxTransactionM findByProddesc( String prodDesc);
+	 public McxTransactionM findByProductDescription( String productDescription);
 	
 
 }

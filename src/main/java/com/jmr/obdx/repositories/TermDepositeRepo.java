@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 import com.jmr.obdx.domain.TermDepositeM;
 
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
+
 @Repository
 public class TermDepositeRepo {
 	

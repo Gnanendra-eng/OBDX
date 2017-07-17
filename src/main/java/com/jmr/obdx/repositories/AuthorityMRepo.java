@@ -5,15 +5,16 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.AuthorityM;
-
+import com.jmr.obdx.domain.McxAuthorityM;
 /***
- * @author JMR
+ * \
+ * @author Pritiranjan Swain
+ *
  */
 @Repository
 @Transactional
-public interface AuthorityMRepo  extends CrudRepository<AuthorityM, Integer> {
+public interface AuthorityMRepo  extends CrudRepository<McxAuthorityM, Integer> {
 	
-	public AuthorityM findByTypeuser(String typeUser);
+	public McxAuthorityM findByMcxBaseUserTypeM(String typeUser);
 	
 }
