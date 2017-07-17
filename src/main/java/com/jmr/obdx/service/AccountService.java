@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.Accountsummary;
 import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.service.dto.AccountBranch;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryDto;
 import com.jmr.obdx.service.dto.AccountSummaryInfo;
@@ -53,8 +56,18 @@ public class AccountService {
 
 	@Autowired
 	private AccountSummaryRepo accountsummaryrepo;
+	
+
+	
+	@Autowired
+	private MstBranchRepo mstBranchRepo;
 
 
+	/***
+	 * Returns all account number hold login user
+	 * @param authentication-Hold Login user info.
+	 * @return  all account number hold login user
+	 */
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
@@ -64,6 +77,7 @@ public class AccountService {
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+			
 		});
 		basicAccountDetailsDto.setNbrAccounts(tempAccountDetails);
 		basicAccountDetailsDto.setCustomerId(retailCustomer.getIdcusomer());
@@ -71,6 +85,15 @@ public class AccountService {
 		return basicAccountDetailsDto;
 	}
 
+	
+	/***
+	 * Return the information for a particular account
+	 * 
+	 * @param customerId -Hold login customerId what had mapped with login user
+	 * @param nbrAccount -Hold a account info.
+	 * @return - Details about a particular account
+	 */
+	
 	public AccountDetailsDto getAccountDetails(String customerId, String nbrAccount) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		accountDetailsDto = new AccountDetailsDto();
@@ -93,7 +116,11 @@ public class AccountService {
 		return accountDetailsDto;
 	}
 
-	
+	/***
+	 * Returns account details for login user
+	 * @param authentication-Hold Login user info.
+	 * @return Return account details
+	 */
 	
 	
 
@@ -110,6 +137,7 @@ public class AccountService {
 		sumOfLoans = 0.0;
 		sumOfContractAndTermdepostit = 0.0;
 		accountsummarys.stream().forEach(accountsummary -> {
+			System.out.println(accountsummary.getCODACCTTYPE());
 			if (accountsummary.getCODACCTTYPE().equals(Utility.SAVINGSANDCURRENT)) {
 				sumOfSavingsAndCurrent += Double.parseDouble(accountsummary.getAVAILAMT());
 				savingsAndCurrent.add(getAccountSummaryType(accountsummary));
@@ -133,6 +161,12 @@ public class AccountService {
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}
+	
+	/***
+	 * Returns sum of loan account and there details
+	 * @param authentication
+	 * @return Returns sum of loan account and there details
+	 */
 
 	public LoanSummayInfo getLoansummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -179,5 +213,22 @@ public class AccountService {
 				accountsummary.getUDF10());
 
 	}
+	
+	/***
+	 * Returns the branch details for a particular account
+	 * @param nbrAccount - Hold the user input account number 
+	 * @return  Returns the branch details for a particular account
+	 */
+	
+	
+	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
+		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
+		
+		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(accountdetail.getNBRBRANCH());
+		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
+	    return accountBranch;
+	}
+	
+	
 }
 

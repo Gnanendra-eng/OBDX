@@ -5,8 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Entity
-@Table(name = "VW_ACCOUNT_M", schema = "JMR_OBDX")
+@Table(name = "FCC_VW_MSTACCOUNT", schema = "JMR_OBDX")
 public class Accountsummary implements java.io.Serializable {
 
 	public Accountsummary() {

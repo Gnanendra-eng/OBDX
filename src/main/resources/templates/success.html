@@ -1,0 +1,40 @@
+<div class="container-fluid">
+	<div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3">
+        	<div class="panel panel-primary">
+        		<div class="panel-body" data-ng-if="successPageInfo=='addPayee'">
+			        <h2 style="color:#32bea6;">Success</h2>
+			        <img id="img-success" src="images/success.svg" class="img-responsive" />
+			        <br />
+			        <h5>Biller {{sharedValue}} added to your Pay Bill List</h5>
+ 		        <br />
+			        <a href="#/transfermoney" class="btn custom-button">PAY</a>
+			    </div>
+			    <div class="panel-body" data-ng-if="successPageInfo=='transfer'">
+			        <h2 style="color:#32bea6;">Success</h2>
+			        <img id="img-success" src="images/success.svg" class="img-responsive" />
+			        <br />
+			        <h5>Transaction Successful</h5>
+			        <br />
+			        <a href="#/transfermoney" class="btn custom-button">NEW TRANSFER</a>
+			    </div>
+			    <div class="panel-body" data-ng-if="successPageInfo=='paybills'">
+			        <h2 style="color:#32bea6;">Success</h2>
+			        <img id="img-success" src="images/success.svg" class="img-responsive" />
+			        <br />
+			        <h5>Payment Successful</h5>
+			        <br />
+			        <a href="#/paybills" class="btn custom-button">PAY BILL</a>
+			    </div>
+			    <div class="panel-body" data-ng-if="successPageInfo=='addbiller'">
+			        <h2 style="color:#32bea6;">Success</h2>
+			        <img id="img-success" src="images/success.svg" class="img-responsive" />
+			        <br />
+			        <h5>Biller added Successfully</h5>
+			        <br />
+			        <a href="#/paybills" class="btn custom-button">PAY BILL</a>
+			    </div>
+			</div>
+        </div>
+	</div>
+</div>

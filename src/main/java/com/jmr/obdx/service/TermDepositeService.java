@@ -1,5 +1,6 @@
 package com.jmr.obdx.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,38 +53,46 @@ public class TermDepositeService {
 		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());	
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
-			List<TermDepositeM> termDepositeMs;
-			try {
+			
 				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
-				termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer(),accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH());
-				termDepositeMs.stream().forEach(tempTermDeposit -> {
-					tempDepositeSummary.add(new TermDepositeDto(tempTermDeposit.getIdaccount(),
-							tempTermDeposit.getCodaccttype(), tempTermDeposit.getCodbranch(),
-							tempTermDeposit.getAcctdesc(), tempTermDeposit.getDepositamt(),
-							tempTermDeposit.getAccountclass(), tempTermDeposit.getJointacctindicator(),
-							tempTermDeposit.getNominee1(), tempTermDeposit.getNominee2(), tempTermDeposit.getRate(),
-							tempTermDeposit.getApy(), tempTermDeposit.getBookaccount(), tempTermDeposit.getBookbranch(),
-							tempTermDeposit.getCcy(), tempTermDeposit.getCustomerid(),
-							tempTermDeposit.getPrimarycustomerid(), tempTermDeposit.getMaturitydate(),
-							tempTermDeposit.getDepositdate(), tempTermDeposit.getRollovertype(),
-							tempTermDeposit.getRolloveramt(), tempTermDeposit.getAcyaccruedcric(),
-							tempTermDeposit.getIntcap(), tempTermDeposit.getAltacctno(), tempTermDeposit.getProddesc(),
-							tempTermDeposit.getAutorollover(), tempTermDeposit.getCloseonmaturity(),
-							tempTermDeposit.getNumavlbalance(), tempTermDeposit.getModeofoperation(),
-							tempTermDeposit.getTdstatus(), tempTermDeposit.getHoldamount(),
-							tempTermDeposit.getCustomername(), tempTermDeposit.getAllow_topup(),
-							tempTermDeposit.getBlk_open_days(), tempTermDeposit.getBlk_open_months(),
-							tempTermDeposit.getBlk_mat_days(), tempTermDeposit.getBlk_mat_months(),
-							tempTermDeposit.getPartial_liquidation(), tempTermDeposit.getValuedate()));
-					        totalTermDeposits += Double.parseDouble(tempTermDeposit.getNumavlbalance());
-					       currencyType=tempTermDeposit.getCcy();
-				});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		});
+				
+				List<TermDepositeM> termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer());
+				termDepositeMs.stream().forEach(tempTermDeposit -> {
+					
+					if(tempTermDeposit.getCodaccttype().equals(Utility.CONTRACTANDTERMDEPOSIT)){
+						tempDepositeSummary.add(new TermDepositeDto(tempTermDeposit.getIdaccount(),
+								tempTermDeposit.getCodaccttype(), tempTermDeposit.getCodbranch(),
+								tempTermDeposit.getAcctdesc(), tempTermDeposit.getDepositamt(),
+								tempTermDeposit.getAccountclass(), tempTermDeposit.getJointacctindicator(),
+								tempTermDeposit.getNominee1(), tempTermDeposit.getNominee2(), tempTermDeposit.getRate(),
+								tempTermDeposit.getApy(), tempTermDeposit.getBookaccount(), tempTermDeposit.getBookbranch(),
+								tempTermDeposit.getCcy(), tempTermDeposit.getCustomerid(),
+								tempTermDeposit.getPrimarycustomerid(), tempTermDeposit.getMaturitydate(),
+								getSimpleDateFormat().format(tempTermDeposit.getDepositdate()), tempTermDeposit.getRollovertype(),
+								tempTermDeposit.getRolloveramt(), tempTermDeposit.getAcyaccruedcric(),
+								tempTermDeposit.getIntcap(), tempTermDeposit.getAltacctno(), tempTermDeposit.getProddesc(),
+								tempTermDeposit.getAutorollover(), tempTermDeposit.getCloseonmaturity(),
+								tempTermDeposit.getNumavlbalance(), tempTermDeposit.getModeofoperation(),
+								tempTermDeposit.getTdstatus(), tempTermDeposit.getHoldamount(),
+								tempTermDeposit.getCustomername(), tempTermDeposit.getAllow_topup(),
+								tempTermDeposit.getBlk_open_days(), tempTermDeposit.getBlk_open_months(),
+								tempTermDeposit.getBlk_mat_days(), tempTermDeposit.getBlk_mat_months(),
+								tempTermDeposit.getPartial_liquidation(), tempTermDeposit.getValuedate()));
+						
+						        totalTermDeposits += Double.parseDouble(tempTermDeposit.getNumavlbalance());
+					}
+				       currencyType=tempTermDeposit.getCcy();
+					
+				});
+			
+		
         termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
 		 return  termDepositeInfo;
 	}
 
+	
+	private  SimpleDateFormat getSimpleDateFormat(){
+		return new SimpleDateFormat("dd MMMM yyyy"); 
+	}
 }

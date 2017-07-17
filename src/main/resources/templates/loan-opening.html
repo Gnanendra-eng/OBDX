@@ -1,123 +1,160 @@
-<div class="wrapper">
-	<div class="container-fluid">
-        <div class="col-sm-12">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-primary">
-					<div class="panel-heading">
-						<div class="id">PRIMARY INFORMATION
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#collapse1" data-ng-click="stopDefaultAction($event)">
-							</a>
-						</div>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse in">
-                    	<div class="panel-body" >
-							<form class="form-horizontal" name="userForm" data-ng-submit="submitForm()">
-								<!-- NAME -->
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.fname.$invalid  &amp;&amp; !userForm.fname.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">First Name</label>
-									<div class="col-sm-4">
-										<input type="text" name="fname" class="form-control"
-											data-ng-model="user.fname" required="required" />
-										<p
-											data-ng-show="userForm.fname.$invalid  &amp;&amp; !userForm.fname.$pristine"
-											class="help-block">First name is required</p>
+<div class="container-fluid">
+     <div class="col-sm-12">
+         <div class="panel-group" id="accordion">
+             <div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="id">PRIMARY INFORMATION
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapse1" data-ng-click="stopDefaultAction($event)">
+						</a>
+					</div>
+                 </div>
+                 <div id="collapse1" class="panel-collapse collapse in">
+                 	<div class="panel-body" >
+						<form class="form-horizontal" name="userForm" data-ng-submit="submitForm()">
+							<!-- NAME -->
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.fname.$invalid  &amp;&amp; !userForm.fname.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">First Name</label>
+								<div class="col-sm-4">
+									<input type="text" name="fname" class="form-control"
+										data-ng-model="user.fname" required="required" />
+									<p
+										data-ng-show="userForm.fname.$invalid  &amp;&amp; !userForm.fname.$pristine"
+										class="help-block">First name is required</p>
+								</div>
+							</div>
+							<!-- USERNAME -->
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.mname.$invalid  &amp;&amp; !userForm.mname.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Middle Name</label>
+								<div class="col-sm-4">
+									<input type="text" name="mname" class="form-control"
+										data-ng-model="user.mname" required="required" />
+									<p data-ng-show="userForm.mname.$invalid  &amp;&amp; !userForm.mname.$pristine"
+										class="help-block">Middle name is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.lname.$invalid  &amp;&amp; !userForm.lname.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Last Name</label>
+								<div class="col-sm-4">
+									<input type="text" name="lname" class="form-control"
+										data-ng-model="user.lname" required="required" />
+									<p data-ng-show="userForm.lname.$invalid &amp;&amp; !userForm.lname.$pristine"
+										class="help-block">Last name is required</p>
+								</div>
+							</div>
+							<div class="form-group has-feedback has-feedback-left"  data-ng-controller="newLoanAccountOpening">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Date Of Birth</label>
+								<div class="col-sm-4">
+									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+									<div>
+										<input type="text" class="form-control"
+											data-ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+											data-ng-model="demo.dtFrom" is-open="demo.dateFrom" data-ng-required="true"
+											close-text="Close" />
 									</div>
 								</div>
-								<!-- USERNAME -->
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.mname.$invalid  &amp;&amp; !userForm.mname.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Middle Name</label>
-									<div class="col-sm-4">
-	
-										<input type="text" name="mname" class="form-control"
-											data-ng-model="user.mname" required="required" />
-										<p
-											data-ng-show="userForm.mname.$invalid  &amp;&amp; !userForm.mname.$pristine"
-											class="help-block">Middle name is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.gender.$invalid  &amp;&amp; !userForm.gender.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Gender</label>
+								<div class="col-sm-4">
+									<select id="ddlgender" class="form-control" data-ng-model="gender"
+										name="gender" required="required">
+										<option value="">Select</option>
+										<option value="0">Male</option>
+										<option value="1">Female</option>
+									</select>
+									<p data-ng-show="userForm.gender.$invalid  &amp;&amp; !userForm.gender.$pristine"
+										class="help-block">Gender is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.lname.$invalid  &amp;&amp; !userForm.lname.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Last Name</label>
-									<div class="col-sm-4">
-	
-										<input type="text" name="lname" class="form-control"
-											data-ng-model="user.lname" required="required" />
-										<p
-											data-ng-show="userForm.lname.$invalid &amp;&amp; !userForm.lname.$pristine"
-											class="help-block">Last name is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.status.$invalid  &amp;&amp; !userForm.status.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Marital Status</label>
+								<div class="col-sm-4">
+									<select id="ddlstatus" class="form-control" data-ng-model="status"
+										name="status" required="required">
+										<option value="">Select</option>
+										<option value="0">Single</option>
+										<option value="1">Married</option>
+									</select>
+									<p data-ng-show="userForm.status.$invalid  &amp;&amp; !userForm.status.$pristine"
+										class="help-block">Status is required</p>
 								</div>
-								<div class="form-group has-feedback has-feedback-left"  data-ng-controller="newLoanAccountOpening">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Date Of Birth</label>
-									<div class="col-sm-4">
-										<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-										<div>
-											<input type="text" class="form-control"
-												data-ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
-												data-ng-model="demo.dtFrom" is-open="demo.dateFrom" data-ng-required="true"
-												close-text="Close" />
-										</div>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.dependents.$invalid  &amp;&amp; !userForm.dependents.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Number Of Dependents</label>
+								<div class="col-sm-4">
+									<select id="ddldependents" class="form-control"
+										data-ng-model="dependents" name="dependents" required="required">
+										<option value="">Select</option>
+										<option value="0">0</option>
+										<option value="1">1</option>
+									</select>
+									<p data-ng-show="userForm.dependents.$invalid  &amp;&amp; !userForm.dependents.$pristine"
+										class="help-block">Dependents is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.gender.$invalid  &amp;&amp; !userForm.gender.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Gender</label>
-									<div class="col-sm-4">
-										<select id="ddlgender" class="form-control" data-ng-model="gender"
-											name="gender" required="required">
-											<option value="">Select</option>
-											<option value="0">Male</option>
-											<option value="1">Female</option>
-										</select>
-										<p data-ng-show="userForm.gender.$invalid  &amp;&amp; !userForm.gender.$pristine"
-											class="help-block">Gender is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Country Of
+									Citizenship</label>
+								<div class="col-sm-4">
+									<select id="ddldependents" class="form-control"
+										data-ng-model="country" name="country" required="required">
+										<option value="">Select</option>
+										<option value="0">Indian</option>
+										<option value="1">Others</option>
+									</select>
+									<p data-ng-show="userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine"
+										class="help-block">Country is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.status.$invalid  &amp;&amp; !userForm.status.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Marital Status</label>
-									<div class="col-sm-4">
-										<select id="ddlstatus" class="form-control" data-ng-model="status"
-											name="status" required="required">
-											<option value="">Select</option>
-											<option value="0">Single</option>
-											<option value="1">Married</option>
-										</select>
-										<p data-ng-show="userForm.status.$invalid  &amp;&amp; !userForm.status.$pristine"
-											class="help-block">Status is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm.switch.$invalid  &amp;&amp; !userForm.switch.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Country Of
+									Citizenship</label>
+								<div class="col-sm-4">
+									<label class="switch"> <input class="switch-input"
+										type="checkbox" /> <span class="switch-label" data-on="YES"
+										data-off="NO"></span> <span class="switch-handle"></span>
+									</label>
+									<p data-ng-show="userForm.switch.$invalid  &amp;&amp; !userForm.switch.$pristine"
+										class="help-block">Country is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm.dependents.$invalid  &amp;&amp; !userForm.dependents.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Number Of Dependents</label>
-									<div class="col-sm-4">
-										<select id="ddldependents" class="form-control"
-											data-ng-model="dependents" name="dependents" required="required">
-											<option value="">Select</option>
-											<option value="0">0</option>
-											<option value="1">1</option>
-										</select>
-										<p data-ng-show="userForm.dependents.$invalid  &amp;&amp; !userForm.dependents.$pristine"
-											class="help-block">Dependents is required</p>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-4">
+									<button type="submit" class="btn custom-button" 
+										data-toggle="collapse" data-parent="#accordion" href="#collapse2" 
+										data-ng-click="stopDefaultAction($event)">NEXT</button>
+									<button type="reset" value="Reset"
+										class="btn custom-button" >RESET</button>
 								</div>
+
 								<div class="form-group"
 									data-ng-class="{ 'has-error' : userForm.country.$invalid  &amp;&amp; !userForm.country.$pristine }">
 									<div class="col-sm-3"></div>
@@ -185,266 +222,155 @@
                     </div>
                     <br/>
                     <div id="collapse2" class="panel-collapse collapse">
+
+							</div>
+						</form>
+					</div>
+                 </div>
+             </div>
+             <div class="panel panel-primary">
+                <div class="panel-heading">
+					<div class="id">SECONDARY INFORMATION
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapse2" data-ng-click="stopDefaultAction($event)"></a>
+					</div>
+                 </div>
+                 <div id="collapse2" class="panel-collapse collapse">
+                 	<div class="panel-body">
+
 						<form class="form-horizontal" name="userForm1" data-ng-submit="submitForm()">
-							<div class="container">
-								<div class="row">
-
-								<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Residential
-									Address</h4>
-
-
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.count.$invalid  &amp;&amp; !userForm1.count.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Accommodation Type</label>
-									<div class="col-sm-4">
-										<select id="count" class="form-control" data-ng-model="count"
-											name="count" required="required">
-											<option value="">Select</option>
-											<option value="0">Own</option>
-											<option value="1">Rent</option>
-										</select>
-										<p data-ng-show="userForm1.count.$invalid  &amp;&amp; !userForm1.count.$pristine"
-											class="help-block">Accommodation is required</p>
-									</div>
+							<h4 align="left">Residential Address</h4>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.count.$invalid  &amp;&amp; !userForm1.count.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Accommodation Type</label>
+								<div class="col-sm-4">
+									<select id="count" class="form-control" data-ng-model="count"
+										name="count" required="required">
+										<option value="">Select</option>
+										<option value="0">Own</option>
+										<option value="1">Rent</option>
+									</select>
+									<p data-ng-show="userForm1.count.$invalid  &amp;&amp; !userForm1.count.$pristine"
+										class="help-block">Accommodation is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.add1.$invalid  &amp;&amp; !userForm1.add1.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Address Line 1</label>
-									<div class="col-sm-4">
-										<input type="text" name="add1" class="form-control"
-											data-ng-model="add1" required="required" />
-										<p data-ng-show="userForm1.add1.$invalid &amp;&amp; !userForm1.add1.$pristine"
-											class="help-block">Address is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.add1.$invalid  &amp;&amp; !userForm1.add1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Address Line 1</label>
+								<div class="col-sm-4">
+									<input type="text" name="add1" class="form-control"
+										data-ng-model="add1" required="required" />
+									<p data-ng-show="userForm1.add1.$invalid &amp;&amp; !userForm1.add1.$pristine"
+										class="help-block">Address is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.add2.$invalid  &amp;&amp; !userForm1.add2.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Address Line 2</label>
-									<div class="col-sm-4">
-										<input type="text" name="add2" class="form-control"
-											data-ng-model="add2" required="required" />
-										<p data-ng-show="userForm1.add2.$invalid &amp;&amp; !userForm1.add2.$pristine"
-											class="help-block">Address is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.add2.$invalid  &amp;&amp; !userForm1.add2.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Address Line 2</label>
+								<div class="col-sm-4">
+									<input type="text" name="add2" class="form-control"
+										data-ng-model="add2" required="required" />
+									<p data-ng-show="userForm1.add2.$invalid &amp;&amp; !userForm1.add2.$pristine"
+										class="help-block">Address is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.city.$invalid  &amp;&amp; !userForm1.city.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">City</label>
-									<div class="col-sm-4">
-										<input type="text" name="city" class="form-control"
-											data-ng-model="city" required="required" />
-										<p data-ng-show="userForm1.city.$invalid &amp;&amp; !userForm1.city.$pristine"
-											class="help-block">city is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.city.$invalid  &amp;&amp; !userForm1.city.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">City</label>
+								<div class="col-sm-4">
+									<input type="text" name="city" class="form-control"
+										data-ng-model="city" required="required" />
+									<p data-ng-show="userForm1.city.$invalid &amp;&amp; !userForm1.city.$pristine"
+										class="help-block">city is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.state10.$invalid  &amp;&amp; !userForm1.state10.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">State</label>
-									<div class="col-sm-4">
-										<select id="state10" class="form-control" data-ng-model="state10"
-											name="state10" required="required">
-											<option value="">Select</option>
-											<option value="0">Karnataka</option>
-											<option value="1">Others</option>
-										</select>
-										<p data-ng-show="userForm1.state10.$invalid  &amp;&amp; !userForm1.state10.$pristine"
-											class="help-block">State is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.state10.$invalid  &amp;&amp; !userForm1.state10.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">State</label>
+								<div class="col-sm-4">
+									<select id="state10" class="form-control" data-ng-model="state10"
+										name="state10" required="required">
+										<option value="">Select</option>
+										<option value="0">Karnataka</option>
+										<option value="1">Others</option>
+									</select>
+									<p data-ng-show="userForm1.state10.$invalid  &amp;&amp; !userForm1.state10.$pristine"
+										class="help-block">State is required</p>
 								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.zip.$invalid  &amp;&amp; !userForm1.zip.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Zip Code</label>
-									<div class="col-sm-4">
-										<input type="text" name="zip" class="form-control"
-											data-ng-model="zip" required="required" />
-										<p data-ng-show="userForm1.zip.$invalid &amp;&amp; !userForm1.zip.$pristine"
-											class="help-block">Zip is required</p>
-									</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.zip.$invalid  &amp;&amp; !userForm1.zip.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Zip Code</label>
+								<div class="col-sm-4">
+									<input type="text" name="zip" class="form-control"
+										data-ng-model="zip" required="required" />
+									<p data-ng-show="userForm1.zip.$invalid &amp;&amp; !userForm1.zip.$pristine"
+										class="help-block">Zip is required</p>
 								</div>
-								<div class="form-group has-feedback has-feedback-left"  data-ng-init="open()">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Staying Since</label>
-									<div class="col-sm-4">
-										<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-										<div>
-											<input type="text" class="form-control"
-												data-ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
-												data-ng-model="demo.dtFrom" is-open="demo.dateFrom" data-ng-required="true"
-												close-text="Close" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.accom12.$invalid  &amp;&amp; !userForm1.accom12.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Accommodation Type</label>
-									<div class="col-sm-4">
-										<select id="accom12" class="form-control" data-ng-model="accom12"
-											name="accom12" required="required">
-											<option value="">Select</option>
-											<option value="0">Owned</option>
-											<option value="1">Rented</option>
-										</select>
-										<p data-ng-show="userForm1.accom12.$invalid  &amp;&amp; !userForm1.accom12.$pristine"
-											class="help-block">Accommodation is required</p>
+							</div>
+							<div class="form-group has-feedback has-feedback-left"  data-ng-init="open()">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Staying Since</label>
+								<div class="col-sm-4">
+									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+									<div>
+										<input type="text" class="form-control"
+											data-ng-click="demo.dateFrom=true" datepicker-popup="{{demo.format}}"
+											data-ng-model="demo.dtFrom" is-open="demo.dateFrom" data-ng-required="true"
+											close-text="Close" />
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<br /><br />
-
-						<div class="container">
-							<div class="row">
-								<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Previous
-									Residential Address</h4>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.country1.$invalid  &amp;&amp; !userForm1.country1.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Country</label>
-									<div class="col-sm-4">
-										<select id="country1" class="form-control" data-ng-model="country1"
-											name="country1" required="required">
-											<option value="">Select</option>
-											<option value="0">India</option>
-											<option value="1">Others</option>
-										</select>
-										<p data-ng-show="userForm1.country1.$invalid  &amp;&amp; !userForm1.country1.$pristine"
-											class="help-block">Country is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.add3.$invalid  &amp;&amp; !userForm1.add3.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Address Line 1</label>
-									<div class="col-sm-4">
-										<input type="text" name="add3" class="form-control"
-											data-ng-model="add3" required="required" />
-										<p data-ng-show="userForm1.add3.$invalid &amp;&amp; !userForm1.add3.$pristine"
-											class="help-block">Address is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.add4.$invalid  &amp;&amp; !userForm1.add4.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Address Line 2</label>
-									<div class="col-sm-4">
-										<input type="text" name="add4" class="form-control"
-											data-ng-model="add4" required="required" />
-										<p data-ng-show="userForm1.add4.$invalid &amp;&amp; !userForm1.add4.$pristine"
-											class="help-block">Address is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.city1.$invalid  &amp;&amp; !userForm1.city1.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">City</label>
-									<div class="col-sm-4">
-										<input type="text" name="city1" class="form-control"
-											data-ng-model="city1" required="required" />
-										<p data-ng-show="userForm1.city1.$invalid &amp;&amp; !userForm1.city1.$pristine"
-											class="help-block">City is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.state1.$invalid  &amp;&amp; !userForm1.state1.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">State</label>
-									<div class="col-sm-4">
-										<select id="state1" class="form-control" data-ng-model="state1"
-											name="state1" required="required">
-											<option value="">Select</option>
-											<option value="0">Karnataka</option>
-											<option value="1">Others</option>
-										</select>
-										<p data-ng-show="userForm1.state1.$invalid  &amp;&amp; !userForm1.state1.$pristine"
-											class="help-block">State is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.zip1.$invalid  &amp;&amp; !userForm1.zip1.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Zip Code</label>
-									<div class="col-sm-4">
-										<input type="text" name="zip1" class="form-control"
-											data-ng-model="zip1" required="required" />
-										<p data-ng-show="userForm1.zip1.$invalid &amp;&amp; !userForm1.zip1.$pristine"
-											class="help-block">Zip is required</p>
-									</div>
-								</div>
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.accom9.$invalid  &amp;&amp; !userForm1.accom9.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="control-label col-sm-2"
-										style="text-align: left">Accommodation Type</label>
-									<div class="col-sm-4">
-										<select id="accom9" class="form-control" data-ng-model="accom9"
-											name="accom9" required="required">
-											<option value="">Select</option>
-											<option value="0">Own</option>
-											<option value="1">Rent</option>
-										</select>
-										<p data-ng-show="userForm1.accom9.$invalid  &amp;&amp; !userForm1.accom9.$pristine"
-											class="help-block">Accommodation is required</p>
-									</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.accom12.$invalid  &amp;&amp; !userForm1.accom12.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Accommodation Type</label>
+								<div class="col-sm-4">
+									<select id="accom12" class="form-control" data-ng-model="accom12"
+										name="accom12" required="required">
+										<option value="">Select</option>
+										<option value="0">Owned</option>
+										<option value="1">Rented</option>
+									</select>
+									<p data-ng-show="userForm1.accom12.$invalid  &amp;&amp; !userForm1.accom12.$pristine"
+										class="help-block">Accommodation is required</p>
 								</div>
 							</div>
-						</div>
-						<br />
-
-						<div class="container">
-							<div class="row">
-								<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email</h4>
-
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.email.$invalid &amp;&amp; !userForm1.email.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="col-sm-2 control-label"
-										style="text-align: left" for="Email">Email</label>
-									<div class="col-sm-4">
-										<input type="email" name="email" class="form-control"
-											id="Email" data-ng-model="email" />
-										<p data-ng-show="userForm1.email.$invalid &amp;&amp; !userForm1.email.$pristine"
-											class="help-block">Enter a valid email.</p>
-									</div>
-								</div>
-
-								<div class="form-group"
-									data-ng-class="{ 'has-error' : userForm1.email2.$invalid &amp;&amp; !userForm1.email2.$pristine }">
-									<div class="col-sm-3"></div>
-									<label class="col-sm-2 control-label"
-										style="text-align: left" for="email2">Please
-										confirm your Email ID</label>
-									<div class="col-sm-4">
-										<input type="email" name="email2" class="form-control"
-											id="email2" data-ng-model="email2" data-match="email" />
-										<div data-ng-show="userForm1.email2.$error.match">Fields do
-											not match!</div>
-										<p data-ng-show="userForm1.email2.$invalid &amp;&amp; !userForm1.email2.$pristine"
-											class="help-block">Not Matching With Entered Email</p>
-									</div>
+							
+							<br /><br />
+							
+							<h4 align="left">Previous Residential Address</h4>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.country1.$invalid  &amp;&amp; !userForm1.country1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Country</label>
+								<div class="col-sm-4">
+									<select id="country1" class="form-control" data-ng-model="country1"
+										name="country1" required="required">
+										<option value="">Select</option>
+										<option value="0">India</option>
+										<option value="1">Others</option>
+									</select>
+									<p data-ng-show="userForm1.country1.$invalid  &amp;&amp; !userForm1.country1.$pristine"
+										class="help-block">Country is required</p>
 								</div>
 							</div>
+
 						</div>
 						<br />
 						<div class="container">
@@ -522,15 +448,182 @@
 										<button type="reset" value="Reset" class="btn custom-button" >Reset</button>
 
 									</div>
+
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.add3.$invalid  &amp;&amp; !userForm1.add3.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Address Line 1</label>
+								<div class="col-sm-4">
+									<input type="text" name="add3" class="form-control"
+										data-ng-model="add3" required="required" />
+									<p data-ng-show="userForm1.add3.$invalid &amp;&amp; !userForm1.add3.$pristine"
+										class="help-block">Address is required</p>
+
 								</div>
 							</div>
-						</div>
-					</form>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.add4.$invalid  &amp;&amp; !userForm1.add4.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Address Line 2</label>
+								<div class="col-sm-4">
+									<input type="text" name="add4" class="form-control"
+										data-ng-model="add4" required="required" />
+									<p data-ng-show="userForm1.add4.$invalid &amp;&amp; !userForm1.add4.$pristine"
+										class="help-block">Address is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.city1.$invalid  &amp;&amp; !userForm1.city1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">City</label>
+								<div class="col-sm-4">
+									<input type="text" name="city1" class="form-control"
+										data-ng-model="city1" required="required" />
+									<p data-ng-show="userForm1.city1.$invalid &amp;&amp; !userForm1.city1.$pristine"
+										class="help-block">City is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.state1.$invalid  &amp;&amp; !userForm1.state1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">State</label>
+								<div class="col-sm-4">
+									<select id="state1" class="form-control" data-ng-model="state1"
+										name="state1" required="required">
+										<option value="">Select</option>
+										<option value="0">Karnataka</option>
+										<option value="1">Others</option>
+									</select>
+									<p data-ng-show="userForm1.state1.$invalid  &amp;&amp; !userForm1.state1.$pristine"
+										class="help-block">State is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.zip1.$invalid  &amp;&amp; !userForm1.zip1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Zip Code</label>
+								<div class="col-sm-4">
+									<input type="text" name="zip1" class="form-control"
+										data-ng-model="zip1" required="required" />
+									<p data-ng-show="userForm1.zip1.$invalid &amp;&amp; !userForm1.zip1.$pristine"
+										class="help-block">Zip is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.accom9.$invalid  &amp;&amp; !userForm1.accom9.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Accommodation Type</label>
+								<div class="col-sm-4">
+									<select id="accom9" class="form-control" data-ng-model="accom9"
+										name="accom9" required="required">
+										<option value="">Select</option>
+										<option value="0">Own</option>
+										<option value="1">Rent</option>
+									</select>
+									<p data-ng-show="userForm1.accom9.$invalid  &amp;&amp; !userForm1.accom9.$pristine"
+										class="help-block">Accommodation is required</p>
+								</div>
+							</div>
+							
+							<br /><br />
+							
+							<h4 align="left">Email</h4>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.email.$invalid &amp;&amp; !userForm1.email.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="col-sm-2 control-label"
+									style="text-align: left" for="Email">Email</label>
+								<div class="col-sm-4">
+									<input type="email" name="email" class="form-control"
+										id="Email" data-ng-model="email" />
+									<p data-ng-show="userForm1.email.$invalid &amp;&amp; !userForm1.email.$pristine"
+										class="help-block">Enter a valid email.</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.email2.$invalid &amp;&amp; !userForm1.email2.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="col-sm-2 control-label"
+									style="text-align: left" for="email2">Please
+									confirm your Email ID</label>
+								<div class="col-sm-4">
+									<input type="email" name="email2" class="form-control"
+										id="email2" data-ng-model="email2" data-match="email" />
+									<div data-ng-show="userForm1.email2.$error.match">Fields do
+										not match!</div>
+									<p data-ng-show="userForm1.email2.$invalid &amp;&amp; !userForm1.email2.$pristine"
+										class="help-block">Not Matching With Entered Email</p>
+								</div>
+							</div>
+							
+							<br /><br />
+							
+							<h4 align="left">Phone Type</h4>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.phone1.$invalid  &amp;&amp; !userForm1.phone1.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Phone Type</label>
+								<div class="col-sm-4">
+									<select id="phone1" class="form-control" data-ng-model="phone1"
+										name="phone1" required="required">
+										<option value="">Select</option>
+										<option value="0">Home</option>
+										<option value="1">Office</option>
+									</select>
+									<p data-ng-show="userForm1.phone1.$invalid  &amp;&amp; !userForm1.phone1.$pristine"
+										class="help-block">Phone Type is required</p>
+								</div>
+							</div>
+							<div class="form-group"
+								data-ng-class="{ 'has-error' : userForm1.phone.$invalid &amp;&amp; !userForm1.phone.$pristine }">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Phone Number</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" data-ng-minlength="10"
+										data-ng-maxlength="10" id="inputPhone" name="phone"
+										data-ng-model="user.phone" data-ng-required="true" /> 
+									<span class="help-block" data-ng-show="userForm1.phone.$error.required || 
+		                        		userForm1.phone.$error.number"> Valid phone number is required </span>
+		                        	<span class="help-block" data-ng-show="((userForm1.phone.$error.minlength ||
+		                        		userForm1.phone.$error.maxlength) &amp;&amp; 
+		                        		userForm1.phone.$dirty)">Phone number should be 10 digits </span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-3"></div>
+								<label class="control-label col-sm-2"
+									style="text-align: left">Add Alternate Phone
+									Number</label>
+								<div class="col-sm-4">
+									 <div class="btn-group btn-toggle"> 
+										<button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Open</button>
+										<button class="btn btn-primary active" data-toggle="collapse" data-target="#collapsible">Close</button>
+									</div>
+									<div id="collapsible"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-4">
+									<button type="submit" class="btn custom-button" data-ng-click="userForm1.$invalid">CONTINUE</button>
+									<button type="reset" value="Reset" class="btn custom-button" >RESET</button>
+		
+								</div>
+							</div>
+						</form>
+					</div>
+                 </div>
+             </div>
+         </div>
+     </div>
 </div>
 
 

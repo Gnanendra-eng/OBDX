@@ -18,9 +18,9 @@ public class TermDepositeRepo {
     private SessionFactory sessionFactory;
        
 	@SuppressWarnings("unchecked")
-	public List<TermDepositeM> getTermdeposite(String customerId,String nbrAccount,String nbrBranch) throws Exception {
+	public List<TermDepositeM> getTermdeposite(String customerId) throws Exception {
 		 return(List<TermDepositeM>) sessionFactory.openSession().createCriteria(TermDepositeM.class).
-				 add(Restrictions.eq("customerid", customerId)).add(Restrictions.eq("idaccount", nbrAccount)).add(Restrictions.eq("codbranch", nbrBranch)).list();
+				 add(Restrictions.eq("customerid", customerId)).list();
 	}
 
 }

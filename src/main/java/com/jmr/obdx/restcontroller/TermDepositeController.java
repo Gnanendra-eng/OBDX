@@ -30,7 +30,7 @@ public class TermDepositeController {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 			TermDepositeInfo responceObj = termDepositeService.getTermDeposite(authentication);
 			if (responceObj.getErrorStatus()) {
-				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		;		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<TermDepositeInfo>(responceObj, HttpStatus.BAD_REQUEST);
 			}
 			logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());

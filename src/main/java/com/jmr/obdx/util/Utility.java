@@ -18,11 +18,21 @@ public class Utility {
 	public static final String DEVICE = "device";
 	public static final String DEVICE_ID = "01";
 	public static final String SAVINGSANDCURRENT = "C";
-	public static final String CONTRACTANDTERMDEPOSIT = "Z";
+	public static final String CONTRACTANDTERMDEPOSIT = "T";
 	public static final String LOANSANDCURRENT = "L";
 	public static final String ACTIVEACCOUNT = "A";
 	public static final String INACTIVEACCOUNT = "I";
 	public static final String ACTIVE = "A";
 	public static final String CLOSED = "C";
+	public static final String OAT ="own account Transfer";	
+	public static final String IAT ="internal account Transfer";	
+
+	public static String getReferenceNumber(String text, int length) {
+		  String referenceNumber = text;
+		  for (int idx = referenceNumber.length(); idx < length; idx++) {
+		   referenceNumber = referenceNumber + " ";
+		  }
+		  return referenceNumber;
+		 }
 
 }

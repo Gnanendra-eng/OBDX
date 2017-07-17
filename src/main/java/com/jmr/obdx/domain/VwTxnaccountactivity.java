@@ -8,8 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Entity
-@Table(name = "VW_TXNACCOUNTACTIVITY", schema = "JMR_OBDX")
+@Table(name = "FCC_VW_TXNACCOUNTACTIVITY", schema = "JMR_OBDX")
 public class VwTxnaccountactivity implements java.io.Serializable {
 
 	private String nbraccount;

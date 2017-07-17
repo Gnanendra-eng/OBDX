@@ -1,133 +1,116 @@
-<div class="wrapper">
-
-	<div class="container-fluid">
-		<div class="col-sm-6 col-md-4">
-			<div class="container-fluid1">
-					<div class="container-header">
-						<div class="id">SUMMARY</div>
-					</div>
-					<div class="summary-bar">
-						<div class="row">
-							<div class="col-sm-2 no">{{loanInfo.activedBasicLoanDetailsDto.length}}</div>
-							<div class="col-sm-10 sum-loans">Loans</div>
-						</div>
-					</div>
-					<div class="summary-graph-container" style="width:152px">
-						<p style="text-align: center">Total Borrowing</p>
-						<div class="sum-amount" style="color: #d37da4">{{loanInfo.totalBorrowing | currency :loanInfo.currencyType +'&nbsp;'}}</div>
-
-						<div id="loan" height="100px"></div>
-
-						<p style="text-align: center">Current Outstanding</p>
-						<div class="sum-amount" style="color: #83325b">{{loanInfo.currentOutStanding | currency :loanInfo.currencyType +'&nbsp;'}}</div>
-					</div>
+<div class="container-fluid">
+	<div class="col-md-4">
+		<div class="container-fluid1">
+			<div class="container-header">
+				<div class="id">SUMMARY</div>
 			</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4">
-
-			<a href="" class="thumbnail"
-				data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
-				<div class="inner-triangle"></div>
-				<div class="id">{{loan.productDescription}}</div>
-				<p>{{loan.userReferenceNo}}</p>
-				<p>{{loan.currency}}</p>
-
-				<div class="outstanding">Outstanding Amount</div>
-				<div class="amount">{{loan.outStandingLoanAmount | currency :loan.currency +'&nbsp;'}}</div>
-			</a> <a href="" class="spec"> <br />
-				<div class="id">NEW LOAN</div>
+			<div class="summary-bar">
 				<div class="row">
-					<div class="col-sm-5">
-						<br /> <br />
-						<p>Select products to fulfil your financial needs</p>
-					</div>
-					<div class="col-sm-2"></div>
-					<div class="col-sm-5">
-						<img src="images/new-loan.JPG" class="img-responsive"
-							style="width: 135px; height: 80px;" />
-					</div>
-				</div>
-			</a>
-
-
-			<div class="container-fluid">
-				<div class="closed-loan">
-					<div class="id">CLOSED LOANS</div>
-					<div class="row">
-						<div class="col-sm-3">
-							&nbsp;&nbsp;<img src="images/closed-loan.JPG" class="img-responsive"
-								style="width: 60px; height: 60px;" />
-						</div>
-						<div class="col-sm-5"></div>
-						<div class="col-sm-3">
-							<div class="closed-no">{{loanInfo.closedBasicLoanDetailsDto.length}}</div>
-							<div class="clo-loans">Loans</div>	
-						</div>
-					</div>
-					<div class="container-footer">
-						<a href="">VIEW ALL<img src="images/forward.png"
-							class="img-responsive"
-							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
-					</div>
+					<div class="col-sm-2 no">{{loanInfo.activedBasicLoanDetailsDto.length}}</div>
+					<div class="col-sm-10 sum-loans">Loans</div>
 				</div>
 			</div>
-
-
-
-
-
+			<div class="summary-graph-container" style="width:152px">
+				<p style="text-align: center">Total Borrowing</p>
+				<div class="sum-amount" style="color: #d37da4">{{loanInfo.totalBorrowing | currency :loanInfo.currencyType +'&nbsp;'}}</div>
+				<div id="loan" height="100px"></div>
+				<p style="text-align: center">Current Outstanding</p>
+				<div class="sum-amount" style="color: #83325b">{{loanInfo.currentOutStanding | currency :loanInfo.currencyType +'&nbsp;'}}</div>
+			</div>
 		</div>
-		<div class="col-sm-6 col-md-4">
-			<div class="container-fluid1">
-					<div class="container-header">
-						<div class="id">MINI STATEMENT</div>
+	</div>
+	<div class="col-md-4">
+		<a href="#/loan-details" class="thumbnail" data-ng-click="loanMoreInfo(loan)" data-ng-repeat="loan in loanInfo.activedBasicLoanDetailsDto">
+			<div class="inner-triangle"></div>
+			<div class="name">{{loan.productDescription}}</div>
+			<p>{{loan.userReferenceNo}}</p>
+			<p>{{loan.currency}}</p>
+			<p>{{loan.branch}}</p>
+			<p>{{loan.applicantName}}</p>
+			<div class="outstanding">Outstanding Amount</div>
+			<div class="amount">{{loan.outStandingLoanAmount | currency :loan.currency +'&nbsp;'}}</div>
+		</a>
+		<div class="spec">
+			<div class="id">NEW LOAN</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br />
+					<p>Select products to fulfil your financial needs</p>
+					<br />
+				</div>
+				<div class="col-sm-5">
+					<img src="images/new-loan.JPG" class="img-responsive"
+						style="width: 135px; height: 80px;" />
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="closed-loan">
+				<div class="id" id="closed">CLOSED LOANS</div>
+				<br />
+				<div class="row">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-3">
+						<img src="images/closed-loan.JPG"
+						class="img-responsive" style="width: 60px; height: 60px;" />
 					</div>
-					<div class="form-group">
-						<select class="form-control" data-ng-change="onAccountChange()"
-							data-ng-model="nbrAccount" name="nbrAccount"
-							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+						<div class="closed-no">3</div>
+						<div class="closed-desc">Loans</div>
+					</div>
+				</div>
+				<div class="container-footer">
+					<a href="">View All<span class="fa fa-arrow-right pull-right"></span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="container-fluid1">
+				<div class="container-header">
+					<div class="id">MINI STATEMENT</div>
+				</div>
+				<div class="form-group">
+					<select class="form-control" data-ng-change="onAccountChange()"
+						data-ng-model="nbrAccount" name="nbrAccount"
+						data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
 
-						</select>
-					</div>
-					<div class="list-group">
-						<a href="" class="list-group-item"
-							data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
-							<div class="list item">
-								<p style="color: black">{{transactionInfo.transactionDate}}</p>
-								<p>{{transactionInfo.transactionDescription}}</p>
-								<br />
-								<div class="mini-amount">
-									<p style="font-size: large; text-align: right"
-										data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-										{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
-											data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
-										<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
-									</p>
-								</div>
+					</select>
+				</div>
+				<div class="list-group">
+					<div class="list-group-item"
+						data-ng-repeat="transactionInfo in transactionInfos.transactionAccountActivityDtos">
+						<div class="list item">
+							<p style="color: black">{{transactionInfo.transactionDate}}</p>
+							<p>{{transactionInfo.transactionDescription}}</p>
+							<div class="mini-amount">
+								<p data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+									{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span
+										data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+									<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span>
+								</p>
 							</div>
-						</a>
-					</div>
-					<div class="container-footer">
-						<a href="#/statement">MORE DETAILS<img src="images/forward.png"
-							class="img-responsive"
-							style="width: 30px; height: 30px; position: absolute; right: 10px; bottom: 7px;" /></a>
-					</div>
-			</div>
-			<a href="" class="spec"> <br />
-				<div class="id">LOAN CALCULATOR</div>
-				<div class="row">
-					<div class="col-sm-5">
-						<br /> <br />
-						<p>Check your Eligibilty!</p>
-					</div>
-					<div class="col-sm-2"></div>
-					<div class="col-sm-5">
-						<img src="images/loan-calculator.JPG" class="img-responsive"
-							style="width: 135px; height: 80px;" />
+						</div>
 					</div>
 				</div>
-			</a>
+				<div class="container-footer">
+					<a href="#/statement">More Details<span class="fa fa-arrow-right pull-right"></span></a>
+				</div>
+		</div>
+		<div class="spec">
+			<div class="id">LOAN CALCULATOR</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br />
+					<p>Check your Eligibilty!</p>
+					<br />
+				</div>
+				<div class="col-sm-5">
+					<img src="images/loan-calculator.JPG" class="img-responsive"
+						style="width: 135px; height: 80px;" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

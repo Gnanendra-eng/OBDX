@@ -1,4 +1,4 @@
-package com.jmr.obdx.exception;
+/*package com.jmr.obdx.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.jmr.obdx.util.Utility;
 
-/***
+*//***
  * @author JMR
- */
+ *//*
 @ControllerAdvice(annotations=Controller.class)
 public class ExceptionControllerAdvice {
 	
@@ -27,3 +27,4 @@ public class ExceptionControllerAdvice {
 	}
 	
 }
+*/

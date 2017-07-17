@@ -1,80 +1,81 @@
-<div class="wrapper">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="row row-flex">
-					<div class="col-sm-4"></div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<select class="form-control"
-								data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
-								name="nbrAccount" required="required"
-								data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
-							</select>
-						</div>
-					</div>
-				</div>
-				<br />
-				<div class="row row-flex">
-					<div class="col-sm-2 col-flex-item">
-						<select class="form-control">
-							<option>Current Period</option>
+<div class="container-fluid">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<br />
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<select class="form-control"
+							data-ng-change="onAccountChange()" data-ng-model="nbrAccount"
+							name="nbrAccount" required="required"
+							data-ng-options="nbrAccount.value as nbrAccount.text for nbrAccount in select_prop_nbrAccounts">
 						</select>
 					</div>
-					<div class="col-sm-7 col-flex-item"></div>
-					<div class="col-sm-2 col-flex-item">
-						<select class="form-control">
-							<option>All</option>
-						</select>
-					</div>
-					<div class="col-sm-1 col-flex-item">
-						<a href="#"><span class="glyphicon glyphicon-floppy-disk" style="font-size:16px"></span></a>
-						<a href="#"><span class="glyphicon glyphicon-print" style="font-size:16px"></span></a>
-						<a href="#"><span class="glyphicon glyphicon-file" style="font-size:16px"></span></a>
-					</div>
 				</div>
-				<br />
-				<div class="row">
-					<div class="col-sm-2">
-						<label style="text-align: left;">Opening Balance:
-							$0.00</label>
-					</div>
-					<div class="col-sm-7"></div>
-					<div class="col-sm-3">
-						<label style="text-align: right;">Closing Balance:
-							$125,000.00</label>
-					</div>
+				<div class="col-md-3"></div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-2">
+					<select class="form-control">
+						<option>Current Period</option>
+					</select>
+				</div>
+				<div class="col-md-7"></div>
+				<div class="col-md-2">
+					<select class="form-control">
+						<option>All</option>
+					</select>
+				</div>
+				<div class="col-md-1" style="display: -webkit-flex;-webkit-justify-content: space-around;
+   											display: flex;justify-content: space-around;">
+					<a href="#"><span class="glyphicon glyphicon-floppy-disk" style="font-size:16px;top:10px"></span></a>
+					<a href="#"><span class="glyphicon glyphicon-print" style="font-size:16px;top:10px"></span></a>
+					<a href="#"><span class="glyphicon glyphicon-file" style="font-size:16px;top:10px"></span></a>
 				</div>
 			</div>
-			<table style="width: 100%" class="table table-striped">
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>Description</th>
-						<th>Reference Number</th>
-						<th style="text-align: right">Amount</th>
-						<th style="text-align: right">Balance</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr
-						data-dir-paginate="transactionInfo in transactionInfos.transactionAccountActivityDtos|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
-						<td><p style="font-size: x-large; color: black">{{transactionInfo.transactionDate.split(' ')[0]}}</p>
-							<p style="color: black">{{transactionInfo.transactionDate.split(' ')[1]}}&nbsp;{{transactionInfo.transactionDate.split(' ')[2]}}</p></td>
-
-						<td><p style="color: black">{{transactionInfo.transactionDescription}}</p></td>
-						<td><p>{{transactionInfo.transactionReferenceNo}}</p></td>
-						<td>
-						<p style=" font-size: large; text-align: right" data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
-						
-								{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
-       							<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span></p></td>
-						<td><p style="text-align: right">{{transactionInfo.balance | currency :transactionInfo.ccyDesc +'&nbsp;'}}</p></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="panel-footer">
-				<dir-pagination-controls max-size="5" direction-links="true"
-					boundary-links="true"> </dir-pagination-controls>
+			<br />
+			<div class="row">
+				<div class="col-md-3">
+					<label style="text-align: left;">Opening Balance:
+						$0.00</label>
+				</div>
+				<div class="col-md-6"></div>
+				<div class="col-md-3">
+					<label style="text-align: right;">Closing Balance:
+						$125,000.00</label>
+				</div>
 			</div>
 		</div>
+		<table class="table table-striped" id="statement">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Reference Number</th>
+					<th style="text-align: right">Amount</th>
+					<th style="text-align: right">Balance</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					data-dir-paginate="transactionInfo in transactionInfos.transactionAccountActivityDtos|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
+					<td><p style="font-size: small; color: black">{{transactionInfo.transactionDate.split(' ')[0]}}</p>
+						<p style="color: black">{{transactionInfo.transactionDate.split(' ')[1]}}&nbsp;{{transactionInfo.transactionDate.split(' ')[2]}}</p></td>
+					<td><p style="color: black">{{transactionInfo.transactionDescription}}</p></td>
+					<td><p>{{transactionInfo.transactionReferenceNo}}</p></td>
+					<td>
+					<p style=" font-size: inherit; text-align: right" data-ng-class="{green : transactionInfo.transactionType==='C',red: transactionInfo.transactionType==='D'}">
+						{{transactionInfo.transactionAmount | currency :transactionInfo.ccyDesc +'&nbsp;'}}&nbsp;<span data-ng-if="transactionInfo.transactionType==='C'">Cr</span>
+      					<span data-ng-if="transactionInfo.transactionType==='D'">Dr</span></p></td>
+					<td><p style="text-align: right">{{transactionInfo.balance | currency :transactionInfo.ccyDesc +'&nbsp;'}}</p></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="panel-footer">
+			<dir-pagination-controls max-size="5" direction-links="true"
+				boundary-links="true"> </dir-pagination-controls>
+		</div>
+	</div>
 </div>
