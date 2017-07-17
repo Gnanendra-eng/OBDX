@@ -24,7 +24,7 @@ public class UserNameService {
 	public StatusInfo getUserName(String userName) throws Exception{
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		statusInfo = new StatusInfo();
-		Login login = loginRepo.findByUsername(userName);
+		Login login = loginRepo.findByUserName(userName);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		if (login == null) {
 	        statusInfo.setErrorStatus(true);

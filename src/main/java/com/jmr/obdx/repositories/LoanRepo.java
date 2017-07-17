@@ -21,7 +21,7 @@ public class LoanRepo {
 	private SessionFactory sessionFactory;	
 	
 	@SuppressWarnings("unchecked")
-	public List<LoanAccount> getLoanSummary(String customerId) throws Exception {
+	public List<LoanAccount> findLoanSummaryByCustomerId(String customerId) throws Exception {
 		return (List<LoanAccount>)sessionFactory.openSession().
 				createCriteria(LoanAccount.class).add(Restrictions.eq("idcust", customerId)).list();
 	}

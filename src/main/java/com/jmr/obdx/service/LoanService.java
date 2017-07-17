@@ -49,10 +49,10 @@ public class LoanService {
 	public BasicLoanDetailsInfo getBasicLoanDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicLoanDetailsDto=new BasicLoanDetailsInfo();
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<LoanAccount> loanAccounts=loanRepo.getLoanSummary(retailCustomer.getIdcusomer());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		List<LoanAccount> loanAccounts=loanRepo.findLoanSummaryByCustomerId(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());

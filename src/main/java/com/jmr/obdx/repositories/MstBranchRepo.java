@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.MstBranch;
 
-
-
 /***
  * \
  * @author Pritiranjan Swain
@@ -19,13 +17,6 @@ public interface MstBranchRepo extends CrudRepository<MstBranch, Integer>{
 	
 	
 	@Query("from MstBranch where branchCode=:branchCode")
-	public MstBranch findByBankCode(@Param("branchCode") String branchCode);
+	public MstBranch findByBranchCode(@Param("branchCode") String branchCode);
 	
-	
-	
-	
-	
-	
-	
-
 }

@@ -132,7 +132,7 @@ public class BillerSevice {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		userAddedBillerInfo = new UserAddedBillerInfo();
 		List<UserAddedBillerDto> billerDtos = new ArrayList<>(0);
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 	    List<Biller> billers = (List<Biller>) billerRepo.findByUserBillerInfo(login.getId());
 		billers.stream().forEach(biller -> {
 			billerDtos.add(new UserAddedBillerDto(biller.getBillerId(), biller.getname(), biller.getMcxBillerOperator().getOperator()));
@@ -161,7 +161,7 @@ public class BillerSevice {
 		
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		statusInfo = new StatusInfo();
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		System.out.println(login.getId());
 		billerRepo.save(new Biller(registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), login.getId(),new McxBillerOperator(2)));
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -198,7 +198,7 @@ public class BillerSevice {
         	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("bill payment");
         		
         	 
-     		Login login = loginRepo.findByUsername(authentication.getName());
+     		Login login = loginRepo.findByUserName(authentication.getName());
 
         	transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), customerAccountCurrencyM, retailCustomer.getIdcusomer(), payBillIDto.getFromAccount(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(),payBillIDto.getFromAccountCurrency(), payBillIDto.getAmount(), new Date(), "Intransit", payBillIDto.getNote(),referenceid, payBillIDto.getBillerId()));
         	TxnData txnData = txnDataRepo.findByReferenceId(referenceid);

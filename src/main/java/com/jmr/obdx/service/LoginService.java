@@ -32,7 +32,7 @@ public class LoginService implements UserDetailsService {
 	
 	private Login getUserDetails(String userName) {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUsername(userName);
+		Login login = loginRepo.findByUserName(userName);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return login;
 	}

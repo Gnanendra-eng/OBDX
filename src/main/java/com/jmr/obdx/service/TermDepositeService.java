@@ -45,19 +45,19 @@ public class TermDepositeService {
 	
 	public TermDepositeInfo getTermDeposite(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		termDepositeInfo = new TermDepositeInfo();
 		totalTermDeposits=0.0;
 		tempDepositeSummary=new ArrayList<>();
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());	
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());	
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
 			
 				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 				
-				List<TermDepositeM> termDepositeMs = termDepositeRepo.getTermdeposite(retailCustomer.getIdcusomer());
+				List<TermDepositeM> termDepositeMs = termDepositeRepo.findTermDepositeByCustomerId(retailCustomer.getIdcusomer());
 				termDepositeMs.stream().forEach(tempTermDeposit -> {
 					
 					if(tempTermDeposit.getCodaccttype().equals(Utility.CONTRACTANDTERMDEPOSIT)){

@@ -61,7 +61,7 @@ public class AuthManager {
 	protected void createUserSessionData(Authentication authentication,HttpServletRequest httpServletRequest,HttpSession httpSession) throws Exception{
 		 logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 	     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		 Login login=loginRepo.findByUsername(authentication.getName());
+		 Login login=loginRepo.findByUserName(authentication.getName());
 		 if(userSessionRepo.findByIduser(login.getId()).size()==0){
 			 String idSession=getRandom();
 			 userSessionDataRepo.save(new UserSessionData(idSession,login.getId()));

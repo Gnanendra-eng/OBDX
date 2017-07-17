@@ -95,9 +95,9 @@ public class BeneficiaryService {
 	 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
 	 			}
 		});*/
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc(Utility.IAT);
-		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(beneficiaryDto.getBranchId());
+		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(beneficiaryDto.getBranchId());
    	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(mcxTransactionM.getId())));
 		return statusInfo; 
 	}

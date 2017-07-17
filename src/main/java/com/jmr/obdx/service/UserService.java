@@ -50,7 +50,7 @@ public class UserService {
 		    return statusInfo;	
 		 }
 	     else{
-	    	 if(loginRepo.findByUsername(userRegDto.getUserName()) == null){
+	    	 if(loginRepo.findByUserName(userRegDto.getUserName()) == null){
 	    		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		 		 AuthorityM authorityM = authorityMRepo.findByTypeuser(Utility.ADMIN);
 		 		 loginRepo.save(new Login(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),"true","true","true","true" ,authorityM));

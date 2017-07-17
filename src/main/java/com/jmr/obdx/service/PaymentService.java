@@ -41,9 +41,9 @@ public class PaymentService {
 	public Paymentinfo getPaymentDetails(Authentication authentication) throws Exception{
 		logger.info(Utility.ENTERED, new Object() {}.getClass().getEnclosingMethod());
 		paymentinfo=new Paymentinfo();
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());
 		List<String> jmrcurrencyms=jmrcurrencymRepo.findByJmrCurrencyShortName();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
 			paymentinfo.getPaymentInfoDtos().add(new PaymentInfoDto(accountdetail.getNBRACCOUNT(), String.valueOf(accountdetail.getBALANCE()),accountdetail.getCCYDESC()));

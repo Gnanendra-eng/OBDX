@@ -198,7 +198,7 @@ public class FundtransferService {
     		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
 
      		  }
-       		Login login = loginRepo.findByUsername(authentication.getName());
+       		Login login = loginRepo.findByUserName(authentication.getName());
 
 	     	 McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
      		 mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
@@ -242,7 +242,7 @@ public class FundtransferService {
        	 AccountTypeM accountTypeM =accountTypeRepo.findByDescription(internalAccountTransfer.getAccountType());
        	 CurrencyM currencyM =currencyRepo.findByCurrencyType(internalAccountTransfer.getCurrencyCode());
        	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("internal account Transfer");
-         BeneficiaryM beneficiaryM=	beneficiaryRepo.findByBeneficiaryId(internalAccountTransfer.getPayeeId());
+         BeneficiaryM beneficiaryM=	beneficiaryRepo.findById(internalAccountTransfer.getPayeeId());
        	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), currencyM, retailCustomer.getIdcusomer(), internalAccountTransfer.getFromAccount(), internalAccountTransfer.getFromBranchCode(), internalAccountTransfer.getToAccount(), beneficiaryM.getAccountnumber(), internalAccountTransfer.getAmount(), new Date(),"Intransit" , internalAccountTransfer.getNote(), referenceid, internalAccountTransfer.getPurpose(), beneficiaryM));
        	 TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
 
@@ -291,7 +291,7 @@ public class FundtransferService {
     		  byte responseStringBytr[] =responseString.getBytes();
        		  System.out.println(responseString);
        		  byte requestObjectBytr[] =requestObj.toString().getBytes();
-         		Login login = loginRepo.findByUsername(authentication.getName());
+         		Login login = loginRepo.findByUserName(authentication.getName());
 
 	     	  McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
 	     	  mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, wCode, wDesc, new Date(), Status, hostReference));

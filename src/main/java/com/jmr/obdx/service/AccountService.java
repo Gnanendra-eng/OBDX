@@ -71,9 +71,9 @@ public class AccountService {
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
@@ -98,7 +98,7 @@ public class AccountService {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Accountdetails accountdetail = accountDetailsRepo.getAccountDetails(customerId, nbrAccount);
+		Accountdetails accountdetail = accountDetailsRepo.findAccountDetailsByAccountIdCustomerId(customerId, nbrAccount);
 		System.out.println(new Double(accountdetail.getBALANCE()));
 
 		accountDetailsDto = new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(),
@@ -126,10 +126,10 @@ public class AccountService {
 
 	public AccountSummaryInfo getAccountSummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());
 		savingsAndCurrent = new ArrayList<>();
 		loans = new ArrayList<>();
 		contractAndTermdeposit = new ArrayList<>();
@@ -172,7 +172,7 @@ public class AccountService {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		sumOfTotalLoans =0.0;
 		loanPending = new ArrayList<>();
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
 		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
 		accountsummarys.stream().forEach(loansummary -> {
@@ -222,9 +222,9 @@ public class AccountService {
 	
 	
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
-		Accountdetails accountdetail = accountDetailsRepo.getAccountBranch(nbrAccount);
+		Accountdetails accountdetail = accountDetailsRepo.findAccountBranchByAccountId(nbrAccount);
 		
-		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(accountdetail.getNBRBRANCH());
+		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(accountdetail.getNBRBRANCH());
 		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
 	    return accountBranch;
 	}

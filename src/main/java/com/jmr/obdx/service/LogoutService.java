@@ -25,7 +25,7 @@ public class LogoutService {
     private LoginRepo loginRepo;
     
     public void deleteSessionInfo(String userName){
-    	Login loginInfo=loginRepo.findByUsername(userName);
+    	Login loginInfo=loginRepo.findByUserName(userName);
 		List<UserSessionData> userSessionDataInfo=userSessionDataRepo.findByIduser(loginInfo.getId());
 		List<UserSession> userSessionInfo=userSessionRepo.findByIduser(loginInfo.getId());
 		userSessionRepo.delete(userSessionInfo);
