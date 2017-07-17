@@ -1,4 +1,4 @@
-package com.jmr.obdx.repositories;
+/*package com.jmr.obdx.repositories;
 
 import java.util.List;
 
@@ -26,3 +26,4 @@ public interface BranchRepo extends CrudRepository<BranchM, Integer> {
 
 
 }
+*/

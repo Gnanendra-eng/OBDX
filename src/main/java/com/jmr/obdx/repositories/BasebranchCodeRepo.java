@@ -1,4 +1,4 @@
-package com.jmr.obdx.repositories;
+/*package com.jmr.obdx.repositories;
 
 
 import javax.transaction.Transactional;
@@ -19,3 +19,4 @@ public interface BasebranchCodeRepo extends CrudRepository<BasebranchCodeM, Inte
 
 	
 }
+*/

@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.jmr.obdx.domain.LoanAccount;
 
+/***
+ * \
+ * @author Pritiranjan Swain
+ *
+ */
 @Repository
 public class LoanRepo {
 	

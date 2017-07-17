@@ -5,14 +5,18 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.McxTransactionM;
-import com.jmr.obdx.domain.McxUserM;
+import com.jmr.obdx.domain.McxUser;
 
+/***
+ * \
+ * @author Rishad K
+ *
+ */
 @Repository
 @Transactional
-public interface McxUserMRepo extends CrudRepository<McxUserM, Integer>{
+public interface McxUserMRepo extends CrudRepository<McxUser, Integer>{
 	
-	 public McxUserM findById( long userID);
+	 public McxUser findById( long userID);
 
 	
 }
