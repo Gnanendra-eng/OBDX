@@ -1,8 +1,6 @@
 package com.jmr.obdx.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-
-import com.jmr.obdx.domain.McxAuditLog;
 import com.jmr.obdx.domain.McxCustomerMapping;
 import com.jmr.obdx.domain.McxUser;
 
