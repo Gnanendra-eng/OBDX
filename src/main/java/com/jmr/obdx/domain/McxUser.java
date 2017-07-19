@@ -40,7 +40,7 @@ public class McxUser  implements java.io.Serializable {
      private String faxNumber;
      private String emailId;
      private String salutation;
-     private Date dateOfBirth;
+     private Date   dateOfBirth;
      private String phoneNumber;
      private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
      private Set<McxCustomerMapping> mcxCustomerMappings = new HashSet<McxCustomerMapping>(0);
@@ -51,7 +51,10 @@ public class McxUser  implements java.io.Serializable {
     public McxUser() {
     }
 
-	
+    public McxUser(long id) {
+    	this.id =id;
+    }
+
     public McxUser(long id, String firstName, String mobileNumber, String emailId) {
         this.id = id;
         this.firstName = firstName;

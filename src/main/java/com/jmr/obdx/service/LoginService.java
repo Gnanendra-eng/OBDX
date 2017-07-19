@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.jmr.obdx.domain.AuthorityM;
 import com.jmr.obdx.domain.Login;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.util.Utility;
 /***
  * @author JMR
@@ -27,12 +27,12 @@ public class LoginService implements UserDetailsService {
 	private org.springframework.security.core.userdetails.User userDetials;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 
 	
 	private Login getUserDetails(String userName) {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUsername(userName);
+		Login login = loginRepo.findByUserName(userName);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return login;
 	}

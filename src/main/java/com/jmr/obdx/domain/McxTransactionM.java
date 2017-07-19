@@ -39,6 +39,10 @@ public class McxTransactionM  implements java.io.Serializable {
     public McxTransactionM() {
     }
 
+    public McxTransactionM(long id) {
+    	this.id = id;
+    }
+
 	
     public McxTransactionM(long id, String service, String isActive) {
         this.id = id;

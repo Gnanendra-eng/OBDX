@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.UserSession;
 import com.jmr.obdx.domain.UserSessionData;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.UserSessionDataRepo;
 import com.jmr.obdx.repositories.UserSessionRepo;
 import com.jmr.obdx.util.Utility;
@@ -34,7 +34,7 @@ public class AuthManager {
 	private UserSessionDataRepo userSessionDataRepo;
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	@Autowired
 	private UserSessionRepo userSessionRepo;
@@ -61,7 +61,7 @@ public class AuthManager {
 	protected void createUserSessionData(Authentication authentication,HttpServletRequest httpServletRequest,HttpSession httpSession) throws Exception{
 		 logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 	     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		 Login login=loginRepo.findByUsername(authentication.getName());
+		 Login login=loginRepo.findByUserName(authentication.getName());
 		 if(userSessionRepo.findByIduser(login.getId()).size()==0){
 			 String idSession=getRandom();
 			 userSessionDataRepo.save(new UserSessionData(idSession,login.getId()));

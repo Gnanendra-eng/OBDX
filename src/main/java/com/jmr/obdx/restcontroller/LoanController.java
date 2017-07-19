@@ -15,6 +15,12 @@ import com.jmr.obdx.service.LoanService;
 import com.jmr.obdx.service.dto.BasicLoanDetailsInfo;
 import com.jmr.obdx.util.Utility;
 
+
+/***
+ * 
+ * @author Pritiranjan Swain
+ *
+ */
 @RequestMapping(value = "/user/loan")
 @RestController
 public class LoanController {

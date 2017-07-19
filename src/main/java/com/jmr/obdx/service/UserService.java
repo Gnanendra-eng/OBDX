@@ -12,7 +12,7 @@ import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AuthorityMRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
 /***
@@ -27,7 +27,7 @@ public class UserService {
 	private AuthorityMRepo authorityMRepo;
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	private StatusInfo statusInfo;
 	
@@ -50,7 +50,7 @@ public class UserService {
 		    return statusInfo;	
 		 }
 	     else{
-	    	 if(loginRepo.findByUsername(userRegDto.getUserName()) == null){
+	    	 if(loginRepo.findByUserName(userRegDto.getUserName()) == null){
 	    		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		 		 AuthorityM authorityM = authorityMRepo.findByTypeuser(Utility.ADMIN);
 		 		 loginRepo.save(new Login(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),"true","true","true","true" ,authorityM));

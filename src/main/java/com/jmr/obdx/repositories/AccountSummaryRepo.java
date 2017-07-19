@@ -21,7 +21,7 @@ public class AccountSummaryRepo {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<Accountsummary> getAccountSummary(String customerId) throws Exception {
+	public List<Accountsummary> findAccountSummaryByCustomerId(String customerId) throws Exception {
 		return (List<Accountsummary>)sessionFactory.openSession().createCriteria(Accountsummary.class).
 				add(Restrictions.eq("IDCUSTOMER", customerId)).list();
 	}

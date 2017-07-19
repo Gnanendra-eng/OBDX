@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.UserSession;
 import com.jmr.obdx.domain.UserSessionData;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.UserSessionDataRepo;
 import com.jmr.obdx.repositories.UserSessionRepo;
 
@@ -22,10 +22,10 @@ public class LogoutService {
     private UserSessionRepo userSessionRepo; 
     
     @Autowired
-    private LoginRepo loginRepo;
+    private McxLoginRepo loginRepo;
     
     public void deleteSessionInfo(String userName){
-    	Login loginInfo=loginRepo.findByUsername(userName);
+    	Login loginInfo=loginRepo.findByUserName(userName);
 		List<UserSessionData> userSessionDataInfo=userSessionDataRepo.findByIduser(loginInfo.getId());
 		List<UserSession> userSessionInfo=userSessionRepo.findByIduser(loginInfo.getId());
 		userSessionRepo.delete(userSessionInfo);

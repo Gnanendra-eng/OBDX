@@ -12,6 +12,7 @@ import com.jmr.obdx.domain.McxTransactionM;
 public interface McxTransactionMRepo extends CrudRepository<McxTransactionM, Integer>{
 	
 	 public McxTransactionM findByProductDescription( String productDescription);
+	 
 	
 
 }

@@ -27,7 +27,10 @@ public class McxCustomerMapping  implements java.io.Serializable {
 
     public McxCustomerMapping() {
     }
-
+    public McxCustomerMapping(long id) {
+    	
+    	this.id=id;
+    }
 	
     public McxCustomerMapping(long id, McxUser mcxUser, String customerId) {
         this.id = id;

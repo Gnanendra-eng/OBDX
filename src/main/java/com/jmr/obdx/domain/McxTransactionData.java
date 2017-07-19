@@ -39,18 +39,18 @@ public class McxTransactionData  implements java.io.Serializable {
      private String fromBranchCode;
      private String amount;
      private Date transferDate;
-     private String status;
      private String note;
      private String referenceId;
-     private long refTransactionId;
      private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
     public McxTransactionData() {
     }
 
-	
-    public McxTransactionData(long id, McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String referenceId, long refTransactionId) {
-        this.id = id;
+    public McxTransactionData(long id) {
+    	this.id=id;
+    }
+
+    public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String referenceId, long refTransactionId) {
         this.mcxTransferPurpose = mcxTransferPurpose;
         this.mcxCurrencyM = mcxCurrencyM;
         this.mcxBiller = mcxBiller;
@@ -63,12 +63,31 @@ public class McxTransactionData  implements java.io.Serializable {
         this.fromBranchCode = fromBranchCode;
         this.amount = amount;
         this.transferDate = transferDate;
-        this.status = status;
         this.referenceId = referenceId;
-        this.refTransactionId = refTransactionId;
     }
-    public McxTransactionData(long id, McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String note, String referenceId, long refTransactionId, Set<McxAuditLog> mcxAuditLogs) {
-       this.id = id;
+    
+    
+    public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, 
+    		McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode
+    		 , String amount, Date transferDate , String referenceId ) {
+        this.mcxTransferPurpose = mcxTransferPurpose;
+        this.mcxCurrencyM = mcxCurrencyM;
+        this.mcxBiller = mcxBiller;
+        this.mcxAccountTypeM = mcxAccountTypeM;
+        this.customerId = customerId;
+        this.toAccountNumber = toAccountNumber;
+        this.fromAccountNumber = fromAccountNumber;
+        this.toBranchCode = toBranchCode;
+        this.fromBranchCode = fromBranchCode;
+        this.amount = amount;
+        this.transferDate = transferDate;
+        this.referenceId = referenceId;
+    }
+    
+
+
+
+    public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String note, String referenceId, Set<McxAuditLog> mcxAuditLogs) {
        this.mcxTransferPurpose = mcxTransferPurpose;
        this.mcxCurrencyM = mcxCurrencyM;
        this.mcxBiller = mcxBiller;
@@ -81,14 +100,14 @@ public class McxTransactionData  implements java.io.Serializable {
        this.fromBranchCode = fromBranchCode;
        this.amount = amount;
        this.transferDate = transferDate;
-       this.status = status;
        this.note = note;
        this.referenceId = referenceId;
-       this.refTransactionId = refTransactionId;
        this.mcxAuditLogs = mcxAuditLogs;
     }
    
-     @Id 
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
@@ -221,16 +240,7 @@ public class McxTransactionData  implements java.io.Serializable {
     }
 
     
-    @Column(name="STATUS", nullable=false, length=10)
-    public String getStatus() {
-        return this.status;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
-    
     @Column(name="NOTE", length=500)
     public String getNote() {
         return this.note;
@@ -250,15 +260,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.referenceId = referenceId;
     }
 
-    
-    @Column(name="REF_TRANSACTION_ID", nullable=false, precision=10, scale=0)
-    public long getRefTransactionId() {
-        return this.refTransactionId;
-    }
-    
-    public void setRefTransactionId(long refTransactionId) {
-        this.refTransactionId = refTransactionId;
-    }
+
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionData")
     public Set<McxAuditLog> getMcxAuditLogs() {

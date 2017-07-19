@@ -22,7 +22,7 @@ import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.BranchRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
@@ -44,7 +44,7 @@ public class BeneficiaryService {
 	private PayeeInfo payeeInfo;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
@@ -95,9 +95,9 @@ public class BeneficiaryService {
 	 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
 	 			}
 		});*/
-		Login login = loginRepo.findByUsername(authentication.getName());
+		Login login = loginRepo.findByUserName(authentication.getName());
 		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc(Utility.IAT);
-		MstBranch  mstBranch=  mstBranchRepo.findByBankCode(beneficiaryDto.getBranchId());
+		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(beneficiaryDto.getBranchId());
    	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(mcxTransactionM.getId())));
 		return statusInfo; 
 	}

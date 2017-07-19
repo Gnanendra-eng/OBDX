@@ -1,6 +1,5 @@
 package com.jmr.obdx.domain;
 
-import java.sql.Blob;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 /***
  * \
@@ -31,14 +31,14 @@ public class McxAuditLog  implements java.io.Serializable {
      private String status;
      private Date transactionDate;
      private String hostReferenceId;
-     private Blob requestData;
-     private Blob responseData;
+     private byte [] requestData;
+     private byte [] responseData;
 
     public McxAuditLog() {
     }
 
 	
-    public McxAuditLog(long id, McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, Blob requestData, Blob responseData) {
+    public McxAuditLog(long id, McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, byte [] requestData, byte [] responseData) {
         this.id = id;
         this.mcxUser = mcxUser;
         this.mcxTransactionM = mcxTransactionM;
@@ -48,8 +48,7 @@ public class McxAuditLog  implements java.io.Serializable {
         this.requestData = requestData;
         this.responseData = responseData;
     }
-    public McxAuditLog(long id, McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, String hostReferenceId, Blob requestData, Blob responseData) {
-       this.id = id;
+    public McxAuditLog(McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, String hostReferenceId, byte [] requestData, byte [] responseData) {
        this.mcxUser = mcxUser;
        this.mcxTransactionM = mcxTransactionM;
        this.mcxTransactionData = mcxTransactionData;
@@ -60,7 +59,10 @@ public class McxAuditLog  implements java.io.Serializable {
        this.responseData = responseData;
     }
    
-     @Id 
+   
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
@@ -134,21 +136,21 @@ public class McxAuditLog  implements java.io.Serializable {
 
     
     @Column(name="REQUEST_DATA", nullable=false)
-    public Blob getRequestData() {
+    public byte [] getRequestData() {
         return this.requestData;
     }
     
-    public void setRequestData(Blob requestData) {
+    public void setRequestData(byte [] requestData) {
         this.requestData = requestData;
     }
 
     
     @Column(name="RESPONSE_DATA", nullable=false)
-    public Blob getResponseData() {
+    public byte [] getResponseData() {
         return this.responseData;
     }
     
-    public void setResponseData(Blob responseData) {
+    public void setResponseData(byte [] responseData) {
         this.responseData = responseData;
     }
 

@@ -30,7 +30,9 @@ public class McxAccountTypeM  implements java.io.Serializable {
     public McxAccountTypeM() {
     }
 
-	
+    public McxAccountTypeM(long id) {
+    	this.id=id;
+    }
     public McxAccountTypeM(long id, String description, String accountType, String isActive) {
         this.id = id;
         this.description = description;
