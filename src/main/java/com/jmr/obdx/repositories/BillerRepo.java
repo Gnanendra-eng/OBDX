@@ -6,9 +6,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.McxCurrencyM;
+import com.jmr.obdx.domain.McxBiller;
 
 /***
  * \
@@ -17,12 +18,9 @@ import com.jmr.obdx.domain.McxCurrencyM;
  */
 @Repository
 @Transactional
-public interface CurrencyRepo extends CrudRepository<McxCurrencyM,Integer> {
+public interface BillerRepo extends CrudRepository<McxBiller, Integer> {
 	
-	
-	@Query("from McxCurrencyM")
-	public List<McxCurrencyM> currencym();
-	
-	 public McxCurrencyM findByCurrencyType(String transationType);
+	@Query("from McxBiller where mcxLogin=:mcxLogin")
+	public List<McxBiller> findByUserBillerInfo(@Param("mcxLogin") long mcxLogin);
 
 }

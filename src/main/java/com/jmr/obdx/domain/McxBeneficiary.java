@@ -46,8 +46,8 @@ public class McxBeneficiary  implements java.io.Serializable {
 
 	
     public McxBeneficiary(long id, McxUser mcxUser, McxTransferViaType mcxTransferViaType, McxTransferType mcxTransferType, String payyeName, String accountName, String branchCode, String nickName, String accountNumber, String isActive, Date registrationDateTime) {
-        this.id = id;
-        this.mcxUser = mcxUser;
+    	this.id = id;
+    	this.mcxUser = mcxUser;
         this.mcxTransferViaType = mcxTransferViaType;
         this.mcxTransferType = mcxTransferType;
         this.payyeName = payyeName;
@@ -58,8 +58,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.isActive = isActive;
         this.registrationDateTime = registrationDateTime;
     }
-    public McxBeneficiary(long id, McxUser mcxUser, McxTransferViaType mcxTransferViaType, McxTransferType mcxTransferType, String payyeName, String accountName, String branchCode, String nickName, String accountNumber, String isActive, Date registrationDateTime, String swiftCode, String ncc, Set<McxTransactionData> mcxTransactionDatas) {
-       this.id = id;
+    public McxBeneficiary(McxUser mcxUser, McxTransferViaType mcxTransferViaType, McxTransferType mcxTransferType, String payyeName, String accountName, String branchCode, String nickName, String accountNumber, String isActive, Date registrationDateTime, String swiftCode, String ncc, Set<McxTransactionData> mcxTransactionDatas) {
        this.mcxUser = mcxUser;
        this.mcxTransferViaType = mcxTransferViaType;
        this.mcxTransferType = mcxTransferType;
@@ -75,7 +74,24 @@ public class McxBeneficiary  implements java.io.Serializable {
        this.mcxTransactionDatas = mcxTransactionDatas;
     }
    
-     @Id 
+    public McxBeneficiary(McxUser mcxUser, McxTransferViaType mcxTransferViaType, McxTransferType mcxTransferType, String payyeName, String accountName, String branchCode, String nickName, String accountNumber, String isActive, Date registrationDateTime, String swiftCode, String ncc) {
+        this.mcxUser = mcxUser;
+        this.mcxTransferViaType = mcxTransferViaType;
+        this.mcxTransferType = mcxTransferType;
+        this.payyeName = payyeName;
+        this.accountName = accountName;
+        this.branchCode = branchCode;
+        this.nickName = nickName;
+        this.accountNumber = accountNumber;
+        this.isActive = isActive;
+        this.registrationDateTime = registrationDateTime;
+        this.swiftCode = swiftCode;
+        this.ncc = ncc;
+     }
+    
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)

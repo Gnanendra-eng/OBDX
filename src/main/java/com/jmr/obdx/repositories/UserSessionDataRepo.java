@@ -1,4 +1,4 @@
-package com.jmr.obdx.repositories;
+/*package com.jmr.obdx.repositories;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.domain.McxUserSession;
 
-/***
+*//***
  * \
  * @author Rishad K
  *
- */
+ *//*
 @Repository
 @Transactional
 public interface UserSessionDataRepo extends CrudRepository<McxUserSession, Integer> {
@@ -25,3 +25,4 @@ public interface UserSessionDataRepo extends CrudRepository<McxUserSession, Inte
 
 	
 }
+*/

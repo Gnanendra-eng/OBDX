@@ -13,7 +13,7 @@ import com.jmr.obdx.domain.McxAuthorityM;
  */
 @Repository
 @Transactional
-public interface AuthorityMRepo  extends CrudRepository<McxAuthorityM, Integer> {
+public interface McxAuthorityMRepo  extends CrudRepository<McxAuthorityM, Integer> {
 	
 	public McxAuthorityM findByMcxBaseUserTypeM(String typeUser);
 	

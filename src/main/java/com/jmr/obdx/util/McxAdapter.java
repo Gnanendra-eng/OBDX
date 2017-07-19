@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import com.jmr.obdx.service.FundtransferService;
+//import com.jmr.obdx.service.FundtransferService;
 
 /***
  * @author Pritiranjan Swain (JMR Infotech)

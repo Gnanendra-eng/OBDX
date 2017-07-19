@@ -19,6 +19,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String getHome() throws Exception{
+		System.out.println(1);
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return "redirect:/login";
@@ -28,6 +29,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String getLogin(HttpSession httpSession) throws Exception{
+		System.out.println(2);
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -35,6 +37,7 @@ public class LoginController {
 		}
 		httpSession.setAttribute(Utility.DEVICE, Utility.DEVICE_ID);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
+		System.out.println(3);
 		return "login";
 	}
 

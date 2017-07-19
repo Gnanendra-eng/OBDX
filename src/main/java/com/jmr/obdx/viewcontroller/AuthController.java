@@ -31,6 +31,7 @@ public class AuthController {
 
 	@RequestMapping(value = "/auth", method = RequestMethod.GET)
 	private ModelAndView getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse, HttpSession httpSession,ModelAndView modelAndView) {
+			System.out.println(5);
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 			String responceView = authManager.getUserAuthInfo(authentication, httpServletRequest,httpServletResponse,httpSession);

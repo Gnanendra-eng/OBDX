@@ -27,6 +27,7 @@ public class Utility {
 	public static final String OAT ="own account Transfer";	
 	public static final String IAT ="internal account Transfer";
 	public static final String BP ="bill payment";
+	public static final String IS_ACTIVE ="true";
 
 	public static String getReferenceNumber(String text, int length) {
 		  String referenceNumber = text;

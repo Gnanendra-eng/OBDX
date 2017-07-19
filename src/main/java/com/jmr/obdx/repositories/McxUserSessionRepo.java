@@ -12,8 +12,9 @@ import com.jmr.obdx.domain.McxUserSession;
  *
  */
 @Transactional
-public interface UserSessionRepo  extends CrudRepository<McxUserSession,Integer>{
+public interface McxUserSessionRepo  extends CrudRepository<McxUserSession,Integer>{
 	
-	public List<McxUserSession> findByMcxUser(McxUser mcxUser);
 	
+	public List<McxUserSession> findByMcxUser(McxUser id);
+
 }

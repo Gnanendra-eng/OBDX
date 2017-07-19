@@ -12,12 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.jmr.obdx.domain.AuthorityM;
-import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.repositories.McxLoginRepo;
+import com.jmr.obdx.domain.McxAuthorityM;
+import com.jmr.obdx.domain.McxLogin;
+import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.util.Utility;
 /***
  * @author JMR
+ * Modified Login to McxLogin and AuthorityM to McxAuthorityM by Murugesh on 18/07/2017
  */
 @Service
 public class LoginService implements UserDetailsService {
@@ -30,30 +32,35 @@ public class LoginService implements UserDetailsService {
 	private McxLoginRepo loginRepo;
 
 	
-	private Login getUserDetails(String userName) {
+	private McxLogin getUserDetails(String userName) {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUserName(userName);
+		McxLogin mcxLogin = loginRepo.findByUserName(userName);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return login;
+		return mcxLogin;
 	}
 	
 	public UserDetails loadUserByUsername(String userName ) throws UsernameNotFoundException {	
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login userLogin = getUserDetails(userName);
-		if ((userLogin == null) || (userLogin.getPassword() == null)) {
+		McxLogin mcxLogin = getUserDetails(userName);
+		if ((mcxLogin == null) || (mcxLogin.getPassword() == null)) {
 			logger.info("user not found");
 			throw new UsernameNotFoundException("user" + userName + "not found...");
 		}
-		userDetials = new org.springframework.security.core.userdetails.User(userLogin.getUsername(), userLogin.getPassword(),Boolean.parseBoolean(userLogin.getIsactive()),
-				Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonexpired())),Boolean.parseBoolean(String.valueOf(userLogin.getCredentialsnonexpired())),Boolean.parseBoolean(String.valueOf(userLogin.getAccountnonlocked())), getAuthority(new AuthorityM(userLogin.getAuthorityM().getId(), userLogin.getAuthorityM().getTypeuser())));
+		/***
+		 * Modified User constructor to get user details by Murugesh
+		 */	
+		userDetials = new org.springframework.security.core.userdetails.User(mcxLogin.getUserName(), mcxLogin.getPassword(),Boolean.parseBoolean(mcxLogin.getIsActive()),
+				Boolean.parseBoolean(String.valueOf(mcxLogin.getAccountNonExpired())),Boolean.parseBoolean(String.valueOf(mcxLogin.getCredentialsNonExpired())),
+				Boolean.parseBoolean(String.valueOf(mcxLogin.getAccountNonLocked())), 
+				getMcxAuthority(new McxAuthorityM(mcxLogin.getMcxAuthorityM().getId(), mcxLogin.getMcxAuthorityM().getMcxBaseUserTypeM())));
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return userDetials;
 	}
 
-	public List<GrantedAuthority> getAuthority(AuthorityM authorityM) {
+	public List<GrantedAuthority> getMcxAuthority(McxAuthorityM mcxAuthorityM) {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		List<GrantedAuthority> listOfAuthority = new ArrayList<GrantedAuthority>();
-		listOfAuthority.add(new SimpleGrantedAuthority(authorityM.getTypeuser()));
+		listOfAuthority.add(new SimpleGrantedAuthority(mcxAuthorityM.getMcxBaseUserTypeM().getUserType()));
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return listOfAuthority;
 	}

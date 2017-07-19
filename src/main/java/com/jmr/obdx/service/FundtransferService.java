@@ -127,14 +127,14 @@ public class FundtransferService {
 			bindingResult.getFieldErrors().forEach(error -> {statusInfo.getErrorMsgs().add(new ErrorMsg(error.getField(), error.getDefaultMessage()));
 			});
 		    }
-      /*   if(ownAccountTransferDto.getToAccount()==ownAccountTransferDto.getFromAccount() && (ownAccountTransferDto.getAmount()== 0)){
+         if(ownAccountTransferDto.getToAccount()==ownAccountTransferDto.getFromAccount() && (ownAccountTransferDto.getAmount()== 0)){
  			statusInfo.setErrorStatus(true);
 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.date.not.valid.selection",new Object[] {}, locale)));
-         }*/
-        /* if(ownAccountTransferDto.getFromAccountBalancy() < ownAccountTransferDto.getAmount()){
+         }
+         if(ownAccountTransferDto.getFromAccountBalancy() < ownAccountTransferDto.getAmount()){
   			statusInfo.setErrorStatus(true);
  			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
-          }*/
+          }
          else{
         	 BasebranchCodeM basebranchCodeM=basebranchCodeRepo.baseBranchDetailsM();
        	     McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
@@ -146,10 +146,12 @@ public class FundtransferService {
         	 McxTransactionData mcxTransactionData = txnDataRepo.findByReferenceId(referenceid);
      		java.io.StringWriter sw = new StringWriter();
      		Date myDate = new Date();
-/*
+
      		JAXBContext contextObj = JAXBContext.newInstance(com.mcx.xml.SoapenvEnvelope.class);
      		Marshaller marshallerObj = contextObj.createMarshaller();
      		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);*/
+     		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+     		
      		com.mcx.xml.ContractDetailsFull contractDetailsFull = new com.mcx.xml.ContractDetailsFull(mcxTransactionM.getProd(), txnData.getReferenceId(), 
      				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), 
      				                                              txnData.getToaccountno(),txnData.getFrombranchcod(),txnData.getCurrencyM().getCurrencyDesc(), txnData.getAmount(), 
@@ -255,8 +257,8 @@ public class FundtransferService {
  		             String wCode = responseString.substring(responseString.indexOf("<WCODE>") +7, responseString.indexOf("</WCODE>"));
  		             String wDesc = responseString.substring(responseString.indexOf("<WDESC>") +7, responseString.indexOf("</WDESC>"));
                  
-    		        /* String errorCode = responseString.substring(responseString.indexOf("<ECODE>") +7, responseString.indexOf("</ECODE>"));
-    		         String errorDescrption = responseString.substring(responseString.indexOf("<EDESC>") +7, responseString.indexOf("</EDESC>"));*/
+    		         String errorCode = responseString.substring(responseString.indexOf("<ECODE>") +7, responseString.indexOf("</ECODE>"));
+    		         String errorDescrption = responseString.substring(responseString.indexOf("<EDESC>") +7, responseString.indexOf("</EDESC>"));
     		  }
     		  else{
    		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +12, responseString.indexOf("</REFERENCE_NO>"));

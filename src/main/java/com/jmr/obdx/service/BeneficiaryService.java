@@ -11,26 +11,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.jmr.obdx.domain.Accountdetails;
-import com.jmr.obdx.domain.BeneficiaryM;
-import com.jmr.obdx.domain.BranchM;
-import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxBeneficiary;
+import com.jmr.obdx.domain.McxLogin;
 import com.jmr.obdx.domain.McxTransactionM;
+import com.jmr.obdx.domain.McxTransferType;
+import com.jmr.obdx.domain.McxTransferViaType;
+import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
-import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
-import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AllPayee;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
 import com.jmr.obdx.service.dto.PayeeInfo;
 import com.jmr.obdx.util.Utility;
 
+/***
+ * modified Login to McxLogin and BenficiaryM to McxBenficiaryM by Murugesh on 17/07/2017
+ */
 @Service
 public class BeneficiaryService {
 	
@@ -47,16 +49,10 @@ public class BeneficiaryService {
 	private McxLoginRepo loginRepo;
 	
 	@Autowired
-	private RetailCustomerRepo retailCustomerRepo;
-	
-	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
 	
 	@Autowired
 	private BeneficiaryRepo beneficiaryRepo;
-	
-	@Autowired
-	private BranchRepo branchRepo;
 	
 	@Autowired
 	private MstBranchRepo mstBranchRepo;
@@ -95,10 +91,13 @@ public class BeneficiaryService {
 	 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
 	 			}
 		});*/
-		Login login = loginRepo.findByUserName(authentication.getName());
-		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc(Utility.IAT);
 		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(beneficiaryDto.getBranchId());
-   	    beneficiaryRepo.save(new BeneficiaryM( mstBranch.getBankCode(), new Login(login.getId())  , beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(),beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), "true", new Date(),"BankAccount",new McxTransactionM(mcxTransactionM.getId())));
+		McxLogin login = loginRepo.findByUserName(authentication.getName());
+		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProductDescription(Utility.IAT);
+   	    /***
+   	     * Modified constructor to save McxBenficiary by Murugesh on 18/07/2017
+   	     */
+		beneficiaryRepo.save(new McxBeneficiary(new McxUser(login.getId()), new McxTransferViaType(beneficiaryDto.getMcxTransferViaType()),new McxTransferType(beneficiaryDto.getMcxTransferType()) ,beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(), mstBranch.getBankCode(), beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), Utility.IS_ACTIVE, new Date(), beneficiaryDto.getSwiftCode(), beneficiaryDto.getNcc()));
 		return statusInfo; 
 	}
 	
@@ -112,11 +111,11 @@ public class BeneficiaryService {
 
 	public PayeeInfo viewBeneficiary(Authentication authentication,Locale locale){
 		
-		List<BeneficiaryM> beneficiaryM = beneficiaryRepo.findBeneficiary();
+		List<McxBeneficiary> beneficiaryM = beneficiaryRepo.findBeneficiary();
 		payeeInfo = new PayeeInfo();
 		allPayee = new ArrayList<>();
 		beneficiaryM.stream().forEach(beneficiary->{
-			allPayee.add(new AllPayee(beneficiary.getId(), beneficiary.getPayyename()));
+			allPayee.add(new AllPayee(beneficiary.getId(), beneficiary.getPayyeName()));
 		});
 		payeeInfo.setAllPayee(allPayee);
 

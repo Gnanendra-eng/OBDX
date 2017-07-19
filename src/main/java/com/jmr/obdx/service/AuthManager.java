@@ -16,12 +16,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.jmr.obdx.domain.Login;
-import com.jmr.obdx.domain.UserSession;
-import com.jmr.obdx.domain.UserSessionData;
 import com.jmr.obdx.repositories.McxLoginRepo;
-import com.jmr.obdx.repositories.UserSessionDataRepo;
-import com.jmr.obdx.repositories.UserSessionRepo;
+
+import com.jmr.obdx.domain.McxLogin;
+import com.jmr.obdx.domain.McxUser;
+import com.jmr.obdx.domain.McxUserSession;
+import com.jmr.obdx.repositories.McxUserSessionRepo;
 import com.jmr.obdx.util.Utility;
 
 /***
@@ -31,13 +31,10 @@ import com.jmr.obdx.util.Utility;
 public class AuthManager {
 	
 	@Autowired
-	private UserSessionDataRepo userSessionDataRepo;
-	
-	@Autowired
 	private McxLoginRepo loginRepo;
 	
 	@Autowired
-	private UserSessionRepo userSessionRepo;
+	private McxUserSessionRepo userSessionRepo;
 	
 	private static Logger logger = Logger.getLogger(AuthManager.class);
 
@@ -46,6 +43,9 @@ public class AuthManager {
 
 	@Value("${com.jmr.obdx.user.timeout}")
 	protected Integer timeOut;
+	
+	@Value("${com.jmr.mcx.user.session.isvalid}")
+	protected String isUserValid;
 	
 	public String getUserAuthInfo(Authentication authentication, HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,HttpSession httpSession) throws Exception{
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -61,14 +61,19 @@ public class AuthManager {
 	protected void createUserSessionData(Authentication authentication,HttpServletRequest httpServletRequest,HttpSession httpSession) throws Exception{
 		 logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 	     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		 Login login=loginRepo.findByUserName(authentication.getName());
-		 if(userSessionRepo.findByIduser(login.getId()).size()==0){
-			 String idSession=getRandom();
-			 userSessionDataRepo.save(new UserSessionData(idSession,login.getId()));
-			 userSessionRepo.save(new UserSession(idSession,new Date(httpServletRequest.getSession().getCreationTime()),
-					 new Date(httpServletRequest.getSession().getLastAccessedTime()),login.getId(),httpServletRequest.getRemoteAddr(),
-					 httpServletRequest.getSession().getId(),httpServletRequest.getProtocol(),authentication.getName(),Calendar.getInstance().getTimeZone().toZoneId().toString(),
-					 httpServletRequest.getLocale().getLanguage(),userDetails.getAuthorities().toString().replaceAll("\\[", "").replaceAll("\\]",""),timeOut,activeTimeOut,false,(String) httpSession.getAttribute(Utility.DEVICE))); 
+			 McxLogin mcxLogin=loginRepo.findByUserName(authentication.getName());
+		 /***
+		  * Modified findByMcxUser(login.getId.size == 0) to findByMcxUser(new McxUser(mcxLogin.getId())).equals(null)) by Murugesh on 17/07/2017
+		  */
+		 if(userSessionRepo.findByMcxUser(new McxUser(mcxLogin.getId())).equals(null)){
+			 String sessionId=getRandom();
+			 //userSessionDataRepo.save(new McxUserSession(sessionId,new McxUser(mcxLogin.getId())));
+			 /***
+			  * modified UserSession to McxUserSession and removed userSessionData by Murugesh on 17/07/2017
+			  */
+			
+			 userSessionRepo.save(new McxUserSession(new McxUser(mcxLogin.getId()), sessionId, new Date(httpServletRequest.getSession().getCreationTime()), new Date(httpServletRequest.getSession().getLastAccessedTime()), 
+					 httpServletRequest.getLocale().getLanguage(), httpServletRequest.getRemoteAddr(), timeOut,httpServletRequest.getProtocol(), activeTimeOut, Calendar.getInstance().getTimeZone().toZoneId().toString(), authentication.getName(), isUserValid ,(String) httpSession.getAttribute(Utility.DEVICE)));
 		 }
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 	}
