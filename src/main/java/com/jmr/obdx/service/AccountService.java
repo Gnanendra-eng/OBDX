@@ -18,6 +18,7 @@ import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
 import com.jmr.obdx.repositories.McxLoginRepo;
+import com.jmr.obdx.repositories.McxUserMRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.repositories.McxCustomerMappingRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
@@ -61,10 +62,11 @@ public class AccountService {
 	@Autowired
 	private AccountSummaryRepo accountsummaryrepo;
 	
-
-	
 	@Autowired
 	private MstBranchRepo mstBranchRepo;
+	
+	@Autowired
+	private McxUserMRepo mcxUserMRepo;
 
 
 	/***
@@ -76,13 +78,17 @@ public class AccountService {
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
+		
+
+
+		
 	
 		McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
 		
 		/***
 		 * Created McxCustomerMapping reference to get customerid and removed RetailCustomer to get customerid by murugesh on 17/07/2017
 		 */
-		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
 		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
@@ -109,8 +115,6 @@ public class AccountService {
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.findAccountDetailsByAccountIdCustomerId(customerId, nbrAccount);
-		System.out.println(new Double(accountdetail.getBALANCE()));
-
 		accountDetailsDto = new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(),
 				accountdetail.getNBRACCOUNT(), accountdetail.getACCTTYPE(), accountdetail.getACCTSTATUS(),
 				accountdetail.getCCYDESC(),new Double(accountdetail.getBALANCE()).doubleValue(), accountdetail.getOPENINGBALANCE(),
@@ -131,16 +135,14 @@ public class AccountService {
 	 * @param authentication-Hold Login user info.
 	 * @return Return account details
 	 */
-	
-	
-
 	public AccountSummaryInfo getAccountSummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
 		/***
 		 * Created McxCustomerMapping reference to get customerid by murugesh on 17/07/2017
 		 */
-		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		System.out.println(new McxUser(mcxLogin.getMcxUser().getId()));
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
 		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		savingsAndCurrent = new ArrayList<>();
@@ -155,12 +157,12 @@ public class AccountService {
 				sumOfSavingsAndCurrent += Double.parseDouble(accountsummary.getAVAILAMT());
 				savingsAndCurrent.add(getAccountSummaryType(accountsummary));
 			}
-			if (accountsummary.getCODACCTTYPE().equals(Utility.CONTRACTANDTERMDEPOSIT)) {
-				sumOfContractAndTermdepostit += Double.parseDouble(accountsummary.getNUMAVAILBAL());
-				loans.add(getAccountSummaryType(accountsummary));
-				}
 			if (accountsummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT)) {
 				sumOfLoans += Double.parseDouble(accountsummary.getNUMAVAILBAL());
+				loans.add(getAccountSummaryType(accountsummary));
+				}
+			if (accountsummary.getCODACCTTYPE().equals(Utility.CONTRACTANDTERMDEPOSIT)) {
+				sumOfContractAndTermdepostit += Double.parseDouble(accountsummary.getNUMAVAILBAL());
 				contractAndTermdeposit.add(getAccountSummaryType(accountsummary));
 				}
 			currencyType=accountsummary.getCODACCTCURR();
@@ -186,7 +188,7 @@ public class AccountService {
 		sumOfTotalLoans =0.0;
 		loanPending = new ArrayList<>();
 		McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
-		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
 		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		accountsummarys.stream().forEach(loansummary -> {
 			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))

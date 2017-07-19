@@ -80,8 +80,7 @@ public class BillerSevice {
 	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
 	
-	@Autowired
-	private McxUser mcxUser;
+	
 
 	@Autowired
 	private McxAdapter mcxAdapter;
@@ -218,7 +217,7 @@ public class BillerSevice {
     		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
 
      		  }
-	     	  McxUser mcxUser = mcxUserMRepo.findById(new McxUser(mcxCustomerMapping.getMcxUser().getId()));
+	     	  McxUser mcxUser = mcxUserMRepo.findById(mcxCustomerMapping.getMcxUser().getId());
 	     	  
      		  mcxAuditLogRepo.save(new McxAuditLog(new McxUser(mcxUser.getId()), new McxTransactionM(mcxTransactionM.getId()),new McxTransactionData(mcxTransactionData.getId()), Status, new Date(), requestObjectByte, responseStringByte,hostReference));
 

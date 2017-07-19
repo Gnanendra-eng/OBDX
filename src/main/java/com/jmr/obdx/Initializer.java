@@ -1,4 +1,4 @@
-package com.jmr.obdx;
+/*package com.jmr.obdx;
 import javax.servlet.Filter;
 
 import org.springframework.context.annotation.Configuration;
@@ -30,4 +30,4 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
     	return singleton;
 	}
 
-}
+}*/

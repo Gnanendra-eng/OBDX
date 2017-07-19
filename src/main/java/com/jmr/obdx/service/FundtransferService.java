@@ -63,9 +63,6 @@ public class FundtransferService {
 	private McxTransactionDataRepo transactionDataRepo;
 	
 	@Autowired
-	private McxCustomerMapping mcxCustomerMapping;
-	
-	@Autowired
 	private McxTransactionMRepo mcxTransactionMRepo;
 	
 	@Autowired

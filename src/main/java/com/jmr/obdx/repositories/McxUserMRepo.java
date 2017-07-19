@@ -16,7 +16,7 @@ import com.jmr.obdx.domain.McxUser;
 @Transactional
 public interface McxUserMRepo extends CrudRepository<McxUser, Integer>{
 	
-	 public McxUser findById(McxUser mcxuser);
+	 public McxUser findById(long mcxuser);
 	 
 
 	
