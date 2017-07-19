@@ -38,8 +38,7 @@ public class McxAuditLog  implements java.io.Serializable {
     }
 
 	
-    public McxAuditLog(long id, McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, byte [] requestData, byte [] responseData) {
-        this.id = id;
+    public McxAuditLog(McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, byte [] requestData, byte [] responseData,String hostReferenceId) {
         this.mcxUser = mcxUser;
         this.mcxTransactionM = mcxTransactionM;
         this.mcxTransactionData = mcxTransactionData;
@@ -47,24 +46,18 @@ public class McxAuditLog  implements java.io.Serializable {
         this.transactionDate = transactionDate;
         this.requestData = requestData;
         this.responseData = responseData;
+        this.hostReferenceId = hostReferenceId;
+
     }
-    public McxAuditLog(McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, String hostReferenceId, byte [] requestData, byte [] responseData) {
-       this.mcxUser = mcxUser;
-       this.mcxTransactionM = mcxTransactionM;
-       this.mcxTransactionData = mcxTransactionData;
-       this.status = status;
-       this.transactionDate = transactionDate;
-       this.hostReferenceId = hostReferenceId;
-       this.requestData = requestData;
-       this.responseData = responseData;
-    }
+    
+
+    
    
-   
+    
+    
 
 
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -74,7 +67,7 @@ public class McxAuditLog  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_USER_ID", nullable=false)
     public McxUser getMcxUser() {
         return this.mcxUser;
@@ -84,7 +77,7 @@ public class McxAuditLog  implements java.io.Serializable {
         this.mcxUser = mcxUser;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_TRANSACTION_ID", nullable=false)
     public McxTransactionM getMcxTransactionM() {
         return this.mcxTransactionM;

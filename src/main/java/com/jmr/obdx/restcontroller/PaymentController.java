@@ -48,7 +48,6 @@ public class PaymentController {
 	private ResponseEntity<PaymentUpdate> getPaymentUpdate(@RequestBody OwnAccountPaymentDto paymentDto) {
 		try {
 			logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod());
-			PaymentUpdate responceObj = paymentService.getUpdateAmount(paymentDto);
 			if (responceObj.getErrorStatus()) {
 				logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 				return new ResponseEntity<PaymentUpdate>(responceObj, HttpStatus.BAD_REQUEST);

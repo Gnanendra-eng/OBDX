@@ -220,8 +220,7 @@ public class BillerSevice {
      		  }
 	     	  McxUser mcxUser = mcxUserMRepo.findById(new McxUser(mcxCustomerMapping.getMcxUser().getId()));
 	     	  
-     		  mcxAuditLogRepo.save(new McxAuditLog(new McxUser(mcxUser.getId()), new McxTransactionM(mcxTransactionM.getId()),new McxTransactionData(mcxTransactionData.getId()), Status, new Date(), hostReference, requestObjectByte, responseStringByte));
-	     	  //mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), mcxTransactionData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
+     		  mcxAuditLogRepo.save(new McxAuditLog(new McxUser(mcxUser.getId()), new McxTransactionM(mcxTransactionM.getId()),new McxTransactionData(mcxTransactionData.getId()), Status, new Date(), requestObjectByte, responseStringByte,hostReference));
 
      		payBillInfo.setStatus(Status);
      		payBillInfo.setFcdbRefId(referenceId);

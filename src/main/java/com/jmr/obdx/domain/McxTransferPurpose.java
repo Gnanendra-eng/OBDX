@@ -26,7 +26,8 @@ public class McxTransferPurpose  implements java.io.Serializable {
      private String purposeType;
      private Set<McxTransactionData> mcxTransactionDatas = new HashSet<McxTransactionData>(0);
 
-    public McxTransferPurpose() {
+    public McxTransferPurpose(String description) {
+    this.description=description;
     }
 
 	

@@ -12,13 +12,16 @@ import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.McxAccountTypeM;
 import com.jmr.obdx.domain.McxAuditLog;
+import com.jmr.obdx.domain.McxBeneficiary;
 import com.jmr.obdx.domain.McxCurrencyM;
 import com.jmr.obdx.domain.McxCustomerMapping;
 import com.jmr.obdx.domain.McxLogin;
 import com.jmr.obdx.domain.McxTransactionData;
 import com.jmr.obdx.domain.McxTransactionM;
+import com.jmr.obdx.domain.McxTransferPurpose;
 import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
@@ -98,10 +101,9 @@ public class FundtransferService {
 	@Autowired
 	private McxUserMRepo mcxUserMRepo;
 	
-	private  String hostReference;
-	private Utility utilities;
-	private FundTransferInfo fundTransferDto;
-	
+	 private  String hostReference;
+	 private Utility utilities;
+	 private FundTransferInfo fundTransferDto;
 	 private static Logger logger = Logger.getLogger(FundtransferService.class);
 	 private String errorCode = null;
 	 private String errorDescrption = null;
@@ -127,41 +129,40 @@ public class FundtransferService {
 			bindingResult.getFieldErrors().forEach(error -> {statusInfo.getErrorMsgs().add(new ErrorMsg(error.getField(), error.getDefaultMessage()));
 			});
 		    }
-         if(ownAccountTransferDto.getToAccount()==ownAccountTransferDto.getFromAccount() && (ownAccountTransferDto.getAmount()== 0)){
+       /*  if(ownAccountTransferDto.getToAccount()==ownAccountTransferDto.getFromAccount() && (ownAccountTransferDto.getAmount()== 0)){
  			statusInfo.setErrorStatus(true);
 			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.date.not.valid.selection",new Object[] {}, locale)));
          }
          if(ownAccountTransferDto.getFromAccountBalancy() < ownAccountTransferDto.getAmount()){
   			statusInfo.setErrorStatus(true);
  			statusInfo.getErrorMsgs().add(new com.jmr.obdx.dto.ErrorMsg(messageSource.getMessage("field.accountno",new Object[] {}, locale),messageSource.getMessage("error.not.sufficient.amount",new Object[] {}, locale)));
-          }
+          }*/
          else{
-        	 BasebranchCodeM basebranchCodeM=basebranchCodeRepo.baseBranchDetailsM();
        	     McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
    		     McxCustomerMapping mcxCustomerMapping =  mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
         	 McxAccountTypeM mcxAccountTypeM =accountTypeRepo.findByDescription(ownAccountTransferDto.getAccountType());
         	 McxCurrencyM mcxCurrencyM =currencyRepo.findByCurrencyType(ownAccountTransferDto.getCurrencyCode());
         	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProductDescription(Utility.OAT);
-        	 transactionDataRepo.save(new McxTransactionData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), mcxCurrencyM, mcxCustomerMapping.getCustomerId(), ownAccountTransferDto.getFromAccount(), ownAccountTransferDto.getToAccount(), ownAccountTransferDto.getToBranchCode(),ownAccountTransferDto.getFromBranchCode(), ownAccountTransferDto.getAmount(), new Date(), "Intransit", ownAccountTransferDto.getNote(),referenceid));
-        	 McxTransactionData mcxTransactionData = txnDataRepo.findByReferenceId(referenceid);
+         	 Accountdetails accountdetails = accountDetailsRepo.findAccountBranchByAccountId(ownAccountTransferDto.getFromAccount());
+        	transactionDataRepo.save(new McxTransactionData(new McxAccountTypeM(mcxAccountTypeM.getId()), mcxCurrencyM, mcxCustomerMapping.getCustomerId(), ownAccountTransferDto.getFromAccount(), ownAccountTransferDto.getToAccount(), ownAccountTransferDto.getToBranchCode(),ownAccountTransferDto.getFromBranchCode(), ownAccountTransferDto.getAmount(), new Date(), ownAccountTransferDto.getNote(),referenceid));
+        	McxTransactionData mcxTransactionData = txnDataRepo.findByReferenceId(referenceid);
      		java.io.StringWriter sw = new StringWriter();
      		Date myDate = new Date();
-
      		JAXBContext contextObj = JAXBContext.newInstance(com.mcx.xml.SoapenvEnvelope.class);
      		Marshaller marshallerObj = contextObj.createMarshaller();
-     		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);*/
+     		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
      		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
      		
-     		com.mcx.xml.ContractDetailsFull contractDetailsFull = new com.mcx.xml.ContractDetailsFull(mcxTransactionM.getProd(), txnData.getReferenceId(), 
-     				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), 
-     				                                              txnData.getToaccountno(),txnData.getFrombranchcod(),txnData.getCurrencyM().getCurrencyDesc(), txnData.getAmount(), 
-     				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), txnData.getTobranchcod(), 
-     				                                              txnData.getFromaccountno(),txnData.getCurrencyM().getCurrencyType(), txnData.getAmount(), txnData.getReferenceId(), "FLEXCUBE",
-     				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), mcxTransactionM.getProddesc(), "N", "TESTER5", 
-     				                                              new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(txnData.getTransaferdate()), "U", new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()),
-     				                                              mcxTransactionM.getProd(), mcxTransactionM.getModcd(), txnData.getCurrencyM().getCurrencyDesc(), "FLEXCUBE");
+     		com.mcx.xml.ContractDetailsFull contractDetailsFull = new com.mcx.xml.ContractDetailsFull(mcxTransactionM.getProductDescription(), mcxTransactionData.getReferenceId(), 
+     				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), 
+     				                                              mcxTransactionData.getToAccountNumber(),mcxTransactionData.getFromBranchCode(),mcxTransactionData.getMcxCurrencyM().getCurrencyDescription(), mcxTransactionData.getAmount(), 
+     				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), mcxTransactionData.getToBranchCode(), 
+     				                                              mcxTransactionData.getFromAccountNumber(),mcxTransactionData.getMcxCurrencyM().getCurrencyType(), mcxTransactionData.getAmount(), mcxTransactionData.getReferenceId(), "FLEXCUBE",
+     				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), mcxTransactionM.getProductDescription(), "N", "TESTER5", 
+     				                                              new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mcxTransactionData.getTransferDate()), "U", new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()),
+     				                                              mcxTransactionM.getProductDescription(), mcxTransactionM.getTransactionMode(), mcxTransactionData.getMcxCurrencyM().getCurrencyDescription(), "FLEXCUBE");
     		
-     		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", txnData.getReferenceId(),"SYSTEM", basebranchCodeM.getBranchcode(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
+     		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", mcxTransactionData.getReferenceId(),"SYSTEM", mcxTransactionData.getFromBranchCode(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
      		McxBody  mcxBody = new McxBody(contractDetailsFull);
      		CreateContractReq createContractReq = new CreateContractReq(mcxHeader, "http://fcubs.ofss.com/service/FCUBSFTService", mcxBody);
      		SoapBody soapBody = new SoapBody(createContractReq);
@@ -180,7 +181,7 @@ public class FundtransferService {
      		  else{
     		      hostReference = responseString.substring(responseString.indexOf("<REFERENCE_NO>") +14, responseString.indexOf("</REFERENCE_NO>"));
      		  }
-     		 mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, errorCode, errorDescrption, new Date(), Status, hostReference));
+     		 mcxAuditLogRepo.save(new McxAuditLog(new McxUser(mcxLogin.getMcxUser().getId()),new McxTransactionM(mcxTransactionM.getId()),new McxTransactionData(mcxTransactionData.getId()), Status, new Date(), requestObjectBytr, responseStringBytr,hostReference));
      		 fundTransferDto.setStatus(Status);
      		 fundTransferDto.setFcdbRefId(referenceid);
      		 fundTransferDto.setHostRefId(hostReference);
@@ -211,35 +212,32 @@ public class FundtransferService {
 		    }
        
         else{
-       	
-       	 
-       	 BasebranchCodeM basebranchCodeM=basebranchCodeRepo.baseBranchDetailsM();
-       	 RetailCustomer  retailCustomer =retailCustomerRepo.findByCustomername(authentication.getName());
-       	 AccountTypeM accountTypeM =accountTypeRepo.findByDescription(internalAccountTransfer.getAccountType());
-       	 CurrencyM currencyM =currencyRepo.findByCurrencyType(internalAccountTransfer.getCurrencyCode());
-       	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProddesc("internal account Transfer");
-         BeneficiaryM beneficiaryM=	beneficiaryRepo.findById(internalAccountTransfer.getPayeeId());
-       	 transactionDataRepo.save(new TxnData(new McxTransactionM(mcxTransactionM.getId()), new AccountTypeM(accountTypeM.getId()), currencyM, retailCustomer.getIdcusomer(), internalAccountTransfer.getFromAccount(), internalAccountTransfer.getFromBranchCode(), internalAccountTransfer.getToAccount(), beneficiaryM.getAccountnumber(), internalAccountTransfer.getAmount(), new Date(),"Intransit" , internalAccountTransfer.getNote(), referenceid, internalAccountTransfer.getPurpose(), beneficiaryM));
-       	 TxnData txnData = txnDataRepo.findByReferenceId(referenceid);
+         McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
+  		 McxCustomerMapping mcxCustomerMapping =  mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));       	 
+  		 McxAccountTypeM mcxAccountTypeM =accountTypeRepo.findByDescription(internalAccountTransfer.getAccountType());
+       	 McxCurrencyM mcxCurrencyM =currencyRepo.findByCurrencyType(internalAccountTransfer.getCurrencyCode());
+       	 McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProductDescription(Utility.OAT);
+         McxBeneficiary mcxBeneficiary=	beneficiaryRepo.findById(internalAccountTransfer.getPayeeId());
 
+       	 transactionDataRepo.save(new McxTransactionData(new McxAccountTypeM(mcxAccountTypeM.getId()), mcxCurrencyM, mcxCustomerMapping.getCustomerId(), internalAccountTransfer.getFromAccount(), internalAccountTransfer.getFromBranchCode(), mcxBeneficiary.getAccountNumber(), internalAccountTransfer.getAmount(), new Date(),"Intransit" , internalAccountTransfer.getNote(), referenceid, new McxTransferPurpose(internalAccountTransfer.getPurpose()), mcxBeneficiary));
+       	 McxTransactionData mcxTransactionData = txnDataRepo.findByReferenceId(referenceid);
     		java.io.StringWriter sw = new StringWriter();
     		Date myDate = new Date();
-
     		JAXBContext contextObj = JAXBContext.newInstance(com.mcx.xml.SoapenvEnvelope.class);
     		Marshaller marshallerObj = contextObj.createMarshaller();
     		marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
     		
     		
-    		com.mcx.xml.ContractDetailsFull contractDetailsFull = new com.mcx.xml.ContractDetailsFull(mcxTransactionM.getProd(), txnData.getReferenceId(), 
-    				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), 
-    				                                              txnData.getToaccountno(),txnData.getFrombranchcod(),txnData.getCurrencyM().getCurrencyDesc(), txnData.getAmount(), 
-    				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), txnData.getTobranchcod(), 
-    				                                              txnData.getFromaccountno(),txnData.getCurrencyM().getCurrencyType(), txnData.getAmount(), txnData.getReferenceId(), "FLEXCUBE",
-    				                                              new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()), mcxTransactionM.getProddesc(), "N", "TESTER5", 
-    				                                              new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(txnData.getTransaferdate()), "U", new SimpleDateFormat("yyyy-MM-dd").format(txnData.getTransaferdate()),
-    				                                              mcxTransactionM.getProd(), mcxTransactionM.getModcd(), txnData.getCurrencyM().getCurrencyDesc(), "FLEXCUBE");
+    		com.mcx.xml.ContractDetailsFull contractDetailsFull = new com.mcx.xml.ContractDetailsFull(mcxTransactionM.getProductDescription(), mcxTransactionData.getReferenceId(), 
+    				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), 
+    				                                              mcxTransactionData.getToAccountNumber(),mcxTransactionData.getFromBranchCode(),mcxTransactionData.getMcxCurrencyM().getCurrencyDescription(), mcxTransactionData.getAmount(), 
+    				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), mcxTransactionData.getToBranchCode(), 
+    				                                              mcxTransactionData.getFromAccountNumber(),mcxTransactionData.getMcxCurrencyM().getCurrencyType(), mcxTransactionData.getAmount(), mcxTransactionData.getReferenceId(), "FLEXCUBE",
+    				                                              new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), mcxTransactionM.getProductDescription(), "N", "TESTER5", 
+    				                                              new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mcxTransactionData.getTransferDate()), "U", new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()),
+    				                                              mcxTransactionM.getProductDescription(), mcxTransactionM.getTransactionMode(), mcxTransactionData.getMcxCurrencyM().getCurrencyDescription(), "FLEXCUBE");
    		
-    		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", txnData.getReferenceId(),"SYSTEM", basebranchCodeM.getBranchcode(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
+    		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", mcxTransactionData.getReferenceId(),"SYSTEM", internalAccountTransfer.getFromBranchCode(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
     		McxBody  mcxBody = new McxBody(contractDetailsFull);
     		CreateContractReq createContractReq = new CreateContractReq(mcxHeader, "http://fcubs.ofss.com/service/FCUBSFTService", mcxBody);
     		SoapBody soapBody = new SoapBody(createContractReq);
@@ -267,10 +265,7 @@ public class FundtransferService {
     		  byte responseStringBytr[] =responseString.getBytes();
        		  System.out.println(responseString);
        		  byte requestObjectBytr[] =requestObj.toString().getBytes();
-         	  Login login = loginRepo.findByUserName(authentication.getName());
-
-	     	  McxUserM mcxUserM = mcxUserMRepo.findById(retailCustomer.getIduser());
-	     	  mcxAuditLogRepo.save(new McxAuditLog(new Login(login.getRetailCustomer().getIduser()),new McxTransactionM(mcxTransactionM.getId()), txnData.getReferenceId(),  requestObjectBytr, responseStringBytr, wCode, wDesc, new Date(), Status, hostReference));
+	     	  mcxAuditLogRepo.save(new McxAuditLog(new McxUser(mcxLogin.getMcxUser().getId()),new McxTransactionM(mcxTransactionM.getId()), new McxTransactionData(mcxTransactionData.getReferenceId()), Status,new Date(), requestObjectBytr, responseStringBytr,hostReference));
     		  fundTransferDto.setStatus(Status);
       		  fundTransferDto.setFcdbRefId(referenceid);
       		  fundTransferDto.setHostRefId(hostReference);

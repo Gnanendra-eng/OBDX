@@ -50,11 +50,18 @@ public class McxTransactionData  implements java.io.Serializable {
     	this.id=id;
     }
 
-    public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String referenceId, long refTransactionId) {
-        this.mcxTransferPurpose = mcxTransferPurpose;
+    
+    public McxTransactionData(String  referenceId) {
+    	this.referenceId=referenceId;
+    }
+    
+    
+    /***
+     * Method for own account transfer
+    
+     */
+    public McxTransactionData(  McxAccountTypeM mcxAccountTypeM,McxCurrencyM mcxCurrencyM, String customerId,String fromAccountNumber, String toAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String referenceId ) {
         this.mcxCurrencyM = mcxCurrencyM;
-        this.mcxBiller = mcxBiller;
-        this.mcxBeneficiary = mcxBeneficiary;
         this.mcxAccountTypeM = mcxAccountTypeM;
         this.customerId = customerId;
         this.toAccountNumber = toAccountNumber;
@@ -66,7 +73,9 @@ public class McxTransactionData  implements java.io.Serializable {
         this.referenceId = referenceId;
     }
     
-    
+    /***
+     * Method used to paybills
+     */
     public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, 
     		McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode
     		 , String amount, Date transferDate , String referenceId ) {
@@ -78,7 +87,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.toAccountNumber = toAccountNumber;
         this.fromAccountNumber = fromAccountNumber;
         this.toBranchCode = toBranchCode;
-        this.fromBranchCode = fromBranchCode;
         this.amount = amount;
         this.transferDate = transferDate;
         this.referenceId = referenceId;
@@ -106,6 +114,28 @@ public class McxTransactionData  implements java.io.Serializable {
     }
    
 
+/**
+ * Method used for Internal Fund Transfer
+ */
+	public McxTransactionData(McxAccountTypeM mcxAccountTypeM,
+			McxCurrencyM mcxCurrencyM, String customerId, String fromAccountNumber, String fromBranchCode,
+			String toAccountNumber , String amount, Date transferDate, String string, String note,
+			String referenceId, McxTransferPurpose mcxTransferPurpose, McxBeneficiary mcxBeneficiary) {
+		
+	       this.mcxAccountTypeM = mcxAccountTypeM;
+	       this.mcxCurrencyM = mcxCurrencyM;
+	       this.customerId = customerId;
+	       this.fromAccountNumber = fromAccountNumber;
+	       this.fromBranchCode = fromBranchCode;
+	       this.toAccountNumber = toAccountNumber;
+	       this.amount = amount;
+	       this.transferDate = transferDate;
+	       this.note = note;
+	       this.referenceId = referenceId;
+	       this.mcxTransferPurpose = mcxTransferPurpose;
+	       this.mcxBeneficiary = mcxBeneficiary;
+
+	}
 
 	@Id 
 

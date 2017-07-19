@@ -1,4 +1,4 @@
-package com.jmr.obdx.service;
+/*package com.jmr.obdx.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.jmr.obdx.domain.BranchM;
 import com.jmr.obdx.domain.MstBranch;
-import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.service.dto.AllBranch;
 import com.jmr.obdx.service.dto.BranchInfoDto;
 
@@ -43,3 +41,4 @@ public class BranchService {
      return branchInfoDto;
 	}
 }
+*/
