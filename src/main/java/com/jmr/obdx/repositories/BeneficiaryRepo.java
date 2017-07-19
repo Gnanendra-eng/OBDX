@@ -24,11 +24,8 @@ public interface BeneficiaryRepo extends CrudRepository<McxBeneficiary, Integer>
 	@Query(" from McxBeneficiary")
 	public List<McxBeneficiary> findBeneficiary();
 	
-<<<<<<< HEAD
 	public McxBeneficiary findById (@Param("payeeId") long payeeId);
 	
-=======
 	@Query("from McxBeneficiary where id=:payeeId")
 	public McxBeneficiary findByBeneficiaryId (@Param("payeeId") long payeeId);
->>>>>>> refs/heads/modifications_on_services
 }
