@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.util.Utility;
 
 @Service
@@ -16,7 +16,7 @@ public class UserNameService {
 
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	private StatusInfo statusInfo;
 	
 

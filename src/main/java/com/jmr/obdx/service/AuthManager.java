@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.UserSession;
 import com.jmr.obdx.domain.UserSessionData;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.UserSessionDataRepo;
 import com.jmr.obdx.repositories.UserSessionRepo;
 import com.jmr.obdx.util.Utility;
@@ -34,7 +34,7 @@ public class AuthManager {
 	private UserSessionDataRepo userSessionDataRepo;
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	@Autowired
 	private UserSessionRepo userSessionRepo;

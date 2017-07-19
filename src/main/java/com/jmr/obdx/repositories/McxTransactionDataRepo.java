@@ -18,12 +18,12 @@ import com.jmr.obdx.domain.McxTransactionData;
 
 @Repository
 @Transactional
-public interface TxnDataRepo extends CrudRepository<McxTransactionData, Integer>{
+public interface McxTransactionDataRepo extends CrudRepository<McxTransactionData, Integer>{
 	
-	@Query("from TxnData")
+	@Query("from McxTransactionData")
 	public List<McxTransactionData> transactionData();
 	
-	public McxTransactionData findByReferenceId( String refId);
+	public McxTransactionData findByReferenceId(String referenceId);
 
 	
 

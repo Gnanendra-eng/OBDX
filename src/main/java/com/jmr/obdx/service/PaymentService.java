@@ -1,4 +1,4 @@
-package com.jmr.obdx.service;
+/*package com.jmr.obdx.service;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.JmrcurrencymRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.OwnAccountPaymentDto;
 import com.jmr.obdx.service.dto.PaymentInfoDto;
@@ -30,7 +30,7 @@ public class PaymentService {
 	private AccountDetailsRepo accountDetailsRepo;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
@@ -65,3 +65,4 @@ public class PaymentService {
 	
 	
 }
+*/

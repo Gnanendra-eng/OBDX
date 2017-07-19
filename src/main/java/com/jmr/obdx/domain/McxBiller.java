@@ -32,36 +32,36 @@ public class McxBiller  implements java.io.Serializable {
      private String referenceNumber;
      private Date registrationDate;
      private String name;
-     private long refBillerOpeartorId;
+     private McxBillerOperator mcxBillerOperator;
      private Set<McxTransactionData> mcxTransactionDatas = new HashSet<McxTransactionData>(0);
 
     public McxBiller() {
     }
+    public McxBiller(String billerId) {
+    	this.billerId= billerId;
+    }
 
 	
-    public McxBiller(long id, McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, long refBillerOpeartorId) {
-        this.id = id;
+    public McxBiller(McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator) {
         this.mcxLogin = mcxLogin;
         this.billerId = billerId;
         this.referenceNumber = referenceNumber;
         this.registrationDate = registrationDate;
         this.name = name;
-        this.refBillerOpeartorId = refBillerOpeartorId;
+        this.mcxBillerOperator = mcxBillerOperator;
     }
-    public McxBiller(long id, McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, long refBillerOpeartorId, Set<McxTransactionData> mcxTransactionDatas) {
+    public McxBiller(long id, McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator, Set<McxTransactionData> mcxTransactionDatas) {
        this.id = id;
        this.mcxLogin = mcxLogin;
        this.billerId = billerId;
        this.referenceNumber = referenceNumber;
        this.registrationDate = registrationDate;
        this.name = name;
-       this.refBillerOpeartorId = refBillerOpeartorId;
+       this.mcxBillerOperator = mcxBillerOperator;
        this.mcxTransactionDatas = mcxTransactionDatas;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -122,13 +122,14 @@ public class McxBiller  implements java.io.Serializable {
     }
 
     
-    @Column(name="REF_BILLER_OPEARTOR_ID", nullable=false, precision=10, scale=0)
-    public long getRefBillerOpeartorId() {
-        return this.refBillerOpeartorId;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="REF_BILLER_OPEARTOR_ID", nullable=false)
+    public McxBillerOperator getMcxBillerOperator() {
+        return this.mcxBillerOperator;
     }
     
-    public void setRefBillerOpeartorId(long refBillerOpeartorId) {
-        this.refBillerOpeartorId = refBillerOpeartorId;
+    public void setMcxBillerOperator(McxBillerOperator mcxBillerOperator) {
+        this.mcxBillerOperator = mcxBillerOperator;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBiller")

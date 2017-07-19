@@ -10,8 +10,9 @@ public class PayBillIDto {
 	private String fromAccountCurrency;
 	private String billerNo;
 	private String note;
-/*	private String billDate;
-*/	public String getBillerId() {
+	private long transactionPurposeId;
+	private long accountType;
+	public String getBillerId() {
 		return billerId;
 	}
 	public void setBillerId(String billerId) {
@@ -59,14 +60,20 @@ public class PayBillIDto {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	/*public String getBillDate() {
-		return billDate;
+	public long getTransactionPurposeId() {
+		return transactionPurposeId;
 	}
-	public void setBillDate(String billDate) {
-		this.billDate = billDate;
-	}*/
-	public PayBillIDto(String billerId, String fromAccount,String branchCode,String fromAccountCurrency,  String amount, 
-			String relationId, String billerNo, String note/*, String billDate*/) {
+	public void setTransactionPurposeId(long transactionPurposeId) {
+		this.transactionPurposeId = transactionPurposeId;
+	}
+	public long getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(long accountType) {
+		this.accountType = accountType;
+	}
+	public PayBillIDto(String billerId, String fromAccount, String relationId, String amount, String branchCode,
+			String fromAccountCurrency, String billerNo, String note, long transactionPurposeId, long accountType) {
 		this.billerId = billerId;
 		this.fromAccount = fromAccount;
 		this.relationId = relationId;
@@ -75,11 +82,13 @@ public class PayBillIDto {
 		this.fromAccountCurrency = fromAccountCurrency;
 		this.billerNo = billerNo;
 		this.note = note;
-/*		this.billDate = billDate;
-*/	}
+		this.transactionPurposeId = transactionPurposeId;
+		this.accountType = accountType;
+	}
 	public PayBillIDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+
+
 }

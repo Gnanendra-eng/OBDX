@@ -10,12 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.jmr.obdx.domain.Accountdetails;
-import com.jmr.obdx.domain.Login;
-import com.jmr.obdx.domain.RetailCustomer;
+import com.jmr.obdx.domain.McxCustomerMapping;
+import com.jmr.obdx.domain.McxLogin;
+import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.domain.TermDepositeM;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
-import com.jmr.obdx.repositories.LoginRepo;
-import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.repositories.McxCustomerMappingRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.TermDepositeRepo;
 import com.jmr.obdx.service.dto.TermDepositeDto;
 import com.jmr.obdx.service.dto.TermDepositeInfo;
@@ -31,10 +32,10 @@ public class TermDepositeService {
 	private String currencyType;
 
 	@Autowired
-	private RetailCustomerRepo retailCustomerRepo;
+	private McxCustomerMappingRepo mcxCustomerMappingRepo;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo mcxLoginRepo;
 
 	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
@@ -45,19 +46,19 @@ public class TermDepositeService {
 	
 	public TermDepositeInfo getTermDeposite(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUserName(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
+		McxLogin mcxLogin = mcxLoginRepo.findByUserName(authentication.getName());
+		McxCustomerMapping mcxCustomerMapping =  mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
 		termDepositeInfo = new TermDepositeInfo();
 		totalTermDeposits=0.0;
 		tempDepositeSummary=new ArrayList<>();
-		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());	
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());	
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEachOrdered(accountdetail -> {
 			
 				tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 				
-				List<TermDepositeM> termDepositeMs = termDepositeRepo.findTermDepositeByCustomerId(retailCustomer.getIdcusomer());
+				List<TermDepositeM> termDepositeMs = termDepositeRepo.findTermDepositeByCustomerId(mcxCustomerMapping.getCustomerId());
 				termDepositeMs.stream().forEach(tempTermDeposit -> {
 					
 					if(tempTermDeposit.getCodaccttype().equals(Utility.CONTRACTANDTERMDEPOSIT)){
@@ -87,7 +88,7 @@ public class TermDepositeService {
 				});
 			
 		
-        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
+        termDepositeInfo=new TermDepositeInfo(tempDepositeSummary,totalTermDeposits,tempAccountDetails,mcxCustomerMapping.getCustomerId(),currencyType);
 		 return  termDepositeInfo;
 	}
 

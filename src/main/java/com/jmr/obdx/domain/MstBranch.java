@@ -76,9 +76,6 @@ public class MstBranch  implements java.io.Serializable {
 
     
     
- 
-    
-    
     @Column(name="BRANCH_CODE", nullable=false, length=12)
     public String getBranchCode() {
         return this.branchCode;

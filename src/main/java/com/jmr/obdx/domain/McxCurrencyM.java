@@ -29,6 +29,9 @@ public class McxCurrencyM  implements java.io.Serializable {
 
     public McxCurrencyM() {
     }
+    public McxCurrencyM(String currencyDescription ) {
+    	this.currencyDescription =currencyDescription;
+    }
 
 	
     public McxCurrencyM(long id, String currencyDescription, String currencyType) {

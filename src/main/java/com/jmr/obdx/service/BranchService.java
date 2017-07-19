@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.jmr.obdx.domain.BranchM;
+import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.repositories.BranchRepo;
 import com.jmr.obdx.service.dto.AllBranch;
 import com.jmr.obdx.service.dto.BranchInfoDto;
@@ -32,7 +33,7 @@ public class BranchService {
 	
 	
 	public BranchInfoDto getBranchDetails(Authentication authentication){
-	List<BranchM> branchDetailsMs= branchRepo.findAllBranch();
+	List<MstBranch> branchDetailsMs= branchRepo.findAllBranch();
 	branchInfoDto = new BranchInfoDto();
 	allBranch = new ArrayList<>();
 	branchDetailsMs.stream().forEach(branchDetailsM ->{

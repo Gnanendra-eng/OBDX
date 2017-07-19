@@ -16,7 +16,7 @@ import com.jmr.obdx.domain.MstBranch;
 import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AccountBranch;
@@ -49,7 +49,7 @@ public class AccountService {
 	private RetailCustomerRepo retailCustomerRepo;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 
 	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
@@ -64,7 +64,7 @@ public class AccountService {
 
 
 	/***
-	 * Returns all account number hold login user
+	 * Returns all account number hold by login user
 	 * @param authentication-Hold Login user info.
 	 * @return  all account number hold login user
 	 */

@@ -12,7 +12,7 @@ import com.jmr.obdx.domain.Login;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AuthorityMRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
 /***
@@ -27,7 +27,7 @@ public class UserService {
 	private AuthorityMRepo authorityMRepo;
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	private StatusInfo statusInfo;
 	

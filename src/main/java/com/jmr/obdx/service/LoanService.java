@@ -3,23 +3,24 @@ package com.jmr.obdx.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.LoanAccount;
-import com.jmr.obdx.domain.Login;
-import com.jmr.obdx.domain.RetailCustomer;
+import com.jmr.obdx.domain.McxCustomerMapping;
+import com.jmr.obdx.domain.McxLogin;
+import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.LoanRepo;
-import com.jmr.obdx.repositories.LoginRepo;
-import com.jmr.obdx.repositories.RetailCustomerRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
+import com.jmr.obdx.repositories.McxCustomerMappingRepo;
+import com.jmr.obdx.repositories.McxUserMRepo;
 import com.jmr.obdx.service.dto.BasicLoanDetailsDto;
 import com.jmr.obdx.service.dto.BasicLoanDetailsInfo;
 import com.jmr.obdx.util.Utility;
+
 
 @Service
 public class LoanService {
@@ -37,10 +38,13 @@ public class LoanService {
 	private LoanRepo loanRepo;
 	
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	@Autowired
-	private RetailCustomerRepo retailCustomerRepo;
+	private McxUserMRepo mcxUserMRepo;
+	
+	@Autowired
+	private McxCustomerMappingRepo mcxCustomerMappingRepo;
 	
 	@Autowired
 	private AccountDetailsRepo accountDetailsRepo;
@@ -49,10 +53,10 @@ public class LoanService {
 	public BasicLoanDetailsInfo getBasicLoanDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicLoanDetailsDto=new BasicLoanDetailsInfo();
-		Login login = loginRepo.findByUserName(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<LoanAccount> loanAccounts=loanRepo.findLoanSummaryByCustomerId(retailCustomer.getIdcusomer());
-		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(retailCustomer.getIdcusomer());
+		McxLogin mcxlogin = loginRepo.findByUserName(authentication.getName());
+		McxCustomerMapping mcxCustomerMapping =  mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxlogin.getMcxUser().getId()));
+		List<LoanAccount> loanAccounts=loanRepo.findLoanSummaryByCustomerId((mcxCustomerMapping.getCustomerId()));
+		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
@@ -82,7 +86,7 @@ public class LoanService {
 			}
 			currencyType=loanAccount.getCodcurrency();
 		});
-		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,retailCustomer.getIdcusomer(),tempAccountDetails,currencyType);
+		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,mcxCustomerMapping.getCustomerId(),tempAccountDetails,currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return basicLoanDetailsDto;
 	}
@@ -90,7 +94,7 @@ public class LoanService {
 	
 	
 	private  SimpleDateFormat getSimpleDateFormat(){
-		return new SimpleDateFormat("dd MMMM yyyy"); 
+	return new SimpleDateFormat("dd MMMM yyyy"); 
 	}
 
 }

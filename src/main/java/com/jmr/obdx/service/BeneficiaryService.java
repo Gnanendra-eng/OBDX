@@ -22,7 +22,7 @@ import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.BranchRepo;
-import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.McxTransactionMRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.repositories.RetailCustomerRepo;
@@ -44,7 +44,7 @@ public class BeneficiaryService {
 	private PayeeInfo payeeInfo;
 
 	@Autowired
-	private LoginRepo loginRepo;
+	private McxLoginRepo loginRepo;
 	
 	@Autowired
 	private RetailCustomerRepo retailCustomerRepo;
