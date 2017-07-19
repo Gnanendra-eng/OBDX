@@ -42,7 +42,12 @@ public class McxTransferViaType  implements java.io.Serializable {
        this.mcxBeneficiaries = mcxBeneficiaries;
     }
    
-     @Id 
+     public McxTransferViaType(String transferViaType) {
+		this.transferViaType = transferViaType;
+	}
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)

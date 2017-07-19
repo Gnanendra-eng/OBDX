@@ -51,7 +51,10 @@ public class McxUser  implements java.io.Serializable {
     public McxUser() {
     }
 
-	
+    public McxUser(long id) {
+    	this.id = id;
+    }
+    
     public McxUser(long id, String firstName, String mobileNumber, String emailId) {
         this.id = id;
         this.firstName = firstName;

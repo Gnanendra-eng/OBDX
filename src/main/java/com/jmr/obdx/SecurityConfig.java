@@ -13,10 +13,8 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
-import com.jmr.obdx.filter.CsrfTokenResponseCookieBindingFilter;
 import com.jmr.obdx.handler.CustomLogoutHandler;
 import com.jmr.obdx.handler.CustomLogoutSuccessHandler;
 /***

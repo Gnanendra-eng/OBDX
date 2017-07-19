@@ -47,8 +47,7 @@ public class McxUserSession  implements java.io.Serializable {
     public McxUserSession(long id) {
         this.id = id;
     }
-    public McxUserSession(long id, McxUser mcxUser, String sessionId, Date creationDate, Date lastAccessDate, String language, String remoteAddress, Integer timeout, String hostPrifix, Integer activeTimeout, String timezone, String username, String isValidFlag, String deviceName) {
-       this.id = id;
+    public McxUserSession(McxUser mcxUser, String sessionId, Date creationDate, Date lastAccessDate, String language, String remoteAddress, Integer timeout, String hostPrifix, Integer activeTimeout, String timezone, String username, String isValidFlag, String deviceName) {
        this.mcxUser = mcxUser;
        this.sessionId = sessionId;
        this.creationDate = creationDate;
@@ -64,7 +63,13 @@ public class McxUserSession  implements java.io.Serializable {
        this.deviceName = deviceName;
     }
    
-     @Id 
+     public McxUserSession(String sessionId, McxUser mcxUser) {
+		this.sessionId = sessionId;
+		this.mcxUser = mcxUser;
+	}
+
+
+	@Id 
 
     
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)

@@ -11,14 +11,15 @@ import org.springframework.stereotype.Service;
 
 import com.jmr.obdx.domain.Accountdetails;
 import com.jmr.obdx.domain.Accountsummary;
-import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxCustomerMapping;
+import com.jmr.obdx.domain.McxLogin;
+import com.jmr.obdx.domain.McxUser;
 import com.jmr.obdx.domain.MstBranch;
-import com.jmr.obdx.domain.RetailCustomer;
 import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.AccountSummaryRepo;
 import com.jmr.obdx.repositories.LoginRepo;
+import com.jmr.obdx.repositories.McxCustomerMappingRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
-import com.jmr.obdx.repositories.RetailCustomerRepo;
 import com.jmr.obdx.service.dto.AccountBranch;
 import com.jmr.obdx.service.dto.AccountDetailsDto;
 import com.jmr.obdx.service.dto.AccountSummaryDto;
@@ -26,7 +27,9 @@ import com.jmr.obdx.service.dto.AccountSummaryInfo;
 import com.jmr.obdx.service.dto.BasicAccountDetailsDto;
 import com.jmr.obdx.service.dto.LoanSummayInfo;
 import com.jmr.obdx.util.Utility;
-
+/***
+ * modified Login to McxLogin and RetailCustomer to McxUser by Murugesh on 17/07/2017
+ */
 @Service
 public class AccountService {
 
@@ -46,7 +49,7 @@ public class AccountService {
 	private String currencyType;
 	
 	@Autowired
-	private RetailCustomerRepo retailCustomerRepo;
+	private McxCustomerMappingRepo mcxCustomerMappingRepo;
 
 	@Autowired
 	private LoginRepo loginRepo;
@@ -68,19 +71,24 @@ public class AccountService {
 	 * @param authentication-Hold Login user info.
 	 * @return  all account number hold login user
 	 */
+	
 	public BasicAccountDetailsDto getBasicAccountDetails(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		basicAccountDetailsDto = new BasicAccountDetailsDto();
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		McxLogin mcxLogin = loginRepo.findByUsername(authentication.getName());
+		
+		/***
+		 * Created McxCustomerMapping reference to get customerid and removed RetailCustomer to get customerid by murugesh on 17/07/2017
+		 */
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(mcxCustomerMapping.getCustomerId());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 			
 		});
 		basicAccountDetailsDto.setNbrAccounts(tempAccountDetails);
-		basicAccountDetailsDto.setCustomerId(retailCustomer.getIdcusomer());
+		basicAccountDetailsDto.setCustomerId(mcxCustomerMapping.getCustomerId());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return basicAccountDetailsDto;
 	}
@@ -126,10 +134,13 @@ public class AccountService {
 
 	public AccountSummaryInfo getAccountSummary(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
-		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(retailCustomer.getIdcusomer());
+		McxLogin mcxLogin = loginRepo.findByUsername(authentication.getName());
+		/***
+		 * Created McxCustomerMapping reference to get customerid by murugesh on 17/07/2017
+		 */
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(mcxCustomerMapping.getCustomerId());
+		List<Accountdetails> accountdetails = accountDetailsRepo.getBasicAccountDetails(mcxCustomerMapping.getCustomerId());
 		savingsAndCurrent = new ArrayList<>();
 		loans = new ArrayList<>();
 		contractAndTermdeposit = new ArrayList<>();
@@ -157,7 +168,7 @@ public class AccountService {
 			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
-				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,retailCustomer.getIdcusomer(),currencyType);
+				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,mcxCustomerMapping.getCustomerId(),currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountSummaryInfo;
 	}
@@ -172,9 +183,9 @@ public class AccountService {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		sumOfTotalLoans =0.0;
 		loanPending = new ArrayList<>();
-		Login login = loginRepo.findByUsername(authentication.getName());
-		RetailCustomer retailCustomer = retailCustomerRepo.findByIduser(login.getId());
-		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(retailCustomer.getIdcusomer());
+		McxLogin mcxLogin = loginRepo.findByUsername(authentication.getName());
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
+		List<Accountsummary> accountsummarys = accountsummaryrepo.getAccountSummary(mcxCustomerMapping.getCustomerId());
 		accountsummarys.stream().forEach(loansummary -> {
 			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))
 				sumOfTotalLoans += Double.parseDouble(loansummary.getNUMAVAILBAL());

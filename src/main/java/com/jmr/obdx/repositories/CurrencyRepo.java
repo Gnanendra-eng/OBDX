@@ -20,7 +20,7 @@ import com.jmr.obdx.domain.McxCurrencyM;
 public interface CurrencyRepo extends CrudRepository<McxCurrencyM,Integer> {
 	
 	
-	@Query("from CurrencyM")
+	@Query("from McxCurrencyM")
 	public List<McxCurrencyM> currencym();
 	
 	 public McxCurrencyM findByCurrencyType(String transationType);

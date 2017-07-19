@@ -7,11 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.jmr.obdx.domain.AuthorityM;
-import com.jmr.obdx.domain.Login;
+import com.jmr.obdx.domain.McxAuthorityM;
+import com.jmr.obdx.domain.McxLogin;
 import com.jmr.obdx.dto.ErrorMsg;
 import com.jmr.obdx.dto.StatusInfo;
-import com.jmr.obdx.repositories.AuthorityMRepo;
+import com.jmr.obdx.repositories.McxAuthorityMRepo;
 import com.jmr.obdx.repositories.LoginRepo;
 import com.jmr.obdx.service.dto.UserRegDto;
 import com.jmr.obdx.util.Utility;
@@ -24,7 +24,7 @@ public class UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
-	private AuthorityMRepo authorityMRepo;
+	private McxAuthorityMRepo mcxAuthorityMRepo;
 	
 	@Autowired
 	private LoginRepo loginRepo;
@@ -52,8 +52,12 @@ public class UserService {
 	     else{
 	    	 if(loginRepo.findByUsername(userRegDto.getUserName()) == null){
 	    		 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		 		 AuthorityM authorityM = authorityMRepo.findByTypeuser(Utility.ADMIN);
-		 		 loginRepo.save(new Login(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),"true","true","true","true" ,authorityM));
+	    		 /***
+	    		  * Modified findByTypeUser() to findByMcxBaseUserTypeM() and McxLogin() constructor by Murugesh
+	    		  */
+	    		 McxAuthorityM mcxAuthorityM = mcxAuthorityMRepo.findByMcxBaseUserTypeM(Utility.ADMIN);
+	    		 
+		 		 loginRepo.save(new McxLogin(userRegDto.getUserName(),passwordEncoder.encode(userRegDto.getPassword()),"true","true","true","true" ,mcxAuthorityM));
 				 logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 			     return statusInfo;	
 		     }

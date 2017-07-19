@@ -21,6 +21,14 @@ public class BeneficiaryDto {
 	private String nickName;
 	
 	private String createdVie;
+	
+	private String mcxTransferViaType;
+	
+	private String mcxTransferType;
+	
+	private String swiftCode;
+	
+	private String ncc;
 
 	public String getPayeeName() {
 		return payeeName;
@@ -82,6 +90,38 @@ public class BeneficiaryDto {
 
 	public BeneficiaryDto() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getMcxTransferViaType() {
+		return mcxTransferViaType;
+	}
+
+	public void setMcxTransferViaType(String mcxTransferViaType) {
+		this.mcxTransferViaType = mcxTransferViaType;
+	}
+
+	public String getMcxTransferType() {
+		return mcxTransferType;
+	}
+
+	public void setMcxTransferType(String mcxTransferType) {
+		this.mcxTransferType = mcxTransferType;
+	}
+
+	public String getSwiftCode() {
+		return swiftCode;
+	}
+
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
+	}
+
+	public String getNcc() {
+		return ncc;
+	}
+
+	public void setNcc(String ncc) {
+		this.ncc = ncc;
 	}
 	
 

@@ -17,7 +17,7 @@ import com.jmr.obdx.domain.McxLogin;
 @Transactional
 public interface LoginRepo extends CrudRepository<McxLogin, Integer> {
 
-	@Query("from Login where username=:userName")
+	@Query("from McxLogin where userName=:userName")
 	public McxLogin findByUsername(@Param("userName") String userName);
 	
 }

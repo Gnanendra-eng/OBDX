@@ -21,9 +21,9 @@ import com.jmr.obdx.domain.McxBeneficiary;
 public interface BeneficiaryRepo extends CrudRepository<McxBeneficiary, Integer> {
 
 	
-	@Query(" from BeneficiaryM")
+	@Query(" from McxBeneficiary")
 	public List<McxBeneficiary> findBeneficiary();
 	
-	@Query("from BeneficiaryM where id=:payeeId")
+	@Query("from McxBeneficiary where id=:payeeId")
 	public McxBeneficiary findByBeneficiaryId (@Param("payeeId") long payeeId);
 }

@@ -45,6 +45,7 @@ public class BeneficiaryController {
 	 */
 
 	
+
 	@RequestMapping(value = "/addbeneficiary", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<StatusInfo> addBeneficiary(@RequestBody @Valid BeneficiaryDto beneficiaryDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
 		try {
