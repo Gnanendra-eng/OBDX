@@ -20,7 +20,7 @@ import com.jmr.obdx.domain.McxBiller;
 @Transactional
 public interface McxBillerRepo extends CrudRepository<McxBiller, Integer> {
 	
-	@Query("from Biller where login=:login")
+	@Query("from McxBiller where login=:login")
 	public List<McxBiller> findByUserBillerInfo(@Param("login") long login);
 
 }

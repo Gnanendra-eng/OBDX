@@ -109,8 +109,6 @@ public class AccountService {
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.findAccountDetailsByAccountIdCustomerId(customerId, nbrAccount);
-		System.out.println(new Double(accountdetail.getBalance()));
-
 		accountDetailsDto = new AccountDetailsDto(accountdetail.getIdCustomer(), accountdetail.getNbrBranch(),
 				accountdetail.getNbrAccount(), accountdetail.getAcctType(), accountdetail.getAcctStatus(),
 				accountdetail.getCcyDesc(),new Double(accountdetail.getBalance()).doubleValue(), accountdetail.getOpeningBalance(),
