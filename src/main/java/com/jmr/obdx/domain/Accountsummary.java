@@ -21,813 +21,665 @@ public class Accountsummary implements java.io.Serializable {
 
 	@Id
 	@Column(name = "IDACCOUNT")
-	private String IDACCOUNT;
+	private String idAccount;
 	@Column(name = "IDCUSTOMER")
-	private String IDCUSTOMER;
+	private String idCustomer;
 	@Column(name = "CODBRANCH")
-	private String CODBRANCH;
+	private String codBranch;
 	@Column(name = "CODACCTTYPE")
-	private String CODACCTTYPE;
+	private String codAcctType;
 	@Column(name = "TXTACCTSTATUS")
-	private String TXTACCTSTATUS;
+	private String txtAcctStatus;
 	@Column(name = "CODACCTCURR")
-	private String CODACCTCURR;
+	private String codAcctCurr;
 	@Column(name = "NUMBALANCE")
-	private String NUMBALANCE;
+	private String numBalance;
 	@Column(name = "NUMOPENBALANCE")
-	private String NUMOPENBALANCE;
+	private String numOpenBalance;
 	@Column(name = "DATLASTUPDATED")
-	private String DATLASTUPDATED;
+	private String datLastUpdated;
 	@Column(name = "NUMAVAILBAL")
-	private String NUMAVAILBAL;
+	private String numAvailBal;
 	@Column(name = "NUMUNCOLLECTED")
-	private String NUMUNCOLLECTED;
+	private String numUncollected;
 	@Column(name = "NUMAVAILCREDIT")
-	private String NUMAVAILCREDIT;
+	private String numAvailCredit;
 	@Column(name = "NUMMONTOVCR")
-	private String NUMMONTOVCR;
+	private String numMontOvCr;
 	@Column(name = "NUMMONTOVDR")
-	private String NUMMONTOVDR;
+	private String numMontOvDr;
 	@Column(name = "ACCTDESC")
-	private String ACCTDESC;
+	private String acctDesc;
 	@Column(name = "ADD1")
-	private String ADD1;
+	private String add1;
 	@Column(name = "ADD2")
-	private String ADD2;
+	private String add2;
 	@Column(name = "ADD3")
-	private String ADD3;
+	private String add3;
 	@Column(name = "NOM1")
-	private String NOM1;
+	private String nom1;
 	@Column(name = "NOM2")
-	private String NOM2;
+	private String nom2;
 	@Column(name = "ADD4")
-	private String ADD4;
+	private String add4;
 	@Column(name = "PRDNAME")
-	private String PRDNAME;
+	private String prdName;
 	@Column(name = "PRDTYPE")
-	private String PRDTYPE;
+	private String prdType;
 	@Column(name = "ACCTOPENDT")
-	private String ACCTOPENDT;
+	private String acctOpenDt;
 	@Column(name = "ODLIMIT")
-	private String ODLIMIT;
+	private String odLimit;
 	@Column(name = "ODSTARTDT")
-	private String ODSTARTDT;
+	private String odStartDt;
 	@Column(name = "ODENDDT")
-	private String ODENDDT;
+	private String odEndDt;
 	@Column(name = "SHADOWLIMIT")
-	private String SHADOWLIMIT;
+	private String shadowLimit;
 	@Column(name = "ACCRDRAMT")
-	private String ACCRDRAMT;
+	private String accrDrAmt;
 	@Column(name = "ACCRCRAMT")
-	private String ACCRCRAMT;
+	private String accrCrAmt;
 	@Column(name = "JOINTACCTINDICATOR")
-	private String JOINTACCTINDICATOR;
+	private String jointAcctIndicatior;
 	@Column(name = "CHQBOOK")
-	private String CHQBOOK;
+	private String chqBook;
 	@Column(name = "OVERDRAFT_FACILITY")
-	private String OVERDRAFT_FACILITY;
+	private String overDraftFecility;
 	@Column(name = "NUMSTATEBIT")
-	private String NUMSTATEBIT;
+	private String numStateBit;
 	@Column(name = "CHKNAME1")
-	private String CHKNAME1;
+	private String chkName1;
 	@Column(name = "CHKNAME2")
-	private String CHKNAME2;
+	private String chkName2;
 	@Column(name = "AUTOREORDERCHKREQ")
-	private String AUTOREORDERCHKREQ;
+	private String autoreOrderChkReq;
 	@Column(name = "AUTOREORDERCHKLVL")
-	private String AUTOREORDERCHKLVL;
+	private String autoreOrderChkLvl;
 	@Column(name = "DIRTSTATUS")
-	private String DIRTSTATUS;
+	private String dirtStatus;
 	@Column(name = "NEXTCAPDT")
-	private String NEXTCAPDT;
+	private String nextCapDt;
 	@Column(name = "CAPFREQ")
-	private String CAPFREQ;
+	private String capFreq;
 	@Column(name = "AUTHSIGNATORY")
-	private String AUTHSIGNATORY;
+	private String authSignAtory;
 	@Column(name = "AUTHSIGNLIMIT")
-	private String AUTHSIGNLIMIT;
+	private String authSignLimit;
 	@Column(name = "SALESPERSON")
-	private String SALESPERSON;
+	private String salesPerson;
 	@Column(name = "INTRODUCER")
-	private String INTRODUCER;
+	private String introducer;
 	@Column(name = "IBANNUMBER")
-	private String IBANNUMBER;
+	private String ibanNumber;
 	@Column(name = "ACCTLOCKFLAG")
-	private String ACCTLOCKFLAG;
+	private String acctLockFlag;
 	@Column(name = "DEBITACCTLOCKFLAG")
-	private String DEBITACCTLOCKFLAG;
+	private String debitAcctLockFlag;
 	@Column(name = "CREDITACCTLOCKFLAG")
-	private String CREDITACCTLOCKFLAG;
+	private String creditAcctLockFlag;
 	@Column(name = "CRLINE")
-	private String CRLINE;
+	private String crLine;
 	@Column(name = "AVAILAMT")
-	private String AVAILAMT;
+	private String availAmt;
 	@Column(name = "CRINTRATE")
-	private String CRINTRATE;
+	private String crIntRate;
 	@Column(name = "ALWDOD")
-	private String ALWDOD;
+	private String alwDod;
 	@Column(name = "UNALWDOD")
-	private String UNALWDOD;
+	private String unAlwDod;
 	@Column(name = "ACFROZEN")
-	private String ACFROZEN;
+	private String acFrozen;
 	@Column(name = "DTIME")
-	private String DTIME;
+	private String dTime;
 	@Column(name = "SLNO")
-	private String SLNO;
+	private String slNo;
 	@Column(name = "PRDCODE")
-	private String PRDCODE;
+	private String prdCode;
 	@Column(name = "ILM_APPLICABLE")
-	private String ILM_APPLICABLE;
+	private String ilmApplicable;
 	@Column(name = "ID_ENTITY")
-	private String ID_ENTITY;
+	private String idEntity;
 	@Column(name = "MATURITY_DATE")
-	private String MATURITY_DATE;
+	private String maturityDate;
 	@Column(name = "NEXT_DUE_DATE")
-	private String NEXT_DUE_DATE;
+	private String nextDueDate;
 	@Column(name = "UDF1")
-	private String UDF1;
+	private String udf1;
 	@Column(name = "UDF2")
-	private String UDF2;
+	private String udf2;
 	@Column(name = "UDF3")
-	private String UDF3;
+	private String udf3;
 	@Column(name = "UDF4")
-	private String UDF4;
+	private String udf4;
 	@Column(name = "UDF5")
-	private String UDF5;
+	private String udf5;
 	@Column(name = "UDF6")
-	private String UDF6;
+	private String udf6;
 	@Column(name = "UDF7")
-	private String UDF7;
+	private String udf7;
 	@Column(name = "UDF8")
-	private String UDF8;
+	private String udf8;
 	@Column(name = "UDF9")
-	private String UDF9;
+	private String udf9;
 	@Column(name = "UDF10")
-	private String UDF10;
-
-	public String getIDACCOUNT() {
-		return IDACCOUNT;
-	}
-
-	public void setIDACCOUNT(String iDACCOUNT) {
-		IDACCOUNT = iDACCOUNT;
-	}
-
-	public String getIDCUSTOMER() {
-		return IDCUSTOMER;
-	}
-
-	public void setIDCUSTOMER(String iDCUSTOMER) {
-		IDCUSTOMER = iDCUSTOMER;
-	}
-
-	public String getCODBRANCH() {
-		return CODBRANCH;
-	}
-
-	public void setCODBRANCH(String cODBRANCH) {
-		CODBRANCH = cODBRANCH;
-	}
-
-	public String getCODACCTTYPE() {
-		return CODACCTTYPE;
-	}
-
-	public void setCODACCTTYPE(String cODACCTTYPE) {
-		CODACCTTYPE = cODACCTTYPE;
-	}
-
-	public String getTXTACCTSTATUS() {
-		return TXTACCTSTATUS;
-	}
-
-	public void setTXTACCTSTATUS(String tXTACCTSTATUS) {
-		TXTACCTSTATUS = tXTACCTSTATUS;
-	}
-
-	public String getCODACCTCURR() {
-		return CODACCTCURR;
-	}
-
-	public void setCODACCTCURR(String cODACCTCURR) {
-		CODACCTCURR = cODACCTCURR;
-	}
-
-	public String getNUMBALANCE() {
-		return NUMBALANCE;
-	}
-
-	public void setNUMBALANCE(String nUMBALANCE) {
-		NUMBALANCE = nUMBALANCE;
-	}
-
-	public String getNUMOPENBALANCE() {
-		return NUMOPENBALANCE;
-	}
-
-	public void setNUMOPENBALANCE(String nUMOPENBALANCE) {
-		NUMOPENBALANCE = nUMOPENBALANCE;
-	}
-
-	public String getDATLASTUPDATED() {
-		return DATLASTUPDATED;
-	}
-
-	public void setDATLASTUPDATED(String dATLASTUPDATED) {
-		DATLASTUPDATED = dATLASTUPDATED;
-	}
-
-	public String getNUMAVAILBAL() {
-		return NUMAVAILBAL;
-	}
-
-	public void setNUMAVAILBAL(String nUMAVAILBAL) {
-		NUMAVAILBAL = nUMAVAILBAL;
-	}
-
-	public String getNUMUNCOLLECTED() {
-		return NUMUNCOLLECTED;
-	}
-
-	public void setNUMUNCOLLECTED(String nUMUNCOLLECTED) {
-		NUMUNCOLLECTED = nUMUNCOLLECTED;
-	}
-
-	public String getNUMAVAILCREDIT() {
-		return NUMAVAILCREDIT;
-	}
-
-	public void setNUMAVAILCREDIT(String nUMAVAILCREDIT) {
-		NUMAVAILCREDIT = nUMAVAILCREDIT;
-	}
-
-	public String getNUMMONTOVCR() {
-		return NUMMONTOVCR;
-	}
-
-	public void setNUMMONTOVCR(String nUMMONTOVCR) {
-		NUMMONTOVCR = nUMMONTOVCR;
+	private String udf10;
+	public String getIdAccount() {
+		return idAccount;
 	}
-
-	public String getNUMMONTOVDR() {
-		return NUMMONTOVDR;
+	public void setIdAccount(String idAccount) {
+		this.idAccount = idAccount;
 	}
-
-	public void setNUMMONTOVDR(String nUMMONTOVDR) {
-		NUMMONTOVDR = nUMMONTOVDR;
+	public String getIdCustomer() {
+		return idCustomer;
 	}
-
-	public String getACCTDESC() {
-		return ACCTDESC;
+	public void setIdCustomer(String idCustomer) {
+		this.idCustomer = idCustomer;
 	}
-
-	public void setACCTDESC(String aCCTDESC) {
-		ACCTDESC = aCCTDESC;
+	public String getCodBranch() {
+		return codBranch;
 	}
-
-	public String getADD1() {
-		return ADD1;
+	public void setCodBranch(String codBranch) {
+		this.codBranch = codBranch;
 	}
-
-	public void setADD1(String aDD1) {
-		ADD1 = aDD1;
+	public String getCodAcctType() {
+		return codAcctType;
 	}
-
-	public String getADD2() {
-		return ADD2;
+	public void setCodAcctType(String codAcctType) {
+		this.codAcctType = codAcctType;
 	}
-
-	public void setADD2(String aDD2) {
-		ADD2 = aDD2;
+	public String getTxtAcctStatus() {
+		return txtAcctStatus;
 	}
-
-	public String getADD3() {
-		return ADD3;
+	public void setTxtAcctStatus(String txtAcctStatus) {
+		this.txtAcctStatus = txtAcctStatus;
 	}
-
-	public void setADD3(String aDD3) {
-		ADD3 = aDD3;
+	public String getCodAcctCurr() {
+		return codAcctCurr;
 	}
-
-	public String getNOM1() {
-		return NOM1;
+	public void setCodAcctCurr(String codAcctCurr) {
+		this.codAcctCurr = codAcctCurr;
 	}
-
-	public void setNOM1(String nOM1) {
-		NOM1 = nOM1;
+	public String getNumBalance() {
+		return numBalance;
 	}
-
-	public String getNOM2() {
-		return NOM2;
+	public void setNumBalance(String numBalance) {
+		this.numBalance = numBalance;
 	}
-
-	public void setNOM2(String nOM2) {
-		NOM2 = nOM2;
+	public String getNumOpenBalance() {
+		return numOpenBalance;
 	}
-
-	public String getADD4() {
-		return ADD4;
+	public void setNumOpenBalance(String numOpenBalance) {
+		this.numOpenBalance = numOpenBalance;
 	}
-
-	public void setADD4(String aDD4) {
-		ADD4 = aDD4;
+	public String getDatLastUpdated() {
+		return datLastUpdated;
 	}
-
-	public String getPRDNAME() {
-		return PRDNAME;
+	public void setDatLastUpdated(String datLastUpdated) {
+		this.datLastUpdated = datLastUpdated;
 	}
-
-	public void setPRDNAME(String pRDNAME) {
-		PRDNAME = pRDNAME;
+	public String getNumAvailBal() {
+		return numAvailBal;
 	}
-
-	public String getPRDTYPE() {
-		return PRDTYPE;
+	public void setNumAvailBal(String numAvailBal) {
+		this.numAvailBal = numAvailBal;
 	}
-
-	public void setPRDTYPE(String pRDTYPE) {
-		PRDTYPE = pRDTYPE;
+	public String getNumUncollected() {
+		return numUncollected;
 	}
-
-	public String getACCTOPENDT() {
-		return ACCTOPENDT;
+	public void setNumUncollected(String numUncollected) {
+		this.numUncollected = numUncollected;
 	}
-
-	public void setACCTOPENDT(String aCCTOPENDT) {
-		ACCTOPENDT = aCCTOPENDT;
+	public String getNumAvailCredit() {
+		return numAvailCredit;
 	}
-
-	public String getODLIMIT() {
-		return ODLIMIT;
+	public void setNumAvailCredit(String numAvailCredit) {
+		this.numAvailCredit = numAvailCredit;
 	}
-
-	public void setODLIMIT(String oDLIMIT) {
-		ODLIMIT = oDLIMIT;
+	public String getNumMontOvCr() {
+		return numMontOvCr;
 	}
-
-	public String getODSTARTDT() {
-		return ODSTARTDT;
+	public void setNumMontOvCr(String numMontOvCr) {
+		this.numMontOvCr = numMontOvCr;
 	}
-
-	public void setODSTARTDT(String oDSTARTDT) {
-		ODSTARTDT = oDSTARTDT;
+	public String getNumMontOvDr() {
+		return numMontOvDr;
 	}
-
-	public String getODENDDT() {
-		return ODENDDT;
+	public void setNumMontOvDr(String numMontOvDr) {
+		this.numMontOvDr = numMontOvDr;
 	}
-
-	public void setODENDDT(String oDENDDT) {
-		ODENDDT = oDENDDT;
+	public String getAcctDesc() {
+		return acctDesc;
 	}
-
-	public String getSHADOWLIMIT() {
-		return SHADOWLIMIT;
+	public void setAcctDesc(String acctDesc) {
+		this.acctDesc = acctDesc;
 	}
-
-	public void setSHADOWLIMIT(String sHADOWLIMIT) {
-		SHADOWLIMIT = sHADOWLIMIT;
+	public String getAdd1() {
+		return add1;
 	}
-
-	public String getACCRDRAMT() {
-		return ACCRDRAMT;
+	public void setAdd1(String add1) {
+		this.add1 = add1;
 	}
-
-	public void setACCRDRAMT(String aCCRDRAMT) {
-		ACCRDRAMT = aCCRDRAMT;
+	public String getAdd2() {
+		return add2;
 	}
-
-	public String getACCRCRAMT() {
-		return ACCRCRAMT;
+	public void setAdd2(String add2) {
+		this.add2 = add2;
 	}
-
-	public void setACCRCRAMT(String aCCRCRAMT) {
-		ACCRCRAMT = aCCRCRAMT;
+	public String getAdd3() {
+		return add3;
 	}
-
-	public String getJOINTACCTINDICATOR() {
-		return JOINTACCTINDICATOR;
+	public void setAdd3(String add3) {
+		this.add3 = add3;
 	}
-
-	public void setJOINTACCTINDICATOR(String jOINTACCTINDICATOR) {
-		JOINTACCTINDICATOR = jOINTACCTINDICATOR;
+	public String getNom1() {
+		return nom1;
 	}
-
-	public String getCHQBOOK() {
-		return CHQBOOK;
+	public void setNom1(String nom1) {
+		this.nom1 = nom1;
 	}
-
-	public void setCHQBOOK(String cHQBOOK) {
-		CHQBOOK = cHQBOOK;
+	public String getNom2() {
+		return nom2;
 	}
-
-	public String getOVERDRAFT_FACILITY() {
-		return OVERDRAFT_FACILITY;
+	public void setNom2(String nom2) {
+		this.nom2 = nom2;
 	}
-
-	public void setOVERDRAFT_FACILITY(String oVERDRAFT_FACILITY) {
-		OVERDRAFT_FACILITY = oVERDRAFT_FACILITY;
+	public String getAdd4() {
+		return add4;
 	}
-
-	public String getNUMSTATEBIT() {
-		return NUMSTATEBIT;
+	public void setAdd4(String add4) {
+		this.add4 = add4;
 	}
-
-	public void setNUMSTATEBIT(String nUMSTATEBIT) {
-		NUMSTATEBIT = nUMSTATEBIT;
+	public String getPrdName() {
+		return prdName;
 	}
-
-	public String getCHKNAME1() {
-		return CHKNAME1;
+	public void setPrdName(String prdName) {
+		this.prdName = prdName;
 	}
-
-	public void setCHKNAME1(String cHKNAME1) {
-		CHKNAME1 = cHKNAME1;
+	public String getPrdType() {
+		return prdType;
 	}
-
-	public String getCHKNAME2() {
-		return CHKNAME2;
+	public void setPrdType(String prdType) {
+		this.prdType = prdType;
 	}
-
-	public void setCHKNAME2(String cHKNAME2) {
-		CHKNAME2 = cHKNAME2;
+	public String getAcctOpenDt() {
+		return acctOpenDt;
 	}
-
-	public String getAUTOREORDERCHKREQ() {
-		return AUTOREORDERCHKREQ;
+	public void setAcctOpenDt(String acctOpenDt) {
+		this.acctOpenDt = acctOpenDt;
 	}
-
-	public void setAUTOREORDERCHKREQ(String aUTOREORDERCHKREQ) {
-		AUTOREORDERCHKREQ = aUTOREORDERCHKREQ;
+	public String getOdLimit() {
+		return odLimit;
 	}
-
-	public String getAUTOREORDERCHKLVL() {
-		return AUTOREORDERCHKLVL;
+	public void setOdLimit(String odLimit) {
+		this.odLimit = odLimit;
 	}
-
-	public void setAUTOREORDERCHKLVL(String aUTOREORDERCHKLVL) {
-		AUTOREORDERCHKLVL = aUTOREORDERCHKLVL;
+	public String getOdStartDt() {
+		return odStartDt;
 	}
-
-	public String getDIRTSTATUS() {
-		return DIRTSTATUS;
+	public void setOdStartDt(String odStartDt) {
+		this.odStartDt = odStartDt;
 	}
-
-	public void setDIRTSTATUS(String dIRTSTATUS) {
-		DIRTSTATUS = dIRTSTATUS;
+	public String getOdEndDt() {
+		return odEndDt;
 	}
-
-	public String getNEXTCAPDT() {
-		return NEXTCAPDT;
+	public void setOdEndDt(String odEndDt) {
+		this.odEndDt = odEndDt;
 	}
-
-	public void setNEXTCAPDT(String nEXTCAPDT) {
-		NEXTCAPDT = nEXTCAPDT;
+	public String getShadowLimit() {
+		return shadowLimit;
 	}
-
-	public String getCAPFREQ() {
-		return CAPFREQ;
+	public void setShadowLimit(String shadowLimit) {
+		this.shadowLimit = shadowLimit;
 	}
-
-	public void setCAPFREQ(String cAPFREQ) {
-		CAPFREQ = cAPFREQ;
+	public String getAccrDrAmt() {
+		return accrDrAmt;
 	}
-
-	public String getAUTHSIGNATORY() {
-		return AUTHSIGNATORY;
+	public void setAccrDrAmt(String accrDrAmt) {
+		this.accrDrAmt = accrDrAmt;
 	}
-
-	public void setAUTHSIGNATORY(String aUTHSIGNATORY) {
-		AUTHSIGNATORY = aUTHSIGNATORY;
+	public String getAccrCrAmt() {
+		return accrCrAmt;
 	}
-
-	public String getAUTHSIGNLIMIT() {
-		return AUTHSIGNLIMIT;
+	public void setAccrCrAmt(String accrCrAmt) {
+		this.accrCrAmt = accrCrAmt;
 	}
-
-	public void setAUTHSIGNLIMIT(String aUTHSIGNLIMIT) {
-		AUTHSIGNLIMIT = aUTHSIGNLIMIT;
+	public String getJointAcctIndicatior() {
+		return jointAcctIndicatior;
 	}
-
-	public String getSALESPERSON() {
-		return SALESPERSON;
+	public void setJointAcctIndicatior(String jointAcctIndicatior) {
+		this.jointAcctIndicatior = jointAcctIndicatior;
 	}
-
-	public void setSALESPERSON(String sALESPERSON) {
-		SALESPERSON = sALESPERSON;
+	public String getChqBook() {
+		return chqBook;
 	}
-
-	public String getINTRODUCER() {
-		return INTRODUCER;
+	public void setChqBook(String chqBook) {
+		this.chqBook = chqBook;
 	}
-
-	public void setINTRODUCER(String iNTRODUCER) {
-		INTRODUCER = iNTRODUCER;
+	public String getOverDraftFecility() {
+		return overDraftFecility;
 	}
-
-	public String getIBANNUMBER() {
-		return IBANNUMBER;
+	public void setOverDraftFecility(String overDraftFecility) {
+		this.overDraftFecility = overDraftFecility;
 	}
-
-	public void setIBANNUMBER(String iBANNUMBER) {
-		IBANNUMBER = iBANNUMBER;
+	public String getNumStateBit() {
+		return numStateBit;
 	}
-
-	public String getACCTLOCKFLAG() {
-		return ACCTLOCKFLAG;
+	public void setNumStateBit(String numStateBit) {
+		this.numStateBit = numStateBit;
 	}
-
-	public void setACCTLOCKFLAG(String aCCTLOCKFLAG) {
-		ACCTLOCKFLAG = aCCTLOCKFLAG;
+	public String getChkName1() {
+		return chkName1;
 	}
-
-	public String getDEBITACCTLOCKFLAG() {
-		return DEBITACCTLOCKFLAG;
+	public void setChkName1(String chkName1) {
+		this.chkName1 = chkName1;
 	}
-
-	public void setDEBITACCTLOCKFLAG(String dEBITACCTLOCKFLAG) {
-		DEBITACCTLOCKFLAG = dEBITACCTLOCKFLAG;
+	public String getChkName2() {
+		return chkName2;
 	}
-
-	public String getCREDITACCTLOCKFLAG() {
-		return CREDITACCTLOCKFLAG;
+	public void setChkName2(String chkName2) {
+		this.chkName2 = chkName2;
 	}
-
-	public void setCREDITACCTLOCKFLAG(String cREDITACCTLOCKFLAG) {
-		CREDITACCTLOCKFLAG = cREDITACCTLOCKFLAG;
+	public String getAutoreOrderChkReq() {
+		return autoreOrderChkReq;
 	}
-
-	public String getCRLINE() {
-		return CRLINE;
+	public void setAutoreOrderChkReq(String autoreOrderChkReq) {
+		this.autoreOrderChkReq = autoreOrderChkReq;
 	}
-
-	public void setCRLINE(String cRLINE) {
-		CRLINE = cRLINE;
+	public String getAutoreOrderChkLvl() {
+		return autoreOrderChkLvl;
 	}
-
-	public String getAVAILAMT() {
-		return AVAILAMT;
+	public void setAutoreOrderChkLvl(String autoreOrderChkLvl) {
+		this.autoreOrderChkLvl = autoreOrderChkLvl;
 	}
-
-	public void setAVAILAMT(String aVAILAMT) {
-		AVAILAMT = aVAILAMT;
+	public String getDirtStatus() {
+		return dirtStatus;
 	}
-
-	public String getCRINTRATE() {
-		return CRINTRATE;
+	public void setDirtStatus(String dirtStatus) {
+		this.dirtStatus = dirtStatus;
 	}
-
-	public void setCRINTRATE(String cRINTRATE) {
-		CRINTRATE = cRINTRATE;
+	public String getNextCapDt() {
+		return nextCapDt;
 	}
-
-	public String getALWDOD() {
-		return ALWDOD;
+	public void setNextCapDt(String nextCapDt) {
+		this.nextCapDt = nextCapDt;
 	}
-
-	public void setALWDOD(String aLWDOD) {
-		ALWDOD = aLWDOD;
+	public String getCapFreq() {
+		return capFreq;
 	}
-
-	public String getUNALWDOD() {
-		return UNALWDOD;
+	public void setCapFreq(String capFreq) {
+		this.capFreq = capFreq;
 	}
-
-	public void setUNALWDOD(String uNALWDOD) {
-		UNALWDOD = uNALWDOD;
+	public String getAuthSignAtory() {
+		return authSignAtory;
 	}
-
-	public String getACFROZEN() {
-		return ACFROZEN;
+	public void setAuthSignAtory(String authSignAtory) {
+		this.authSignAtory = authSignAtory;
 	}
-
-	public void setACFROZEN(String aCFROZEN) {
-		ACFROZEN = aCFROZEN;
+	public String getAuthSignLimit() {
+		return authSignLimit;
 	}
-
-	public String getDTIME() {
-		return DTIME;
+	public void setAuthSignLimit(String authSignLimit) {
+		this.authSignLimit = authSignLimit;
 	}
-
-	public void setDTIME(String dTIME) {
-		DTIME = dTIME;
+	public String getSalesPerson() {
+		return salesPerson;
 	}
-
-	public String getSLNO() {
-		return SLNO;
+	public void setSalesPerson(String salesPerson) {
+		this.salesPerson = salesPerson;
 	}
-
-	public void setSLNO(String sLNO) {
-		SLNO = sLNO;
+	public String getIntroducer() {
+		return introducer;
 	}
-
-	public String getPRDCODE() {
-		return PRDCODE;
+	public void setIntroducer(String introducer) {
+		this.introducer = introducer;
 	}
-
-	public void setPRDCODE(String pRDCODE) {
-		PRDCODE = pRDCODE;
+	public String getIbanNumber() {
+		return ibanNumber;
 	}
-
-	public String getILM_APPLICABLE() {
-		return ILM_APPLICABLE;
+	public void setIbanNumber(String ibanNumber) {
+		this.ibanNumber = ibanNumber;
 	}
-
-	public void setILM_APPLICABLE(String iLM_APPLICABLE) {
-		ILM_APPLICABLE = iLM_APPLICABLE;
+	public String getAcctLockFlag() {
+		return acctLockFlag;
 	}
-
-	public String getID_ENTITY() {
-		return ID_ENTITY;
+	public void setAcctLockFlag(String acctLockFlag) {
+		this.acctLockFlag = acctLockFlag;
 	}
-
-	public void setID_ENTITY(String iD_ENTITY) {
-		ID_ENTITY = iD_ENTITY;
+	public String getDebitAcctLockFlag() {
+		return debitAcctLockFlag;
 	}
-
-	public String getMATURITY_DATE() {
-		return MATURITY_DATE;
-	}
-
-	public void setMATURITY_DATE(String mATURITY_DATE) {
-		MATURITY_DATE = mATURITY_DATE;
-	}
-
-	public String getNEXT_DUE_DATE() {
-		return NEXT_DUE_DATE;
-	}
-
-	public void setNEXT_DUE_DATE(String nEXT_DUE_DATE) {
-		NEXT_DUE_DATE = nEXT_DUE_DATE;
-	}
-
-	public String getUDF1() {
-		return UDF1;
-	}
-
-	public void setUDF1(String uDF1) {
-		UDF1 = uDF1;
-	}
-
-	public String getUDF2() {
-		return UDF2;
-	}
-
-	public void setUDF2(String uDF2) {
-		UDF2 = uDF2;
-	}
-
-	public String getUDF3() {
-		return UDF3;
-	}
-
-	public void setUDF3(String uDF3) {
-		UDF3 = uDF3;
-	}
-
-	public String getUDF4() {
-		return UDF4;
-	}
-
-	public void setUDF4(String uDF4) {
-		UDF4 = uDF4;
-	}
-
-	public String getUDF5() {
-		return UDF5;
-	}
-
-	public void setUDF5(String uDF5) {
-		UDF5 = uDF5;
-	}
-
-	public String getUDF6() {
-		return UDF6;
-	}
-
-	public void setUDF6(String uDF6) {
-		UDF6 = uDF6;
-	}
-
-	public String getUDF7() {
-		return UDF7;
-	}
-
-	public void setUDF7(String uDF7) {
-		UDF7 = uDF7;
-	}
-
-	public String getUDF8() {
-		return UDF8;
-	}
-
-	public void setUDF8(String uDF8) {
-		UDF8 = uDF8;
-	}
-
-	public String getUDF9() {
-		return UDF9;
-	}
-
-	public void setUDF9(String uDF9) {
-		UDF9 = uDF9;
-	}
-
-	public String getUDF10() {
-		return UDF10;
-	}
-
-	public void setUDF10(String uDF10) {
-		UDF10 = uDF10;
-	}
-
-	public Accountsummary(String iDACCOUNT, String iDCUSTOMER, String cODBRANCH, String cODACCTTYPE,
-			String tXTACCTSTATUS, String cODACCTCURR, String nUMBALANCE, String nUMOPENBALANCE, String dATLASTUPDATED,
-			String nUMAVAILBAL, String nUMUNCOLLECTED, String nUMAVAILCREDIT, String nUMMONTOVCR, String nUMMONTOVDR,
-			String aCCTDESC, String aDD1, String aDD2, String aDD3, String nOM1, String nOM2, String aDD4,
-			String pRDNAME, String pRDTYPE, String aCCTOPENDT, String oDLIMIT, String oDSTARTDT, String oDENDDT,
-			String sHADOWLIMIT, String aCCRDRAMT, String aCCRCRAMT, String jOINTACCTINDICATOR, String cHQBOOK,
-			String oVERDRAFT_FACILITY, String nUMSTATEBIT, String cHKNAME1, String cHKNAME2, String aUTOREORDERCHKREQ,
-			String aUTOREORDERCHKLVL, String dIRTSTATUS, String nEXTCAPDT, String cAPFREQ, String aUTHSIGNATORY,
-			String aUTHSIGNLIMIT, String sALESPERSON, String iNTRODUCER, String iBANNUMBER, String aCCTLOCKFLAG,
-			String dEBITACCTLOCKFLAG, String cREDITACCTLOCKFLAG, String cRLINE, String aVAILAMT, String cRINTRATE,
-			String aLWDOD, String uNALWDOD, String aCFROZEN, String dTIME, String sLNO, String pRDCODE,
-			String iLM_APPLICABLE, String iD_ENTITY, String mATURITY_DATE, String nEXT_DUE_DATE, String uDF1,
-			String uDF2, String uDF3, String uDF4, String uDF5, String uDF6, String uDF7, String uDF8, String uDF9,
-			String uDF10) {
-		super();
-		IDACCOUNT = iDACCOUNT;
-		IDCUSTOMER = iDCUSTOMER;
-		CODBRANCH = cODBRANCH;
-		CODACCTTYPE = cODACCTTYPE;
-		TXTACCTSTATUS = tXTACCTSTATUS;
-		CODACCTCURR = cODACCTCURR;
-		NUMBALANCE = nUMBALANCE;
-		NUMOPENBALANCE = nUMOPENBALANCE;
-		DATLASTUPDATED = dATLASTUPDATED;
-		NUMAVAILBAL = nUMAVAILBAL;
-		NUMUNCOLLECTED = nUMUNCOLLECTED;
-		NUMAVAILCREDIT = nUMAVAILCREDIT;
-		NUMMONTOVCR = nUMMONTOVCR;
-		NUMMONTOVDR = nUMMONTOVDR;
-		ACCTDESC = aCCTDESC;
-		ADD1 = aDD1;
-		ADD2 = aDD2;
-		ADD3 = aDD3;
-		NOM1 = nOM1;
-		NOM2 = nOM2;
-		ADD4 = aDD4;
-		PRDNAME = pRDNAME;
-		PRDTYPE = pRDTYPE;
-		ACCTOPENDT = aCCTOPENDT;
-		ODLIMIT = oDLIMIT;
-		ODSTARTDT = oDSTARTDT;
-		ODENDDT = oDENDDT;
-		SHADOWLIMIT = sHADOWLIMIT;
-		ACCRDRAMT = aCCRDRAMT;
-		ACCRCRAMT = aCCRCRAMT;
-		JOINTACCTINDICATOR = jOINTACCTINDICATOR;
-		CHQBOOK = cHQBOOK;
-		OVERDRAFT_FACILITY = oVERDRAFT_FACILITY;
-		NUMSTATEBIT = nUMSTATEBIT;
-		CHKNAME1 = cHKNAME1;
-		CHKNAME2 = cHKNAME2;
-		AUTOREORDERCHKREQ = aUTOREORDERCHKREQ;
-		AUTOREORDERCHKLVL = aUTOREORDERCHKLVL;
-		DIRTSTATUS = dIRTSTATUS;
-		NEXTCAPDT = nEXTCAPDT;
-		CAPFREQ = cAPFREQ;
-		AUTHSIGNATORY = aUTHSIGNATORY;
-		AUTHSIGNLIMIT = aUTHSIGNLIMIT;
-		SALESPERSON = sALESPERSON;
-		INTRODUCER = iNTRODUCER;
-		IBANNUMBER = iBANNUMBER;
-		ACCTLOCKFLAG = aCCTLOCKFLAG;
-		DEBITACCTLOCKFLAG = dEBITACCTLOCKFLAG;
-		CREDITACCTLOCKFLAG = cREDITACCTLOCKFLAG;
-		CRLINE = cRLINE;
-		AVAILAMT = aVAILAMT;
-		CRINTRATE = cRINTRATE;
-		ALWDOD = aLWDOD;
-		UNALWDOD = uNALWDOD;
-		ACFROZEN = aCFROZEN;
-		DTIME = dTIME;
-		SLNO = sLNO;
-		PRDCODE = pRDCODE;
-		ILM_APPLICABLE = iLM_APPLICABLE;
-		ID_ENTITY = iD_ENTITY;
-		MATURITY_DATE = mATURITY_DATE;
-		NEXT_DUE_DATE = nEXT_DUE_DATE;
-		UDF1 = uDF1;
-		UDF2 = uDF2;
-		UDF3 = uDF3;
-		UDF4 = uDF4;
-		UDF5 = uDF5;
-		UDF6 = uDF6;
-		UDF7 = uDF7;
-		UDF8 = uDF8;
-		UDF9 = uDF9;
-		UDF10 = uDF10;
-	}
-
+	public void setDebitAcctLockFlag(String debitAcctLockFlag) {
+		this.debitAcctLockFlag = debitAcctLockFlag;
+	}
+	public String getCreditAcctLockFlag() {
+		return creditAcctLockFlag;
+	}
+	public void setCreditAcctLockFlag(String creditAcctLockFlag) {
+		this.creditAcctLockFlag = creditAcctLockFlag;
+	}
+	public String getCrLine() {
+		return crLine;
+	}
+	public void setCrLine(String crLine) {
+		this.crLine = crLine;
+	}
+	public String getAvailAmt() {
+		return availAmt;
+	}
+	public void setAvailAmt(String availAmt) {
+		this.availAmt = availAmt;
+	}
+	public String getCrIntRate() {
+		return crIntRate;
+	}
+	public void setCrIntRate(String crIntRate) {
+		this.crIntRate = crIntRate;
+	}
+	public String getAlwDod() {
+		return alwDod;
+	}
+	public void setAlwDod(String alwDod) {
+		this.alwDod = alwDod;
+	}
+	public String getUnAlwDod() {
+		return unAlwDod;
+	}
+	public void setUnAlwDod(String unAlwDod) {
+		this.unAlwDod = unAlwDod;
+	}
+	public String getAcFrozen() {
+		return acFrozen;
+	}
+	public void setAcFrozen(String acFrozen) {
+		this.acFrozen = acFrozen;
+	}
+	public String getdTime() {
+		return dTime;
+	}
+	public void setdTime(String dTime) {
+		this.dTime = dTime;
+	}
+	public String getSlNo() {
+		return slNo;
+	}
+	public void setSlNo(String slNo) {
+		this.slNo = slNo;
+	}
+	public String getPrdCode() {
+		return prdCode;
+	}
+	public void setPrdCode(String prdCode) {
+		this.prdCode = prdCode;
+	}
+	public String getIlmApplicable() {
+		return ilmApplicable;
+	}
+	public void setIlmApplicable(String ilmApplicable) {
+		this.ilmApplicable = ilmApplicable;
+	}
+	public String getIdEntity() {
+		return idEntity;
+	}
+	public void setIdEntity(String idEntity) {
+		this.idEntity = idEntity;
+	}
+	public String getMaturityDate() {
+		return maturityDate;
+	}
+	public void setMaturityDate(String maturityDate) {
+		this.maturityDate = maturityDate;
+	}
+	public String getNextDueDate() {
+		return nextDueDate;
+	}
+	public void setNextDueDate(String nextDueDate) {
+		this.nextDueDate = nextDueDate;
+	}
+	public String getUdf1() {
+		return udf1;
+	}
+	public void setUdf1(String udf1) {
+		this.udf1 = udf1;
+	}
+	public String getUdf2() {
+		return udf2;
+	}
+	public void setUdf2(String udf2) {
+		this.udf2 = udf2;
+	}
+	public String getUdf3() {
+		return udf3;
+	}
+	public void setUdf3(String udf3) {
+		this.udf3 = udf3;
+	}
+	public String getUdf4() {
+		return udf4;
+	}
+	public void setUdf4(String udf4) {
+		this.udf4 = udf4;
+	}
+	public String getUdf5() {
+		return udf5;
+	}
+	public void setUdf5(String udf5) {
+		this.udf5 = udf5;
+	}
+	public String getUdf6() {
+		return udf6;
+	}
+	public void setUdf6(String udf6) {
+		this.udf6 = udf6;
+	}
+	public String getUdf7() {
+		return udf7;
+	}
+	public void setUdf7(String udf7) {
+		this.udf7 = udf7;
+	}
+	public String getUdf8() {
+		return udf8;
+	}
+	public void setUdf8(String udf8) {
+		this.udf8 = udf8;
+	}
+	public String getUdf9() {
+		return udf9;
+	}
+	public void setUdf9(String udf9) {
+		this.udf9 = udf9;
+	}
+	public String getUdf10() {
+		return udf10;
+	}
+	public void setUdf10(String udf10) {
+		this.udf10 = udf10;
+	}
+	public Accountsummary(String idAccount, String idCustomer, String codBranch, String codAcctType,
+			String txtAcctStatus, String codAcctCurr, String numBalance, String numOpenBalance, String datLastUpdated,
+			String numAvailBal, String numUncollected, String numAvailCredit, String numMontOvCr, String numMontOvDr,
+			String acctDesc, String add1, String add2, String add3, String nom1, String nom2, String add4,
+			String prdName, String prdType, String acctOpenDt, String odLimit, String odStartDt, String odEndDt,
+			String shadowLimit, String accrDrAmt, String accrCrAmt, String jointAcctIndicatior, String chqBook,
+			String overDraftFecility, String numStateBit, String chkName1, String chkName2, String autoreOrderChkReq,
+			String autoreOrderChkLvl, String dirtStatus, String nextCapDt, String capFreq, String authSignAtory,
+			String authSignLimit, String salesPerson, String introducer, String ibanNumber, String acctLockFlag,
+			String debitAcctLockFlag, String creditAcctLockFlag, String crLine, String availAmt, String crIntRate,
+			String alwDod, String unAlwDod, String acFrozen, String dTime, String slNo, String prdCode,
+			String ilmApplicable, String idEntity, String maturityDate, String nextDueDate, String udf1, String udf2,
+			String udf3, String udf4, String udf5, String udf6, String udf7, String udf8, String udf9, String udf10) {
+		this.idAccount = idAccount;
+		this.idCustomer = idCustomer;
+		this.codBranch = codBranch;
+		this.codAcctType = codAcctType;
+		this.txtAcctStatus = txtAcctStatus;
+		this.codAcctCurr = codAcctCurr;
+		this.numBalance = numBalance;
+		this.numOpenBalance = numOpenBalance;
+		this.datLastUpdated = datLastUpdated;
+		this.numAvailBal = numAvailBal;
+		this.numUncollected = numUncollected;
+		this.numAvailCredit = numAvailCredit;
+		this.numMontOvCr = numMontOvCr;
+		this.numMontOvDr = numMontOvDr;
+		this.acctDesc = acctDesc;
+		this.add1 = add1;
+		this.add2 = add2;
+		this.add3 = add3;
+		this.nom1 = nom1;
+		this.nom2 = nom2;
+		this.add4 = add4;
+		this.prdName = prdName;
+		this.prdType = prdType;
+		this.acctOpenDt = acctOpenDt;
+		this.odLimit = odLimit;
+		this.odStartDt = odStartDt;
+		this.odEndDt = odEndDt;
+		this.shadowLimit = shadowLimit;
+		this.accrDrAmt = accrDrAmt;
+		this.accrCrAmt = accrCrAmt;
+		this.jointAcctIndicatior = jointAcctIndicatior;
+		this.chqBook = chqBook;
+		this.overDraftFecility = overDraftFecility;
+		this.numStateBit = numStateBit;
+		this.chkName1 = chkName1;
+		this.chkName2 = chkName2;
+		this.autoreOrderChkReq = autoreOrderChkReq;
+		this.autoreOrderChkLvl = autoreOrderChkLvl;
+		this.dirtStatus = dirtStatus;
+		this.nextCapDt = nextCapDt;
+		this.capFreq = capFreq;
+		this.authSignAtory = authSignAtory;
+		this.authSignLimit = authSignLimit;
+		this.salesPerson = salesPerson;
+		this.introducer = introducer;
+		this.ibanNumber = ibanNumber;
+		this.acctLockFlag = acctLockFlag;
+		this.debitAcctLockFlag = debitAcctLockFlag;
+		this.creditAcctLockFlag = creditAcctLockFlag;
+		this.crLine = crLine;
+		this.availAmt = availAmt;
+		this.crIntRate = crIntRate;
+		this.alwDod = alwDod;
+		this.unAlwDod = unAlwDod;
+		this.acFrozen = acFrozen;
+		this.dTime = dTime;
+		this.slNo = slNo;
+		this.prdCode = prdCode;
+		this.ilmApplicable = ilmApplicable;
+		this.idEntity = idEntity;
+		this.maturityDate = maturityDate;
+		this.nextDueDate = nextDueDate;
+		this.udf1 = udf1;
+		this.udf2 = udf2;
+		this.udf3 = udf3;
+		this.udf4 = udf4;
+		this.udf5 = udf5;
+		this.udf6 = udf6;
+		this.udf7 = udf7;
+		this.udf8 = udf8;
+		this.udf9 = udf9;
+		this.udf10 = udf10;
+	}
 }

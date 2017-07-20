@@ -25,23 +25,22 @@ import javax.persistence.TemporalType;
 )
 public class McxTransactionData  implements java.io.Serializable {
 
-
-     private long id;
-     private McxTransferPurpose mcxTransferPurpose;
-     private McxCurrencyM mcxCurrencyM;
-     private McxBiller mcxBiller;
-     private McxBeneficiary mcxBeneficiary;
-     private McxAccountTypeM mcxAccountTypeM;
-     private String customerId;
-     private String toAccountNumber;
-     private String fromAccountNumber;
-     private String toBranchCode;
-     private String fromBranchCode;
-     private String amount;
-     private Date transferDate;
-     private String note;
-     private String referenceId;
-     private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
+    private long id;
+    private McxTransferPurpose mcxTransferPurpose;
+    private McxCurrencyM mcxCurrencyM;
+    private McxBiller mcxBiller;
+    private McxBeneficiary mcxBeneficiary;
+    private McxAccountTypeM mcxAccountTypeM;
+    private String customerId;
+    private String toAccountNumber;
+    private String fromAccountNumber;
+    private String toBranchCode;
+    private String fromBranchCode;
+    private String amount;
+    private Date transferDate;
+    private String note;
+    private String referenceId;
+    private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
     public McxTransactionData() {
     }
@@ -50,11 +49,9 @@ public class McxTransactionData  implements java.io.Serializable {
     	this.id=id;
     }
 
-    
     public McxTransactionData(String  referenceId) {
     	this.referenceId=referenceId;
     }
-    
     
     /***
      * Method for own account transfer
@@ -92,9 +89,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.referenceId = referenceId;
     }
     
-
-
-
     public McxTransactionData( McxTransferPurpose mcxTransferPurpose, McxCurrencyM mcxCurrencyM, McxBiller mcxBiller, McxBeneficiary mcxBeneficiary, McxAccountTypeM mcxAccountTypeM, String customerId, String toAccountNumber, String fromAccountNumber, String toBranchCode, String fromBranchCode, String amount, Date transferDate, String status, String note, String referenceId, Set<McxAuditLog> mcxAuditLogs) {
        this.mcxTransferPurpose = mcxTransferPurpose;
        this.mcxCurrencyM = mcxCurrencyM;
@@ -112,7 +106,6 @@ public class McxTransactionData  implements java.io.Serializable {
        this.referenceId = referenceId;
        this.mcxAuditLogs = mcxAuditLogs;
     }
-   
 
 /**
  * Method used for Internal Fund Transfer
@@ -121,7 +114,6 @@ public class McxTransactionData  implements java.io.Serializable {
 			McxCurrencyM mcxCurrencyM, String customerId, String fromAccountNumber, String fromBranchCode,
 			String toAccountNumber , String amount, Date transferDate, String string, String note,
 			String referenceId, McxTransferPurpose mcxTransferPurpose, McxBeneficiary mcxBeneficiary) {
-		
 	       this.mcxAccountTypeM = mcxAccountTypeM;
 	       this.mcxCurrencyM = mcxCurrencyM;
 	       this.customerId = customerId;
@@ -134,12 +126,9 @@ public class McxTransactionData  implements java.io.Serializable {
 	       this.referenceId = referenceId;
 	       this.mcxTransferPurpose = mcxTransferPurpose;
 	       this.mcxBeneficiary = mcxBeneficiary;
-
 	}
 
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -149,7 +138,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_TRANSFER_PURPOSE_ID", nullable=false)
     public McxTransferPurpose getMcxTransferPurpose() {
         return this.mcxTransferPurpose;
@@ -159,7 +148,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.mcxTransferPurpose = mcxTransferPurpose;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_CURRENCY_ID", nullable=false)
     public McxCurrencyM getMcxCurrencyM() {
         return this.mcxCurrencyM;
@@ -169,7 +158,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.mcxCurrencyM = mcxCurrencyM;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_BILLER_ID", nullable=false)
     public McxBiller getMcxBiller() {
         return this.mcxBiller;
@@ -179,7 +168,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.mcxBiller = mcxBiller;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_BENEFICIARY_ID", nullable=false)
     public McxBeneficiary getMcxBeneficiary() {
         return this.mcxBeneficiary;
@@ -189,7 +178,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.mcxBeneficiary = mcxBeneficiary;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_ACCOUNT_TYPE_ID", nullable=false)
     public McxAccountTypeM getMcxAccountTypeM() {
         return this.mcxAccountTypeM;
@@ -199,7 +188,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.mcxAccountTypeM = mcxAccountTypeM;
     }
 
-    
     @Column(name="CUSTOMER_ID", nullable=false, length=150)
     public String getCustomerId() {
         return this.customerId;
@@ -208,7 +196,6 @@ public class McxTransactionData  implements java.io.Serializable {
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
-
     
     @Column(name="TO_ACCOUNT_NUMBER", nullable=false, length=150)
     public String getToAccountNumber() {
@@ -218,7 +205,6 @@ public class McxTransactionData  implements java.io.Serializable {
     public void setToAccountNumber(String toAccountNumber) {
         this.toAccountNumber = toAccountNumber;
     }
-
     
     @Column(name="FROM_ACCOUNT_NUMBER", nullable=false, length=150)
     public String getFromAccountNumber() {
@@ -229,7 +215,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.fromAccountNumber = fromAccountNumber;
     }
 
-    
     @Column(name="TO_BRANCH_CODE", nullable=false, length=150)
     public String getToBranchCode() {
         return this.toBranchCode;
@@ -238,7 +223,6 @@ public class McxTransactionData  implements java.io.Serializable {
     public void setToBranchCode(String toBranchCode) {
         this.toBranchCode = toBranchCode;
     }
-
     
     @Column(name="FROM_BRANCH_CODE", nullable=false, length=150)
     public String getFromBranchCode() {
@@ -248,7 +232,6 @@ public class McxTransactionData  implements java.io.Serializable {
     public void setFromBranchCode(String fromBranchCode) {
         this.fromBranchCode = fromBranchCode;
     }
-
     
     @Column(name="AMOUNT", nullable=false, length=150)
     public String getAmount() {
@@ -269,8 +252,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.transferDate = transferDate;
     }
 
-    
-
     @Column(name="NOTE", length=500)
     public String getNote() {
         return this.note;
@@ -280,7 +261,6 @@ public class McxTransactionData  implements java.io.Serializable {
         this.note = note;
     }
 
-    
     @Column(name="REFERENCE_ID", nullable=false, length=150)
     public String getReferenceId() {
         return this.referenceId;
@@ -290,9 +270,7 @@ public class McxTransactionData  implements java.io.Serializable {
         this.referenceId = referenceId;
     }
 
-
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionData")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionData")
     public Set<McxAuditLog> getMcxAuditLogs() {
         return this.mcxAuditLogs;
     }
@@ -300,10 +278,6 @@ public class McxTransactionData  implements java.io.Serializable {
     public void setMcxAuditLogs(Set<McxAuditLog> mcxAuditLogs) {
         this.mcxAuditLogs = mcxAuditLogs;
     }
-
-
-
-
 }
 
 

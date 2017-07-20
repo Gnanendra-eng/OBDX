@@ -18,134 +18,135 @@ import javax.persistence.Table;
 @Table(name = "FCC_VW_TXNACCOUNTACTIVITY", schema = "JMR_OBDX")
 public class VwTxnaccountactivity implements java.io.Serializable {
 
-	private String nbraccount;
-	private String branchcode;
-	private String customerno;
-	private Date datvaluedate;
-	private Date txndate;
-	private Date postingdate;
-	private String codtxncurr;
-	private String amounttag;
+	private String nbrAccount;
+	private String branchCode;
+	private String customerNo;
+	private Date datValueDate;
+	private Date txnDate;
+	private Date postingDate;
+	private String codtxnCurr;
+	private String amountTag;
 	private String prodType;
-	private String nambranch;
-	private BigDecimal txnamount;
+	private String namBranch;
+	private BigDecimal txnAmount;
 	private String coddrcr;
-	private String txtreferenceno;
-	private String codtxntype;
+	private String txtReferenceNo;
+	private String codTxnType;
 	private String description;
-	private BigDecimal srno;
-	private String txncode;
-	private String swiftcode;
-	private String txnmodule;
-	private String userreferenceno;
+	private BigDecimal srNo;
+	private String txnCode;
+	private String swiftCode;
+	private String txnModule;
+	private String userReferenceNo;
 	private String virtualAcNo;
 	private String remitterName;
-	private String txntypedesc;
+	private String txnTypeDesc;
 
 	public VwTxnaccountactivity() {
 	}
 
-	public VwTxnaccountactivity(String nbraccount, String branchcode, String customerno, Date datvaluedate,
-			Date txndate, Date postingdate, String codtxncurr, String amounttag, String prodType, String nambranch,
-			BigDecimal txnamount, String coddrcr, String txtreferenceno, String codtxntype, String description,
-			BigDecimal srno, String txncode, String swiftcode, String txnmodule, String userreferenceno,
-			String virtualAcNo, String remitterName, String txntypedesc) {
-		this.nbraccount = nbraccount;
-		this.branchcode = branchcode;
-		this.customerno = customerno;
-		this.datvaluedate = datvaluedate;
-		this.txndate = txndate;
-		this.postingdate = postingdate;
-		this.codtxncurr = codtxncurr;
-		this.amounttag = amounttag;
+	public VwTxnaccountactivity(String nbrAccount, String branchCode, String customerNo, Date datValueDate,
+			Date txnDate, Date postingDate, String codtxnCurr, String amountTag, String prodType, String namBranch,
+			BigDecimal txnAmount, String coddrcr, String txtReferenceNo, String codTxnType, String description,
+			BigDecimal srNo, String txnCode, String swiftCode, String txnModule, String userReferenceNo,
+			String virtualAcNo, String remitterName, String txnTypeDesc) {
+		super();
+		this.nbrAccount = nbrAccount;
+		this.branchCode = branchCode;
+		this.customerNo = customerNo;
+		this.datValueDate = datValueDate;
+		this.txnDate = txnDate;
+		this.postingDate = postingDate;
+		this.codtxnCurr = codtxnCurr;
+		this.amountTag = amountTag;
 		this.prodType = prodType;
-		this.nambranch = nambranch;
-		this.txnamount = txnamount;
+		this.namBranch = namBranch;
+		this.txnAmount = txnAmount;
 		this.coddrcr = coddrcr;
-		this.txtreferenceno = txtreferenceno;
-		this.codtxntype = codtxntype;
+		this.txtReferenceNo = txtReferenceNo;
+		this.codTxnType = codTxnType;
 		this.description = description;
-		this.srno = srno;
-		this.txncode = txncode;
-		this.swiftcode = swiftcode;
-		this.txnmodule = txnmodule;
-		this.userreferenceno = userreferenceno;
+		this.srNo = srNo;
+		this.txnCode = txnCode;
+		this.swiftCode = swiftCode;
+		this.txnModule = txnModule;
+		this.userReferenceNo = userReferenceNo;
 		this.virtualAcNo = virtualAcNo;
 		this.remitterName = remitterName;
-		this.txntypedesc = txntypedesc;
+		this.txnTypeDesc = txnTypeDesc;
 	}
 
 	@Column(name = "NBRACCOUNT", length = 80)
-	public String getNbraccount() {
-		return this.nbraccount;
+	public String getNbrAccount() {
+		return this.nbrAccount;
 	}
 
-	public void setNbraccount(String nbraccount) {
-		this.nbraccount = nbraccount;
+	public void setNbrAccount(String nbrAccount) {
+		this.nbrAccount = nbrAccount;
 	}
 
 	@Column(name = "BRANCHCODE", length = 12)
-	public String getBranchcode() {
-		return this.branchcode;
+	public String getBranchCode() {
+		return this.branchCode;
 	}
 
-	public void setBranchcode(String branchcode) {
-		this.branchcode = branchcode;
+	public void setBranchCode(String branchCode) {
+		this.branchCode = branchCode;
 	}
 	
 	
 	@Column(name = "CUSTOMERNO", length = 36)
-	public String getCustomerno() {
-		return this.customerno;
+	public String getCustomerNo() {
+		return this.customerNo;
 	}
 
-	public void setCustomerno(String customerno) {
-		this.customerno = customerno;
+	public void setCustomerNo(String customerNo) {
+		this.customerNo = customerNo;
 	}
 
 	@Column(name = "DATVALUEDATE", length = 7)
-	public Date getDatvaluedate() {
-		return this.datvaluedate;
+	public Date getDatValueDate() {
+		return this.datValueDate;
 	}
 
-	public void setDatvaluedate(Date datvaluedate) {
-		this.datvaluedate = datvaluedate;
+	public void setDatValueDate(Date datValueDate) {
+		this.datValueDate = datValueDate;
 	}
 
 	@Column(name = "TXNDATE", length = 7)
-	public Date getTxndate() {
-		return this.txndate;
+	public Date getTxnDate() {
+		return this.txnDate;
 	}
 
-	public void setTxndate(Date txndate) {
-		this.txndate = txndate;
+	public void setTxnDate(Date txnDate) {
+		this.txnDate = txnDate;
 	}
 
 	@Column(name = "POSTINGDATE", length = 7)
-	public Date getPostingdate() {
-		return this.postingdate;
+	public Date getPostingDate() {
+		return this.postingDate;
 	}
 
-	public void setPostingdate(Date postingdate) {
-		this.postingdate = postingdate;
+	public void setPostingDate(Date postingDate) {
+		this.postingDate = postingDate;
 	}
 
 	@Column(name = "CODTXNCURR", length = 12)
-	public String getCodtxncurr() {
-		return this.codtxncurr;
+	public String getCodTxnCurr() {
+		return this.codtxnCurr;
 	}
 
-	public void setCodtxncurr(String codtxncurr) {
-		this.codtxncurr = codtxncurr;
+	public void setCodtxnCurr(String codtxnCurr) {
+		this.codtxnCurr = codtxnCurr;
 	}
 
 	@Column(name = "AMOUNTTAG", length = 140)
-	public String getAmounttag() {
-		return this.amounttag;
+	public String getAmountTag() {
+		return this.amountTag;
 	}
 
-	public void setAmounttag(String amounttag) {
-		this.amounttag = amounttag;
+	public void setAmountTag(String amountTag) {
+		this.amountTag = amountTag;
 	}
 
 	@Column(name = "PROD_TYPE", length = 3)
@@ -158,21 +159,21 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 	}
 
 	@Column(name = "NAMBRANCH", length = 420)
-	public String getNambranch() {
-		return this.nambranch;
+	public String getNamBranch() {
+		return this.namBranch;
 	}
 
-	public void setNambranch(String nambranch) {
-		this.nambranch = nambranch;
+	public void setNamBranch(String namBranch) {
+		this.namBranch = namBranch;
 	}
 
 	@Column(name = "TXNAMOUNT", precision = 22, scale = 0)
-	public BigDecimal getTxnamount() {
-		return this.txnamount;
+	public BigDecimal getTxnAmount() {
+		return this.txnAmount;
 	}
 
-	public void setTxnamount(BigDecimal txnamount) {
-		this.txnamount = txnamount;
+	public void setTxnAmount(BigDecimal txnAmount) {
+		this.txnAmount = txnAmount;
 	}
 
 	@Column(name = "CODDRCR", length = 4)
@@ -185,21 +186,21 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 	}
 
 	@Column(name = "TXTREFERENCENO", length = 64)
-	public String getTxtreferenceno() {
-		return this.txtreferenceno;
+	public String getTxtReferenceNo() {
+		return this.txtReferenceNo;
 	}
 
-	public void setTxtreferenceno(String txtreferenceno) {
-		this.txtreferenceno = txtreferenceno;
+	public void setTxtReferenceNo(String txtReferenceNo) {
+		this.txtReferenceNo = txtReferenceNo;
 	}
 
 	@Column(name = "CODTXNTYPE", length = 12)
-	public String getCodtxntype() {
-		return this.codtxntype;
+	public String getCodTxnType() {
+		return this.codTxnType;
 	}
 
-	public void setCodtxntype(String codtxntype) {
-		this.codtxntype = codtxntype;
+	public void setCodTxnType(String codTxnType) {
+		this.codTxnType = codTxnType;
 	}
 
 	@Column(name = "DESCRIPTION", length = 4000)
@@ -213,48 +214,48 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 
 	@Id
 	@Column(name = "SRNO", precision = 20, scale = 0)
-	public BigDecimal getSrno() {
-		return this.srno;
+	public BigDecimal getSrNo() {
+		return this.srNo;
 	}
 
-	public void setSrno(BigDecimal srno) {
-		this.srno = srno;
+	public void setSrNo(BigDecimal srNo) {
+		this.srNo = srNo;
 	}
 
 	@Column(name = "TXNCODE", length = 12)
-	public String getTxncode() {
-		return this.txncode;
+	public String getTxnCode() {
+		return this.txnCode;
 	}
 
-	public void setTxncode(String txncode) {
-		this.txncode = txncode;
+	public void setTxnCode(String txnCode) {
+		this.txnCode = txnCode;
 	}
 
 	@Column(name = "SWIFTCODE", length = 12)
-	public String getSwiftcode() {
-		return this.swiftcode;
+	public String getSwiftCode() {
+		return this.swiftCode;
 	}
 
-	public void setSwiftcode(String swiftcode) {
-		this.swiftcode = swiftcode;
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
 	}
 
 	@Column(name = "TXNMODULE", length = 12)
-	public String getTxnmodule() {
-		return this.txnmodule;
+	public String getTxnModule() {
+		return this.txnModule;
 	}
 
-	public void setTxnmodule(String txnmodule) {
-		this.txnmodule = txnmodule;
+	public void setTxnModule(String txnModule) {
+		this.txnModule = txnModule;
 	}
 
 	@Column(name = "USERREFERENCENO", length = 420)
-	public String getUserreferenceno() {
-		return this.userreferenceno;
+	public String getUserReferenceNo() {
+		return this.userReferenceNo;
 	}
 
-	public void setUserreferenceno(String userreferenceno) {
-		this.userreferenceno = userreferenceno;
+	public void setUserReferenceNo(String userReferenceNo) {
+		this.userReferenceNo = userReferenceNo;
 	}
 
 	@Column(name = "VIRTUAL_AC_NO", length = 80)
@@ -276,12 +277,12 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 	}
 
 	@Column(name = "TXNTYPEDESC", length = 420)
-	public String getTxntypedesc() {
-		return this.txntypedesc;
+	public String getTxnTypeDesc() {
+		return this.txnTypeDesc;
 	}
 
-	public void setTxntypedesc(String txntypedesc) {
-		this.txntypedesc = txntypedesc;
+	public void setTxnTypeDesc(String txnTypeDesc) {
+		this.txnTypeDesc = txnTypeDesc;
 	}
 
 }

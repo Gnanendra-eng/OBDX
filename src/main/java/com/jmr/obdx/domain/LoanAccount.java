@@ -18,27 +18,27 @@ import javax.persistence.Table;
 public class LoanAccount implements java.io.Serializable {
 
 	private String codProdCateg;
-	private String idcust;
-	private String idaccount;
-	private String codaccttype;
+	private String idCust;
+	private String idAccount;
+	private String codAcctType;
 	private String moduleCode;
-	private String codbranch;
-	private String codcurrency;
-	private BigDecimal amountfinanced;
-	private Date maturitydate;
-	private String codproduct;
-	private String productdesc;
-	private BigDecimal netprincipal;
-	private Date bookdate;
-	private Date valuedate;
-	private Date orgstartdate;
-	private String primaryapplicantname;
-	private String userrefno;
-	private String acctstatus;
-	private String userdefinedstatus;
-	private String chqbook;
+	private String codBranch;
+	private String codCurrency;
+	private BigDecimal amountFinanced;
+	private Date maturityDate;
+	private String codProduct;
+	private String productDesc;
+	private BigDecimal netPrincipal;
+	private Date bookDate;
+	private Date valueDate;
+	private Date orgStartDate;
+	private String primaryApplicantName;
+	private String userRefNo;
+	private String acctStatus;
+	private String userDefinedStatus;
+	private String chqBook;
 	private BigDecimal amountDisbursed;
-	private BigDecimal tenormonths;
+	private BigDecimal tenorMonths;
 	private String leaseType;
 	private BigDecimal staffFinance;
 	private String billRefNo;
@@ -51,39 +51,40 @@ public class LoanAccount implements java.io.Serializable {
 	private String custFrequencyUnit;
 	private String leasePaymentMode;
 	private BigDecimal installments;
-	private BigDecimal outstandingbal;
-	private String topupflag;
+	private BigDecimal outstandingBal;
+	private String topupFlag;
 
-	public LoanAccount(String codProdCateg, String idcust, String idaccount, String codaccttype, String moduleCode,
-			String codbranch, String codcurrency, BigDecimal amountfinanced, Date maturitydate, String codproduct,
-			String productdesc, BigDecimal netprincipal, Date bookdate, Date valuedate, Date orgstartdate,
-			String primaryapplicantname, String userrefno, String acctstatus, String userdefinedstatus, String chqbook,
-			BigDecimal amountDisbursed, BigDecimal tenormonths, String leaseType, BigDecimal staffFinance,
+	
+	public LoanAccount(String codProdCateg, String idCust, String idAccount, String codAcctType, String moduleCode,
+			String codBranch, String codCurrency, BigDecimal amountFinanced, Date maturityDate, String codProduct,
+			String productDesc, BigDecimal netPrincipal, Date bookDate, Date valueDate, Date orgStartDate,
+			String primaryApplicantName, String userRefNo, String acctStatus, String userDefinedStatus, String chqBook,
+			BigDecimal amountDisbursed, BigDecimal tenorMonths, String leaseType, BigDecimal staffFinance,
 			String billRefNo, BigDecimal bankSharePercent, BigDecimal custSharePercent, Short suppGracePeriod,
 			Short custGracePeriod, String altAcNo, String suppFrequencyUnit, String custFrequencyUnit,
-			String leasePaymentMode, BigDecimal installments, BigDecimal outstandingbal, String topupflag) {
+			String leasePaymentMode, BigDecimal installments, BigDecimal outstandingBal, String topupFlag) {
+		super();
 		this.codProdCateg = codProdCateg;
-		this.idcust = idcust;
-		this.idaccount = idaccount;
-		this.codaccttype = codaccttype;
+		this.idCust = idCust;
+		this.idAccount = idAccount;
+		this.codAcctType = codAcctType;
 		this.moduleCode = moduleCode;
-		this.codbranch = codbranch;
-		this.codcurrency = codcurrency;
-		this.amountfinanced = amountfinanced;
-		this.maturitydate = maturitydate;
-		this.codproduct = codproduct;
-		this.productdesc = productdesc;
-		this.netprincipal = netprincipal;
-		this.bookdate = bookdate;
-		this.valuedate = valuedate;
-		this.orgstartdate = orgstartdate;
-		this.primaryapplicantname = primaryapplicantname;
-		this.userrefno = userrefno;
-		this.acctstatus = acctstatus;
-		this.userdefinedstatus = userdefinedstatus;
-		this.chqbook = chqbook;
+		this.codBranch = codBranch;
+		this.codCurrency = codCurrency;
+		this.amountFinanced = amountFinanced;
+		this.maturityDate = maturityDate;
+		this.codProduct = codProduct;
+		this.productDesc = productDesc;
+		this.netPrincipal = netPrincipal;
+		this.bookDate = bookDate;
+		this.valueDate = valueDate;
+		this.orgStartDate = orgStartDate;
+		this.primaryApplicantName = primaryApplicantName;
+		this.userRefNo = userRefNo;
+		this.acctStatus = acctStatus;
+		this.userDefinedStatus = userDefinedStatus;
 		this.amountDisbursed = amountDisbursed;
-		this.tenormonths = tenormonths;
+		this.tenorMonths = tenorMonths;
 		this.leaseType = leaseType;
 		this.staffFinance = staffFinance;
 		this.billRefNo = billRefNo;
@@ -96,8 +97,8 @@ public class LoanAccount implements java.io.Serializable {
 		this.custFrequencyUnit = custFrequencyUnit;
 		this.leasePaymentMode = leasePaymentMode;
 		this.installments = installments;
-		this.outstandingbal = outstandingbal;
-		this.topupflag = topupflag;
+		this.outstandingBal = outstandingBal;
+		this.topupFlag = topupFlag;
 	}
 
 	@Column(name = "COD_PROD_CATEG")
@@ -115,30 +116,30 @@ public class LoanAccount implements java.io.Serializable {
 
 	@Id
 	@Column(name = "IDCUST")
-	public String getIdcust() {
-		return this.idcust;
+	public String getIdCust() {
+		return this.idCust;
 	}
 
-	public void setIdcust(String idcust) {
-		this.idcust = idcust;
+	public void setIdCust(String idCust) {
+		this.idCust = idCust;
 	}
 
 	@Column(name = "IDACCOUNT")
-	public String getIdaccount() {
-		return this.idaccount;
+	public String getIdAccount() {
+		return this.idAccount;
 	}
 
-	public void setIdaccount(String idaccount) {
-		this.idaccount = idaccount;
+	public void setIdAccount(String idAccount) {
+		this.idAccount = idAccount;
 	}
 
 	@Column(name = "CODACCTTYPE")
-	public String getCodaccttype() {
-		return this.codaccttype;
+	public String getCodAcctType() {
+		return this.codAcctType;
 	}
 
-	public void setCodaccttype(String codaccttype) {
-		this.codaccttype = codaccttype;
+	public void setCodAcctType(String codAcctType) {
+		this.codAcctType = codAcctType;
 	}
 
 	@Column(name = "MODULE_CODE")
@@ -151,138 +152,138 @@ public class LoanAccount implements java.io.Serializable {
 	}
 
 	@Column(name = "CODBRANCH")
-	public String getCodbranch() {
-		return this.codbranch;
+	public String getCodBranch() {
+		return this.codBranch;
 	}
 
-	public void setCodbranch(String codbranch) {
-		this.codbranch = codbranch;
+	public void setCodBranch(String codBranch) {
+		this.codBranch = codBranch;
 	}
 
 	@Column(name = "CODCURRENCY")
-	public String getCodcurrency() {
-		return this.codcurrency;
+	public String getCodCurrency() {
+		return this.codCurrency;
 	}
 
-	public void setCodcurrency(String codcurrency) {
-		this.codcurrency = codcurrency;
+	public void setCodCurrency(String codCurrency) {
+		this.codCurrency = codCurrency;
 	}
 
 	@Column(name = "AMOUNTFINANCED")
-	public BigDecimal getAmountfinanced() {
-		return this.amountfinanced;
+	public BigDecimal getAmountFinanced() {
+		return this.amountFinanced;
 	}
 
-	public void setAmountfinanced(BigDecimal amountfinanced) {
-		this.amountfinanced = amountfinanced;
+	public void setAmountFinanced(BigDecimal amountFinanced) {
+		this.amountFinanced = amountFinanced;
 	}
 
 	@Column(name = "MATURITYDATE")
-	public Date getMaturitydate() {
-		return this.maturitydate;
+	public Date getMaturityDate() {
+		return this.maturityDate;
 	}
 
-	public void setMaturitydate(Date maturitydate) {
-		this.maturitydate = maturitydate;
+	public void setMaturityDate(Date maturityDate) {
+		this.maturityDate = maturityDate;
 	}
 
 	@Column(name = "CODPRODUCT")
-	public String getCodproduct() {
-		return this.codproduct;
+	public String getCodProduct() {
+		return this.codProduct;
 	}
 
-	public void setCodproduct(String codproduct) {
-		this.codproduct = codproduct;
+	public void setCodProduct(String codProduct) {
+		this.codProduct = codProduct;
 	}
 
 	@Column(name = "PRODUCTDESC")
-	public String getProductdesc() {
-		return this.productdesc;
+	public String getProductDesc() {
+		return this.productDesc;
 	}
 
-	public void setProductdesc(String productdesc) {
-		this.productdesc = productdesc;
+	public void setProductdesc(String productDesc) {
+		this.productDesc = productDesc;
 	}
 
 	@Column(name = "NETPRINCIPAL")
-	public BigDecimal getNetprincipal() {
-		return this.netprincipal;
+	public BigDecimal getNetPrincipal() {
+		return this.netPrincipal;
 	}
 
-	public void setNetprincipal(BigDecimal netprincipal) {
-		this.netprincipal = netprincipal;
+	public void setNetPrincipal(BigDecimal netPrincipal) {
+		this.netPrincipal = netPrincipal;
 	}
 
 	@Column(name = "BOOKDATE")
-	public Date getBookdate() {
-		return this.bookdate;
+	public Date getBookDate() {
+		return this.bookDate;
 	}
 
-	public void setBookdate(Date bookdate) {
-		this.bookdate = bookdate;
+	public void setBookDate(Date bookDate) {
+		this.bookDate = bookDate;
 	}
 
 	@Column(name = "VALUEDATE")
-	public Date getValuedate() {
-		return this.valuedate;
+	public Date getValueDate() {
+		return this.valueDate;
 	}
 
-	public void setValuedate(Date valuedate) {
-		this.valuedate = valuedate;
+	public void setValueDate(Date valueDate) {
+		this.valueDate = valueDate;
 	}
 
 	@Column(name = "ORGSTARTDATE")
-	public Date getOrgstartdate() {
-		return this.orgstartdate;
+	public Date getOrgStartDate() {
+		return this.orgStartDate;
 	}
 
-	public void setOrgstartdate(Date orgstartdate) {
-		this.orgstartdate = orgstartdate;
+	public void setOrgStartDate(Date orgStartDate) {
+		this.orgStartDate = orgStartDate;
 	}
 
 	@Column(name = "PRIMARYAPPLICANTNAME")
-	public String getPrimaryapplicantname() {
-		return this.primaryapplicantname;
+	public String getPrimaryApplicantName() {
+		return this.primaryApplicantName;
 	}
 
-	public void setPrimaryapplicantname(String primaryapplicantname) {
-		this.primaryapplicantname = primaryapplicantname;
+	public void setPrimaryApplicantName(String primaryApplicantName) {
+		this.primaryApplicantName = primaryApplicantName;
 	}
 
 	@Column(name = "USERREFNO")
-	public String getUserrefno() {
-		return this.userrefno;
+	public String getUserRefNo() {
+		return this.userRefNo;
 	}
 
-	public void setUserrefno(String userrefno) {
-		this.userrefno = userrefno;
+	public void setUserRefNo(String userRefNo) {
+		this.userRefNo = userRefNo;
 	}
 
 	@Column(name = "ACCTSTATUS")
-	public String getAcctstatus() {
-		return this.acctstatus;
+	public String getAcctStatus() {
+		return this.acctStatus;
 	}
 
-	public void setAcctstatus(String acctstatus) {
-		this.acctstatus = acctstatus;
+	public void setAcctStatus(String acctStatus) {
+		this.acctStatus = acctStatus;
 	}
 
 	@Column(name = "USERDEFINEDSTATUS")
-	public String getUserdefinedstatus() {
-		return this.userdefinedstatus;
+	public String getUserDefinedStatus() {
+		return this.userDefinedStatus;
 	}
 
-	public void setUserdefinedstatus(String userdefinedstatus) {
-		this.userdefinedstatus = userdefinedstatus;
+	public void setUserDefinedStatus(String userDefinedStatus) {
+		this.userDefinedStatus = userDefinedStatus;
 	}
 
 	@Column(name = "CHQBOOK")
-	public String getChqbook() {
-		return this.chqbook;
+	public String getChqBook() {
+		return this.chqBook;
 	}
 
-	public void setChqbook(String chqbook) {
-		this.chqbook = chqbook;
+	public void setChqBook(String chqBook) {
+		this.chqBook = chqBook;
 	}
 
 	@Column(name = "AMOUNT_DISBURSED")
@@ -295,12 +296,12 @@ public class LoanAccount implements java.io.Serializable {
 	}
 
 	@Column(name = "TENORMONTHS")
-	public BigDecimal getTenormonths() {
-		return this.tenormonths;
+	public BigDecimal getTenorMonths() {
+		return this.tenorMonths;
 	}
 
-	public void setTenormonths(BigDecimal tenormonths) {
-		this.tenormonths = tenormonths;
+	public void setTenorMonths(BigDecimal tenorMonths) {
+		this.tenorMonths = tenorMonths;
 	}
 
 	@Column(name = "LEASE_TYPE")
@@ -412,20 +413,20 @@ public class LoanAccount implements java.io.Serializable {
 	}
 
 	@Column(name = "OUTSTANDINGBAL")
-	public BigDecimal getOutstandingbal() {
-		return this.outstandingbal;
+	public BigDecimal getOutstandingBal() {
+		return this.outstandingBal;
 	}
 
-	public void setOutstandingbal(BigDecimal outstandingbal) {
-		this.outstandingbal = outstandingbal;
+	public void setOutstandingBal(BigDecimal outstandingBal) {
+		this.outstandingBal = outstandingBal;
 	}
 
 	@Column(name = "TOPUPFLAG")
-	public String getTopupflag() {
-		return this.topupflag;
+	public String getTopupFlag() {
+		return this.topupFlag;
 	}
 
-	public void setTopupflag(String topupflag) {
-		this.topupflag = topupflag;
+	public void setTopupFlag(String topupFlag) {
+		this.topupFlag = topupFlag;
 	}
 }

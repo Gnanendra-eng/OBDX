@@ -58,6 +58,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.isActive = isActive;
         this.registrationDateTime = registrationDateTime;
     }
+    
     public McxBeneficiary(McxUser mcxUser, McxTransferViaType mcxTransferViaType, McxTransferType mcxTransferType, String payyeName, String accountName, String branchCode, String nickName, String accountNumber, String isActive, Date registrationDateTime, String swiftCode, String ncc, Set<McxTransactionData> mcxTransactionDatas) {
        this.mcxUser = mcxUser;
        this.mcxTransferViaType = mcxTransferViaType;
@@ -89,11 +90,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.ncc = ncc;
      }
     
-
-
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -103,7 +100,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_USER_ID", nullable=false)
     public McxUser getMcxUser() {
         return this.mcxUser;
@@ -113,7 +110,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.mcxUser = mcxUser;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_TRANSFER_VIA_TYPE_ID", nullable=false)
     public McxTransferViaType getMcxTransferViaType() {
         return this.mcxTransferViaType;
@@ -123,7 +120,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.mcxTransferViaType = mcxTransferViaType;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_TRANSFER_TYPE_ID", nullable=false)
     public McxTransferType getMcxTransferType() {
         return this.mcxTransferType;
@@ -133,7 +130,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.mcxTransferType = mcxTransferType;
     }
 
-    
     @Column(name="PAYYE_NAME", nullable=false, length=100)
     public String getPayyeName() {
         return this.payyeName;
@@ -143,7 +139,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.payyeName = payyeName;
     }
 
-    
     @Column(name="ACCOUNT_NAME", nullable=false, length=100)
     public String getAccountName() {
         return this.accountName;
@@ -153,7 +148,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.accountName = accountName;
     }
 
-    
     @Column(name="BRANCH_CODE", nullable=false, length=100)
     public String getBranchCode() {
         return this.branchCode;
@@ -162,7 +156,6 @@ public class McxBeneficiary  implements java.io.Serializable {
     public void setBranchCode(String branchCode) {
         this.branchCode = branchCode;
     }
-
     
     @Column(name="NICK_NAME", nullable=false, length=100)
     public String getNickName() {
@@ -173,7 +166,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.nickName = nickName;
     }
 
-    
     @Column(name="ACCOUNT_NUMBER", nullable=false, length=100)
     public String getAccountNumber() {
         return this.accountNumber;
@@ -183,7 +175,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.accountNumber = accountNumber;
     }
 
-    
     @Column(name="IS_ACTIVE", nullable=false, length=5)
     public String getIsActive() {
         return this.isActive;
@@ -203,7 +194,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.registrationDateTime = registrationDateTime;
     }
 
-    
     @Column(name="SWIFT_CODE", length=100)
     public String getSwiftCode() {
         return this.swiftCode;
@@ -213,7 +203,6 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.swiftCode = swiftCode;
     }
 
-    
     @Column(name="NCC", length=100)
     public String getNcc() {
         return this.ncc;
@@ -223,7 +212,7 @@ public class McxBeneficiary  implements java.io.Serializable {
         this.ncc = ncc;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBeneficiary")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBeneficiary")
     public Set<McxTransactionData> getMcxTransactionDatas() {
         return this.mcxTransactionDatas;
     }
@@ -231,10 +220,6 @@ public class McxBeneficiary  implements java.io.Serializable {
     public void setMcxTransactionDatas(Set<McxTransactionData> mcxTransactionDatas) {
         this.mcxTransactionDatas = mcxTransactionDatas;
     }
-
-
-
-
 }
 
 

@@ -59,32 +59,32 @@ public class LoanService {
 		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
-			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+			tempAccountDetails.add(accountdetail.getNbrAccount());
 		});
 		CURRENT_OUTSTANDING=0.0;
 		TOTAL_LOAN_BORROWING=0.0;
 		activedBasicLoanDetailsDtos=new ArrayList<>(0);
 		closedBasicLoanDetailsDtos=new ArrayList<>(0);
 		loanAccounts.stream().forEach(loanAccount->{
-			if(loanAccount.getAcctstatus().equals(Utility.ACTIVE)){
-				CURRENT_OUTSTANDING+=loanAccount.getOutstandingbal().doubleValue();
-				TOTAL_LOAN_BORROWING+=loanAccount.getAmountfinanced().doubleValue();
-				activedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(),
-			    		loanAccount.getCodbranch(),loanAccount.getIdcust(),
-			    		loanAccount.getPrimaryapplicantname(),loanAccount.getTenormonths(),
-			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturitydate()),
-			    		loanAccount.getAcctstatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookdate())));
+			if(loanAccount.getAcctStatus().equals(Utility.ACTIVE)){
+				CURRENT_OUTSTANDING+=loanAccount.getOutstandingBal().doubleValue();
+				TOTAL_LOAN_BORROWING+=loanAccount.getAmountFinanced().doubleValue();
+				activedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserRefNo(),
+			    		loanAccount.getProductDesc(), loanAccount.getCodCurrency(),loanAccount.getOutstandingBal().doubleValue(),
+			    		loanAccount.getCodBranch(),loanAccount.getIdCust(),
+			    		loanAccount.getPrimaryApplicantName(),loanAccount.getTenorMonths(),
+			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturityDate()),
+			    		loanAccount.getAcctStatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookDate())));
 			}
 			else{
-				closedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserrefno(),
-			    		loanAccount.getProductdesc(), loanAccount.getCodcurrency(),loanAccount.getOutstandingbal().doubleValue(),
-			    		loanAccount.getCodbranch(),loanAccount.getIdcust(),
-			    		loanAccount.getPrimaryapplicantname(),loanAccount.getTenormonths(),
-			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturitydate()),
-			    		loanAccount.getAcctstatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookdate())));
+				closedBasicLoanDetailsDtos.add(new BasicLoanDetailsDto(loanAccount.getUserRefNo(),
+			    		loanAccount.getProductDesc(), loanAccount.getCodCurrency(),loanAccount.getOutstandingBal().doubleValue(),
+			    		loanAccount.getCodBranch(),loanAccount.getIdCust(),
+			    		loanAccount.getPrimaryApplicantName(),loanAccount.getTenorMonths(),
+			    		loanAccount.getInstallments(),getSimpleDateFormat().format(loanAccount.getMaturityDate()),
+			    		loanAccount.getAcctStatus(),loanAccount.getAmountDisbursed(),getSimpleDateFormat().format(loanAccount.getBookDate())));
 			}
-			currencyType=loanAccount.getCodcurrency();
+			currencyType=loanAccount.getCodCurrency();
 		});
 		basicLoanDetailsDto=new BasicLoanDetailsInfo(TOTAL_LOAN_BORROWING, CURRENT_OUTSTANDING, activedBasicLoanDetailsDtos, closedBasicLoanDetailsDtos,mcxCustomerMapping.getCustomerId(),tempAccountDetails,currencyType);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());

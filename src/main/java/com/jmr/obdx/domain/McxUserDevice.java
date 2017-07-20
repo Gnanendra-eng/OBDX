@@ -18,10 +18,9 @@ import javax.persistence.Table;
 )
 public class McxUserDevice  implements java.io.Serializable {
 
-
-     private long id;
-     private McxDeviceM mcxDeviceM;
-     private long refUserId;
+    private long id;
+    private McxDeviceM mcxDeviceM;
+    private long refUserId;
 
     public McxUserDevice() {
     }
@@ -32,9 +31,7 @@ public class McxUserDevice  implements java.io.Serializable {
        this.refUserId = refUserId;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -44,7 +41,7 @@ public class McxUserDevice  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_DEVICE_ID", nullable=false)
     public McxDeviceM getMcxDeviceM() {
         return this.mcxDeviceM;
@@ -53,7 +50,6 @@ public class McxUserDevice  implements java.io.Serializable {
     public void setMcxDeviceM(McxDeviceM mcxDeviceM) {
         this.mcxDeviceM = mcxDeviceM;
     }
-
     
     @Column(name="REF_USER_ID", nullable=false, precision=10, scale=0)
     public long getRefUserId() {
@@ -63,10 +59,6 @@ public class McxUserDevice  implements java.io.Serializable {
     public void setRefUserId(long refUserId) {
         this.refUserId = refUserId;
     }
-
-
-
-
 }
 
 

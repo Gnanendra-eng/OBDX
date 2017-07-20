@@ -86,7 +86,7 @@ public class AccountService {
 		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
-			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+			tempAccountDetails.add(accountdetail.getNbrAccount());
 			
 		});
 		basicAccountDetailsDto.setNbrAccounts(tempAccountDetails);
@@ -109,19 +109,19 @@ public class AccountService {
 		accountDetailsDto = new AccountDetailsDto();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Accountdetails accountdetail = accountDetailsRepo.findAccountDetailsByAccountIdCustomerId(customerId, nbrAccount);
-		System.out.println(new Double(accountdetail.getBALANCE()));
+		System.out.println(new Double(accountdetail.getBalance()));
 
-		accountDetailsDto = new AccountDetailsDto(accountdetail.getIDCUSTOMER(), accountdetail.getNBRBRANCH(),
-				accountdetail.getNBRACCOUNT(), accountdetail.getACCTTYPE(), accountdetail.getACCTSTATUS(),
-				accountdetail.getCCYDESC(),new Double(accountdetail.getBALANCE()).doubleValue(), accountdetail.getOPENINGBALANCE(),
-				accountdetail.getAVAILABLEBALANCE(), accountdetail.getISCHQBOOK(), accountdetail.getISOVERDRAFT(),
-				accountdetail.getISSI(), accountdetail.getNUMUNCOLLECTED(), accountdetail.getMINBALANCE(),
-				accountdetail.getDAILYWITHDRAWALLIMIT(), accountdetail.getCUSTOMERSHORTNAME(),
-				accountdetail.getCUSTOMERNAME(), dateFormat.format(accountdetail.getOPENINGDATE()),
-				accountdetail.getIBAN_AC_NO(), accountdetail.getRELATION(), accountdetail.getDESCACCTTYPE(),
-				accountdetail.getAMOUNTONHOLD(), accountdetail.getODLIMIT(), accountdetail.getDAILYLIMIT(),
-				accountdetail.getELIGIBLEADV(), accountdetail.getODLMTSTRTDATE(), accountdetail.getODLMTENDDATE(),
-				accountdetail.getORIGAVAILABLEBAL());
+		accountDetailsDto = new AccountDetailsDto(accountdetail.getIdCustomer(), accountdetail.getNbrBranch(),
+				accountdetail.getNbrAccount(), accountdetail.getAcctType(), accountdetail.getAcctStatus(),
+				accountdetail.getCcyDesc(),new Double(accountdetail.getBalance()).doubleValue(), accountdetail.getOpeningBalance(),
+				accountdetail.getAvailableBalance(), accountdetail.getIsChqBook(), accountdetail.getIsOverDraft(),
+				accountdetail.getIssi(), accountdetail.getNumUncollected(), accountdetail.getMinBalance(),
+				accountdetail.getDailyWithDrawalLimit(), accountdetail.getCustomerShortName(),
+				accountdetail.getCustomerName(), dateFormat.format(accountdetail.getOpeningDate()),
+				accountdetail.getIbanAcNo(), accountdetail.getRelation(), accountdetail.getDescAcctType(),
+				accountdetail.getAmountOnHold(), accountdetail.getOdLimit(), accountdetail.getDialyLimit(),
+				accountdetail.getEligibleAdv(), accountdetail.getOdlmStartDate(), accountdetail.getOdlmEndDate(),
+				accountdetail.getOrigAvailableBal());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		return accountDetailsDto;
 	}
@@ -150,24 +150,23 @@ public class AccountService {
 		sumOfLoans = 0.0;
 		sumOfContractAndTermdepostit = 0.0;
 		accountsummarys.stream().forEach(accountsummary -> {
-			System.out.println(accountsummary.getCODACCTTYPE());
-			if (accountsummary.getCODACCTTYPE().equals(Utility.SAVINGSANDCURRENT)) {
-				sumOfSavingsAndCurrent += Double.parseDouble(accountsummary.getAVAILAMT());
+			if (accountsummary.getCodAcctType().equals(Utility.SAVINGSANDCURRENT)) {
+				sumOfSavingsAndCurrent += Double.parseDouble(accountsummary.getAvailAmt());
 				savingsAndCurrent.add(getAccountSummaryType(accountsummary));
 			}
-			if (accountsummary.getCODACCTTYPE().equals(Utility.CONTRACTANDTERMDEPOSIT)) {
-				sumOfContractAndTermdepostit += Double.parseDouble(accountsummary.getNUMAVAILBAL());
+			if (accountsummary.getCodAcctType().equals(Utility.CONTRACTANDTERMDEPOSIT)) {
+				sumOfContractAndTermdepostit += Double.parseDouble(accountsummary.getNumAvailBal());
 				loans.add(getAccountSummaryType(accountsummary));
 				}
-			if (accountsummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT)) {
-				sumOfLoans += Double.parseDouble(accountsummary.getNUMAVAILBAL());
+			if (accountsummary.getCodAcctType().equals(Utility.LOANSANDCURRENT)) {
+				sumOfLoans += Double.parseDouble(accountsummary.getNumAvailBal());
 				contractAndTermdeposit.add(getAccountSummaryType(accountsummary));
 				}
-			currencyType=accountsummary.getCODACCTCURR();
+			currencyType=accountsummary.getCodAcctCurr();
 		});
 		List<String> tempAccountDetails = new ArrayList<>();
 		accountdetails.stream().forEach(accountdetail -> {
-			tempAccountDetails.add(accountdetail.getNBRACCOUNT());
+			tempAccountDetails.add(accountdetail.getNbrAccount());
 		});
 		accountSummaryInfo = new AccountSummaryInfo(sumOfSavingsAndCurrent, sumOfLoans, sumOfContractAndTermdepostit,
 				savingsAndCurrent, loans, contractAndTermdeposit,tempAccountDetails,mcxCustomerMapping.getCustomerId(),currencyType);
@@ -189,8 +188,8 @@ public class AccountService {
 		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
 		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		accountsummarys.stream().forEach(loansummary -> {
-			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))
-				sumOfTotalLoans += Double.parseDouble(loansummary.getNUMAVAILBAL());
+			   if( loansummary.getCodAcctType().equals(Utility.LOANSANDCURRENT))
+				sumOfTotalLoans += Double.parseDouble(loansummary.getNumAvailBal());
 				loanPending.add(getAccountSummaryType(loansummary));
 		});
 		loanSummayInfo = new LoanSummayInfo(sumOfLoans,loanPending);
@@ -199,31 +198,31 @@ public class AccountService {
 	}
 		
 	protected AccountSummaryDto getAccountSummaryType(Accountsummary accountsummary) {
-		return new AccountSummaryDto(accountsummary.getIDACCOUNT(), accountsummary.getIDCUSTOMER(),
-				accountsummary.getCODBRANCH(), accountsummary.getCODACCTTYPE(), accountsummary.getTXTACCTSTATUS(),
-				accountsummary.getCODACCTCURR(), accountsummary.getNUMBALANCE(), accountsummary.getNUMOPENBALANCE(),
-				accountsummary.getDATLASTUPDATED(), accountsummary.getNUMAVAILBAL(), accountsummary.getNUMUNCOLLECTED(),
-				accountsummary.getNUMAVAILCREDIT(), accountsummary.getNUMMONTOVCR(), accountsummary.getNUMMONTOVDR(),
-				accountsummary.getACCTDESC(), accountsummary.getADD1(), accountsummary.getADD2(),
-				accountsummary.getADD3(), accountsummary.getNOM1(), accountsummary.getNOM2(), accountsummary.getADD4(),
-				accountsummary.getPRDNAME(), accountsummary.getPRDTYPE(), accountsummary.getACCTOPENDT(),
-				accountsummary.getODLIMIT(), accountsummary.getODSTARTDT(), accountsummary.getODENDDT(),
-				accountsummary.getSHADOWLIMIT(), accountsummary.getACCRDRAMT(), accountsummary.getACCRCRAMT(),
-				accountsummary.getJOINTACCTINDICATOR(), accountsummary.getCHQBOOK(),
-				accountsummary.getOVERDRAFT_FACILITY(), accountsummary.getNUMSTATEBIT(), accountsummary.getCHKNAME1(),
-				accountsummary.getCHKNAME2(), accountsummary.getAUTOREORDERCHKREQ(),
-				accountsummary.getAUTOREORDERCHKLVL(), accountsummary.getDIRTSTATUS(), accountsummary.getNEXTCAPDT(),
-				accountsummary.getCAPFREQ(), accountsummary.getAUTHSIGNATORY(), accountsummary.getAUTHSIGNLIMIT(),
-				accountsummary.getSALESPERSON(), accountsummary.getINTRODUCER(), accountsummary.getIBANNUMBER(),
-				accountsummary.getACCTLOCKFLAG(), accountsummary.getDEBITACCTLOCKFLAG(),
-				accountsummary.getCREDITACCTLOCKFLAG(), accountsummary.getCRLINE(), accountsummary.getAVAILAMT(),
-				accountsummary.getCRINTRATE(), accountsummary.getALWDOD(), accountsummary.getUNALWDOD(),
-				accountsummary.getACFROZEN(), accountsummary.getDTIME(), accountsummary.getSLNO(),
-				accountsummary.getPRDCODE(), accountsummary.getILM_APPLICABLE(), accountsummary.getID_ENTITY(),
-				accountsummary.getMATURITY_DATE(), accountsummary.getNEXT_DUE_DATE(), accountsummary.getUDF1(),
-				accountsummary.getUDF2(), accountsummary.getUDF3(), accountsummary.getUDF4(), accountsummary.getUDF5(),
-				accountsummary.getUDF6(), accountsummary.getUDF7(), accountsummary.getUDF8(), accountsummary.getUDF9(),
-				accountsummary.getUDF10());
+		return new AccountSummaryDto(accountsummary.getIdAccount(), accountsummary.getIdCustomer(),
+				accountsummary.getCodBranch(), accountsummary.getCodAcctType(), accountsummary.getTxtAcctStatus(),
+				accountsummary.getCodAcctCurr(), accountsummary.getNumBalance(), accountsummary.getNumOpenBalance(),
+				accountsummary.getDatLastUpdated(), accountsummary.getNumAvailBal(), accountsummary.getNumUncollected(),
+				accountsummary.getNumAvailCredit(), accountsummary.getNumMontOvCr(), accountsummary.getNumMontOvDr(),
+				accountsummary.getAcctDesc(), accountsummary.getAdd1(), accountsummary.getAdd2(),
+				accountsummary.getAdd3(), accountsummary.getNom1(), accountsummary.getNom2(), accountsummary.getAdd4(),
+				accountsummary.getPrdName(), accountsummary.getPrdType(), accountsummary.getAcctOpenDt(),
+				accountsummary.getOdLimit(), accountsummary.getOdStartDt(), accountsummary.getOdEndDt(),
+				accountsummary.getShadowLimit(), accountsummary.getAccrDrAmt(), accountsummary.getAccrCrAmt(),
+				accountsummary.getJointAcctIndicatior(), accountsummary.getChqBook(),
+				accountsummary.getOverDraftFecility(), accountsummary.getNumStateBit(), accountsummary.getChkName1(),
+				accountsummary.getChkName2(), accountsummary.getAutoreOrderChkReq(),
+				accountsummary.getAutoreOrderChkLvl(), accountsummary.getDirtStatus(), accountsummary.getNextCapDt(),
+				accountsummary.getCapFreq(), accountsummary.getAuthSignAtory(), accountsummary.getAuthSignLimit(),
+				accountsummary.getSalesPerson(), accountsummary.getIntroducer(), accountsummary.getIbanNumber(),
+				accountsummary.getAcctLockFlag(), accountsummary.getDebitAcctLockFlag(),
+				accountsummary.getCreditAcctLockFlag(), accountsummary.getCrLine(), accountsummary.getAvailAmt(),
+				accountsummary.getCrIntRate(), accountsummary.getAlwDod(), accountsummary.getUnAlwDod(),
+				accountsummary.getAcFrozen(), accountsummary.getdTime(), accountsummary.getSlNo(),
+				accountsummary.getPrdCode(), accountsummary.getIlmApplicable(), accountsummary.getIdEntity(),
+				accountsummary.getMaturityDate(), accountsummary.getNextDueDate(), accountsummary.getUdf1(),
+				accountsummary.getUdf2(), accountsummary.getUdf3(), accountsummary.getUdf4(), accountsummary.getUdf5(),
+				accountsummary.getUdf6(), accountsummary.getUdf7(), accountsummary.getUdf8(), accountsummary.getUdf9(),
+				accountsummary.getUdf10());
 
 	}
 	
@@ -237,8 +236,8 @@ public class AccountService {
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
 		Accountdetails accountdetail = accountDetailsRepo.findAccountBranchByAccountId(nbrAccount);
 		
-		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(accountdetail.getNBRBRANCH());
-		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
+		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(accountdetail.getNbrBranch());
+		AccountBranch accountBranch = new AccountBranch(accountdetail.getNbrAccount(), accountdetail.getNbrBranch(), mstBranch.getBranchName(),accountdetail.getCustomerName());
 	    return accountBranch;
 	}
 	

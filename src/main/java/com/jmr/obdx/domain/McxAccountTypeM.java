@@ -20,7 +20,6 @@ import javax.persistence.Table;
 )
 public class McxAccountTypeM  implements java.io.Serializable {
 
-
      private long id;
      private String description;
      private String accountType;
@@ -48,8 +47,6 @@ public class McxAccountTypeM  implements java.io.Serializable {
     }
    
      @Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -58,7 +55,6 @@ public class McxAccountTypeM  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     
     @Column(name="DESCRIPTION", nullable=false, length=500)
     public String getDescription() {
@@ -68,7 +64,6 @@ public class McxAccountTypeM  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
     
     @Column(name="ACCOUNT_TYPE", nullable=false, length=500)
     public String getAccountType() {
@@ -79,7 +74,6 @@ public class McxAccountTypeM  implements java.io.Serializable {
         this.accountType = accountType;
     }
 
-    
     @Column(name="IS_ACTIVE", nullable=false, length=5)
     public String getIsActive() {
         return this.isActive;
@@ -89,7 +83,7 @@ public class McxAccountTypeM  implements java.io.Serializable {
         this.isActive = isActive;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxAccountTypeM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxAccountTypeM")
     public Set<McxTransactionData> getMcxTransactionDatas() {
         return this.mcxTransactionDatas;
     }
@@ -97,8 +91,4 @@ public class McxAccountTypeM  implements java.io.Serializable {
     public void setMcxTransactionDatas(Set<McxTransactionData> mcxTransactionDatas) {
         this.mcxTransactionDatas = mcxTransactionDatas;
     }
-
-
-
-
 }

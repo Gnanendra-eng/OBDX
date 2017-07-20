@@ -22,22 +22,21 @@ import javax.persistence.UniqueConstraint;
 )
 public class McxDeviceM  implements java.io.Serializable {
 
-
-     private long id;
-     private String deviceId;
-     private String name;
-     private String deviceType;
-     private Set<McxUserDevice> mcxUserDevices = new HashSet<McxUserDevice>(0);
+    private long id;
+    private String deviceId;
+    private String name;
+    private String deviceType;
+    private Set<McxUserDevice> mcxUserDevices = new HashSet<McxUserDevice>(0);
 
     public McxDeviceM() {
     }
-
 	
     public McxDeviceM(long id, String deviceId, String name) {
         this.id = id;
         this.deviceId = deviceId;
         this.name = name;
     }
+    
     public McxDeviceM(long id, String deviceId, String name, String deviceType, Set<McxUserDevice> mcxUserDevices) {
        this.id = id;
        this.deviceId = deviceId;
@@ -46,9 +45,7 @@ public class McxDeviceM  implements java.io.Serializable {
        this.mcxUserDevices = mcxUserDevices;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -58,7 +55,6 @@ public class McxDeviceM  implements java.io.Serializable {
         this.id = id;
     }
 
-    
     @Column(name="DEVICE_ID", unique=true, nullable=false, length=20)
     public String getDeviceId() {
         return this.deviceId;
@@ -68,7 +64,6 @@ public class McxDeviceM  implements java.io.Serializable {
         this.deviceId = deviceId;
     }
 
-    
     @Column(name="NAME", nullable=false, length=100)
     public String getName() {
         return this.name;
@@ -78,7 +73,6 @@ public class McxDeviceM  implements java.io.Serializable {
         this.name = name;
     }
 
-    
     @Column(name="DEVICE_TYPE", length=20)
     public String getDeviceType() {
         return this.deviceType;
@@ -88,7 +82,7 @@ public class McxDeviceM  implements java.io.Serializable {
         this.deviceType = deviceType;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxDeviceM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxDeviceM")
     public Set<McxUserDevice> getMcxUserDevices() {
         return this.mcxUserDevices;
     }
@@ -96,10 +90,6 @@ public class McxDeviceM  implements java.io.Serializable {
     public void setMcxUserDevices(Set<McxUserDevice> mcxUserDevices) {
         this.mcxUserDevices = mcxUserDevices;
     }
-
-
-
-
 }
 
 

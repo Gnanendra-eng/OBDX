@@ -18,438 +18,360 @@ import javax.persistence.Table;
 public class TermDepositeM implements java.io.Serializable {
 
 	@Id
-	@Column(name = "idaccount")
-	private String idaccount;
-	@Column(name = "codaccttype")
-	private String codaccttype;
-	@Column(name = "codbranch")
-	private String codbranch;
-	@Column(name = "acctdesc")
-	private String acctdesc;
-	@Column(name = "depositamt")
-	private String depositamt;
-	@Column(name = "accountclass")
-	private String accountclass;
-	@Column(name = "jointacctindicator")
-	private String jointacctindicator;
-	@Column(name = "nominee1")
+	@Column(name = "IDACCOUNT")
+	private String idAccount;
+	@Column(name = "CODACCTTYPE")
+	private String codAcctType;
+	@Column(name = "CODBRANCH")
+	private String codBranch;
+	@Column(name = "ACCTDESC")
+	private String acctDesc;
+	@Column(name = "DEPOSITAMT")
+	private String depositAmt;
+	@Column(name = "ACCOUNTCLASS")
+	private String accountClass;
+	@Column(name = "JOINTACCTINDICATOR")
+	private String jointAcctIndicator;
+	@Column(name = "NOMINEE1")
 	private String nominee1;
-	@Column(name = "nominee2")
+	@Column(name = "NOMINEE2")
 	private String nominee2;
-	@Column(name = "rate")
+	@Column(name = "RATE")
 	private String rate;
-	@Column(name = "apy")
+	@Column(name = "APY")
 	private String apy;
-	@Column(name = "bookaccount")
-	private String bookaccount;
-	@Column(name = "bookbranch")
-	private String bookbranch;
-	@Column(name = "ccy")
+	@Column(name = "BOOKACCOUNT")
+	private String bookAccount;
+	@Column(name = "BOOKBRANCH")
+	private String bookBranch;
+	@Column(name = "CCY")
 	private String ccy;
-	@Column(name = "customerid")
-	private String customerid;
-	@Column(name = "primarycustomerid")
-	private String primarycustomerid;
-	@Column(name = "maturitydate")
-	private String maturitydate;
-	@Column(name = "depositdate")
-	private Date depositdate;
-	@Column(name = "rollovertype")
-	private String rollovertype;
-	@Column(name = "rolloveramt")
-	private String rolloveramt;
-	@Column(name = "acyaccruedcric")
-	private String acyaccruedcric;
-	@Column(name = "intcap")
-	private String intcap;
-	@Column(name = "altacctno")
-	private String altacctno;
-	@Column(name = "proddesc")
-	private String proddesc;
-	@Column(name = "autorollover")
-	private String autorollover;
-	@Column(name = "closeonmaturity")
-	private String closeonmaturity;
-	@Column(name = "numavlbalance")
-	private String numavlbalance;
-	@Column(name = "modeofoperation")
-	private String modeofoperation;
-	@Column(name = "tdstatus")
-	private String tdstatus;
-	@Column(name = "holdamount")
-	private String holdamount;
-	@Column(name = "customername")
-	private String customername;
-	@Column(name = "allow_topup")
-	private String allow_topup;
-	@Column(name = "blk_open_days")
-	private String blk_open_days;
-	@Column(name = "blk_open_months")
-	private String blk_open_months;
-	@Column(name = "blk_mat_days")
-	private String blk_mat_days;
-	@Column(name = "blk_mat_months")
-	private String blk_mat_months;
-	@Column(name = "partial_liquidation")
-	private String partial_liquidation;
-	@Column(name = "valuedate")
-	private String valuedate;
-
-	public String getIdaccount() {
-		return idaccount;
+	@Column(name = "CUSTOMERID")
+	private String customerId;
+	@Column(name = "PRIMARYCUSTOMERID")
+	private String primaryCustomerId;
+	@Column(name = "MATURITYDATE")
+	private String maturityDate;
+	@Column(name = "DEPOSITDATE")
+	private Date depositDate;
+	@Column(name = "ROLLOVERTYPE")
+	private String rolloverType;
+	@Column(name = "ROLLOVERAMT")
+	private String rolloverAmt;
+	@Column(name = "ACYACCRUEDCRIC")
+	private String acaccruedcric;
+	@Column(name = "INTCAP")
+	private String intCap;
+	@Column(name = "ALTACCTNO")
+	private String altAcctNo;
+	@Column(name = "PRODDESC")
+	private String prodDesc;
+	@Column(name = "AUTOROLLOVER")
+	private String autoRollover;
+	@Column(name = "CLOSEONMATURITY")
+	private String closeOnMaturity;
+	@Column(name = "NUMAVLBALANCE")
+	private String numAvlBalance;
+	@Column(name = "MODEOFOPERATION")
+	private String modeOfOperation;
+	@Column(name = "TDSTATUS")
+	private String tdStatus;
+	@Column(name = "HOLDAMOUNT")
+	private String holdAmount;
+	@Column(name = "CUSTOMERNAME")
+	private String customerName;
+	@Column(name = "ALLOW_TOPUP")
+	private String allowTopup;
+	@Column(name = "BLK_OPEN_DAYS")
+	private String blkOpenDays;
+	@Column(name = "BLK_OPEN_MONTHS")
+	private String blkOpenMonths;
+	@Column(name = "BLK_MAT_DAYS")
+	private String blkMatDays;
+	@Column(name = "BLK_MAT_MONTHS")
+	private String blkMatMonths;
+	@Column(name = "PARTIAL_LIQUIDATION")
+	private String partialLiquidation;
+	@Column(name = "VALUEDATE")
+	private String valueDate;
+	public String getIdAccount() {
+		return idAccount;
 	}
-
-	public void setIdaccount(String idaccount) {
-		this.idaccount = idaccount;
+	public void setIdAccount(String idAccount) {
+		this.idAccount = idAccount;
 	}
-
-	public String getCodaccttype() {
-		return codaccttype;
+	public String getCodAcctType() {
+		return codAcctType;
 	}
-
-	public void setCodaccttype(String codaccttype) {
-		this.codaccttype = codaccttype;
+	public void setCodAcctType(String codAcctType) {
+		this.codAcctType = codAcctType;
 	}
-
-	public String getCodbranch() {
-		return codbranch;
+	public String getCodBranch() {
+		return codBranch;
 	}
-
-	public void setCodbranch(String codbranch) {
-		this.codbranch = codbranch;
+	public void setCodBranch(String codBranch) {
+		this.codBranch = codBranch;
 	}
-
-	public String getAcctdesc() {
-		return acctdesc;
+	public String getAcctDesc() {
+		return acctDesc;
 	}
-
-	public void setAcctdesc(String acctdesc) {
-		this.acctdesc = acctdesc;
+	public void setAcctDesc(String acctDesc) {
+		this.acctDesc = acctDesc;
 	}
-
-	public String getDepositamt() {
-		return depositamt;
+	public String getDepositAmt() {
+		return depositAmt;
 	}
-
-	public void setDepositamt(String depositamt) {
-		this.depositamt = depositamt;
+	public void setDepositAmt(String depositAmt) {
+		this.depositAmt = depositAmt;
 	}
-
-	public String getAccountclass() {
-		return accountclass;
+	public String getAccountClass() {
+		return accountClass;
 	}
-
-	public void setAccountclass(String accountclass) {
-		this.accountclass = accountclass;
+	public void setAccountClass(String accountClass) {
+		this.accountClass = accountClass;
 	}
-
-	public String getJointacctindicator() {
-		return jointacctindicator;
+	public String getJointAcctIndicator() {
+		return jointAcctIndicator;
 	}
-
-	public void setJointacctindicator(String jointacctindicator) {
-		this.jointacctindicator = jointacctindicator;
+	public void setJointAcctIndicator(String jointAcctIndicator) {
+		this.jointAcctIndicator = jointAcctIndicator;
 	}
-
 	public String getNominee1() {
 		return nominee1;
 	}
-
 	public void setNominee1(String nominee1) {
 		this.nominee1 = nominee1;
 	}
-
 	public String getNominee2() {
 		return nominee2;
 	}
-
 	public void setNominee2(String nominee2) {
 		this.nominee2 = nominee2;
 	}
-
 	public String getRate() {
 		return rate;
 	}
-
 	public void setRate(String rate) {
 		this.rate = rate;
 	}
-
 	public String getApy() {
 		return apy;
 	}
-
 	public void setApy(String apy) {
 		this.apy = apy;
 	}
-
-	public String getBookaccount() {
-		return bookaccount;
+	public String getBookAccount() {
+		return bookAccount;
 	}
-
-	public void setBookaccount(String bookaccount) {
-		this.bookaccount = bookaccount;
+	public void setBookAccount(String bookAccount) {
+		this.bookAccount = bookAccount;
 	}
-
-	public String getBookbranch() {
-		return bookbranch;
+	public String getBookBranch() {
+		return bookBranch;
 	}
-
-	public void setBookbranch(String bookbranch) {
-		this.bookbranch = bookbranch;
+	public void setBookBranch(String bookBranch) {
+		this.bookBranch = bookBranch;
 	}
-
 	public String getCcy() {
 		return ccy;
 	}
-
 	public void setCcy(String ccy) {
 		this.ccy = ccy;
 	}
-
-	public String getCustomerid() {
-		return customerid;
+	public String getCustomerId() {
+		return customerId;
 	}
-
-	public void setCustomerid(String customerid) {
-		this.customerid = customerid;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
-
-	public String getPrimarycustomerid() {
-		return primarycustomerid;
+	public String getPrimaryCustomerId() {
+		return primaryCustomerId;
 	}
-
-	public void setPrimarycustomerid(String primarycustomerid) {
-		this.primarycustomerid = primarycustomerid;
+	public void setPrimaryCustomerId(String primaryCustomerId) {
+		this.primaryCustomerId = primaryCustomerId;
 	}
-
-	public String getMaturitydate() {
-		return maturitydate;
+	public String getMaturityDate() {
+		return maturityDate;
 	}
-
-	public void setMaturitydate(String maturitydate) {
-		this.maturitydate = maturitydate;
+	public void setMaturityDate(String maturityDate) {
+		this.maturityDate = maturityDate;
 	}
-
-	public Date getDepositdate() {
-		return depositdate;
+	public Date getDepositDate() {
+		return depositDate;
 	}
-
-	public void setDepositdate(Date depositdate) {
-		this.depositdate = depositdate;
+	public void setDepositDate(Date depositDate) {
+		this.depositDate = depositDate;
 	}
-
-	public String getRollovertype() {
-		return rollovertype;
+	public String getRolloverType() {
+		return rolloverType;
 	}
-
-	public void setRollovertype(String rollovertype) {
-		this.rollovertype = rollovertype;
+	public void setRolloverType(String rolloverType) {
+		this.rolloverType = rolloverType;
 	}
-
-	public String getRolloveramt() {
-		return rolloveramt;
+	public String getRolloverAmt() {
+		return rolloverAmt;
 	}
-
-	public void setRolloveramt(String rolloveramt) {
-		this.rolloveramt = rolloveramt;
+	public void setRolloverAmt(String rolloverAmt) {
+		this.rolloverAmt = rolloverAmt;
 	}
-
-	public String getAcyaccruedcric() {
-		return acyaccruedcric;
+	public String getAcaccruedcric() {
+		return acaccruedcric;
 	}
-
-	public void setAcyaccruedcric(String acyaccruedcric) {
-		this.acyaccruedcric = acyaccruedcric;
+	public void setAcaccruedcric(String acaccruedcric) {
+		this.acaccruedcric = acaccruedcric;
 	}
-
-	public String getIntcap() {
-		return intcap;
+	public String getIntCap() {
+		return intCap;
 	}
-
-	public void setIntcap(String intcap) {
-		this.intcap = intcap;
+	public void setIntCap(String intCap) {
+		this.intCap = intCap;
 	}
-
-	public String getAltacctno() {
-		return altacctno;
+	public String getAltAcctNo() {
+		return altAcctNo;
 	}
-
-	public void setAltacctno(String altacctno) {
-		this.altacctno = altacctno;
+	public void setAltAcctNo(String altAcctNo) {
+		this.altAcctNo = altAcctNo;
 	}
-
-	public String getProddesc() {
-		return proddesc;
+	public String getProdDesc() {
+		return prodDesc;
 	}
-
-	public void setProddesc(String proddesc) {
-		this.proddesc = proddesc;
+	public void setProdDesc(String prodDesc) {
+		this.prodDesc = prodDesc;
 	}
-
-	public String getAutorollover() {
-		return autorollover;
+	public String getAutoRollover() {
+		return autoRollover;
 	}
-
-	public void setAutorollover(String autorollover) {
-		this.autorollover = autorollover;
+	public void setAutoRollover(String autoRollover) {
+		this.autoRollover = autoRollover;
 	}
-
-	public String getCloseonmaturity() {
-		return closeonmaturity;
+	public String getCloseOnMaturity() {
+		return closeOnMaturity;
 	}
-
-	public void setCloseonmaturity(String closeonmaturity) {
-		this.closeonmaturity = closeonmaturity;
+	public void setCloseOnMaturity(String closeOnMaturity) {
+		this.closeOnMaturity = closeOnMaturity;
 	}
-
-	public String getNumavlbalance() {
-		return numavlbalance;
+	public String getNumAvlBalance() {
+		return numAvlBalance;
 	}
-
-	public void setNumavlbalance(String numavlbalance) {
-		this.numavlbalance = numavlbalance;
+	public void setNumAvlBalance(String numAvlBalance) {
+		this.numAvlBalance = numAvlBalance;
 	}
-
-	public String getModeofoperation() {
-		return modeofoperation;
+	public String getModeOfOperation() {
+		return modeOfOperation;
 	}
-
-	public void setModeofoperation(String modeofoperation) {
-		this.modeofoperation = modeofoperation;
+	public void setModeOfOperation(String modeOfOperation) {
+		this.modeOfOperation = modeOfOperation;
 	}
-
-	public String getTdstatus() {
-		return tdstatus;
+	public String getTdStatus() {
+		return tdStatus;
 	}
-
-	public void setTdstatus(String tdstatus) {
-		this.tdstatus = tdstatus;
+	public void setTdStatus(String tdStatus) {
+		this.tdStatus = tdStatus;
 	}
-
-	public String getHoldamount() {
-		return holdamount;
+	public String getHoldAmount() {
+		return holdAmount;
 	}
-
-	public void setHoldamount(String holdamount) {
-		this.holdamount = holdamount;
+	public void setHoldAmount(String holdAmount) {
+		this.holdAmount = holdAmount;
 	}
-
-	public String getCustomername() {
-		return customername;
+	public String getCustomerName() {
+		return customerName;
 	}
-
-	public void setCustomername(String customername) {
-		this.customername = customername;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
-
-	public String getAllow_topup() {
-		return allow_topup;
+	public String getAllowTopup() {
+		return allowTopup;
 	}
-
-	public void setAllow_topup(String allow_topup) {
-		this.allow_topup = allow_topup;
+	public void setAllowTopup(String allowTopup) {
+		this.allowTopup = allowTopup;
 	}
-
-	public String getBlk_open_days() {
-		return blk_open_days;
+	public String getBlkOpenDays() {
+		return blkOpenDays;
 	}
-
-	public void setBlk_open_days(String blk_open_days) {
-		this.blk_open_days = blk_open_days;
+	public void setBlkOpenDays(String blkOpenDays) {
+		this.blkOpenDays = blkOpenDays;
 	}
-
-	public String getBlk_open_months() {
-		return blk_open_months;
+	public String getBlkOpenMonths() {
+		return blkOpenMonths;
 	}
-
-	public void setBlk_open_months(String blk_open_months) {
-		this.blk_open_months = blk_open_months;
+	public void setBlkOpenMonths(String blkOpenMonths) {
+		this.blkOpenMonths = blkOpenMonths;
 	}
-
-	public String getBlk_mat_days() {
-		return blk_mat_days;
+	public String getBlkMatDays() {
+		return blkMatDays;
 	}
-
-	public void setBlk_mat_days(String blk_mat_days) {
-		this.blk_mat_days = blk_mat_days;
+	public void setBlkMatDays(String blkMatDays) {
+		this.blkMatDays = blkMatDays;
 	}
-
-	public String getBlk_mat_months() {
-		return blk_mat_months;
+	public String getBlkMatMonths() {
+		return blkMatMonths;
 	}
-
-	public void setBlk_mat_months(String blk_mat_months) {
-		this.blk_mat_months = blk_mat_months;
+	public void setBlkMatMonths(String blkMatMonths) {
+		this.blkMatMonths = blkMatMonths;
 	}
-
-	public String getPartial_liquidation() {
-		return partial_liquidation;
+	public String getPartialLiquidation() {
+		return partialLiquidation;
 	}
-
-	public void setPartial_liquidation(String partial_liquidation) {
-		this.partial_liquidation = partial_liquidation;
+	public void setPartialLiquidation(String partialLiquidation) {
+		this.partialLiquidation = partialLiquidation;
 	}
-
-	public String getValuedate() {
-		return valuedate;
+	public String getValueDate() {
+		return valueDate;
 	}
-
-	public void setValuedate(String valuedate) {
-		this.valuedate = valuedate;
+	public void setValueDate(String valueDate) {
+		this.valueDate = valueDate;
 	}
-
-	public TermDepositeM(String idaccount, String codaccttype, String codbranch, String acctdesc, String depositamt,
-			String accountclass, String jointacctindicator, String nominee1, String nominee2, String rate, String apy,
-			String bookaccount, String bookbranch, String ccy, String customerid, String primarycustomerid,
-			String maturitydate, Date depositdate, String rollovertype, String rolloveramt, String acyaccruedcric,
-			String intcap, String altacctno, String proddesc, String autorollover, String closeonmaturity,
-			String numavlbalance, String modeofoperation, String tdstatus, String holdamount, String customername,
-			String allow_topup, String blk_open_days, String blk_open_months, String blk_mat_days,
-			String blk_mat_months, String partial_liquidation, String valuedate) {
+	public TermDepositeM(String idAccount, String codAcctType, String codBranch, String acctDesc, String depositAmt,
+			String accountClass, String jointAcctIndicator, String nominee1, String nominee2, String rate, String apy,
+			String bookAccount, String bookBranch, String ccy, String customerId, String primaryCustomerId,
+			String maturityDate, Date depositDate, String rolloverType, String rolloverAmt, String acaccruedcric,
+			String intCap, String altAcctNo, String prodDesc, String autoRollover, String closeOnMaturity,
+			String numAvlBalance, String modeOfOperation, String tdStatus, String holdAmount, String customerName,
+			String allowTopup, String blkOpenDays, String blkOpenMonths, String blkMatDays, String blkMatMonths,
+			String partialLiquidation, String valueDate) {
 		super();
-		this.idaccount = idaccount;
-		this.codaccttype = codaccttype;
-		this.codbranch = codbranch;
-		this.acctdesc = acctdesc;
-		this.depositamt = depositamt;
-		this.accountclass = accountclass;
-		this.jointacctindicator = jointacctindicator;
+		this.idAccount = idAccount;
+		this.codAcctType = codAcctType;
+		this.codBranch = codBranch;
+		this.acctDesc = acctDesc;
+		this.depositAmt = depositAmt;
+		this.accountClass = accountClass;
+		this.jointAcctIndicator = jointAcctIndicator;
 		this.nominee1 = nominee1;
 		this.nominee2 = nominee2;
 		this.rate = rate;
 		this.apy = apy;
-		this.bookaccount = bookaccount;
-		this.bookbranch = bookbranch;
+		this.bookAccount = bookAccount;
+		this.bookBranch = bookBranch;
 		this.ccy = ccy;
-		this.customerid = customerid;
-		this.primarycustomerid = primarycustomerid;
-		this.maturitydate = maturitydate;
-		this.depositdate = depositdate;
-		this.rollovertype = rollovertype;
-		this.rolloveramt = rolloveramt;
-		this.acyaccruedcric = acyaccruedcric;
-		this.intcap = intcap;
-		this.altacctno = altacctno;
-		this.proddesc = proddesc;
-		this.autorollover = autorollover;
-		this.closeonmaturity = closeonmaturity;
-		this.numavlbalance = numavlbalance;
-		this.modeofoperation = modeofoperation;
-		this.tdstatus = tdstatus;
-		this.holdamount = holdamount;
-		this.customername = customername;
-		this.allow_topup = allow_topup;
-		this.blk_open_days = blk_open_days;
-		this.blk_open_months = blk_open_months;
-		this.blk_mat_days = blk_mat_days;
-		this.blk_mat_months = blk_mat_months;
-		this.partial_liquidation = partial_liquidation;
-		this.valuedate = valuedate;
+		this.customerId = customerId;
+		this.primaryCustomerId = primaryCustomerId;
+		this.maturityDate = maturityDate;
+		this.depositDate = depositDate;
+		this.rolloverType = rolloverType;
+		this.rolloverAmt = rolloverAmt;
+		this.acaccruedcric = acaccruedcric;
+		this.intCap = intCap;
+		this.altAcctNo = altAcctNo;
+		this.prodDesc = prodDesc;
+		this.autoRollover = autoRollover;
+		this.closeOnMaturity = closeOnMaturity;
+		this.numAvlBalance = numAvlBalance;
+		this.modeOfOperation = modeOfOperation;
+		this.tdStatus = tdStatus;
+		this.holdAmount = holdAmount;
+		this.customerName = customerName;
+		this.allowTopup = allowTopup;
+		this.blkOpenDays = blkOpenDays;
+		this.blkOpenMonths = blkOpenMonths;
+		this.blkMatDays = blkMatDays;
+		this.blkMatMonths = blkMatMonths;
+		this.partialLiquidation = partialLiquidation;
+		this.valueDate = valueDate;
 	}
-
 	public TermDepositeM() {
-
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
 }
