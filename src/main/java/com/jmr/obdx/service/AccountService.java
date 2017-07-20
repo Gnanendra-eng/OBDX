@@ -191,9 +191,10 @@ public class AccountService {
 		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
 		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		accountsummarys.stream().forEach(loansummary -> {
-			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT))
+			   if( loansummary.getCODACCTTYPE().equals(Utility.LOANSANDCURRENT)){
 				sumOfTotalLoans += Double.parseDouble(loansummary.getNUMAVAILBAL());
 				loanPending.add(getAccountSummaryType(loansummary));
+			   }
 		});
 		loanSummayInfo = new LoanSummayInfo(sumOfLoans,loanPending);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -228,12 +229,12 @@ public class AccountService {
 				accountsummary.getUDF10());
 
 	}
-	
-	/***
+	/*
+	*//***
 	 * Returns the branch details for a particular account
 	 * @param nbrAccount - Hold the user input account number 
 	 * @return  Returns the branch details for a particular account
-	 */
+	 *//*
 	
 	
 	public AccountBranch getAccountBranch(String nbrAccount) throws Exception {
@@ -243,7 +244,7 @@ public class AccountService {
 		AccountBranch accountBranch = new AccountBranch(accountdetail.getNBRACCOUNT(), accountdetail.getNBRBRANCH(), mstBranch.getBranchName(),accountdetail.getCUSTOMERNAME());
 	    return accountBranch;
 	}
-	
+	*/
 	
 }
 

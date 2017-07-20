@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class McxTransferType  implements java.io.Serializable {
 
 
-     private BigDecimal id;
+     private long id;
      private String description;
      private String isActive;
      private String transferType;
@@ -32,10 +32,10 @@ public class McxTransferType  implements java.io.Serializable {
     }
 
 	
-    public McxTransferType(BigDecimal id) {
+    public McxTransferType(long id) {
         this.id = id;
     }
-    public McxTransferType(BigDecimal id, String description, String isActive, String transferType, Set<McxBeneficiary> mcxBeneficiaries) {
+    public McxTransferType(long id, String description, String isActive, String transferType, Set<McxBeneficiary> mcxBeneficiaries) {
        this.id = id;
        this.description = description;
        this.isActive = isActive;
@@ -52,11 +52,11 @@ public class McxTransferType  implements java.io.Serializable {
 
     
     @Column(name="ID", unique=true, nullable=false, precision=22, scale=0)
-    public BigDecimal getId() {
+    public long getId() {
         return this.id;
     }
     
-    public void setId(BigDecimal id) {
+    public void setId(long id) {
         this.id = id;
     }
 

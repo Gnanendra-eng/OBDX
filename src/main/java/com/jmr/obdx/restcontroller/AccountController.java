@@ -60,7 +60,7 @@ public class AccountController {
 
 	
 	/***
-	 * Return the information for a particular account
+	 * Return the information for a particular account for the login user
 	 * 
 	 * @param customerId -Hold login customerId what had mapped with login user
 	 * @param nbrAccount -Hold a account info.
@@ -86,7 +86,7 @@ public class AccountController {
 	}
 	
 	/***
-	 * Returns account details of login user
+	 * Returns account summary  for  login user
 	 * @param authentication-Hold Login user info.
 	 * @return Return account details
 	 */
@@ -134,7 +134,7 @@ public class AccountController {
 	 * Returns the branch details for a particular account
 	 * @param nbrAccount - Hold the user input account number 
 	 * @return  Returns the branch details for a particular account
-	 */
+	 *//*
 	
 	@RequestMapping(value = "/{nbrAccount}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<AccountBranch> getAccountBranch(@PathVariable("nbrAccount") String nbrAccount) {
@@ -152,6 +152,6 @@ public class AccountController {
 			return new ResponseEntity<AccountBranch>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-	}
+	}*/
 	
 }

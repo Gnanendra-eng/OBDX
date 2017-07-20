@@ -46,7 +46,6 @@ public class McxLogin implements java.io.Serializable {
 	private Date resetPasswordDateTime;
 	private String transactionPassword;
 	private Date registrationDateTime;
-	private Set<McxBiller> mcxBillers = new HashSet<McxBiller>(0);
 
 	public McxLogin() {
 	}
@@ -73,7 +72,7 @@ public class McxLogin implements java.io.Serializable {
 			Date resetPasswordDate, String resetTxnPasswordDateTime, String isDeleted, String isFirstTimeLogin,
 			String isSetTransactionPassword, String referenceNumber, String isTransactionActive,
 			Blob registrationMailContent, Date resetPasswordDateTime, String transactionPassword,
-			Date registrationDateTime, Set<McxBiller> mcxBillers) {
+			Date registrationDateTime) {
 		this.id = id;
 		this.mcxUser = mcxUser;
 		this.mcxAuthorityM = mcxAuthorityM;
@@ -94,7 +93,6 @@ public class McxLogin implements java.io.Serializable {
 		this.resetPasswordDateTime = resetPasswordDateTime;
 		this.transactionPassword = transactionPassword;
 		this.registrationDateTime = registrationDateTime;
-		this.mcxBillers = mcxBillers;
 	}
 
 	public McxLogin(String userName, String password, String isActive, String accountNonExpired,
@@ -295,13 +293,5 @@ public class McxLogin implements java.io.Serializable {
 		this.registrationDateTime = registrationDateTime;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mcxLogin")
-	public Set<McxBiller> getMcxBillers() {
-		return this.mcxBillers;
-	}
-
-	public void setMcxBillers(Set<McxBiller> mcxBillers) {
-		this.mcxBillers = mcxBillers;
-	}
 
 }

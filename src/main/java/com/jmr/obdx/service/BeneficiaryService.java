@@ -24,6 +24,7 @@ import com.jmr.obdx.repositories.AccountDetailsRepo;
 import com.jmr.obdx.repositories.BeneficiaryRepo;
 import com.jmr.obdx.repositories.McxLoginRepo;
 import com.jmr.obdx.repositories.McxTransactionMRepo;
+import com.jmr.obdx.repositories.McxUserMRepo;
 import com.jmr.obdx.repositories.MstBranchRepo;
 import com.jmr.obdx.service.dto.AllPayee;
 import com.jmr.obdx.service.dto.BeneficiaryDto;
@@ -62,6 +63,9 @@ public class BeneficiaryService {
 	@Autowired
 	private McxTransactionMRepo mcxTransactionMRepo;
 	
+	@Autowired
+	private McxUserMRepo mcxUserMRepo;
+	
 	
 	/***
 	 * Adding a new Payee.
@@ -93,11 +97,11 @@ public class BeneficiaryService {
 		});*/
 		MstBranch  mstBranch=  mstBranchRepo.findByBranchCode(beneficiaryDto.getBranchId());
 		McxLogin login = loginRepo.findByUserName(authentication.getName());
-		McxTransactionM mcxTransactionM = mcxTransactionMRepo.findByProductDescription(Utility.IAT);
+		McxUser mcxUser = mcxUserMRepo.findById(login.getMcxUser().getId());
    	    /***
-   	     * Modified constructor to save McxBenficiary by Murugesh on 18/07/2017
+   	     * Modified constructor to save McxBenficiary by Murugesh on 18/07/2017(need to send mcxTransferViaType,McxTransferType id in the beneficiaryDto from frontend )
    	     */
-		beneficiaryRepo.save(new McxBeneficiary(new McxUser(login.getId()), new McxTransferViaType(beneficiaryDto.getMcxTransferViaType()),new McxTransferType(beneficiaryDto.getMcxTransferType()) ,beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(), mstBranch.getBankCode(), beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), Utility.IS_ACTIVE, new Date(), beneficiaryDto.getSwiftCode(), beneficiaryDto.getNcc()));
+		beneficiaryRepo.save(new McxBeneficiary(new McxUser(mcxUser.getId()), new McxTransferViaType(beneficiaryDto.getMcxTransferViaType()),new McxTransferType(beneficiaryDto.getMcxTransferType()) ,beneficiaryDto.getPayeeName(), beneficiaryDto.getAccountName(), mstBranch.getBranchCode(), beneficiaryDto.getNickName(), beneficiaryDto.getAccountNumber(), Utility.IS_ACTIVE, new Date(), beneficiaryDto.getSwiftCode(), beneficiaryDto.getNcc()));
 		return statusInfo; 
 	}
 	

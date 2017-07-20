@@ -1,4 +1,4 @@
-/*package com.jmr.obdx.restcontroller;
+package com.jmr.obdx.restcontroller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +15,8 @@ import com.jmr.obdx.service.TermDepositeService;
 import com.jmr.obdx.service.dto.TermDepositeInfo;
 import com.jmr.obdx.util.Utility;
 
+
+
 @RestController
 @RequestMapping(value = "/user/termdeposit")
 public class TermDepositeController {
@@ -24,6 +26,12 @@ public class TermDepositeController {
 	@Autowired
 	private TermDepositeService termDepositeService;
 
+	/***
+	 * Method used to fetch the term deposit info for login user
+	 * @param authentication- Hold the currently logined user info
+	 * @return All term deposit for the user
+	 */	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<TermDepositeInfo> getTermDeposite(Authentication authentication) {
 		try {
@@ -41,4 +49,3 @@ public class TermDepositeController {
 		}
 	}
 }
-*/

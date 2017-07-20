@@ -43,7 +43,11 @@ public class TermDepositeService {
 	@Autowired
 	private TermDepositeRepo termDepositeRepo;
 
-	
+	/***
+	 * Method used to fetch the term deposit info for login user
+	 * @param authentication- Hold the currently logined user info
+	 * @return All term deposit for the user
+	 */
 	public TermDepositeInfo getTermDeposite(Authentication authentication) throws Exception {
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		McxLogin mcxLogin = mcxLoginRepo.findByUserName(authentication.getName());
