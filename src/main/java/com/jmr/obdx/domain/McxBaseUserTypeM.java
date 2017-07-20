@@ -20,7 +20,6 @@ import javax.persistence.Table;
 )
 public class McxBaseUserTypeM  implements java.io.Serializable {
 
-
      private long id;
      private String userType;
      private String isActive;
@@ -30,7 +29,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
 
     public McxBaseUserTypeM() {
     }
-
 	
     public McxBaseUserTypeM(long id, String userType, String isActive, String description) {
         this.id = id;
@@ -48,8 +46,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
     }
    
      @Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -59,7 +55,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
         this.id = id;
     }
 
-    
     @Column(name="USER_TYPE", nullable=false, length=100)
     public String getUserType() {
         return this.userType;
@@ -68,7 +63,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-
     
     @Column(name="IS_ACTIVE", nullable=false, length=5)
     public String getIsActive() {
@@ -78,7 +72,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
     public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
-
     
     @Column(name="DESCRIPTION", nullable=false, length=500)
     public String getDescription() {
@@ -89,7 +82,7 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
         this.description = description;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBaseUserTypeM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBaseUserTypeM")
     public Set<McxUser> getMcxUsers() {
         return this.mcxUsers;
     }
@@ -98,7 +91,7 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
         this.mcxUsers = mcxUsers;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBaseUserTypeM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBaseUserTypeM")
     public Set<McxAuthorityM> getMcxAuthorityMs() {
         return this.mcxAuthorityMs;
     }
@@ -106,10 +99,6 @@ public class McxBaseUserTypeM  implements java.io.Serializable {
     public void setMcxAuthorityMs(Set<McxAuthorityM> mcxAuthorityMs) {
         this.mcxAuthorityMs = mcxAuthorityMs;
     }
-
-
-
-
 }
 
 

@@ -14,10 +14,10 @@ import javax.persistence.Column;
 @Table(name = "mcx_fcc_vw_biller_info", schema = "JMR_OBDX")
 public class McxVwBillerInfo implements java.io.Serializable  {
 
-	private String idbiller;
-	private String billercustid;
-	private String billerdesc;
-	private String flgsingle;
+	private String idBiller;
+	private String billerCustId;
+	private String billerDesc;
+	private String flgSingle;
 	private String recordStat;
 	private String authStat;
 	private String utilityProvider;
@@ -25,16 +25,16 @@ public class McxVwBillerInfo implements java.io.Serializable  {
 	public McxVwBillerInfo() {
 	}
 
-	public McxVwBillerInfo(String billercustid) {
-		this.billercustid = billercustid;
+	public McxVwBillerInfo(String billerCustId) {
+		this.billerCustId = billerCustId;
 	}
 
-	public McxVwBillerInfo(String idbiller, String billercustid, String billerdesc, String flgsingle, String recordStat,
+	public McxVwBillerInfo(String idBiller, String billerCustId, String billerDesc, String flgSingle, String recordStat,
 			String authStat, String utilityProvider) {
-		this.idbiller = idbiller;
-		this.billercustid = billercustid;
-		this.billerdesc = billerdesc;
-		this.flgsingle = flgsingle;
+		this.idBiller = idBiller;
+		this.billerCustId = billerCustId;
+		this.billerDesc = billerDesc;
+		this.flgSingle = flgSingle;
 		this.recordStat = recordStat;
 		this.authStat = authStat;
 		this.utilityProvider = utilityProvider;
@@ -42,39 +42,39 @@ public class McxVwBillerInfo implements java.io.Serializable  {
 
 	@Id
 	@Column(name = "IDBILLER")
-	public String getIdbiller() {
-		return this.idbiller;
+	public String getIdBiller() {
+		return this.idBiller;
 	}
 
-	public void setIdbiller(String idbiller) {
-		this.idbiller = idbiller;
+	public void setIdBiller(String idBiller) {
+		this.idBiller = idBiller;
 	}
 
 	@Column(name = "BILLERCUSTID")
-	public String getBillercustid() {
-		return this.billercustid;
+	public String getBillerCustId() {
+		return this.billerCustId;
 	}
 
-	public void setBillercustid(String billercustid) {
-		this.billercustid = billercustid;
+	public void setBillerCustId(String billerCustId) {
+		this.billerCustId = billerCustId;
 	}
 
 	@Column(name = "BILLERDESC")
-	public String getBillerdesc() {
-		return this.billerdesc;
+	public String getBillerDesc() {
+		return this.billerDesc;
 	}
 
-	public void setBillerdesc(String billerdesc) {
-		this.billerdesc = billerdesc;
+	public void setBillerDesc(String billerDesc) {
+		this.billerDesc = billerDesc;
 	}
 
 	@Column(name = "FLGSINGLE")
-	public String getFlgsingle() {
-		return this.flgsingle;
+	public String getFlgSingle() {
+		return this.flgSingle;
 	}
 
-	public void setFlgsingle(String flgsingle) {
-		this.flgsingle = flgsingle;
+	public void setFlgSingle(String flgSingle) {
+		this.flgSingle = flgSingle;
 	}
 
 	@Column(name = "RECORD_STAT")

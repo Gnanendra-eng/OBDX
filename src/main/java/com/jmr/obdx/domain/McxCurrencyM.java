@@ -21,18 +21,17 @@ import javax.persistence.Table;
 public class McxCurrencyM  implements java.io.Serializable {
 
 
-     private long id;
-     private String currencyDescription;
-     private String currencyType;
-     private String setAsDefaultPackage;
-     private Set<McxTransactionData> mcxTransactionDatas = new HashSet<McxTransactionData>(0);
+    private long id;
+    private String currencyDescription;
+    private String currencyType;
+    private String setAsDefaultPackage;
+    private Set<McxTransactionData> mcxTransactionDatas = new HashSet<McxTransactionData>(0);
 
     public McxCurrencyM() {
     }
     public McxCurrencyM(String currencyDescription ) {
     	this.currencyDescription =currencyDescription;
     }
-
 	
     public McxCurrencyM(long id, String currencyDescription, String currencyType) {
         this.id = id;
@@ -47,9 +46,7 @@ public class McxCurrencyM  implements java.io.Serializable {
        this.mcxTransactionDatas = mcxTransactionDatas;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -58,7 +55,6 @@ public class McxCurrencyM  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     
     @Column(name="CURRENCY_DESCRIPTION", nullable=false, length=100)
     public String getCurrencyDescription() {
@@ -68,7 +64,6 @@ public class McxCurrencyM  implements java.io.Serializable {
     public void setCurrencyDescription(String currencyDescription) {
         this.currencyDescription = currencyDescription;
     }
-
     
     @Column(name="CURRENCY_TYPE", nullable=false, length=50)
     public String getCurrencyType() {
@@ -79,7 +74,6 @@ public class McxCurrencyM  implements java.io.Serializable {
         this.currencyType = currencyType;
     }
 
-    
     @Column(name="SET_AS_DEFAULT_PACKAGE", length=10)
     public String getSetAsDefaultPackage() {
         return this.setAsDefaultPackage;
@@ -89,7 +83,7 @@ public class McxCurrencyM  implements java.io.Serializable {
         this.setAsDefaultPackage = setAsDefaultPackage;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxCurrencyM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxCurrencyM")
     public Set<McxTransactionData> getMcxTransactionDatas() {
         return this.mcxTransactionDatas;
     }
@@ -97,10 +91,6 @@ public class McxCurrencyM  implements java.io.Serializable {
     public void setMcxTransactionDatas(Set<McxTransactionData> mcxTransactionDatas) {
         this.mcxTransactionDatas = mcxTransactionDatas;
     }
-
-
-
-
 }
 
 

@@ -31,8 +31,8 @@ public class TransactionAccountActivityService {
 		transactionAccountActivityInfo=new TransactionAccountActivityInfo();
 		List<VwTxnaccountactivity> vwTxnaccountactivities=txnaccountactivityRepo.findByUserTransactionAccountActivityInfo(customerId, nbrAccount);
 		vwTxnaccountactivities.stream().forEach(vwTxnaccountactivity->{
-			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxndate()),
-					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtreferenceno(), vwTxnaccountactivity.getTxnamount().doubleValue(),new Double(10000),vwTxnaccountactivity.getCodtxncurr()));
+			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxnDate()),
+					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtReferenceNo(), vwTxnaccountactivity.getTxnAmount().doubleValue(),new Double(10000),vwTxnaccountactivity.getCodTxnCurr()));
 		});	
 		transactionAccountActivityInfo.setTransactionAccountActivityDtos(transactionAccountActivityDtos);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -46,8 +46,8 @@ public class TransactionAccountActivityService {
 		transactionAccountActivityInfo=new TransactionAccountActivityInfo();
 		List<VwTxnaccountactivity> vwTxnaccountactivities=txnaccountactivityRepo.findByUserLastFiveTransactionAccountActivityInfo(customerId, nbrAccount);
 		vwTxnaccountactivities.stream().forEach(vwTxnaccountactivity->{
-			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxndate()),
-					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtreferenceno(), vwTxnaccountactivity.getTxnamount().doubleValue(),new Double(10000),vwTxnaccountactivity.getCodtxncurr()));
+			transactionAccountActivityDtos.add(new TransactionAccountActivityDto(vwTxnaccountactivity.getCoddrcr(),getSimpleDateFormat().format(vwTxnaccountactivity.getTxnDate()),
+					vwTxnaccountactivity.getDescription(), vwTxnaccountactivity.getTxtReferenceNo(), vwTxnaccountactivity.getTxnAmount().doubleValue(),new Double(10000),vwTxnaccountactivity.getCodTxnCurr()));
 		});	
 		transactionAccountActivityInfo.setTransactionAccountActivityDtos(transactionAccountActivityDtos);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());

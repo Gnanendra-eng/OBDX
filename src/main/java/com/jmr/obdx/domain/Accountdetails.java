@@ -19,273 +19,269 @@ public class Accountdetails implements java.io.Serializable {
 
 
 	@Column(name = "IDCUSTOMER")
-	private String IDCUSTOMER;
+	private String idCustomer;
 	@Column(name = "NBRBRANCH")
-	private String NBRBRANCH;
+	private String nbrBranch;
 	@Id
     @Column(name = "NBRACCOUNT")
-	private String NBRACCOUNT;
+	private String nbrAccount;
     @Column(name = "ACCTTYPE")
-	private String ACCTTYPE;
+	private String acctType;
 	@Column(name = "ACCTSTATUS")
-	private String ACCTSTATUS;
+	private String acctStatus;
 	@Column(name = "CCYDESC")
-	private String CCYDESC;
+	private String ccyDesc;
 	@Column(name = "BALANCE")
-	private long BALANCE;
+	private long balance;
 	@Column(name = "OPENINGBALANCE")
-	private long OPENINGBALANCE;
+	private long openingBalance;
 	@Column(name = "AVAILABLEBALANCE")
-	private long AVAILABLEBALANCE;
+	private long availableBalance;
 	@Column(name = "ISCHQBOOK")
-	private String ISCHQBOOK;
+	private String isChqBook;
 	@Column(name = "ISOVERDRAFT")
-	private String ISOVERDRAFT;
+	private String isOverDraft;
 	@Column(name = "ISSI")
-	private char ISSI;
+	private char issi;
 	@Column(name = "NUMUNCOLLECTED")
-	private long NUMUNCOLLECTED;
+	private long numUncollected;
 	@Column(name = "MINBALANCE")
-	private long MINBALANCE;
+	private long minBalance;
 	@Column(name = "DAILYWITHDRAWALLIMIT")
-	private long DAILYWITHDRAWALLIMIT;
+	private long dailyWithDrawalLimit;
 	@Column(name = "CUSTOMERSHORTNAME")
-	private String CUSTOMERSHORTNAME;
+	private String customerShortName;
 	@Column(name = "CUSTOMERNAME")
-	private String CUSTOMERNAME;
+	private String customerName;
 	@Column(name = "OPENINGDATE")
-	private Date OPENINGDATE;
+	private Date openingDate;
 	@Column(name = "IBAN_AC_NO")
-	private String IBAN_AC_NO;
+	private String ibanAcNo;
 	@Column(name = "RELATION")
-	private String RELATION;
+	private String relation;
 	@Column(name = "DESCACCTTYPE")
-	private String DESCACCTTYPE;
+	private String descAcctType;
 	@Column(name = "AMOUNTONHOLD")
-	private long AMOUNTONHOLD;
+	private long amountOnHold;
 	@Column(name = "ODLIMIT")
-	private String ODLIMIT;
+	private String odLimit;
 	@Column(name = "DAILYLIMIT")
-	private String DAILYLIMIT;
+	private String dialyLimit;
 	@Column(name = "ELIGIBLEADV")
-	private long ELIGIBLEADV;
+	private long eligibleAdv;
 	@Column(name = "ODLMTSTRTDATE")
-	private Date ODLMTSTRTDATE;
+	private Date odlmStartDate;
 	@Column(name = "ODLMTENDDATE")
-	private Date ODLMTENDDATE;
+	private Date odlmEndDate;
 	@Column(name = "ORIGAVAILABLEBAL")
-	private long ORIGAVAILABLEBAL;
-	public String getIDCUSTOMER() {
-		return IDCUSTOMER;
+	private long origAvailableBal;
+	
+	public String getIdCustomer() {
+		return idCustomer;
 	}
-	public void setIDCUSTOMER(String iDCUSTOMER) {
-		IDCUSTOMER = iDCUSTOMER;
+	public void setIdCustomer(String idCustomer) {
+		this.idCustomer = idCustomer;
 	}
-	public String getNBRBRANCH() {
-		return NBRBRANCH;
+	public String getNbrBranch() {
+		return nbrBranch;
 	}
-	public void setNBRBRANCH(String nBRBRANCH) {
-		NBRBRANCH = nBRBRANCH;
+	public void setNbrBranch(String nbrBranch) {
+		this.nbrBranch = nbrBranch;
 	}
-	public String getNBRACCOUNT() {
-		return NBRACCOUNT;
+	public String getNbrAccount() {
+		return nbrAccount;
 	}
-	public void setNBRACCOUNT(String nBRACCOUNT) {
-		NBRACCOUNT = nBRACCOUNT;
+	public void setNbrAccount(String nbrAccount) {
+		this.nbrAccount = nbrAccount;
 	}
-	public String getACCTTYPE() {
-		return ACCTTYPE;
+	public String getAcctType() {
+		return acctType;
 	}
-	public void setACCTTYPE(String aCCTTYPE) {
-		ACCTTYPE = aCCTTYPE;
+	public void setAcctType(String acctType) {
+		this.acctType = acctType;
 	}
-	public String getACCTSTATUS() {
-		return ACCTSTATUS;
+	public String getAcctStatus() {
+		return acctStatus;
 	}
-	public void setACCTSTATUS(String aCCTSTATUS) {
-		ACCTSTATUS = aCCTSTATUS;
+	public void setAcctStatus(String acctStatus) {
+		this.acctStatus = acctStatus;
 	}
-	public String getCCYDESC() {
-		return CCYDESC;
+	public String getCcyDesc() {
+		return ccyDesc;
 	}
-	public void setCCYDESC(String cCYDESC) {
-		CCYDESC = cCYDESC;
+	public void setCcyDesc(String ccyDesc) {
+		this.ccyDesc = ccyDesc;
 	}
-	public long getBALANCE() {
-		return BALANCE;
+	public long getBalance() {
+		return balance;
 	}
-	public void setBALANCE(long bALANCE) {
-		BALANCE = bALANCE;
+	public void setBalance(long balance) {
+		this.balance = balance;
 	}
-	public long getOPENINGBALANCE() {
-		return OPENINGBALANCE;
+	public long getOpeningBalance() {
+		return openingBalance;
 	}
-	public void setOPENINGBALANCE(long oPENINGBALANCE) {
-		OPENINGBALANCE = oPENINGBALANCE;
+	public void setOpeningBalance(long openingBalance) {
+		this.openingBalance = openingBalance;
 	}
-	public long getAVAILABLEBALANCE() {
-		return AVAILABLEBALANCE;
+	public long getAvailableBalance() {
+		return availableBalance;
 	}
-	public void setAVAILABLEBALANCE(long aVAILABLEBALANCE) {
-		AVAILABLEBALANCE = aVAILABLEBALANCE;
+	public void setAvailableBalance(long availableBalance) {
+		this.availableBalance = availableBalance;
 	}
-	public String getISCHQBOOK() {
-		return ISCHQBOOK;
+	public String getIsChqBook() {
+		return isChqBook;
 	}
-	public void setISCHQBOOK(String iSCHQBOOK) {
-		ISCHQBOOK = iSCHQBOOK;
+	public void setIsChqBook(String isChqBook) {
+		this.isChqBook = isChqBook;
 	}
-	public String getISOVERDRAFT() {
-		return ISOVERDRAFT;
+	public String getIsOverDraft() {
+		return isOverDraft;
 	}
-	public void setISOVERDRAFT(String iSOVERDRAFT) {
-		ISOVERDRAFT = iSOVERDRAFT;
+	public void setIsOverDraft(String isOverDraft) {
+		this.isOverDraft = isOverDraft;
 	}
-	public char getISSI() {
-		return ISSI;
+	public char getIssi() {
+		return issi;
 	}
-	public void setISSI(char iSSI) {
-		ISSI = iSSI;
+	public void setIssi(char issi) {
+		this.issi = issi;
 	}
-	public long getNUMUNCOLLECTED() {
-		return NUMUNCOLLECTED;
+	public long getNumUncollected() {
+		return numUncollected;
 	}
-	public void setNUMUNCOLLECTED(long nUMUNCOLLECTED) {
-		NUMUNCOLLECTED = nUMUNCOLLECTED;
+	public void setNumUncollected(long numUncollected) {
+		this.numUncollected = numUncollected;
 	}
-	public long getMINBALANCE() {
-		return MINBALANCE;
+	public long getMinBalance() {
+		return minBalance;
 	}
-	public void setMINBALANCE(long mINBALANCE) {
-		MINBALANCE = mINBALANCE;
+	public void setMinBalance(long minBalance) {
+		this.minBalance = minBalance;
 	}
-	public long getDAILYWITHDRAWALLIMIT() {
-		return DAILYWITHDRAWALLIMIT;
+	public long getDailyWithDrawalLimit() {
+		return dailyWithDrawalLimit;
 	}
-	public void setDAILYWITHDRAWALLIMIT(long dAILYWITHDRAWALLIMIT) {
-		DAILYWITHDRAWALLIMIT = dAILYWITHDRAWALLIMIT;
+	public void setDailyWithDrawalLimit(long dailyWithDrawalLimit) {
+		this.dailyWithDrawalLimit = dailyWithDrawalLimit;
 	}
-	public String getCUSTOMERSHORTNAME() {
-		return CUSTOMERSHORTNAME;
+	public String getCustomerShortName() {
+		return customerShortName;
 	}
-	public void setCUSTOMERSHORTNAME(String cUSTOMERSHORTNAME) {
-		CUSTOMERSHORTNAME = cUSTOMERSHORTNAME;
+	public void setCustomerShortName(String customerShortName) {
+		this.customerShortName = customerShortName;
 	}
-	public String getCUSTOMERNAME() {
-		return CUSTOMERNAME;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setCUSTOMERNAME(String cUSTOMERNAME) {
-		CUSTOMERNAME = cUSTOMERNAME;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
-	public Date getOPENINGDATE() {
-		return OPENINGDATE;
+	public Date getOpeningDate() {
+		return openingDate;
 	}
-	public void setOPENINGDATE(Date oPENINGDATE) {
-		OPENINGDATE = oPENINGDATE;
+	public void setOpeningDate(Date openingDate) {
+		this.openingDate = openingDate;
 	}
-	public String getIBAN_AC_NO() {
-		return IBAN_AC_NO;
+	public String getIbanAcNo() {
+		return ibanAcNo;
 	}
-	public void setIBAN_AC_NO(String iBAN_AC_NO) {
-		IBAN_AC_NO = iBAN_AC_NO;
+	public void setIbanAcNo(String ibanAcNo) {
+		this.ibanAcNo = ibanAcNo;
 	}
-	public String getRELATION() {
-		return RELATION;
+	public String getRelation() {
+		return relation;
 	}
-	public void setRELATION(String rELATION) {
-		RELATION = rELATION;
+	public void setRelation(String relation) {
+		this.relation = relation;
 	}
-	public String getDESCACCTTYPE() {
-		return DESCACCTTYPE;
+	public String getDescAcctType() {
+		return descAcctType;
 	}
-	public void setDESCACCTTYPE(String dESCACCTTYPE) {
-		DESCACCTTYPE = dESCACCTTYPE;
+	public void setDescAcctType(String descAcctType) {
+		this.descAcctType = descAcctType;
 	}
-	public long getAMOUNTONHOLD() {
-		return AMOUNTONHOLD;
+	public long getAmountOnHold() {
+		return amountOnHold;
 	}
-	public void setAMOUNTONHOLD(long aMOUNTONHOLD) {
-		AMOUNTONHOLD = aMOUNTONHOLD;
+	public void setAmountOnHold(long amountOnHold) {
+		this.amountOnHold = amountOnHold;
 	}
-	public String getODLIMIT() {
-		return ODLIMIT;
+	public String getOdLimit() {
+		return odLimit;
 	}
-	public void setODLIMIT(String oDLIMIT) {
-		ODLIMIT = oDLIMIT;
+	public void setOdLimit(String odLimit) {
+		this.odLimit = odLimit;
 	}
-	public String getDAILYLIMIT() {
-		return DAILYLIMIT;
+	public String getDialyLimit() {
+		return dialyLimit;
 	}
-	public void setDAILYLIMIT(String dAILYLIMIT) {
-		DAILYLIMIT = dAILYLIMIT;
+	public void setDialyLimit(String dialyLimit) {
+		this.dialyLimit = dialyLimit;
 	}
-	public long getELIGIBLEADV() {
-		return ELIGIBLEADV;
+	public long getEligibleAdv() {
+		return eligibleAdv;
 	}
-	public void setELIGIBLEADV(long eLIGIBLEADV) {
-		ELIGIBLEADV = eLIGIBLEADV;
+	public void setEligibleAdv(long eligibleAdv) {
+		this.eligibleAdv = eligibleAdv;
 	}
-	public Date getODLMTSTRTDATE() {
-		return ODLMTSTRTDATE;
+	public Date getOdlmStartDate() {
+		return odlmStartDate;
 	}
-	public void setODLMTSTRTDATE(Date oDLMTSTRTDATE) {
-		ODLMTSTRTDATE = oDLMTSTRTDATE;
+	public void setOdlmStartDate(Date odlmStartDate) {
+		this.odlmStartDate = odlmStartDate;
 	}
-	public Date getODLMTENDDATE() {
-		return ODLMTENDDATE;
+	public Date getOdlmEndDate() {
+		return odlmEndDate;
 	}
-	public void setODLMTENDDATE(Date oDLMTENDDATE) {
-		ODLMTENDDATE = oDLMTENDDATE;
+	public void setOdlmEndDate(Date odlmEndDate) {
+		this.odlmEndDate = odlmEndDate;
 	}
-	public long getORIGAVAILABLEBAL() {
-		return ORIGAVAILABLEBAL;
+	public long getOrigAvailableBal() {
+		return origAvailableBal;
 	}
-	public void setORIGAVAILABLEBAL(long oRIGAVAILABLEBAL) {
-		ORIGAVAILABLEBAL = oRIGAVAILABLEBAL;
+	public void setOrigAvailableBal(long origAvailableBal) {
+		this.origAvailableBal = origAvailableBal;
 	}
-	public Accountdetails(String iDCUSTOMER, String nBRBRANCH, String nBRACCOUNT, String aCCTTYPE, String aCCTSTATUS,
-			String cCYDESC, long bALANCE, long oPENINGBALANCE, long aVAILABLEBALANCE, String iSCHQBOOK,
-			String iSOVERDRAFT, char iSSI, long nUMUNCOLLECTED, long mINBALANCE, long dAILYWITHDRAWALLIMIT,
-			String cUSTOMERSHORTNAME, String cUSTOMERNAME, Date oPENINGDATE, String iBAN_AC_NO, String rELATION,
-			String dESCACCTTYPE, long aMOUNTONHOLD, String oDLIMIT, String dAILYLIMIT, long eLIGIBLEADV,
-			Date oDLMTSTRTDATE, Date oDLMTENDDATE, long oRIGAVAILABLEBAL) {
+	public Accountdetails(String idCustomer, String nbrBranch, String nbrAccount, String acctType, String acctStatus,
+			String ccyDesc, long balance, long openingBalance, long availableBalance, String isChqBook,
+			String isOverDraft, char issi, long numUncollected, long minBalance, long dailyWithDrawalLimit,
+			String customerShortName, String customerName, Date openingDate, String ibanAcNo, String relation,
+			String descAcctType, long amountOnHold, String odLimit, String dialyLimit, long eligibleAdv,
+			Date odlmStartDate, Date odlmEndDate, long origAvailableBal) {
 		super();
-		
-		IDCUSTOMER = iDCUSTOMER;
-		NBRBRANCH = nBRBRANCH;
-		NBRACCOUNT = nBRACCOUNT;
-		ACCTTYPE = aCCTTYPE;
-		ACCTSTATUS = aCCTSTATUS;
-		CCYDESC = cCYDESC;
-		BALANCE = bALANCE;
-		OPENINGBALANCE = oPENINGBALANCE;
-		AVAILABLEBALANCE = aVAILABLEBALANCE;
-		ISCHQBOOK = iSCHQBOOK;
-		ISOVERDRAFT = iSOVERDRAFT;
-		ISSI = iSSI;
-		NUMUNCOLLECTED = nUMUNCOLLECTED;
-		MINBALANCE = mINBALANCE;
-		DAILYWITHDRAWALLIMIT = dAILYWITHDRAWALLIMIT;
-		CUSTOMERSHORTNAME = cUSTOMERSHORTNAME;
-		CUSTOMERNAME = cUSTOMERNAME;
-		OPENINGDATE = oPENINGDATE;
-		IBAN_AC_NO = iBAN_AC_NO;
-		RELATION = rELATION;
-		DESCACCTTYPE = dESCACCTTYPE;
-		AMOUNTONHOLD = aMOUNTONHOLD;
-		ODLIMIT = oDLIMIT;
-		DAILYLIMIT = dAILYLIMIT;
-		ELIGIBLEADV = eLIGIBLEADV;
-		ODLMTSTRTDATE = oDLMTSTRTDATE;
-		ODLMTENDDATE = oDLMTENDDATE;
-		ORIGAVAILABLEBAL = oRIGAVAILABLEBAL;
+		this.idCustomer = idCustomer;
+		this.nbrBranch = nbrBranch;
+		this.nbrAccount = nbrAccount;
+		this.acctType = acctType;
+		this.acctStatus = acctStatus;
+		this.ccyDesc = ccyDesc;
+		this.balance = balance;
+		this.openingBalance = openingBalance;
+		this.availableBalance = availableBalance;
+		this.isChqBook = isChqBook;
+		this.isOverDraft = isOverDraft;
+		this.issi = issi;
+		this.numUncollected = numUncollected;
+		this.minBalance = minBalance;
+		this.dailyWithDrawalLimit = dailyWithDrawalLimit;
+		this.customerShortName = customerShortName;
+		this.customerName = customerName;
+		this.openingDate = openingDate;
+		this.ibanAcNo = ibanAcNo;
+		this.relation = relation;
+		this.descAcctType = descAcctType;
+		this.amountOnHold = amountOnHold;
+		this.odLimit = odLimit;
+		this.dialyLimit = dialyLimit;
+		this.eligibleAdv = eligibleAdv;
+		this.odlmStartDate = odlmStartDate;
+		this.odlmEndDate = odlmEndDate;
+		this.origAvailableBal = origAvailableBal;
 	}
-	
-
-public Accountdetails() {
-		
+	public Accountdetails() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	
-
 }

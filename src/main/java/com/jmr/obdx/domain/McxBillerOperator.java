@@ -19,12 +19,11 @@ import javax.persistence.Table;
     ,schema="JMR_OBDX"
 )
 public class McxBillerOperator  implements java.io.Serializable {
-
-
-     private long id;
-     private String operator;
-     private String profile;
-     private Set<McxBiller> mcxBillers = new HashSet<McxBiller>(0);
+	
+	 private long id;
+	 private String operator;
+	 private String profile;
+	 private Set<McxBiller> mcxBillers = new HashSet<McxBiller>(0);
 
     public McxBillerOperator() {
     }
@@ -44,9 +43,7 @@ public class McxBillerOperator  implements java.io.Serializable {
        this.mcxBillers = mcxBillers;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -55,7 +52,6 @@ public class McxBillerOperator  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     
     @Column(name="OPERATOR", nullable=false, length=100)
     public String getOperator() {
@@ -65,7 +61,6 @@ public class McxBillerOperator  implements java.io.Serializable {
     public void setOperator(String operator) {
         this.operator = operator;
     }
-
     
     @Column(name="PROFILE", nullable=false, length=500)
     public String getProfile() {
@@ -76,7 +71,7 @@ public class McxBillerOperator  implements java.io.Serializable {
         this.profile = profile;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBillerOperator")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBillerOperator")
     public Set<McxBiller> getMcxBillers() {
         return this.mcxBillers;
     }
@@ -84,10 +79,6 @@ public class McxBillerOperator  implements java.io.Serializable {
     public void setMcxBillers(Set<McxBiller> mcxBillers) {
         this.mcxBillers = mcxBillers;
     }
-
-
-
-
 }
 
 

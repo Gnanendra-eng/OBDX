@@ -104,7 +104,6 @@ public class McxLogin implements java.io.Serializable {
 		this.credentialsNonExpired = credentialsNonExpired;
 		this.accountNonLocked = accountNonLocked;
 		this.mcxAuthorityM = mcxAuthorityM;
-
 	}
 
 	@Id

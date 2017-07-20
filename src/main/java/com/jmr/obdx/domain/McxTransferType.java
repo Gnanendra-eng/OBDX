@@ -30,11 +30,12 @@ public class McxTransferType  implements java.io.Serializable {
 
     public McxTransferType() {
     }
-
 	
     public McxTransferType(long id) {
         this.id = id;
     }
+
+    
     public McxTransferType(long id, String description, String isActive, String transferType, Set<McxBeneficiary> mcxBeneficiaries) {
        this.id = id;
        this.description = description;
@@ -47,10 +48,7 @@ public class McxTransferType  implements java.io.Serializable {
 		this.transferType = transferType;
 	}
 
-
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=22, scale=0)
     public long getId() {
         return this.id;
@@ -59,7 +57,6 @@ public class McxTransferType  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     
     @Column(name="DESCRIPTION", length=500)
     public String getDescription() {
@@ -70,7 +67,6 @@ public class McxTransferType  implements java.io.Serializable {
         this.description = description;
     }
 
-    
     @Column(name="IS_ACTIVE", length=5)
     public String getIsActive() {
         return this.isActive;
@@ -80,7 +76,6 @@ public class McxTransferType  implements java.io.Serializable {
         this.isActive = isActive;
     }
 
-    
     @Column(name="TRANSFER_TYPE", length=5)
     public String getTransferType() {
         return this.transferType;
@@ -90,7 +85,7 @@ public class McxTransferType  implements java.io.Serializable {
         this.transferType = transferType;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferType")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferType")
     public Set<McxBeneficiary> getMcxBeneficiaries() {
         return this.mcxBeneficiaries;
     }
@@ -98,10 +93,6 @@ public class McxTransferType  implements java.io.Serializable {
     public void setMcxBeneficiaries(Set<McxBeneficiary> mcxBeneficiaries) {
         this.mcxBeneficiaries = mcxBeneficiaries;
     }
-
-
-
-
 }
 
 

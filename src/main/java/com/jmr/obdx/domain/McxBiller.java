@@ -37,10 +37,10 @@ public class McxBiller  implements java.io.Serializable {
 
     public McxBiller() {
     }
+    
     public McxBiller(String billerId) {
     	this.billerId= billerId;
     }
-
 	
     public McxBiller(McxUser mcxUser, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator) {
         this.mcxUser = mcxUser;
@@ -71,7 +71,7 @@ public class McxBiller  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_USER_ID", nullable=false)
     public McxUser getmcxUser() {
         return this.mcxUser;
@@ -80,7 +80,6 @@ public class McxBiller  implements java.io.Serializable {
     public void setMcxUser(McxUser mcxUser) {
         this.mcxUser = mcxUser;
     }
-
     
     @Column(name="BILLER_ID", nullable=false, length=55)
     public String getBillerId() {
@@ -91,7 +90,6 @@ public class McxBiller  implements java.io.Serializable {
         this.billerId = billerId;
     }
 
-    
     @Column(name="REFERENCE_NUMBER", nullable=false, length=100)
     public String getReferenceNumber() {
         return this.referenceNumber;
@@ -110,7 +108,6 @@ public class McxBiller  implements java.io.Serializable {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
-
     
     @Column(name="NAME", nullable=false, length=200)
     public String getName() {
@@ -121,7 +118,6 @@ public class McxBiller  implements java.io.Serializable {
         this.name = name;
     }
 
-    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_BILLER_OPEARTOR_ID", nullable=false)
     public McxBillerOperator getMcxBillerOperator() {
@@ -132,7 +128,7 @@ public class McxBiller  implements java.io.Serializable {
         this.mcxBillerOperator = mcxBillerOperator;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBiller")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxBiller")
     public Set<McxTransactionData> getMcxTransactionDatas() {
         return this.mcxTransactionDatas;
     }
@@ -140,10 +136,6 @@ public class McxBiller  implements java.io.Serializable {
     public void setMcxTransactionDatas(Set<McxTransactionData> mcxTransactionDatas) {
         this.mcxTransactionDatas = mcxTransactionDatas;
     }
-
-
-
-
 }
 
 

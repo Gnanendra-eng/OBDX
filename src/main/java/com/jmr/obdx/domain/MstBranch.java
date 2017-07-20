@@ -34,7 +34,6 @@ public class MstBranch  implements java.io.Serializable {
     public MstBranch() {
     }
 
-	
     public MstBranch(String branchCode) {
         this.branchCode = branchCode;
     }
@@ -63,7 +62,6 @@ public class MstBranch  implements java.io.Serializable {
         this.idEntity = idEntity;
     }
 
-
     @Column(name="BANK_CODE", length=80)
     public String getBankCode() {
         return this.bankCode;
@@ -73,9 +71,6 @@ public class MstBranch  implements java.io.Serializable {
         this.bankCode = bankCode;
     }
 
-
-    
-    
     @Column(name="BRANCH_CODE", nullable=false, length=12)
     public String getBranchCode() {
         return this.branchCode;
@@ -95,7 +90,6 @@ public class MstBranch  implements java.io.Serializable {
         this.branchAddr1 = branchAddr1;
     }
 
-
     @Column(name="BRANCH_ADDR2", length=420)
     public String getBranchAddr2() {
         return this.branchAddr2;
@@ -104,7 +98,6 @@ public class MstBranch  implements java.io.Serializable {
     public void setBranchAddr2(String branchAddr2) {
         this.branchAddr2 = branchAddr2;
     }
-
 
     @Column(name="BRANCH_ADDR3", length=420)
     public String getBranchAddr3() {
@@ -115,7 +108,6 @@ public class MstBranch  implements java.io.Serializable {
         this.branchAddr3 = branchAddr3;
     }
 
-
     @Column(name="BRANCH_NAME", length=420)
     public String getBranchName() {
         return this.branchName;
@@ -124,7 +116,6 @@ public class MstBranch  implements java.io.Serializable {
     public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
-
 
     @Column(name="BRANCH_LCY", length=12)
     public String getBranchLcy() {
@@ -135,7 +126,6 @@ public class MstBranch  implements java.io.Serializable {
         this.branchLcy = branchLcy;
     }
 
-
     @Column(name="COUNTRY_CODE", length=12)
     public String getCountryCode() {
         return this.countryCode;
@@ -144,7 +134,6 @@ public class MstBranch  implements java.io.Serializable {
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
     }
-
 
     @Column(name="WALKIN_CUSTOMER", length=36)
     public String getWalkinCustomer() {
@@ -155,7 +144,6 @@ public class MstBranch  implements java.io.Serializable {
         this.walkinCustomer = walkinCustomer;
     }
 
-
     @Column(name="END_OF_INPUT", length=4)
     public String getEndOfInput() {
         return this.endOfInput;
@@ -165,7 +153,6 @@ public class MstBranch  implements java.io.Serializable {
         this.endOfInput = endOfInput;
     }
 
-
     @Column(name="CHQNO_MASK", length=64)
     public String getChqnoMask() {
         return this.chqnoMask;
@@ -174,9 +161,6 @@ public class MstBranch  implements java.io.Serializable {
     public void setChqnoMask(String chqnoMask) {
         this.chqnoMask = chqnoMask;
     }
-
-
-   
 }
 
 

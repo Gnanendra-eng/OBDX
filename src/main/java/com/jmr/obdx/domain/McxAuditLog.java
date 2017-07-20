@@ -23,7 +23,6 @@ import javax.persistence.TemporalType;
 )
 public class McxAuditLog  implements java.io.Serializable {
 
-
      private long id;
      private McxUser mcxUser;
      private McxTransactionM mcxTransactionM;
@@ -37,7 +36,6 @@ public class McxAuditLog  implements java.io.Serializable {
     public McxAuditLog() {
     }
 
-	
     public McxAuditLog(McxUser mcxUser, McxTransactionM mcxTransactionM, McxTransactionData mcxTransactionData, String status, Date transactionDate, byte [] requestData, byte [] responseData,String hostReferenceId) {
         this.mcxUser = mcxUser;
         this.mcxTransactionM = mcxTransactionM;
@@ -50,14 +48,7 @@ public class McxAuditLog  implements java.io.Serializable {
 
     }
     
-
-    
-   
-    
-    
-
-
-	@Id 
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -87,7 +78,7 @@ public class McxAuditLog  implements java.io.Serializable {
         this.mcxTransactionM = mcxTransactionM;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_TRANSACTION_DATA_ID", nullable=false)
     public McxTransactionData getMcxTransactionData() {
         return this.mcxTransactionData;
@@ -116,7 +107,6 @@ public class McxAuditLog  implements java.io.Serializable {
     public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
-
     
     @Column(name="HOST_REFERENCE_ID", length=100)
     public String getHostReferenceId() {
@@ -127,7 +117,6 @@ public class McxAuditLog  implements java.io.Serializable {
         this.hostReferenceId = hostReferenceId;
     }
 
-    
     @Column(name="REQUEST_DATA", nullable=false)
     public byte [] getRequestData() {
         return this.requestData;
@@ -136,7 +125,6 @@ public class McxAuditLog  implements java.io.Serializable {
     public void setRequestData(byte [] requestData) {
         this.requestData = requestData;
     }
-
     
     @Column(name="RESPONSE_DATA", nullable=false)
     public byte [] getResponseData() {
@@ -146,8 +134,4 @@ public class McxAuditLog  implements java.io.Serializable {
     public void setResponseData(byte [] responseData) {
         this.responseData = responseData;
     }
-
-
-
-
 }

@@ -24,7 +24,6 @@ import javax.persistence.UniqueConstraint;
 )
 public class McxUserSession  implements java.io.Serializable {
 
-
      private long id;
      private McxUser mcxUser;
      private String sessionId;
@@ -35,19 +34,19 @@ public class McxUserSession  implements java.io.Serializable {
      private Integer timeout;
      private String hostPrifix;
      private Integer activeTimeout;
-     private String timezone;
-     private String username;
+     private String timeZone;
+     private String userName;
      private String isValidFlag;
      private String deviceName;
 
     public McxUserSession() {
     }
-
 	
     public McxUserSession(long id) {
         this.id = id;
     }
-    public McxUserSession(McxUser mcxUser, String sessionId, Date creationDate, Date lastAccessDate, String language, String remoteAddress, Integer timeout, String hostPrifix, Integer activeTimeout, String timezone, String username, String isValidFlag, String deviceName) {
+    
+    public McxUserSession(McxUser mcxUser, String sessionId, Date creationDate, Date lastAccessDate, String language, String remoteAddress, Integer timeout, String hostPrifix, Integer activeTimeout, String timeZone, String userName, String isValidFlag, String deviceName) {
        this.mcxUser = mcxUser;
        this.sessionId = sessionId;
        this.creationDate = creationDate;
@@ -57,8 +56,8 @@ public class McxUserSession  implements java.io.Serializable {
        this.timeout = timeout;
        this.hostPrifix = hostPrifix;
        this.activeTimeout = activeTimeout;
-       this.timezone = timezone;
-       this.username = username;
+       this.timeZone = timeZone;
+       this.userName = userName;
        this.isValidFlag = isValidFlag;
        this.deviceName = deviceName;
     }
@@ -68,10 +67,7 @@ public class McxUserSession  implements java.io.Serializable {
 		this.mcxUser = mcxUser;
 	}
 
-
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -81,7 +77,7 @@ public class McxUserSession  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_USER_ID")
     public McxUser getMcxUser() {
         return this.mcxUser;
@@ -90,7 +86,6 @@ public class McxUserSession  implements java.io.Serializable {
     public void setMcxUser(McxUser mcxUser) {
         this.mcxUser = mcxUser;
     }
-
     
     @Column(name="SESSION_ID", length=100)
     public String getSessionId() {
@@ -121,7 +116,6 @@ public class McxUserSession  implements java.io.Serializable {
         this.lastAccessDate = lastAccessDate;
     }
 
-    
     @Column(name="LANGUAGE", length=50)
     public String getLanguage() {
         return this.language;
@@ -131,7 +125,6 @@ public class McxUserSession  implements java.io.Serializable {
         this.language = language;
     }
 
-    
     @Column(name="REMOTE_ADDRESS", length=50)
     public String getRemoteAddress() {
         return this.remoteAddress;
@@ -141,7 +134,6 @@ public class McxUserSession  implements java.io.Serializable {
         this.remoteAddress = remoteAddress;
     }
 
-    
     @Column(name="TIMEOUT", precision=5, scale=0)
     public Integer getTimeout() {
         return this.timeout;
@@ -150,7 +142,6 @@ public class McxUserSession  implements java.io.Serializable {
     public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
-
     
     @Column(name="HOST_PRIFIX", length=50)
     public String getHostPrifix() {
@@ -161,7 +152,6 @@ public class McxUserSession  implements java.io.Serializable {
         this.hostPrifix = hostPrifix;
     }
 
-    
     @Column(name="ACTIVE_TIMEOUT", precision=5, scale=0)
     public Integer getActiveTimeout() {
         return this.activeTimeout;
@@ -170,28 +160,25 @@ public class McxUserSession  implements java.io.Serializable {
     public void setActiveTimeout(Integer activeTimeout) {
         this.activeTimeout = activeTimeout;
     }
-
     
     @Column(name="TIMEZONE", length=100)
     public String getTimezone() {
-        return this.timezone;
+        return this.timeZone;
     }
     
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
+    public void setTimezone(String timeZone) {
+        this.timeZone = timeZone;
     }
 
-    
     @Column(name="USERNAME", unique=true, length=100)
     public String getUsername() {
-        return this.username;
+        return this.userName;
     }
     
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
-    
     @Column(name="IS_VALID_FLAG", length=5)
     public String getIsValidFlag() {
         return this.isValidFlag;
@@ -200,7 +187,6 @@ public class McxUserSession  implements java.io.Serializable {
     public void setIsValidFlag(String isValidFlag) {
         this.isValidFlag = isValidFlag;
     }
-
     
     @Column(name="DEVICE_NAME", length=10)
     public String getDeviceName() {
@@ -210,10 +196,6 @@ public class McxUserSession  implements java.io.Serializable {
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
-
-
-
-
 }
 
 

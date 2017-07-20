@@ -30,10 +30,10 @@ public class McxTransferPurpose  implements java.io.Serializable {
     this.description=description;
     }
 
-	
     public McxTransferPurpose(long id) {
         this.id = id;
     }
+    
     public McxTransferPurpose(long id, String description, String purposeType, Set<McxTransactionData> mcxTransactionDatas) {
        this.id = id;
        this.description = description;
@@ -41,9 +41,7 @@ public class McxTransferPurpose  implements java.io.Serializable {
        this.mcxTransactionDatas = mcxTransactionDatas;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -52,7 +50,6 @@ public class McxTransferPurpose  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
     
     @Column(name="DESCRIPTION", length=500)
     public String getDescription() {
@@ -62,7 +59,6 @@ public class McxTransferPurpose  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
     
     @Column(name="PURPOSE_TYPE", length=5)
     public String getPurposeType() {
@@ -73,7 +69,7 @@ public class McxTransferPurpose  implements java.io.Serializable {
         this.purposeType = purposeType;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferPurpose")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferPurpose")
     public Set<McxTransactionData> getMcxTransactionDatas() {
         return this.mcxTransactionDatas;
     }
@@ -81,10 +77,6 @@ public class McxTransferPurpose  implements java.io.Serializable {
     public void setMcxTransactionDatas(Set<McxTransactionData> mcxTransactionDatas) {
         this.mcxTransactionDatas = mcxTransactionDatas;
     }
-
-
-
-
 }
 
 

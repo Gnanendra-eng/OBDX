@@ -30,10 +30,10 @@ public class McxTransferViaType  implements java.io.Serializable {
     public McxTransferViaType() {
     }
 
-	
     public McxTransferViaType(long id) {
         this.id = id;
     }
+    
     public McxTransferViaType(long id, String description, String isActive, String transferViaType, Set<McxBeneficiary> mcxBeneficiaries) {
        this.id = id;
        this.description = description;
@@ -46,10 +46,7 @@ public class McxTransferViaType  implements java.io.Serializable {
 		this.transferViaType = transferViaType;
 	}
 
-
 	@Id 
-
-    
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -59,7 +56,6 @@ public class McxTransferViaType  implements java.io.Serializable {
         this.id = id;
     }
 
-    
     @Column(name="DESCRIPTION", length=500)
     public String getDescription() {
         return this.description;
@@ -69,7 +65,6 @@ public class McxTransferViaType  implements java.io.Serializable {
         this.description = description;
     }
 
-    
     @Column(name="IS_ACTIVE", length=5)
     public String getIsActive() {
         return this.isActive;
@@ -79,7 +74,6 @@ public class McxTransferViaType  implements java.io.Serializable {
         this.isActive = isActive;
     }
 
-    
     @Column(name="TRANSFER_VIA_TYPE", length=5)
     public String getTransferViaType() {
         return this.transferViaType;
@@ -89,7 +83,7 @@ public class McxTransferViaType  implements java.io.Serializable {
         this.transferViaType = transferViaType;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferViaType")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransferViaType")
     public Set<McxBeneficiary> getMcxBeneficiaries() {
         return this.mcxBeneficiaries;
     }
@@ -97,10 +91,6 @@ public class McxTransferViaType  implements java.io.Serializable {
     public void setMcxBeneficiaries(Set<McxBeneficiary> mcxBeneficiaries) {
         this.mcxBeneficiaries = mcxBeneficiaries;
     }
-
-
-
-
 }
 
 

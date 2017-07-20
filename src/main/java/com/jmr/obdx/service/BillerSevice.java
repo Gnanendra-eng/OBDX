@@ -144,7 +144,7 @@ public class BillerSevice {
 		HashSet<BillerDto> billerDtos = new HashSet<>(0);
 		List<McxVwBillerInfo> billers=(List<McxVwBillerInfo>)mcxVwBillerInfoRepo.getBiller();
 		billers.stream().forEach(biller -> {
-			billerDtos.add(new BillerDto(biller.getIdbiller(), biller.getBillerdesc(), biller.getBillercustid()));
+			billerDtos.add(new BillerDto(biller.getIdBiller(), biller.getBillerDesc(), biller.getBillerCustId()));
 		});
 		billerInfo.setBillerDtos(billerDtos);
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
@@ -201,8 +201,8 @@ public class BillerSevice {
         	McxTransactionData mcxTransactionData = mcxTransactionDataRepo.findByReferenceId(referenceId);
      		java.io.StringWriter sw = new StringWriter();
      		Date myDate = new Date();
-     		TransactionDetailsIo transactionDetailsIo = new TransactionDetailsIo(referenceId, mcxTransactionM.getProductDescription(), payBillIDto.getBillerId(), payBillIDto.getBillerNo(), payBillIDto.getAmount(), payBillIDto.getFromAccountCurrency(), mcxCustomerMapping.getCustomerId(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(), payBillIDto.getFromAccountCurrency(), new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), accountdetails.getNBRBRANCH());
-     		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", mcxTransactionData.getReferenceId(),"SYSTEM", accountdetails.getNBRBRANCH(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
+     		TransactionDetailsIo transactionDetailsIo = new TransactionDetailsIo(referenceId, mcxTransactionM.getProductDescription(), payBillIDto.getBillerId(), payBillIDto.getBillerNo(), payBillIDto.getAmount(), payBillIDto.getFromAccountCurrency(), mcxCustomerMapping.getCustomerId(), payBillIDto.getFromAccountCurrency(), payBillIDto.getBillerNo(), payBillIDto.getFromAccountCurrency(), new SimpleDateFormat("yyyy-MM-dd").format(mcxTransactionData.getTransferDate()), accountdetails.getNbrBranch());
+     		McxHeader mcxHeader = new McxHeader("FCAT", "FCUBS", mcxTransactionData.getReferenceId(),"SYSTEM", accountdetails.getNbrBranch(), mcxTransactionM.getService(), mcxTransactionM.getOperation());
             McxPayBillBody mcxPayBillBody = new McxPayBillBody(transactionDetailsIo);
      		CreateuptransactionIopkReq createuptransactionIopkReq = new CreateuptransactionIopkReq(mcxHeader, mcxPayBillBody);
      		PayBillSoapBody payBillSoapBody = new PayBillSoapBody(createuptransactionIopkReq);

@@ -22,18 +22,17 @@ import javax.persistence.UniqueConstraint;
 )
 public class McxTransactionM  implements java.io.Serializable {
 
-
-     private long id;
-     private String service;
-     private String isActive;
-     private String allowAuthorization;
-     private String allowInitiation;
-     private String allowView;
-     private String operation;
-     private String product;
-     private String productDescription;
-     private String transactionMode;
-     private String description;
+	 private long id;
+	 private String service;
+	 private String isActive;
+	 private String allowAuthorization;
+	 private String allowInitiation;
+	 private String allowView;
+	 private String operation;
+	 private String product;
+	 private String productDescription;
+	 private String transactionMode;
+	 private String description;
      private Set<McxAuditLog> mcxAuditLogs = new HashSet<McxAuditLog>(0);
 
     public McxTransactionM() {
@@ -43,12 +42,12 @@ public class McxTransactionM  implements java.io.Serializable {
     	this.id = id;
     }
 
-	
     public McxTransactionM(long id, String service, String isActive) {
         this.id = id;
         this.service = service;
         this.isActive = isActive;
     }
+    
     public McxTransactionM(long id, String service, String isActive, String allowAuthorization, String allowInitiation, String allowView, String operation, String product, String productDescription, String transactionMode, String description, Set<McxAuditLog> mcxAuditLogs) {
        this.id = id;
        this.service = service;
@@ -64,9 +63,7 @@ public class McxTransactionM  implements java.io.Serializable {
        this.mcxAuditLogs = mcxAuditLogs;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="ID", unique=true, nullable=false, precision=10, scale=0)
     public long getId() {
         return this.id;
@@ -76,7 +73,6 @@ public class McxTransactionM  implements java.io.Serializable {
         this.id = id;
     }
 
-    
     @Column(name="SERVICE", nullable=false, length=500)
     public String getService() {
         return this.service;
@@ -86,7 +82,6 @@ public class McxTransactionM  implements java.io.Serializable {
         this.service = service;
     }
 
-    
     @Column(name="IS_ACTIVE", nullable=false, length=5)
     public String getIsActive() {
         return this.isActive;
@@ -95,7 +90,6 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
-
     
     @Column(name="ALLOW_AUTHORIZATION", length=5)
     public String getAllowAuthorization() {
@@ -105,7 +99,6 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setAllowAuthorization(String allowAuthorization) {
         this.allowAuthorization = allowAuthorization;
     }
-
     
     @Column(name="ALLOW_INITIATION", length=5)
     public String getAllowInitiation() {
@@ -115,7 +108,6 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setAllowInitiation(String allowInitiation) {
         this.allowInitiation = allowInitiation;
     }
-
     
     @Column(name="ALLOW_VIEW", length=5)
     public String getAllowView() {
@@ -125,7 +117,6 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setAllowView(String allowView) {
         this.allowView = allowView;
     }
-
     
     @Column(name="OPERATION", length=100)
     public String getOperation() {
@@ -136,7 +127,6 @@ public class McxTransactionM  implements java.io.Serializable {
         this.operation = operation;
     }
 
-    
     @Column(name="PRODUCT", length=100)
     public String getProduct() {
         return this.product;
@@ -155,7 +145,6 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
-
     
     @Column(name="TRANSACTION_MODE", length=50)
     public String getTransactionMode() {
@@ -166,7 +155,6 @@ public class McxTransactionM  implements java.io.Serializable {
         this.transactionMode = transactionMode;
     }
 
-    
     @Column(name="DESCRIPTION", length=500)
     public String getDescription() {
         return this.description;
@@ -176,7 +164,7 @@ public class McxTransactionM  implements java.io.Serializable {
         this.description = description;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionM")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="mcxTransactionM")
     public Set<McxAuditLog> getMcxAuditLogs() {
         return this.mcxAuditLogs;
     }
@@ -184,8 +172,4 @@ public class McxTransactionM  implements java.io.Serializable {
     public void setMcxAuditLogs(Set<McxAuditLog> mcxAuditLogs) {
         this.mcxAuditLogs = mcxAuditLogs;
     }
-
-
-
-
 }
