@@ -15,7 +15,6 @@ import com.jmr.obdx.domain.MstBranch;
 @Repository
 public interface MstBranchRepo extends CrudRepository<MstBranch, Integer>{
 	
-	
 	@Query("from MstBranch where branchCode=:branchCode")
 	public MstBranch findByBranchCode(@Param("branchCode") String branchCode);
 	

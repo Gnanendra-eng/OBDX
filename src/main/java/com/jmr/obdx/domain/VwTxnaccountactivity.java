@@ -24,7 +24,7 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 	private Date datValueDate;
 	private Date txnDate;
 	private Date postingDate;
-	private String codtxnCurr;
+	private String codTxnCurr;
 	private String amountTag;
 	private String prodType;
 	private String namBranch;
@@ -46,7 +46,7 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 	}
 
 	public VwTxnaccountactivity(String nbrAccount, String branchCode, String customerNo, Date datValueDate,
-			Date txnDate, Date postingDate, String codtxnCurr, String amountTag, String prodType, String namBranch,
+			Date txnDate, Date postingDate, String codTxnCurr, String amountTag, String prodType, String namBranch,
 			BigDecimal txnAmount, String coddrcr, String txtReferenceNo, String codTxnType, String description,
 			BigDecimal srNo, String txnCode, String swiftCode, String txnModule, String userReferenceNo,
 			String virtualAcNo, String remitterName, String txnTypeDesc) {
@@ -57,7 +57,7 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 		this.datValueDate = datValueDate;
 		this.txnDate = txnDate;
 		this.postingDate = postingDate;
-		this.codtxnCurr = codtxnCurr;
+		this.codTxnCurr = codTxnCurr;
 		this.amountTag = amountTag;
 		this.prodType = prodType;
 		this.namBranch = namBranch;
@@ -75,7 +75,13 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 		this.remitterName = remitterName;
 		this.txnTypeDesc = txnTypeDesc;
 	}
-
+	
+	@Id
+	@Column(name = "SRNO", precision = 20, scale = 0)
+	public BigDecimal getSrNo() {
+		return this.srNo;
+	}
+	
 	@Column(name = "NBRACCOUNT", length = 80)
 	public String getNbrAccount() {
 		return this.nbrAccount;
@@ -133,11 +139,11 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 
 	@Column(name = "CODTXNCURR", length = 12)
 	public String getCodTxnCurr() {
-		return this.codtxnCurr;
+		return this.codTxnCurr;
 	}
 
-	public void setCodtxnCurr(String codtxnCurr) {
-		this.codtxnCurr = codtxnCurr;
+	public void setCodTxnCurr(String codTxnCurr) {
+		this.codTxnCurr = codTxnCurr;
 	}
 
 	@Column(name = "AMOUNTTAG", length = 140)
@@ -210,12 +216,6 @@ public class VwTxnaccountactivity implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Id
-	@Column(name = "SRNO", precision = 20, scale = 0)
-	public BigDecimal getSrNo() {
-		return this.srNo;
 	}
 
 	public void setSrNo(BigDecimal srNo) {
