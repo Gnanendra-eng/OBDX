@@ -288,6 +288,7 @@ public class McxUser  implements java.io.Serializable {
 	public Set<McxBiller> getMcxBillers() {
 		return this.mcxBillers;
 	}
+	
 
 	public void setMcxBillers(Set<McxBiller> mcxBillers) {
 		this.mcxBillers = mcxBillers;
