@@ -26,24 +26,24 @@ public class AccountDetailsRepo {
 	@SuppressWarnings("unchecked")
 	public List<Accountdetails> findAllAccountByCustomerId(String customerId) throws Exception {
        return (List<Accountdetails>)sessionFactory.openSession().createCriteria(Accountdetails.class).
-    		   add(Restrictions.eq("IDCUSTOMER", customerId)).list();
+    		   add(Restrictions.eq("idCustomer", customerId)).list();
 	}
 	
 	public Accountdetails findAccountDetailsByAccountIdCustomerId(String customerId,String nbrAccount) throws Exception {
 		return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
-				.add(Restrictions.eq("IDCUSTOMER", customerId)).add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
+				.add(Restrictions.eq("idCustomer", customerId)).add(Restrictions.eq("nbrAccount", nbrAccount)).uniqueResult();
 		
 	}
 		public Accountdetails findAccountBranchByAccountId(String nbrAccount) throws Exception {
 			return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
-					.add(Restrictions.eq("NBRACCOUNT", nbrAccount)).uniqueResult();
+					.add(Restrictions.eq("nbrAccount", nbrAccount)).uniqueResult();
 			
 	}
 	
 		
 		public Accountdetails findByAccountNo(String accNo) throws Exception {
 			return(Accountdetails)sessionFactory.openSession().createCriteria(Accountdetails.class)
-					.add(Restrictions.eq("NBRACCOUNT", accNo)).uniqueResult();
+					.add(Restrictions.eq("nbrAccount", accNo)).uniqueResult();
 			
 	}	
 		

@@ -20,15 +20,15 @@ public class VwTxnaccountactivityRepo {
 	@SuppressWarnings("unchecked")
 	public List<VwTxnaccountactivity> findByUserTransactionAccountActivityInfo(String customerId,String nbrAccount) throws Exception {
 		return (List<VwTxnaccountactivity>)sessionFactory.openSession().createCriteria(VwTxnaccountactivity.class).
-				add(Restrictions.eq("customerno", customerId)).add(Restrictions.eq("nbraccount", nbrAccount)).addOrder(Order.desc("txndate")).list();
+				add(Restrictions.eq("customerNo", customerId)).add(Restrictions.eq("nbrAccount", nbrAccount)).addOrder(Order.desc("txnDate")).list();
 
 	}
 	
 
 	@SuppressWarnings("unchecked")
 	public List<VwTxnaccountactivity> findByUserLastFiveTransactionAccountActivityInfo(String customerId,String nbrAccount) throws Exception{
-		return (List<VwTxnaccountactivity>)sessionFactory.openSession().createCriteria(VwTxnaccountactivity.class).add(Restrictions.eq("customerno", customerId)).
-				add(Restrictions.eq("nbraccount", nbrAccount)).addOrder(Order.desc("txndate")).setMaxResults(5).list();
+		return (List<VwTxnaccountactivity>)sessionFactory.openSession().createCriteria(VwTxnaccountactivity.class).add(Restrictions.eq("customerNo", customerId)).
+				add(Restrictions.eq("nbrAccount", nbrAccount)).addOrder(Order.desc("txnDate")).setMaxResults(5).list();
 	}
 	
 	
