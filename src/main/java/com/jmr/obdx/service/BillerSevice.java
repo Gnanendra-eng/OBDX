@@ -128,7 +128,7 @@ public class BillerSevice {
 		userAddedBillerInfo = new UserAddedBillerInfo();
 		List<UserAddedBillerDto> billerDtos = new ArrayList<>(0);
 		McxLogin mcxlogin = loginRepo.findByUserName(authentication.getName());
-	    List<McxBiller> mcxBillers = (List<McxBiller>) mcxBillerRepo.findByUserBillerInfo(mcxlogin.getId());
+	    List<McxBiller> mcxBillers = (List<McxBiller>) mcxBillerRepo.findByUserBillerInfo(new McxUser(mcxlogin.getMcxUser().getId()));
 	    mcxBillers.stream().forEach(biller -> {
 			billerDtos.add(new UserAddedBillerDto(biller.getBillerId(), biller.getName(), biller.getMcxBillerOperator().getOperator()));
 		});
@@ -151,13 +151,18 @@ public class BillerSevice {
 		return billerInfo;
 	}
 	
+	/***
+	 * 
+	 *NEED TO SEND THE BILLER OPERATOR ID IN registerBillerDto FROM FRONTEND
+	 */
 	
 	public StatusInfo registerBiller(RegisterBillerDto registerBillerDto,Authentication authentication)throws Exception {
 		
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		statusInfo = new StatusInfo();
 		McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
-		mcxBillerRepo.save(new McxBiller(mcxLogin, registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), new McxBillerOperator( registerBillerDto.getBillerOperatorID())));
+		McxUser mcxUser = mcxUserMRepo.findById(mcxLogin.getMcxUser(). getId());
+		mcxBillerRepo.save(new McxBiller(mcxUser, registerBillerDto.getBillerId(), registerBillerDto.getBillerReferenceNumber(), new Date(), registerBillerDto.getBillerName(), new McxBillerOperator( registerBillerDto.getBillerOperatorID())));
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		System.out.println(statusInfo);
 		return statusInfo;

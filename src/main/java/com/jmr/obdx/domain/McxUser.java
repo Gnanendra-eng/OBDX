@@ -46,6 +46,8 @@ public class McxUser  implements java.io.Serializable {
      private Set<McxLogin> mcxLogins = new HashSet<McxLogin>(0);
      private Set<McxBeneficiary> mcxBeneficiaries = new HashSet<McxBeneficiary>(0);
      private Set<McxUserSession> mcxUserSessions = new HashSet<McxUserSession>(0);
+ 	private Set<McxBiller> mcxBillers = new HashSet<McxBiller>(0);
+
 
     public McxUser() {
     }
@@ -60,8 +62,8 @@ public class McxUser  implements java.io.Serializable {
         this.mobileNumber = mobileNumber;
         this.emailId = emailId;
     }
-    
-    public McxUser(long id, McxEntityM mcxEntityM, McxBaseUserTypeM mcxBaseUserTypeM, String firstName, String lastName, String address, String city, String state, String country, String mobileNumber, String zipCode, String faxNumber, String emailId, String salutation, Date dateOfBirth, String phoneNumber, Set<McxAuditLog> mcxAuditLogs, Set<McxCustomerMapping> mcxCustomerMappings, Set<McxLogin> mcxLogins, Set<McxBeneficiary> mcxBeneficiaries, Set<McxUserSession> mcxUserSessions) {
+
+    public McxUser(long id, McxEntityM mcxEntityM, McxBaseUserTypeM mcxBaseUserTypeM, String firstName, String lastName, String address, String city, String state, String country, String mobileNumber, String zipCode, String faxNumber, String emailId, String salutation, Date dateOfBirth, String phoneNumber, Set<McxAuditLog> mcxAuditLogs, Set<McxCustomerMapping> mcxCustomerMappings, Set<McxLogin> mcxLogins, Set<McxBeneficiary> mcxBeneficiaries, Set<McxUserSession> mcxUserSessions, Set<McxBiller> mcxBillers) {
        this.id = id;
        this.mcxEntityM = mcxEntityM;
        this.mcxBaseUserTypeM = mcxBaseUserTypeM;
@@ -83,6 +85,8 @@ public class McxUser  implements java.io.Serializable {
        this.mcxLogins = mcxLogins;
        this.mcxBeneficiaries = mcxBeneficiaries;
        this.mcxUserSessions = mcxUserSessions;
+		this.mcxBillers = mcxBillers;
+
     }
    
     @Id 
@@ -277,6 +281,19 @@ public class McxUser  implements java.io.Serializable {
     public void setMcxUserSessions(Set<McxUserSession> mcxUserSessions) {
         this.mcxUserSessions = mcxUserSessions;
     }
+
+
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mcxUser")
+	public Set<McxBiller> getMcxBillers() {
+		return this.mcxBillers;
+	}
+
+	public void setMcxBillers(Set<McxBiller> mcxBillers) {
+		this.mcxBillers = mcxBillers;
+	}
+
+
 }
 
 

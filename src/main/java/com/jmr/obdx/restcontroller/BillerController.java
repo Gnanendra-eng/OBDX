@@ -1,9 +1,7 @@
-/*package com.jmr.obdx.restcontroller;
+package com.jmr.obdx.restcontroller;
 
 import java.util.Locale;
-
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.jmr.obdx.dto.StatusInfo;
 import com.jmr.obdx.service.BillerSevice;
 import com.jmr.obdx.service.dto.BillerInfo;
-import com.jmr.obdx.service.dto.FundTransferInfo;
-import com.jmr.obdx.service.dto.InternalAccountTransferDto;
 import com.jmr.obdx.service.dto.PayBillIDto;
 import com.jmr.obdx.service.dto.PayBillInfo;
 import com.jmr.obdx.service.dto.RegisterBillerDto;
@@ -30,9 +24,9 @@ import com.jmr.obdx.service.dto.UserAddedBillerInfo;
 import com.jmr.obdx.util.Utility;
 
 
-*//***
+/***
  * @author Pritiranjan Swain (JMR Infotech)
- *//*
+ */
 @RestController
 @RequestMapping(value = "/biller")
 public class BillerController {
@@ -42,12 +36,12 @@ public class BillerController {
 	@Autowired
 	private BillerSevice billerSevice;
 	
-	*//***
+	/***
 	 * Gives all mapped biller for the user
 	 * 
 	 * @param authentication - Hold the login user info.
 	 * @return all mapped biller for the user
-	 *//*
+	 */
 
 	@RequestMapping(value = "/user/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<UserAddedBillerInfo> getUserAddedBillerInfo(Authentication authentication) {
@@ -67,11 +61,11 @@ public class BillerController {
 
 	}
 	
-	*//***
+	/***
 	 * Get all the biller info form UBS
 	 * @param authentication - Hold the login user info.
 	 * @return All biller info from UBS
-	 *//*
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<BillerInfo> getBillerInfo(Authentication authentication) {
 		try {
@@ -89,14 +83,14 @@ public class BillerController {
 		}
 	}
 
-*//***
+/***
  * Used for Paybills
  * @param payBillIDto Receives the paybill info.
  * @param authentication - Hold the login user info.
  * @param locale -A Locale object represents a specific geographical, political, or cultural region. 
  * @param bindingResult-Represents binding results
  * @return  FCDB reference id,Host reference id and Status of the transaction
- *//*
+ */
 	
 	@RequestMapping(value = "/payBills", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<PayBillInfo> payBill(@RequestBody @Valid PayBillIDto payBillIDto, Authentication authentication, Locale locale,BindingResult bindingResult) {
@@ -117,12 +111,12 @@ public class BillerController {
 	}	
 		
 		
-	*//***
+	/***
 	 * Add in biller
 	 * @param registerBillerDto -Receives requested biller info.
 	 * @param authentication -Hold the login user info.
 	 * @return StatusInfo.
-	 *//*
+	 */
 
 	
 	
@@ -145,4 +139,3 @@ public class BillerController {
 	
 	
 }
-*/

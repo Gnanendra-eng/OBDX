@@ -27,7 +27,7 @@ public class McxBiller  implements java.io.Serializable {
 
 
      private long id;
-     private McxLogin mcxLogin;
+     private McxUser mcxUser;
      private String billerId;
      private String referenceNumber;
      private Date registrationDate;
@@ -42,17 +42,17 @@ public class McxBiller  implements java.io.Serializable {
     	this.billerId= billerId;
     }
 	
-    public McxBiller(McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator) {
-        this.mcxLogin = mcxLogin;
+    public McxBiller(McxUser mcxUser, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator) {
+        this.mcxUser = mcxUser;
         this.billerId = billerId;
         this.referenceNumber = referenceNumber;
         this.registrationDate = registrationDate;
         this.name = name;
         this.mcxBillerOperator = mcxBillerOperator;
     }
-    public McxBiller(long id, McxLogin mcxLogin, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator, Set<McxTransactionData> mcxTransactionDatas) {
+    public McxBiller(long id, McxUser mcxUser, String billerId, String referenceNumber, Date registrationDate, String name, McxBillerOperator mcxBillerOperator, Set<McxTransactionData> mcxTransactionDatas) {
        this.id = id;
-       this.mcxLogin = mcxLogin;
+       this.mcxUser = mcxUser;
        this.billerId = billerId;
        this.referenceNumber = referenceNumber;
        this.registrationDate = registrationDate;
@@ -73,12 +73,12 @@ public class McxBiller  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="REF_USER_ID", nullable=false)
-    public McxLogin getMcxLogin() {
-        return this.mcxLogin;
+    public McxUser getmcxUser() {
+        return this.mcxUser;
     }
     
-    public void setMcxLogin(McxLogin mcxLogin) {
-        this.mcxLogin = mcxLogin;
+    public void setMcxUser(McxUser mcxUser) {
+        this.mcxUser = mcxUser;
     }
     
     @Column(name="BILLER_ID", nullable=false, length=55)
