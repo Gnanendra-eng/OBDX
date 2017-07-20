@@ -13,9 +13,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FCC_VW_MSTACCOUNT", schema = "JMR_OBDX")
-public class Accountsummary implements java.io.Serializable {
+public class AccountSummary implements java.io.Serializable {
 
-	public Accountsummary() {
+	public AccountSummary() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -596,7 +596,7 @@ public class Accountsummary implements java.io.Serializable {
 	public void setUdf10(String udf10) {
 		this.udf10 = udf10;
 	}
-	public Accountsummary(String idAccount, String idCustomer, String codBranch, String codAcctType,
+	public AccountSummary(String idAccount, String idCustomer, String codBranch, String codAcctType,
 			String txtAcctStatus, String codAcctCurr, String numBalance, String numOpenBalance, String datLastUpdated,
 			String numAvailBal, String numUncollected, String numAvailCredit, String numMontOvCr, String numMontOvDr,
 			String acctDesc, String add1, String add2, String add3, String nom1, String nom2, String add4,

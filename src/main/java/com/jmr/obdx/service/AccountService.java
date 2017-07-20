@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.jmr.obdx.domain.AccountSummary;
 import com.jmr.obdx.domain.Accountdetails;
-import com.jmr.obdx.domain.Accountsummary;
 import com.jmr.obdx.domain.McxCustomerMapping;
 import com.jmr.obdx.domain.McxLogin;
 import com.jmr.obdx.domain.McxUser;
@@ -138,8 +138,8 @@ public class AccountService {
 		/***
 		 * Created McxCustomerMapping reference to get customerid by murugesh on 17/07/2017
 		 */
-		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
-		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
+		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getMcxUser().getId()));
+		List<AccountSummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		List<Accountdetails> accountdetails = accountDetailsRepo.findAllAccountByCustomerId(mcxCustomerMapping.getCustomerId());
 		savingsAndCurrent = new ArrayList<>();
 		loans = new ArrayList<>();
@@ -184,7 +184,7 @@ public class AccountService {
 		loanPending = new ArrayList<>();
 		McxLogin mcxLogin = loginRepo.findByUserName(authentication.getName());
 		McxCustomerMapping mcxCustomerMapping = mcxCustomerMappingRepo.findByMcxUser(new McxUser(mcxLogin.getId()));
-		List<Accountsummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
+		List<AccountSummary> accountsummarys = accountsummaryrepo.findAccountSummaryByCustomerId(mcxCustomerMapping.getCustomerId());
 		accountsummarys.stream().forEach(loansummary -> {
 			   if( loansummary.getCodAcctType().equals(Utility.LOANSANDCURRENT))
 				sumOfTotalLoans += Double.parseDouble(loansummary.getNumAvailBal());
@@ -195,7 +195,7 @@ public class AccountService {
 		return loanSummayInfo;
 	}
 		
-	protected AccountSummaryDto getAccountSummaryType(Accountsummary accountsummary) {
+	protected AccountSummaryDto getAccountSummaryType(AccountSummary accountsummary) {
 		return new AccountSummaryDto(accountsummary.getIdAccount(), accountsummary.getIdCustomer(),
 				accountsummary.getCodBranch(), accountsummary.getCodAcctType(), accountsummary.getTxtAcctStatus(),
 				accountsummary.getCodAcctCurr(), accountsummary.getNumBalance(), accountsummary.getNumOpenBalance(),

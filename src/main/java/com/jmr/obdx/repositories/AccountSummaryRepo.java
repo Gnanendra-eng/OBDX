@@ -7,7 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jmr.obdx.domain.Accountsummary;
+import com.jmr.obdx.domain.AccountSummary;
 
 /***
  * \
@@ -21,8 +21,8 @@ public class AccountSummaryRepo {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<Accountsummary> findAccountSummaryByCustomerId(String customerId) throws Exception {
-		return (List<Accountsummary>)sessionFactory.openSession().createCriteria(Accountsummary.class).
+	public List<AccountSummary> findAccountSummaryByCustomerId(String customerId) throws Exception {
+		return (List<AccountSummary>)sessionFactory.openSession().createCriteria(AccountSummary.class).
 				add(Restrictions.eq("IDCUSTOMER", customerId)).list();
 	}
 

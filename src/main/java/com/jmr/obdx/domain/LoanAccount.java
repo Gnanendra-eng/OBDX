@@ -201,7 +201,7 @@ public class LoanAccount implements java.io.Serializable {
 		return this.productDesc;
 	}
 
-	public void setProductdesc(String productDesc) {
+	public void setProductDesc(String productDesc) {
 		this.productDesc = productDesc;
 	}
 
