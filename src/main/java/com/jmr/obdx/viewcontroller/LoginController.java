@@ -22,7 +22,7 @@ public class LoginController {
 		System.out.println(1);
 		logger.info(Utility.ENTERED + new Object() {}.getClass().getEnclosingMethod().getName());
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
-		return "redirect:/login";
+		return "input";
 	}
 
 	
@@ -38,7 +38,7 @@ public class LoginController {
 		httpSession.setAttribute(Utility.DEVICE, Utility.DEVICE_ID);
 		logger.info(Utility.EXITING + new Object() {}.getClass().getEnclosingMethod().getName());
 		System.out.println(3);
-		return "login";
+		return "input";
 	}
 
 	@RequestMapping(value = "/login/authfail", method = RequestMethod.GET)
