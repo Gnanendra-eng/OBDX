@@ -1,0 +1,100 @@
+
+<div class="container-fluid">
+	<br> <br> <br>
+	<div [hidden]="hide">
+		<div class="panel panel-primary">
+
+			<br> <br>
+			<div style="padding: 0px 80px">
+
+				<form>
+				
+                   
+                   <div class="row form-group" >
+						<div class=" required">
+						<div class="col-md-1"></div>
+							<label class="col-md-2" >Source Account:</label>
+						</div>
+						<div class="col-md-4">
+							<select  #selec class="col-md-12"
+								class="form-control" (change)="getSeleSrcAccount(selec.value)">
+								<option disabled="true">------Select------</option>
+								<option *ngFor="let ac of profile  " [value]="ac.id">{{ac.account_number}}</option>
+							</select>
+						</div>
+						
+						<div class="col-md-3">
+						<label >Availble Balance:</label>
+						
+						{{inti_details.avl_balance}}
+						</div>
+						
+					</div>
+                   
+                   
+                   
+                   
+
+
+					<div class="row form-group" >
+					<div class="col-md-1"> </div>
+						<div class=" required">
+							<label class="col-md-2">Destination Account:</label>
+						</div>
+						<div class="col-md-4">
+							<select [disabled]="des_enable" #selectElem class="col-md-12"
+								class="form-control" (change)="onChange(selectElem.value)">
+								<option disabled="true">------Select------</option>
+								<option *ngFor="let accountNo of Destination" [value]="accountNo.account_number">{{accountNo.account_number}}</option>
+							</select>
+						</div>
+					</div>
+
+
+
+					<div class="row form-group" >
+					<div class="col-md-1"> </div>
+
+						<label class="col-md-2">Date of Transaction:</label>
+
+						<div class="col-md-4">
+							
+							<input type="radio" name="Pay" value="RTGS" (change)="isPayNow()"> PayNow <input
+							  type="radio" name="Pay" value="PayLater" (change)="getPayDate()" >PayLater
+							<div [hidden]="isPayLater" >
+							<input type="date"[hidden]="date" class="form-control col-md-12"
+							id="selected_date" name="selected_date"
+							[ngModelOptions]="{standalone: true}"
+							[ngModel]="inti_details.selected_date | date:'yyyy-MM-dd'"
+							(ngModelChange)="inti_details.selected_date = $event">
+							</div>
+							
+						</div>
+					</div>
+					
+					
+
+					
+					
+					
+
+					<div class="row form-group">
+						<label class="col-md-2" for="email"></label>
+						<div class="col-md-5">
+							<button type="button" class="btn btn-primary col-md-4 pull-right"
+								(click)="goToVeryScreen()" [disabled]="initi_button" >Initialize</button>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+</div>

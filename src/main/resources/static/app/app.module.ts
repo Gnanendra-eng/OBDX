@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // used to create fake backend
@@ -16,6 +16,8 @@ import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent} from './login/index';
+import { RetailComponent} from './login/index';
+
 import { CorporateComponent} from './login/index';
 
 import { RegisterComponent } from './register/index';
@@ -25,6 +27,7 @@ import { RegisterComponent } from './register/index';
         BrowserModule,
         FormsModule,
         HttpModule,
+        ReactiveFormsModule,
         routing
     ],
     declarations: [
@@ -33,7 +36,8 @@ import { RegisterComponent } from './register/index';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        CorporateComponent
+        CorporateComponent,
+        RetailComponent
     ],
     providers: [
         AuthGuard,

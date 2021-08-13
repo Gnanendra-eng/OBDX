@@ -1,0 +1,119 @@
+<div class="wrapper">
+	<div class="container-fluid">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="id">TEMPDEPOSITE DETAILS
+					
+					<a style="color:#101010;"  class="pull-right"  [routerLink]="['/loan-summary']">back &#8592;</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-md-5"></div>
+							<label class="control-label col-sm-2" style="text-align: center">Gnanendra</label>
+							<div class="col-md-5"></div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-4"></div>
+							<label class="control-label col-sm-4" style="text-align: center">CustomerID :<span>{{selecetd.idcustomer}}</span></label>
+							<div class="col-md-4"></div>
+						</div>
+						<div class="form-group">
+						<div class="col-md-4"></div>
+						<label class="control-label col-sm-4" style="text-align: center">AccountID : <span>{{selecetd.idaccount}}</span></label>
+						<div class="col-md-4"></div>
+					</div>
+						
+						
+					</form>
+				</div>
+			</div>
+
+			<div  class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="id">Account Details</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Deposit
+								Date</label>
+							<div class="col-sm-4">
+								<h4>2015-04-03</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Maturity
+								Date</label>
+							<div class="col-sm-4">
+								<h4>2015-05-04</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Status</label>
+							<div class="col-sm-4">
+								<h4 data-ng-if="tempDepositeMoreInfo.tdstatus=='A'">Active</h4>
+																</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Branch
+								Code</label>
+							<div class="col-sm-4">
+								<h4>Banglore</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Currency
+								Type</label>
+							<div class="col-sm-4">
+								<h4>ZMW</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Description</label>
+							<div class="col-sm-4">
+								<h4>Transfer</h4>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<label class="control-label col-sm-2" style="text-align: left">Balance</label>
+							<div class="col-sm-4">
+								<h4>
+									ZMW 25,000.0</h4>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								  <button type="button" class="btn btn-primary">Schedule</button>
+         			            <button type="button" class="btn btn-primary">Disbursment Details</button>
+         			            <button type="button" class="btn btn-primary">Repay</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,188 @@
+<div class="container-fluid">
+
+	<br> <br>
+	<div [hidden]="isFormHide" >
+		<div class="panel panel-primary">
+
+
+			<br>
+			<div class="panel-body">
+				<form #DomesticForm="ngForm"  (ngSubmit)="save()">
+
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2"> NAME :</label>
+						<div class="col-md-4">
+							<span>{{selecetd[0].payye_name}}</span>
+
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2"> Credit Account :</label>
+						<div class="col-md-4">
+							<span>{{selecetd[0].account_number}}</span>
+
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2">Branch Code:</label>
+						<div class="col-md-4">
+							<span>{{selecetd[0].branch_code}}</span>
+
+						</div>
+					</div>
+
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2">Bank :</label>
+						<div class="col-md-4">
+							<span>{{selecetd[0].bank_name}}</span>
+
+						</div>
+					</div>
+
+
+
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<div class=" required">
+							<label class="col-md-2">Debit Account :</label>
+						</div>
+						<div class="col-md-4">
+							<select #selectElem class="col-md-12" class="form-control"
+								(change)="getDebitAccount(selectElem.value)">
+								<option disabled="true">------Select------</option>
+								<option *ngFor="let accountNo of profile" [value]="accountNo.id">{{accountNo.account_number}}</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<div class=" required">
+							<label class="col-md-2" for="Aamt">Available Amount:</label>
+						</div>
+
+						<div class="col-md-4">
+
+							<input class="col-md-12" type="number" name="avil_bal"
+								[(ngModel)]="avil_bal" [ngModelOptions]="{standalone: true}"
+								id="avil_bal" appMyDirective="txn_amt" disabled>
+
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<div class=" required">
+							<label class="col-md-2" for="T-type">Processing Mode:
+								</label>
+						</div>
+						<div class="col-md-4">
+							<input type="radio" name="T-type" value="NEFT"
+								(change)="getPaymentMode($event.target.value)" > NEFT <input
+								type="radio" name="T-type" value="RTGS"
+								(change)="getPaymentMode($event.target.value)"> RTGS <input
+								type="radio" name="T-type" value="IMPS"
+								(change)="getPaymentMode($event.target.value)"> IMPS
+						</div>
+					</div>
+
+
+
+					<div class="row form-group" >
+						<div class="col-md-2"></div>
+						<label class="col-md-2" for="tnx_date">Date of
+							Transaction:
+						</label>
+
+
+						<div  class="col-md-4">
+
+							<input type="radio" name="Pay" value="RTGS" (change)="isPayNow()">
+							PayNow 
+							
+							
+							<input type="radio" name="Pay" value="PayLater" 
+								(change)="getPayDate()">PayLater 
+								
+								<div [hidden]="isPayLater" >
+								<input type="date"
+								
+								class="form-control col-md-12" id="txn_date" name="txn_date"
+								[ngModelOptions]="{standalone: true}"
+								[ngModel]="domesticVerification.txn_date | date:'yyyy-MM-dd'"
+								(ngModelChange)="domesticVerification.txn_date = $event"  required>
+								</div>
+								
+								
+
+						</div>
+					</div>
+
+
+
+
+
+
+					<div class="row form-group"
+						[class.has-error]="txn_amt.touched && txn_amt.invalid">
+						<div class="col-md-2"></div>
+						<div class=" required">
+							<label class="col-md-2" for="amt">Amount:
+								</label>
+						</div>
+						<div class="col-md-4">
+							<input class="col-md-12" type="number" name="txn_amt"
+								[(ngModel)]="domesticVerification.txn_amt"
+								[ngModelOptions]="{standalone: true}" 
+								#txn_amt="ngModel"  appMyDirective="avil_bal" required /> <small
+								*ngIf="txn_amt.touched  && txn_amt.errors?.appMyDirective"
+								class="text-danger"> Amount Should not be Zero </small> <small
+								*ngIf="txn_amt.touched  && txn_amt.errors?.required"
+								class="text-danger"> Amount should not be empty </small> <small
+								*ngIf="(txn_amt.touched ||txn_amt.dirty) && txn_amt.errors?.amtRange"
+								class="text-danger"> Amount Should be less than avilable
+								balance </small>
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2" for="usr">Remarks:</label>
+						<div class="col-md-4">
+							<input class="col-md-12" type="text" id="usr"
+								[(ngModel)]="domesticVerification.remarks"
+								[ngModelOptions]="{standalone: true}" />
+						</div>
+					</div>
+				
+					<br>
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+						<label class="col-md-2"></label>
+						<div class="col-md-4">
+							<button type="submit" [disabled]="!DomesticForm.form.valid"
+								(click)="goToConfirmScreen()" class="btn btn-primary col-md-4" style='margin-right: 16px'
+								>NEXT</button>
+
+							&nbsp;
+							<button type="button" class="btn btn-primary col-md-4"
+								(click)="goToInitScreen()">cancel</button>
+						</div>
+					</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+

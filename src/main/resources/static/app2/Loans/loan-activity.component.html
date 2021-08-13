@@ -1,0 +1,261 @@
+
+<div class="container-fluid">
+	<div class="panel panel-primary">
+
+		<div class="panel-heading">
+			<div class="id">LOAN Activity
+			
+			<a style="color:#101010;"  class="pull-right"  [routerLink]="['/loan-summary']">back &#8592;</a>
+			
+			</div>
+		</div>
+		<br> <br>
+       <form [formGroup]="profileForm" (ngSubmit)="createUser()">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					<div class=" required">
+						<label>Select Account:</label>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<select class="form-control" formControlName="selectedAccount">
+						<option disabled="true">------Select------</option>
+						<option>974745645</option>
+						<option>974745645</option>
+						<option>974745645</option>
+						<option>974745645</option>
+
+					</select>
+				</div>
+
+
+
+
+				<div class="col-md-1"></div>
+
+				<div class="col-md-2">
+					<div class=" required">
+						<label>Transaction Type:</label>
+					</div>
+				</div>
+
+
+
+				<div class="col-md-2">
+					<select class="form-control"  formControlName="transactionType">
+						<option disabled="true">------Select------</option>
+						<option>Debit</option>
+						<option>Debit and Credit</option>
+						<option>credit</option>
+
+
+					</select>
+
+				</div>
+			</div>
+			<br>
+
+			<div class="row">
+				<div>
+					<div class=" required">
+						<label class="col-md-2">Search By:</label>
+					</div>
+
+					<div class="col-md-2">
+						<select class="form-control"   formControlName="searchBy">
+							<option disabled="true">------Select------</option>
+							<option>Debit</option>
+							<option>Debit and Credit</option>
+							<option>credit</option>
+
+
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<br>
+			<div class="row">
+				<div class="col-md-2">
+
+					<label>From Date:</label>
+				</div>
+
+				<div class="col-md-2">
+					<input class="col-md-12" type="date"  formControlName="fromDate"/>
+				</div>
+
+
+				<div class="col-md-1"></div>
+
+				<div class="col-md-2">
+
+					<label>To Date:</label>
+				</div>
+
+				<div class="col-md-2">
+					<input class="col-md-12" type="date"  formControlName="toDate"/>
+				</div>
+
+
+			</div>
+
+			<br />
+			<div class="row">
+
+				<div class="col-md-2">
+					<div class=" required">
+						<label>Sort By:</label>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<select class="form-control"   formControlName="sortBy">
+						<option disabled="true">------Select------</option>
+						<option>Value date</option>
+
+
+					</select>
+				</div>
+
+
+
+
+				<div class="col-md-1"></div>
+
+				<div class="col-md-2">
+					<div class=" required">
+						<label>Sort Order:</label>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<select class="form-control"  formControlName="sortOrder">
+						<option disabled="true">------Select------</option>
+						<option>Accending</option>
+						<option>Descending</option>
+
+
+					</select>
+				</div>
+
+
+			</div>
+
+			<br>
+			<div class="row">
+				<label class="col-md-7"></label>
+				<div class="col-md-3">
+					<button type="submit"  class="btn btn-primary col-md-4 pull-right">Proceed</button>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+</form>
+	</div>
+
+</div>
+
+
+
+
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #006AB5;
+  color: white;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<div [hidden]="hide" class="container-fluid">
+	<div class="panel panel-primary">
+
+
+		<table  id="customers" >
+			<tr>
+				<th>Transaction Date</th>
+				<th>value Date </th>
+				<th>Transaction Reference No.</th>
+
+				<th>Cheque Number</th>
+				<th>Debit</th>
+				<th>Credit</th>
+				<th>Balance</th>
+			</tr>
+			<tr>
+				<td>30-20-2018</td>
+				<td>1-12-2018</td>
+				<td>4654555515</td>
+				<td>54865</td>
+				<td>250</td>
+				<td>415242</td>
+			
+				<td>5415645</td>
+			</tr>
+			<tr>
+				<td>30-20-2018</td>
+				<td>1-12-2018</td>
+				<td>4654555515</td>
+				<td>54865</td>
+				<td>250</td>
+				<td>415242</td>
+				
+				<td>5415645</td>
+			</tr>
+			<tr>
+				<td>30-20-2018</td>
+				<td>1-12-2018</td>
+				<td>4654555515</td>
+				<td>54865</td>
+				<td>250</td>
+				<td>415242</td>
+			
+				<td>5415645</td>
+			</tr>
+		
+		</table>
+
+	</div>
+</div>
+
+
+
+
+
+
+

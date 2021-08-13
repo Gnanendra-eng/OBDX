@@ -1,0 +1,92 @@
+ <div class='container-fluid'>
+       
+ <br >   <br > 
+  <div class="panel panel-primary">  
+   
+    <br>
+<br>
+<div style="padding: 0px 100px">
+            <form>
+                <div class="row form-group">
+                <div class="col-md-2"></div>
+                    <label class="col-md-2" >ACCOUNT NUMBER :</label>
+                    <div class="col-md-4">
+                       <p>{{ ben_details.account_number}}</p>
+                    </div>
+                </div>
+
+                 <div class="row form-group">
+                 <div class="col-md-2"></div>
+                        <label class="col-md-2" >
+                                     SWIFT/NCC</label>
+                        <div class="col-md-4">
+                            <p>{{ sele_bank_details.swift_Code }}</p>
+                        </div>
+                     </div>
+
+                <div class="row form-group">
+                <div class="col-md-2"></div>
+                        <label class="col-md-2" >
+                                     BANK DEATILS :</label>
+                        <div class="col-md-4">
+                            <p>{{sele_bank_details.bank_name+','+sele_bank_details.bank_street +','+ sele_bank_details.bank_location}}</p>
+                        </div>
+                    </div>
+    
+  
+                    <div class="row form-group">
+                    <div class="col-md-2"></div>
+                            <label class="col-md-2" >
+                                              PAYEE NAME :</label>
+                            <div class="col-md-4">
+                               <p>{{ ben_details.payye_name}}</p>
+                            </div>
+                        </div>
+        
+
+                        <div class="row form-group">
+                        <div class="col-md-2"></div>
+                                <label class="col-md-2">NICK NAME :</label>
+                                <div class="col-md-4">
+                                    <p>{{ ben_details.nick_name}}</p>
+                                </div>
+                            </div>
+    
+
+                            <div class="row form-group">
+                            <div class="col-md-2"></div>
+                                    <label class="col-md-2" >MOBILE NO :</label>
+                                    <div class="col-md-4">
+                                        <p>{{ ben_details.phone_numbr}}</p>
+                                    </div>
+                                </div>
+
+     
+                             <div class="row form-group">
+                             <div class="col-md-2"></div>
+                                    <label class="col-md-2" >
+                                         EMAIL :</label>
+                                    <div class="col-md-4">
+                                        <p>{{ ben_details.email}}</p>
+                                    </div>
+                                </div>
+                           
+   
+    <br>
+
+    <div class="row form-group">
+            <label class="col-md-2" for="email"></label>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary col-md-3" (click)="getConfirmAlert()"  style='margin-right:16px' >Confirm</button>
+              &nbsp;   <button type="button" class="btn btn-primary col-md-3" (click)="goToAddScreen()">Change</button>
+            </div>
+
+  
+    </div>
+    
+    </form>
+    </div>
+    </div>
+   
+ </div>
+  

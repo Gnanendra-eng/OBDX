@@ -1,0 +1,87 @@
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #006AB5;
+  color: white;
+}
+</style>
+
+
+
+
+
+<div class="container-fluid">
+	<div class="panel panel-primary">
+
+		<div class="panel-heading">
+			<div >TermDeposite Summary
+			
+			<a style="color:#101010;"  class="pull-right"  [routerLink]="['/loan-summary']">back &#8592;</a>
+			
+			</div>
+		</div>
+	
+
+		
+<table  id="customers" >
+			<tr>
+				<th>Account Description </th>
+				<th>Currency</th>
+				<th>Outstanding Loan Amount</th>
+				<th>Equivalent Balance</th>
+				
+			</tr>
+			
+
+			
+			
+		<tr [routerLink]="['/TerDeposite-details']" *ngFor="let loan of loanDetails.contractAndTermdeposit  ; let i=index" (click)="selectedLoan(loan)" >
+		
+	
+				<td>{{loan.idaccount}}---~{{loan.prdname}}~{{loan.codbranch}}</td>
+				<td>{{loan.codacctcurr}}</td>
+				<td>{{loan.numavailbal}}</td>
+				<td>{{loan.numbalance}}</td>
+				
+			</tr>
+		
+		
+		</table>
+
+
+
+
+
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+

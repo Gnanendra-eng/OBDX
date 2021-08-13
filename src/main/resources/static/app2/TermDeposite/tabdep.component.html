@@ -1,0 +1,128 @@
+<div class="container-fluid">
+	<div class="col-md-4">
+		<div class="container-fluid1">
+			<div class="container-header">
+				<div class="id">SUMMARY
+				
+				
+				
+				</div>
+			</div>
+			<div class="summary-bar">
+				<div class="row">
+					<div class="col-sm-2 no" style="font-size: x-large;left: 30px;top: 0px;">TermDeposit</div>
+               </div>
+			</div>
+			<div class="summary-graph-container" style="width:100%;text-align:center">
+				<div class="row" style="font-size:large">
+					<span class="glyphicon glyphicon-stop" style="color:#ffa86f"></span>
+					<span>Term Deposit</span>
+					<span style="color: #ffa86f">&nbsp;</span>
+				</div>
+				<br />
+				</div>
+			
+				
+				</div>
+	</div>
+	
+
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+		
+		<div class="panel-heading">
+			<div>TERM DEPOSIT SUMMARY</div>
+		</div>
+		<a class="thumbnail" [routerLink]="['/TerDeposite-details']"  *ngFor="let conttempdep of profile.contractAndTermdeposit | slice:0:3 ; let i=index"  (click)="getSelectedLoan(conttempdep)" >
+			<div class="inner-triangle">
+				<img src="images/deposit.png" class="img-circle" style="width: 40px;height: 40px;margin-top: 10px;margin-left: 10px;" />
+			</div>
+			<div class="name">{{conttempdep.prdname}}</div>
+			<p>{{conttempdep.idaccount}}</p>
+			<p>{{conttempdep.codacctcurr}}</p>
+			<p>{{conttempdep.codbranch}}</p>
+		
+			
+			<a *ngIf="i===2">
+		<div class="container-footer">
+					<a [routerLink]="['/TerDeposite-ViewAll']" >View All<span class="fa fa-arrow-right pull-right"></span></a>
+				</div>
+				</a>
+			
+	</a>
+	</div>
+	
+    </div>
+
+<div class="col-md-4">
+
+	<div class="thumbnail">
+		<div class="spec">
+			<div class="id">
+			
+			
+			<a [routerLink]="['/TerDeposite-Activity']" >
+			
+			TERM DEPOSIT ACTIVITY
+			</a>
+			</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br />
+					<p>Select and clarify account activity</p>
+					<br />
+				</div>
+				<div class="col-sm-5">
+					<img src="images/AccountActivity.JPG" class="img-responsive"
+						style="width: 135px; height: 80px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="thumbnail">
+		<div class="spec">
+			<div class="id">NEW TERM DEPOSIT</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<br />
+					<p>Select products to fulfil your financial needs</p>
+					<br />
+				</div>
+				<div class="col-sm-5">
+					<img src="images/new-loan.JPG" class="img-responsive"
+						style="width: 135px; height: 80px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="thumbnail">
+		<div class="container-fluid">
+			<div class="closed-loan">
+				<div class="id" id="closed">CLOSED TERM DEPOSIT</div>
+				<br />
+				<div class="row">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-3">
+						<img src="images/closed-loan.JPG" class="img-responsive"
+							style="width: 60px; height: 60px;" />
+					</div>
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+						<div class="closed-no">3</div>
+						<div class="closed-desc">Loans</div>
+					</div>
+				</div>
+				<div class="container-footer">
+					<a href="">View All<span class="fa fa-arrow-right pull-right"></span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+			
+	

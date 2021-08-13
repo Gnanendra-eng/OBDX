@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="col-sm-12">
+		<div class="panel panel-primary">
+
+			<div  class="panel-heading">
+			
+			<div class="id">
+			payments</div></div>
+			<br>
+			<body>
+				<div>
+					<ul class="nav nav-tabs">
+						<li [ngClass]="{'active': OwnAccount}" ><a [routerLink]="['OwnAc-Initialize']" class="id"  (click)="goToTab1()">Own
+								Account</a></li>
+						<li  [ngClass]="{'active': DomesticAccount}" ><a [routerLink]="['Domestic-Initialize']" class="id"  (click)="goToTab2()">Domestic
+								Account</a></li>
+					</ul>
+				</div>
+				<router-outlet></router-outlet>
+			</body>
+		</div>
+	</div>
+</div>
+

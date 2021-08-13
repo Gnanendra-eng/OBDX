@@ -1,0 +1,59 @@
+
+
+
+<div class="container-fluid">
+ <br> <br> <br> <br>
+<form >
+   <div  class="panel panel-primary"> 
+   
+   
+    
+    <br>
+<br>
+
+
+    <div class="row form-group" style="padding: 0px 100px">
+    <div  class="col-md-2"> </div>
+    <div class=" required">
+      <label class="col-md-2" >Existing Beneficiary Names:</label>
+      </div>
+      <div class="col-md-4">
+         <select #selectElem class="col-md-12"    class="form-control"   (change)="onChange(selectElem.value)"   >
+         <option disabled="true">------Select------ </option>
+           <option *ngFor="let accountNo of records.beneficiaryList"  [value]="accountNo.id"  >{{accountNo.payeeName}}</option>
+        </select>
+      </div>
+    </div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="row form-group">
+ <div  class="col-md-3"> </div>
+    <label class="col-md-2" ></label>
+    <div class="col-md-4">
+    <button type="button"  class="btn btn-primary col-md-4 " (click)="goToAddScreen()" style='margin-right:16px' >Add Payeee</button>
+          &nbsp;  <button type="button" [disabled]="proceed" class="btn btn-primary col-md-4 "  (click)="goToVeryScreen()"> Begin payment</button> 
+           
+      
+    </div>
+  </div>
+  
+
+
+        
+        
+
+
+</div>
+
+
+ </form>
+</div>
+
+
+
+

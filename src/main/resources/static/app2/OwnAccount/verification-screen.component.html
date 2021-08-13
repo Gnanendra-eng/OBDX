@@ -1,0 +1,104 @@
+<div class="container-fluid">
+
+	<br>
+<form [formGroup]="profileForm" (ngSubmit)="goToConfirmScreen()">
+	<div class="panel panel-primary">
+
+		<br> <br>
+		<div style="padding: 0px 80px">
+		
+                  
+				<div class="row form-group">
+				<div  class="col-md-2"></div>
+					<label class="col-md-2">Source Account:</label>
+					<div class="col-md-4">
+						<span>{{initi_details.sele_src_account}}</span>
+					</div>
+				</div>
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div> 
+					<label class="col-md-2">Destination Account:</label>
+					<div class="col-md-4">
+						<span>{{initi_details.sele_des_account}}</span>
+					</div>
+				</div>
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div> 
+					<label class="col-md-2">Transaction Date</label>
+					<div class="col-md-4">
+						<span>{{initi_details.selected_date}}</span>
+					</div>
+				</div>
+
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div> 
+					<label class="col-md-2" for="bal">Balance:</label>
+					<div class="col-md-4">
+						{{initi_details.avl_balance}}
+					</div>
+				</div>
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div> 
+					<div class=" required">
+					
+						<label class="col-md-2" for="amount">Amount:</label>
+					</div>
+					<div class="col-md-4">
+						<input type="number"  class="form-control" id="amount" name="amount" formControlName="amount" required>
+						
+						<span
+							*ngIf="!profileForm.get('amount').valid && profileForm.get('amount').hasError('default') && profileForm.get('amount').touched"
+							class="help-block"  style="color: red;"> Amount should not be Zero
+							 </span>
+							 
+							<span
+							*ngIf="!profileForm.get('amount').valid && profileForm.get('amount').touched && profileForm.get('amount').hasError('ageRange')" 
+							class=" help-block"  style="color: red;"> Amount should be less than 
+							Avilable Balance </span>
+							
+							
+								<span
+							*ngIf="!profileForm.get('amount').valid && profileForm.get('amount').touched && profileForm.get('amount').hasError('required')" 
+							class="help-block"  style="color: red;"> Amount field is required
+							 </span>
+							
+							
+							
+					</div>
+					
+					
+
+				</div>
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div> 
+					<label class="col-md-2" for="note">Note(optional):</label>
+					<div class="col-md-4">
+						<input type="text" class="form-control" id="note" formControlName="note" >
+					</div>
+				</div>
+
+				<div class="row form-group">
+				<div  class="col-md-2"></div>
+					<label class="col-md-2"></label>
+					<div class="col-md-5">
+						<button type="button" class="btn btn-primary col-md-4"
+							style='margin-right: 16px' (click)="goToIntilizeScreen()">Change</button>
+						&nbsp;
+						<button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary col-md-4"
+							>Proceed</button>
+					</div>
+
+
+				</div>
+
+
+
+		</div>
+	</div>
+	</form>
+</div>

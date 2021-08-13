@@ -1,0 +1,234 @@
+<style>
+* {
+	box-sizing: border-box;
+}
+
+.btn-search {
+	background: #378dd2;
+	border-radius: 0;
+	color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #1c1c1c;
+}
+
+.btn-search:link, .btn-search:visited {
+	color: #378dd2;
+}
+
+.btn-search:active, .btn-search:hover {
+	background: #0b7dda;
+	color: #fff;
+}
+</style>
+
+
+
+
+<div class="container-fluid">
+	<br> <br> <br>
+
+	<div [hidden]="ele">
+
+		<form [formGroup]="profileForm" (ngSubmit)="createUser()">
+
+			<div class="panel panel-primary">
+
+
+
+				<div style="padding: 0px 30px">
+
+					<br> <br>
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+
+						<label class="col-md-2" for="accountNumber">ACCOUNT NUMBER
+							:</label>
+
+						<div class="col-md-4">
+							<input type="number" class="form-control col-md-12"
+								id="aaccount_number" name="account_number"
+								formControlName="account_number">
+						</div>
+					</div>
+
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+
+						<div class="col-md-2">
+
+							<input type="radio" name="code" value="SWIFT"
+								(change)="getSwiftCode()"> <b>SWIFT</b> <input
+								type="radio" name="code" value="NCC" (change)="getNccCode()"><b>NCC</b>
+						</div>
+						<div class="col-md-4">
+
+
+
+							<div [hidden]="isSwift">
+								<div class="input-group" style="margin: auto; max-width: 550px">
+
+									<input type="text" class="form-control " id="branch_code"
+										name="branch_code" formControlName="branch_code"
+										placeholder="Swift Code..." [(ngModel)]="sele_SwiftCode">
+
+									 <span class="input-group-btn">
+										<button class="btn btn-search" type="button"
+											(click)="getBankAddress()">
+											<i class="fa fa-search fa-fw"></i>
+										</button>
+									</span>
+								
+
+
+
+								</div>
+								<span>{{bank_details.bank_name +'
+									'+''+bank_details.bank_street+ ' '
+									+bank_details.bank_location}} </span>
+									
+										<span
+										*ngIf="!profileForm.get('branch_code').valid && profileForm.get('branch_code').touched"
+										class="help-block" style="color: red;"> Please Enter
+										valid swift code</span>
+							</div>
+
+
+
+							<div [hidden]="isNcc">
+								<div class="input-group" style="margin: auto; max-width: 550px">
+
+									<input type="text" class="form-control " id="branch_code"
+										name="branch_code" formControlName="branch_code"
+										placeholder="Ncc Code..." [(ngModel)]="sele_SwiftCode">
+
+								 <span class="input-group-btn">
+										<button type="button" class="btn btn-search"
+											(click)="getBankAddress()">
+											<i class="fa fa-search fa-fw"></i>
+										</button>
+									</span>
+
+								</div>
+								<span>{{bank_details.bank_name +' '+'
+									'+''+bank_details.bank_street+' '+bank_details.bank_location}}
+								</span>
+								
+									<span
+										*ngIf="!profileForm.get('branch_code').valid && profileForm.get('branch_code').touched"
+										class="help-block" style="color: red;"> Please Enter
+										valid Ncc code</span>
+								
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<div class="row form-group">
+
+						<div class="col-md-2"></div>
+
+
+						<label class="col-md-2" for="payye_name"> NAME :</label>
+
+						<div class="col-md-4">
+
+							<input type="text" class="form-control col-md-12" id="payye_name"
+								name="payye_name" formControlName="payye_name" required>
+						</div>
+
+						<span
+							*ngIf="!profileForm.get('payye_name').valid && profileForm.get('payye_name').touched"
+							class="help-block" style="color: red;"> Please Enter valid
+							name</span>
+
+
+
+
+
+
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+
+						<label class="col-md-2" for="nickname"> NICK NAME :</label>
+
+						<div class="col-md-4">
+							<input type="text" class="form-control col-md-12" id="nick_name"
+								name="nick_name" formControlName="nick_name">
+						</div>
+
+
+
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+
+						<label class="col-md-2" for="phone_numbr"> MOBILE NO :</label>
+
+						<div class="col-md-4">
+							<input type="number" class="form-control col-md-12"
+								id="phone_numbr" name="phone_numbr"
+								formControlName="phone_numbr">
+						</div>
+
+
+						<span
+							*ngIf="!profileForm.get('phone_numbr').valid && profileForm.get('phone_numbr').touched"
+							class="help-block" style="color: red;"> please Enter valid
+							number </span>
+
+					</div>
+
+					<div class="row form-group">
+						<div class="col-md-2"></div>
+
+						<label class="col-md-2" for="email"> EMAIL :</label>
+
+						<div class="col-md-4">
+							<input type="email" class="form-control col-md-12" id="email"
+								name="email" formControlName="email">
+						</div>
+
+						<span
+							*ngIf="!profileForm.get('email').valid && profileForm.get('email').touched"
+							class="help-block" style="color: red;"> please Enter valid
+							email </span>
+
+
+
+					</div>
+
+
+
+					<div class="row form-group">
+
+						<label class="col-md-2"></label>
+						<div class="col-md-5">
+							<button type="submit" class="btn btn-primary col-md-4"
+								style='margin-right: 16px' [disabled]="!profileForm.valid">Proceed</button>
+
+
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div [hidden]="!ele">
+
+		<app-addpayee-confirm [ben_details]="benefeciary"
+			[sele_bank_details]="bank_details"> </app-addpayee-confirm>
+
+	</div>
+
+</div>

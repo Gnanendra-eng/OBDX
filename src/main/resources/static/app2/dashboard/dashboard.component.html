@@ -1,0 +1,109 @@
+
+
+			<div class="top-header">
+				<div>
+					<a [routerLink]="['userprofile']"><img id="logo"
+					src="images/mainheader.png" alt="logo" class="img-responsive" /></a>
+				</div>
+				<div style="font-size: 30px; color: blue;">JMR Internet Banking</div>
+				
+				<div class="signout">
+				<form class="pull-right" th:action="@{/logout}" method="post">
+					<input type="submit" class="btn btn-info btn-sm" value="Sign Out" />
+				</form>
+				</div>
+				
+				<div style="font-size: 20px; color: green;float: right;">Welcome to JMR-User</div>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data menu-data"
+						data-toggle="dropdown">Account <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/account">Account Info</a></li>
+							<li><a href="#/account-summary">Account Summary</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">Loan <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+						 <li><a [routerLink]="['/loan-summary']" class="btn btn-link">Loan Info</a></li>
+					   
+						
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">Statement <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/statement">Statement Info</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">Term Deposits <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a [routerLink]="['TerDeposite-Summary']">Term Deposits</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">Bill Payments <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/biller">Register Biller</a></li>
+							<li><a href="#/paybills">Pay Bills</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">Payments <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+						<li> <a [routerLink]="['/tabs']"  class="btn btn-link">Transfer Money</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="" class="dropdown-toggle menu-data"
+						data-toggle="dropdown">New account opening <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/new-loan-account-opening">Loan</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href=""
+						data-ng-click="stopDefaultAction($event)" class="dropdown-toggle menu-data"
+						data-toggle="dropdown"><span class="fa fa-user-circle-o"></span>
+							My Account</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="profile-info">
+									<div class="circle">R</div>
+									<br />
+									<p id="profile-name">RISHAD</p>
+								</div>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="#/edit-profile" class="btn btn-info btn-sm pull-left" role="button">Profile</a>
+								<form class="pull-right" th:action="@{/logout}" method="post">
+									<input type="submit" class="btn btn-info btn-sm" value="Sign Out" />
+								</form>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+
+
+

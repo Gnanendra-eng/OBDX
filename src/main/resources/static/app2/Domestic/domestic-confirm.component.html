@@ -1,0 +1,95 @@
+
+<div class='container-fluid'>
+
+	<br>
+	<div class="panel panel-primary">
+
+		<br> <br>
+		<div style="padding: 0px 80px">
+			<form>
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">NAME</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.payee_name}}</span>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Credit Account</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.destination_acc}}</span>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Branch Code</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.branch_code}}</span>
+					</div>
+				</div>
+
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Bank</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.txn_purpose}}</span>
+					</div>
+				</div>
+
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Debit Account</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.source_acc}}</span>
+					</div>
+				</div>
+
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Date :</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.txn_date}}</span>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Amount:</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.txn_amt}}</span>
+					</div>
+				</div>
+
+
+				<div class="row form-group">
+					<div class="col-md-4"></div>
+					<label class="col-md-2">Remarks:</label>
+					<div class="col-md-4">
+						<span>{{ domestic_details.remarks}}</span>
+					</div>
+				</div>
+				<br> <br>
+				<div class="row form-group">
+					<div class="col-md-2"></div>
+					<label class="col-md-2" for="email"></label>
+					<div class="col-md-5">
+						<button type="button" class="btn btn-primary col-md-3"
+							(click)="getConfirmAlert()" style='margin-right: 16px'>Confirm</button>
+						&nbsp;
+						<button type="button" class="btn btn-primary col-md-3"
+							(click)="goToAddScreen()">Cancel</button>
+					</div>
+
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>

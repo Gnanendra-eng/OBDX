@@ -35,6 +35,8 @@
       app: 'app',
 
       // angular bundles
+      '@angular/common': 'npm:@angular/common@5.0.3/bundles/common.umd.js',
+      '@angular/common/http': 'npm:@angular/common@5.0.3/bundles/common-http.umd.js',
       '@angular/common': 'npm:@angular/common@4.1.0/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler@4.1.0/bundles/compiler.umd.js',
       '@angular/core': 'npm:@angular/core@4.1.0/bundles/core.umd.js',

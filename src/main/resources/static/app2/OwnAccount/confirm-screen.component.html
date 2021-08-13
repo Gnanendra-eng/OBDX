@@ -1,0 +1,73 @@
+ <div class='container-fluid'>
+ <br><br>
+      	 <div class="panel panel-primary">  
+  
+    <br>
+<br>
+<div style="padding: 0px 80px">
+            <br >
+            <form>
+                <div class="row form-group">
+                <div  class="col-md-4"></div>
+                    <label class="col-md-2" >Source Account:</label>
+                    <div class="col-md-4">
+                        <span>{{selecetd.source_account}}</span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                          <div  class="col-md-4"></div>
+                        <label class="col-md-2" >Destination Account</label>
+                        <div class="col-md-4">
+                            <span>{{selecetd.destination_account}}</span>
+                        </div>
+                    </div>
+    
+  
+                    <div class="row form-group">
+                      <div  class="col-md-4"></div>
+                            <label class="col-md-2" >Balance</label>
+                            <div class="col-md-4">
+                                <span>{{selecetd.avl_bal}}</span>
+                            </div>
+                        </div>
+        
+
+                        <div class="row form-group">
+                        <div  class="col-md-4"></div>
+                                <label class="col-md-2">Amouont</label>
+                                <div class="col-md-4">
+                                    <span>{{selecetd.amount}}</span>
+                                </div>
+                            </div>
+    
+
+                            <div class="row form-group">
+                            <div  class="col-md-4"></div>
+                                    <label class="col-md-2" >Note :</label>
+                                    <div class="col-md-4">
+                                        <span>{{selecetd.note}}</span>
+                                    </div>
+                                </div>
+
+     
+    
+   
+    <br>
+
+    <div class="row form-group">
+    <div  class="col-md-2"></div>
+            <label class="col-md-2" for="email"></label>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary col-md-4" style='margin-right:16px' (click)="getConfirmAlert()">Confirm</button>
+              &nbsp;   <button type="button" class="btn btn-primary col-md-4" (click)="getVerfiScreen()">Cancel</button>
+            </div>
+
+  
+    </div>
+    </form>
+    </div>
+    </div>
+   
+ </div>
+  

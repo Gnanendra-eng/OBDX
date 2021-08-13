@@ -1,0 +1,149 @@
+
+<div class="container-fluid">
+
+
+
+	<div class="col-md-4">
+		<div class="container-fluid1">
+			<div class="container-header">
+				<div class="id">SUMMARY</div>
+			</div>
+			<div class="summary-bar">
+				<div class="row">
+					<div class="col-sm-2 no">5</div>
+					<div class="col-sm-10 sum-loans">Loans</div>
+				</div>
+			</div>
+			<div class="summary-graph-container" style="width: 152px">
+				<p style="text-align: center">Total Borrowing</p>
+				<div class="sum-amount" style="text-align: center"
+					style="color: #d37da4">ZMW 5455,55</div>
+				<div id="loan" height="100px"></div>
+				<p style="text-align: center">Current Outstanding</p>
+				<div class="sum-amount" style="text-align: center"
+					style="color: #83325b">ZMW 546556,5</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="col-md-4">
+
+		<div class="panel panel-primary">
+		
+		<div class="panel-heading">
+			<div>LOAN SUMMARY</div>
+		</div>
+		
+			<a class="thumbnail" [routerLink]="['/loan-details']" (click)="getSelectedLoan(loan)"
+				*ngFor="let loan of loanDetails.closedBasicLoanDetails | slice:0:3 ; let i=index">
+
+
+				<div class="inner-triangle"></div>
+
+
+
+				<div class="name" class="id">{{loan.productDescription}}</div>
+
+				<p>{{loan.accNumber}}</p>
+			
+				<p>{{loan.branch}}</p>
+				<div class="outstanding">Outstanding Amount</div>
+				<div class="amount"> {{loan.currency +'&nbsp;'+'&nbsp;'+'&nbsp;'}}{{loan.outStandingLoanAmount}}</div>
+
+				<a *ngIf="i===2">
+					<div class="container-footer">
+						<a [routerLink]="['/loan-ViewAll']">View All<span
+							class="fa fa-arrow-right pull-right"></span></a>
+					</div>
+				</a>
+
+			</a>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="col-md-4">
+
+		<div class="thumbnail">
+			<div class="spec">
+				<div class="id">
+
+
+					<a [routerLink]="['/loan-Activity']"> LOAN ACTIVITY </a>
+				</div>
+				<div class="row">
+					<div class="col-sm-7">
+						<br />
+						<p>Select and clarify account activity</p>
+						<br />
+					</div>
+					<div class="col-sm-5">
+						<img src="images/AccountActivity.JPG" class="img-responsive"
+							style="width: 135px; height: 80px;" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="thumbnail">
+			<div class="spec">
+
+				<div class="id">NEW LOAN</div>
+
+				<div class="row">
+					<div class="col-sm-7">
+						<br />
+						<p>Select products to fulfil your financial needs</p>
+						<br />
+					</div>
+					<div class="col-sm-5">
+						<img src="images/new-loan.JPG" class="img-responsive"
+							style="width: 135px; height: 80px;" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="thumbnail">
+			<div class="container-fluid">
+				<div class="closed-loan">
+					<div class="id" id="closed">CLOSED LOANS</div>
+					<br />
+					<div class="row">
+						<div class="col-xs-1"></div>
+						<div class="col-xs-3">
+							<img src="images/closed-loan.JPG" class="img-responsive"
+								style="width: 60px; height: 60px;" />
+						</div>
+						<div class="col-xs-4"></div>
+						<div class="col-xs-4">
+							<div class="closed-no">3</div>
+							<div class="closed-desc">Loans</div>
+						</div>
+					</div>
+					<div class="container-footer">
+						<a [routerLink]="['/TerDeposite-ViewAll']">View All<span
+							class="fa fa-arrow-right pull-right"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+
+
+
